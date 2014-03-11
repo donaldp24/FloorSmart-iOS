@@ -15,6 +15,7 @@
 #import "FSArchiveJobViewController.h"
 #import "FSReportViewController.h"
 #import "FSMainViewController.h"
+#import "FSLocationsViewController.h"
 
 @interface FSJobViewController ()
 {
@@ -26,7 +27,7 @@
 
 @implementation FSJobViewController
 @synthesize isEditing = _isEditing;
-@synthesize tblJobs, btnFly, popView, viewTopAdd, viewTopSearch, txtTop;
+@synthesize tblJobs, btnFly, popView, viewTopAdd, viewTopSearch;
 @synthesize archive_alertview;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,12 +55,14 @@
     CGRect popFrame = popView.frame;
     popFrame.size.height = 0;
     [popView setFrame:popFrame];
+    
+    [self initTableData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self initTableData];
+    //[self initTableData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,26 +73,39 @@
 - (void)initTableData
 {
     arrJobNames = [[DataManager sharedInstance] getJobs:0 searchField:@""];
-    [tblJobs setContentSize:CGSizeMake(tblJobs.frame.size.width, 60 * [arrJobNames count])];
+    //[tblJobs setContentSize:CGSizeMake(tblJobs.frame.size.width, 60 * [arrJobNames count])];
     [tblJobs reloadData];
+}
+
+- (void)initTableDataArray
+{
+    arrJobNames = [[DataManager sharedInstance] getJobs:0 searchField:@""];
 }
 
 #pragma mark - textfield delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    //[self onAdd:textField];
     return YES;
 }
 
 #pragma mark - UITableView DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    return 1;
+}
+
+/*
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return [arrJobNames count];
 }
+*/
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [arrJobNames count];
 }
 
 - (CGFloat)tableView:( UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -108,7 +124,7 @@
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell setDelegate:self];
-    [cell setCurJob:[arrJobNames objectAtIndex:indexPath.section]];
+    [cell setCurJob:[arrJobNames objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -123,20 +139,20 @@
     }completion:^(BOOL finished){
         [popView setHidden:YES];
         switch (popView.selectedNum) {
-            case 0:
+            case 0: //add
                 [viewTopSearch setHidden:YES];
                 [viewTopAdd setHidden:NO];
                 [self initTableData];
-                [txtTop setText:@""];
-                [txtTop setPlaceholder:@"Add Job"];
+                [self.txtEdit setText:@""];
+                [self.txtEdit becomeFirstResponder];
                 break;
-            case 1:
+            case 1: //search
                 [viewTopAdd setHidden:YES];
                 [viewTopSearch setHidden:NO];
-                [txtTop setText:@""];
-                [txtTop setPlaceholder:@"Search Job"];
+                [self.txtSearch setText:@""];
+                [self.txtSearch becomeFirstResponder];
                 break;
-            default:
+            default: //archive
                 [self navigateArchive];
                 break;
         }
@@ -153,7 +169,7 @@
 - (void)showAlertAnimation
 {
     [UIView animateWithDuration:0.2f animations:^{
-        archive_alertview.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
+        archive_alertview.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
     }completion:^(BOOL finished){
         [UIView animateWithDuration:0.07f animations:^{
             archive_alertview.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
@@ -217,11 +233,17 @@
 
 - (void)didDetail:(FSJobCell *)cell
 {
+    /*
     FSMainViewController *mainController = [FSMainViewController sharedController];
     UINavigationController *nav =(UINavigationController *)[[mainController viewControllers] objectAtIndex:2];
     FSReportViewController *report = (FSReportViewController *)[[nav viewControllers] objectAtIndex:0];
     [report setCurJob:cell.curJob];
     [mainController selectItem:mainController.btnReports];
+     */
+    
+    FSLocationsViewController *vc = [[FSLocationsViewController alloc] initWithNibName:@"FSLocationsViewController" bundle:nil];
+    vc.curJob = cell.curJob;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Actions
@@ -262,25 +284,76 @@
 
 - (IBAction)onAdd:(id)sender
 {
-    if ([txtTop.text isEqualToString:@""]) {
+    if ([self.txtEdit.text isEqualToString:@""]) {
         [CommonMethods showAlertUsingTitle:@"" andMessage:@"Input Job Name to add!"];
         return;
     }
     FSJob *job = [[FSJob alloc] init];
-    job.jobName = txtTop.text;
+    job.jobName = self.txtEdit.text;
     [[DataManager sharedInstance] addJobToDatabase:job];
-    [self initTableData];
+    //[self initTableData];
+    
+    [self.txtEdit resignFirstResponder];
+    [self.txtEdit setText:@""];
+    
+    [self initTableDataArray];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[arrJobNames count] - 1 inSection:0];
+    
+    FSJobCell *cell = [tblJobs dequeueReusableCellWithIdentifier:@"FSJobCell"];
+    
+    if(cell == nil)
+    {
+        cell = [FSJobCell sharedCell];
+    }
+    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [cell setDelegate:self];
+    [cell setCurJob:[arrJobNames objectAtIndex:indexPath.row]];
+
+    
+    [tblJobs beginUpdates];
+    [tblJobs insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [tblJobs endUpdates];
+    
+    [tblJobs scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    
 }
 
 - (IBAction)onClose:(id)sender
 {
-    [txtTop setText:@""];
+    [self.txtEdit setText:@""];
 }
 
 - (IBAction)onSearch:(id)sender
 {
-    arrJobNames = [[DataManager sharedInstance] getJobs:0 searchField:txtTop.text];
+    arrJobNames = [[DataManager sharedInstance] getJobs:0 searchField:self.txtSearch.text];
     [tblJobs reloadData];
 }
 
+- (IBAction)onBtnBg:(id)sender
+{
+    //[txtTop resignFirstResponder];
+    //if (self.txtEditing)
+      //  [self.txtEditing resignFirstResponder];
+}
+
+- (IBAction)txtSearchChanged:(id)sender
+{
+    [self onSearch:sender];
+}
+
+- (IBAction)onBtnCancel:(id)sender
+{
+    [self.txtSearch resignFirstResponder];
+    popView.selectedNum = 0;//
+    //[self didPopUpItem];
+    
+    [viewTopSearch setHidden:YES];
+    [viewTopAdd setHidden:NO];
+    [self initTableData];
+    [self.txtEdit setText:@""];
+}
 @end
+
+

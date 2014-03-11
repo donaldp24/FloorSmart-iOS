@@ -224,6 +224,24 @@ static DataManager *sharedManager;
 }
 
 #pragma mark - location
+- (NSMutableArray *)getMainLocations
+{
+    NSMutableArray *arrLocationList = [[NSMutableArray alloc] init];
+    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_location"]];
+    
+    while ([results next]) {
+        
+        FSLocation *location  = [[[FSLocation alloc] init] autorelease];
+        location.locID = [results stringForColumn:@"location_id"];
+        location.locName = [results stringForColumn:@"location_name"];
+        
+        [arrLocationList addObject:location];
+    }
+
+    return arrLocationList;
+}
+
+
 - (NSMutableArray *)getLocations:(NSMutableArray *)arrFeeds
 {
     NSMutableArray *arrLocationList = [[NSMutableArray alloc] init];

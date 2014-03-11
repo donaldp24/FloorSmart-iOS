@@ -39,6 +39,7 @@
 - (void)updateProductToDatabase:(FSProduct *)product;
 - (void)deleteProductFromDatabase:(FSProduct *)product;
 
+- (NSMutableArray *)getMainLocations;
 - (NSMutableArray *)getLocations:(NSMutableArray *)arrFeeds;
 - (FSLocation *)getLocationFromID:(NSInteger)locID;
 - (int)getMaxLocID;

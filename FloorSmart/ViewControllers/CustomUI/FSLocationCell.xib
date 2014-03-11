@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FSJobCell" id="RIi-Av-vff" customClass="FSJobCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FSCell" id="a5j-9s-0NG" customClass="FSLocationCell">
             <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RIi-Av-vff" id="vht-a9-Bvz">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a5j-9s-0NG" id="se9-k0-RXr">
                 <rect key="frame" x="0.0" y="0.0" width="300" height="59"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pLh-vK-SLw" userLabel="Button - Detail">
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2z-qY-hMu" userLabel="btnBg">
                         <rect key="frame" x="0.0" y="7" width="300" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <state key="normal" backgroundImage="bg_product_list_bar.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
-                            <action selector="onDetail:" destination="RIi-Av-vff" eventType="touchUpInside" id="e07-gu-2L7"/>
+                            <action selector="onBtnBg:" destination="a5j-9s-0NG" eventType="touchUpInside" id="g4i-Io-rPU"/>
                         </connections>
                     </button>
-                    <view hidden="YES" contentMode="scaleToFill" id="Y5S-dL-Mt5" userLabel="View - Editing">
+                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eY9-QD-Qqh" userLabel="View - Editing">
                         <rect key="frame" x="230" y="15" width="65" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fB3-zz-io8" userLabel="Button - cancel">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7X3-2v-wH4" userLabel="Button - cancel">
                                 <rect key="frame" x="34" y="2" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -35,10 +36,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onCancel:" destination="RIi-Av-vff" eventType="touchUpInside" id="B7Z-s8-XcD"/>
+                                    <action selector="onBtnCancel:" destination="a5j-9s-0NG" eventType="touchUpInside" id="cPm-Ge-Jf6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1qF-sF-zei" userLabel="Button - ok">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHY-ZA-nmN" userLabel="Button - ok">
                                 <rect key="frame" x="2" y="2" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -46,17 +47,17 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onOK:" destination="RIi-Av-vff" eventType="touchUpInside" id="pDF-a1-Kyc"/>
+                                    <action selector="onBtnOk:" destination="a5j-9s-0NG" eventType="touchUpInside" id="ha1-aR-SVq"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <view contentMode="scaleToFill" id="bdp-Gt-Yts" userLabel="View - Edit">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xq6-3q-Zd6" userLabel="View - Control">
                         <rect key="frame" x="230" y="15" width="70" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="o20-0m-bah" userLabel="Button - archive">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vD3-yp-4EL" userLabel="Button - archive">
                                 <rect key="frame" x="34" y="2" width="30" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -64,10 +65,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onArchive:" destination="RIi-Av-vff" eventType="touchUpInside" id="KLY-d9-X7W"/>
+                                    <action selector="onBtnDelete:" destination="a5j-9s-0NG" eventType="touchUpInside" id="SGO-3f-0a0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YGl-nZ-qEW">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBv-zf-e77">
                                 <rect key="frame" x="2" y="2" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -75,24 +76,23 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onEdit:" destination="RIi-Av-vff" eventType="touchUpInside" id="6XQ-Nr-xe5"/>
+                                    <action selector="onBtnEdit:" destination="a5j-9s-0NG" eventType="touchUpInside" id="y1T-XO-MXB"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="zag-SC-Qpa">
+                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9De-2s-dNM" userLabel="txtName">
                         <rect key="frame" x="15" y="15" width="210" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                         <connections>
-                            <action selector="onOK:" destination="RIi-Av-vff" eventType="editingDidEndOnExit" id="Bor-zM-4xS"/>
-                            <outlet property="delegate" destination="RIi-Av-vff" id="T98-bn-4uT"/>
+                            <outlet property="delegate" destination="a5j-9s-0NG" id="dS4-se-lxq"/>
                         </connections>
                     </textField>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mercy Hospital" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gZ0-hF-bEM">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mercy Hospital" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXR-gL-wuf" userLabel="lblName">
                         <rect key="frame" x="15" y="15" width="210" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -104,11 +104,13 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="btnDetail" destination="pLh-vK-SLw" id="ft9-Mr-uzF"/>
-                <outlet property="lblJobName" destination="gZ0-hF-bEM" id="fej-kc-C4n"/>
-                <outlet property="txtJobName" destination="zag-SC-Qpa" id="OWw-hP-Nbu"/>
-                <outlet property="viewEdit" destination="bdp-Gt-Yts" id="cCJ-bm-xl4"/>
-                <outlet property="viewEditing" destination="Y5S-dL-Mt5" id="dM3-iS-BhM"/>
+                <outlet property="btnBg" destination="D2z-qY-hMu" id="G0q-Ch-ALS"/>
+                <outlet property="btnFirst" destination="pBv-zf-e77" id="z7w-S7-bFD"/>
+                <outlet property="btnSecond" destination="vD3-yp-4EL" id="gVv-NF-zIF"/>
+                <outlet property="lblName" destination="qXR-gL-wuf" id="nHS-xI-efp"/>
+                <outlet property="txtName" destination="9De-2s-dNM" id="RKd-Vr-8V6"/>
+                <outlet property="viewControl" destination="Xq6-3q-Zd6" id="7uA-X1-75Z"/>
+                <outlet property="viewEditing" destination="eY9-QD-Qqh" id="vAp-kq-Wlc"/>
             </connections>
         </tableViewCell>
     </objects>

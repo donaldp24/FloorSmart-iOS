@@ -20,5 +20,7 @@
 - (IBAction)onBack:(id)sender;
 - (IBAction)onDelete_OK:(id)sender;
 - (IBAction)onDelete_Cancel:(id)sender;
+- (IBAction)onTopChanged:(id)sender;
+- (IBAction)onBtnCancel:(id)sender;
 
 @end

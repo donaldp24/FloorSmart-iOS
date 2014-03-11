@@ -10,7 +10,8 @@
                 <outlet property="btnFly" destination="1gc-Ww-H1u" id="KQD-UK-TOH"/>
                 <outlet property="popView" destination="Mkt-8I-7Yg" id="TQp-tJ-3Kd"/>
                 <outlet property="tblJobs" destination="9gT-Sj-j7b" id="L3R-et-kbX"/>
-                <outlet property="txtTop" destination="nv0-L9-c5N" id="IQ8-Hg-rD4"/>
+                <outlet property="txtEdit" destination="nv0-L9-c5N" id="a28-ou-K4m"/>
+                <outlet property="txtSearch" destination="uaG-Mo-uMX" id="jhA-0e-dQO"/>
                 <outlet property="view" destination="1" id="3"/>
                 <outlet property="viewTopAdd" destination="V8B-n1-irH" id="ISl-oi-DGx"/>
                 <outlet property="viewTopSearch" destination="qmx-FC-FRa" id="cYb-bV-Cwc"/>
@@ -53,6 +54,17 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.51000000000000001" colorSpace="calibratedRGB"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kV8-g2-SNl" userLabel="btnBg">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onBtnBg:" destination="-1" eventType="touchUpInside" id="xwl-db-Nam"/>
+                    </connections>
+                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" id="V8c-Ml-qYf">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,7 +90,7 @@
                         <action selector="onFly:" destination="-1" eventType="touchUpInside" id="BvR-FM-DOW"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" id="TvV-Z1-IYk">
+                <view contentMode="scaleToFill" id="TvV-Z1-IYk" userLabel="top view">
                     <rect key="frame" x="12" y="65" width="297" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -86,21 +98,21 @@
                             <rect key="frame" x="0.0" y="0.0" width="297" height="42"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add job" minimumFontSize="17" id="nv0-L9-c5N">
-                            <rect key="frame" x="7" y="8" width="223" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="-1" id="sgS-wN-a2J"/>
-                            </connections>
-                        </textField>
                         <view contentMode="scaleToFill" id="V8B-n1-irH" userLabel="View - Add">
-                            <rect key="frame" x="245" y="0.0" width="50" height="42"/>
+                            <rect key="frame" x="0.0" y="0.0" width="295" height="42"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add job" minimumFontSize="17" id="nv0-L9-c5N" userLabel="txtAdd">
+                                    <rect key="frame" x="11" y="9" width="223" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="sgS-wN-a2J"/>
+                                    </connections>
+                                </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="buC-RG-qbd" userLabel="Button - close">
-                                    <rect key="frame" x="27" y="9" width="20" height="20"/>
+                                    <rect key="frame" x="272" y="9" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="delete" image="bt_job_delete.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -110,7 +122,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5LR-du-Sic" userLabel="Button - add">
-                                    <rect key="frame" x="2" y="9" width="20" height="20"/>
+                                    <rect key="frame" x="247" y="9" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="bt_job_add.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -123,17 +135,36 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" id="qmx-FC-FRa" userLabel="View - Search">
-                            <rect key="frame" x="245" y="0.0" width="50" height="42"/>
+                            <rect key="frame" x="0.0" y="0.0" width="295" height="42"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5rJ-Bd-9ju">
-                                    <rect key="frame" x="17" y="9" width="20" height="20"/>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" minimumFontSize="17" id="uaG-Mo-uMX" userLabel="txtSearch">
+                                    <rect key="frame" x="32" y="9" width="210" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    <connections>
+                                        <action selector="txtSearchChanged:" destination="-1" eventType="editingChanged" id="AtP-ZV-E66"/>
+                                        <outlet property="delegate" destination="-1" id="Bfx-lg-njw"/>
+                                    </connections>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5rJ-Bd-9ju" userLabel="btnSearch">
+                                    <rect key="frame" x="9" y="12" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="ic_search.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ArL-7G-pHJ" userLabel="btnCancel">
+                                    <rect key="frame" x="245" y="7" width="46" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <state key="normal" title="Cancel">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
                                     <connections>
-                                        <action selector="onSearch:" destination="-1" eventType="touchUpInside" id="B0C-WC-Z8V"/>
+                                        <action selector="onBtnCancel:" destination="-1" eventType="touchUpInside" id="o3S-rL-h2r"/>
                                     </connections>
                                 </button>
                             </subviews>

@@ -46,6 +46,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    //[self onOK:nil];
     return YES;
 }
 
@@ -60,12 +61,17 @@
     {
         [self.delegate performSelector:@selector(didEdit:) withObject:self];
     }
+    if([self.delegate respondsToSelector:@selector(onJobEditStarted:)])
+    {
+        [self.delegate performSelector:@selector(onJobEditStarted:) withObject:txtJobName];
+    }
+    
     [superController setIsEditing:YES];
     [txtJobName setText:lblJobName.text];
     [viewEdit setHidden:YES];
     [viewEditing setHidden:NO];
     [lblJobName setHidden:YES];
-    [btnDetail setHidden:YES];
+    //[btnDetail setHidden:YES];
     [txtJobName setHidden:NO];
     [txtJobName becomeFirstResponder];
 }
@@ -84,6 +90,10 @@
     {
         [self.delegate performSelector:@selector(didOK:) withObject:self];
     }
+    if([self.delegate respondsToSelector:@selector(onJobEditFinished::)])
+    {
+        [self.delegate performSelector:@selector(onJobEditFinished:) withObject:txtJobName];
+    }
     FSJobViewController *superController = (FSJobViewController *)self.delegate;
     [superController setIsEditing:NO];
     [txtJobName resignFirstResponder];
@@ -91,7 +101,7 @@
     [lblJobName setText:[txtJobName text]];
     [txtJobName setText:@""];
     [lblJobName setHidden:NO];
-    [btnDetail setHidden:NO];
+    //[btnDetail setHidden:NO];
     [viewEditing setHidden:YES];
     [viewEdit setHidden:NO];
 }
@@ -102,13 +112,17 @@
     {
         [self.delegate performSelector:@selector(didCancel:) withObject:self];
     }
+    if([self.delegate respondsToSelector:@selector(onJobEditFinished:)])
+    {
+        [self.delegate performSelector:@selector(onJobEditFinished:) withObject:txtJobName];
+    }
     FSJobViewController *superController = (FSJobViewController *)self.delegate;
     [superController setIsEditing:NO];
     [txtJobName resignFirstResponder];
     [txtJobName setHidden:YES];
     [txtJobName setText:@""];
     [lblJobName setHidden:NO];
-    [btnDetail setHidden:NO];
+    //[btnDetail setHidden:NO];
     [viewEditing setHidden:YES];
     [viewEdit setHidden:NO];
 }

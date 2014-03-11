@@ -253,6 +253,7 @@
     } else {
         trasnfromHeight = 0;
     }
+    
 }
 
 - (void)didDelete:(FSProductCell *)cell

@@ -59,7 +59,7 @@
 
 - (void)initTableData
 {
-    arrJobNames = [[DataManager sharedInstance] getJobs:1 searchField:@""];
+    arrJobNames = [[DataManager sharedInstance] getJobs:1 searchField:txtTop.text];
     [tblArchives setContentSize:CGSizeMake(tblArchives.frame.size.width, 60 * [arrJobNames count])];
     [tblArchives reloadData];
 }
@@ -137,7 +137,7 @@
 - (void)showAlertAnimation
 {
     [UIView animateWithDuration:0.2f animations:^{
-        delete_alertview.transform = CGAffineTransformMakeScale(1.5f, 1.5f);
+        delete_alertview.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
     }completion:^(BOOL finished){
         [UIView animateWithDuration:0.07f animations:^{
             delete_alertview.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
@@ -184,6 +184,18 @@
 - (IBAction)onBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)onTopChanged:(id)sender
+{
+    [self onSearch:sender];
+}
+
+- (IBAction)onBtnCancel:(id)sender
+{
+    txtTop.text = @"";
+    [self onSearch:sender];
+    [txtTop resignFirstResponder];
 }
 
 @end

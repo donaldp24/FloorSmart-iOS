@@ -205,6 +205,13 @@
 		14F7EBA91886F12C00E4F088 /* bt_ustime_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F7EB641886F12C00E4F088 /* bt_ustime_selected.png */; };
 		14F7EBAA1886F12C00E4F088 /* splash-screen_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F7EB651886F12C00E4F088 /* splash-screen_02.png */; };
 		CE1A63AA18878E160011E6EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1A63A918878E160011E6EA /* Default-568h@2x.png */; };
+		D348DF5318CF75B800FE4946 /* XIBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5218CF75B800FE4946 /* XIBTableViewCell.m */; };
+		D348DF5718CFA96400FE4946 /* FSLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5518CFA96400FE4946 /* FSLocationCell.m */; };
+		D348DF5818CFA96400FE4946 /* FSLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D348DF5618CFA96400FE4946 /* FSLocationCell.xib */; };
+		D348DF6118CFC2BE00FE4946 /* FSLocSelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5F18CFC2BE00FE4946 /* FSLocSelCell.m */; };
+		D348DF6218CFC2BE00FE4946 /* FSLocSelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D348DF6018CFC2BE00FE4946 /* FSLocSelCell.xib */; };
+		D3F142BD18CE7A4200720482 /* FSLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F142BB18CE7A4200720482 /* FSLocationsViewController.m */; };
+		D3F142BE18CE7A4200720482 /* FSLocationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F142BC18CE7A4200720482 /* FSLocationsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -449,6 +456,17 @@
 		14F7EB641886F12C00E4F088 /* bt_ustime_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_ustime_selected.png; sourceTree = "<group>"; };
 		14F7EB651886F12C00E4F088 /* splash-screen_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-screen_02.png"; sourceTree = "<group>"; };
 		CE1A63A918878E160011E6EA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D348DF5118CF75B800FE4946 /* XIBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XIBTableViewCell.h; path = CustomUI/XIBTableViewCell.h; sourceTree = "<group>"; };
+		D348DF5218CF75B800FE4946 /* XIBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XIBTableViewCell.m; path = CustomUI/XIBTableViewCell.m; sourceTree = "<group>"; };
+		D348DF5418CFA96400FE4946 /* FSLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocationCell.h; path = CustomUI/FSLocationCell.h; sourceTree = "<group>"; };
+		D348DF5518CFA96400FE4946 /* FSLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSLocationCell.m; path = CustomUI/FSLocationCell.m; sourceTree = "<group>"; };
+		D348DF5618CFA96400FE4946 /* FSLocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSLocationCell.xib; path = CustomUI/FSLocationCell.xib; sourceTree = "<group>"; };
+		D348DF5E18CFC2BE00FE4946 /* FSLocSelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocSelCell.h; path = CustomUI/FSLocSelCell.h; sourceTree = "<group>"; };
+		D348DF5F18CFC2BE00FE4946 /* FSLocSelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSLocSelCell.m; path = CustomUI/FSLocSelCell.m; sourceTree = "<group>"; };
+		D348DF6018CFC2BE00FE4946 /* FSLocSelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSLocSelCell.xib; path = CustomUI/FSLocSelCell.xib; sourceTree = "<group>"; };
+		D3F142BA18CE7A4200720482 /* FSLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocationsViewController.h; path = Locations/FSLocationsViewController.h; sourceTree = "<group>"; };
+		D3F142BB18CE7A4200720482 /* FSLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSLocationsViewController.m; path = Locations/FSLocationsViewController.m; sourceTree = "<group>"; };
+		D3F142BC18CE7A4200720482 /* FSLocationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSLocationsViewController.xib; path = Locations/FSLocationsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -568,6 +586,7 @@
 		140E892418688DEC0038B5BF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D3F142B918CE79FB00720482 /* Locations */,
 				140E8A201868A9E40038B5BF /* CustomUI */,
 				140E892518688DEC0038B5BF /* Jobs */,
 				140E892618688DEC0038B5BF /* Main */,
@@ -703,6 +722,12 @@
 		140E8A201868A9E40038B5BF /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
+				D348DF5E18CFC2BE00FE4946 /* FSLocSelCell.h */,
+				D348DF5F18CFC2BE00FE4946 /* FSLocSelCell.m */,
+				D348DF6018CFC2BE00FE4946 /* FSLocSelCell.xib */,
+				D348DF5418CFA96400FE4946 /* FSLocationCell.h */,
+				D348DF5518CFA96400FE4946 /* FSLocationCell.m */,
+				D348DF5618CFA96400FE4946 /* FSLocationCell.xib */,
 				140E8A211868AA130038B5BF /* FSPopContentController.h */,
 				140E8A221868AA130038B5BF /* FSPopContentController.m */,
 				140E8A241868B41E0038B5BF /* FSPopView.h */,
@@ -723,6 +748,8 @@
 				14F537AE18C0CA3C00C1318A /* FSReportCell.h */,
 				14F537AF18C0CA3C00C1318A /* FSReportCell.m */,
 				14F537B118C0CA4B00C1318A /* FSReportCell.xib */,
+				D348DF5118CF75B800FE4946 /* XIBTableViewCell.h */,
+				D348DF5218CF75B800FE4946 /* XIBTableViewCell.m */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -895,6 +922,16 @@
 			path = "setting View";
 			sourceTree = "<group>";
 		};
+		D3F142B918CE79FB00720482 /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				D3F142BA18CE7A4200720482 /* FSLocationsViewController.h */,
+				D3F142BB18CE7A4200720482 /* FSLocationsViewController.m */,
+				D3F142BC18CE7A4200720482 /* FSLocationsViewController.xib */,
+			);
+			name = Locations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -943,9 +980,6 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Tim;
 				TargetAttributes = {
-					140E88E918688D260038B5BF = {
-						DevelopmentTeam = Q9U5XG63LF;
-					};
 					140E890A18688D260038B5BF = {
 						TestTargetID = 140E88E918688D260038B5BF;
 					};
@@ -1011,6 +1045,7 @@
 				14F7EB691886F12C00E4F088 /* bg_avg.png in Resources */,
 				140E8A0A18688F880038B5BF /* tap_1.png in Resources */,
 				1435C0BB1887932A00AE1C87 /* bg_overwiew_tap_data_01.png in Resources */,
+				D3F142BE18CE7A4200720482 /* FSLocationsViewController.xib in Resources */,
 				1435C0CA1887932A00AE1C87 /* bt_C_sl.png in Resources */,
 				14F7EB931886F12C00E4F088 /* bt_Summary.png in Resources */,
 				140E8A37186929E80038B5BF /* FSArchiveJobViewController.xib in Resources */,
@@ -1027,6 +1062,7 @@
 				140E89FE18688F880038B5BF /* navi_home.png in Resources */,
 				140E8A3C1869350C0038B5BF /* FSArchiveCell.xib in Resources */,
 				1435C0DA1887932A00AE1C87 /* t_readings.png in Resources */,
+				D348DF5818CFA96400FE4946 /* FSLocationCell.xib in Resources */,
 				140E895218688ED70038B5BF /* FSSettingViewController.xib in Resources */,
 				1435C0C61887932A00AE1C87 /* bt_back.png in Resources */,
 				1435C0BD1887932A00AE1C87 /* bg_overwiew_tap_data_03.png in Resources */,
@@ -1092,6 +1128,7 @@
 				140E8A0C18688F880038B5BF /* tap_home1.png in Resources */,
 				1435C0D61887932A00AE1C87 /* ic_refresh.png in Resources */,
 				140E8A1218688F880038B5BF /* tap_reports1.png in Resources */,
+				D348DF6218CFC2BE00FE4946 /* FSLocSelCell.xib in Resources */,
 				1435C0D01887932A00AE1C87 /* bt_job_add.png in Resources */,
 				14F7EB7C1886F12C00E4F088 /* bg_select_type_bar.png in Resources */,
 				14F7EB7A1886F12C00E4F088 /* bg_readings_list_bar.png in Resources */,
@@ -1151,6 +1188,7 @@
 				14BED79418705B280092A406 /* FMDatabase.m in Sources */,
 				1419AF391879B33800C5F4F6 /* FSReadingsViewController.m in Sources */,
 				14F537B018C0CA3C00C1318A /* FSReportCell.m in Sources */,
+				D3F142BD18CE7A4200720482 /* FSLocationsViewController.m in Sources */,
 				140E8A1D1868A77D0038B5BF /* CommonMethods.m in Sources */,
 				140E8A321868D71D0038B5BF /* FSJobCell.m in Sources */,
 				140E892E18688E040038B5BF /* FSMainViewController.m in Sources */,
@@ -1164,6 +1202,7 @@
 				14BED79618705B280092A406 /* FMResultSet.m in Sources */,
 				140E8A1F1868A77D0038B5BF /* UIView+FindAndResignFirstResponder.m in Sources */,
 				140E88FA18688D260038B5BF /* main.m in Sources */,
+				D348DF5318CF75B800FE4946 /* XIBTableViewCell.m in Sources */,
 				140E8A261868B41F0038B5BF /* FSPopView.m in Sources */,
 				140E88FE18688D260038B5BF /* FSAppDelegate.m in Sources */,
 				140E894C18688EC60038B5BF /* FSReportViewController.m in Sources */,
@@ -1174,6 +1213,8 @@
 				14BED7A618705D500092A406 /* FSJob.m in Sources */,
 				140E8A231868AA130038B5BF /* FSPopContentController.m in Sources */,
 				14D1B9831891893000364EC6 /* FSReading.m in Sources */,
+				D348DF5718CFA96400FE4946 /* FSLocationCell.m in Sources */,
+				D348DF6118CFC2BE00FE4946 /* FSLocSelCell.m in Sources */,
 				140E894718688EB10038B5BF /* FSProductViewController.m in Sources */,
 				14BED79518705B280092A406 /* FMDatabaseAdditions.m in Sources */,
 			);
@@ -1309,7 +1350,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FloorSmart/FloorSmart-Prefix.pch";
 				INFOPLIST_FILE = "FloorSmart/FloorSmart-Info.plist";
