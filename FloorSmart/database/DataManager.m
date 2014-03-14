@@ -29,41 +29,49 @@ static DataManager *sharedManager;
     self = [super init];
     if (self) {
 
-        if (![[NSFileManager defaultManager] fileExistsAtPath:DATABASE_PATH]) {
-
-            [[NSFileManager defaultManager] copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"FloorSmart" ofType:@"db"] toPath:DATABASE_PATH error:nil];
-        }
-        _database = [[FMDatabase alloc] initWithPath:DATABASE_PATH];
+        NSString *docsDir;
+        NSArray *dirPaths;
+        
+        // Get the documents directory
+        dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        docsDir = [dirPaths objectAtIndex:0];
+        // Build the path to the database file
+        databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @DATABASE_FILENAME]];
+        
+        NSFileManager *filemgr = [NSFileManager defaultManager];
+        //[filemgr removeItemAtPath:databasePath error:nil];
+        BOOL isDbExist = [filemgr fileExistsAtPath:databasePath];
+        _database = [[FMDatabase alloc] initWithPath:databasePath];
         [_database open];
+        
+        if (isDbExist == NO)
+        {
+            char *sql_job = "CREATE TABLE tbl_job(job_id INTEGER PRIMARY KEY AUTOINCREMENT, job_name TEXT, job_archived INTEGER, deleted INTEGER);";
+            char *sql_location = "CREATE TABLE tbl_location(location_id INTEGER PRIMARY KEY AUTOINCREMENT, location_jobid INTEGER, location_name TEXT, deleted INTEGER);";
+            char *sql_product = "CREATE TABLE tbl_product(product_id INTEGER PRIMARY KEY AUTOINCREMENT, product_name TEXT, product_type INTEGER, deleted INTEGER);";
+            char *sql_locproduct = "CREATE TABLE tbl_locproduct(locproduct_id INTEGER PRIMARY KEY AUTOINCREMENT, locproduct_locid INTEGER, locproduct_productname TEXT, locproduct_producttype INTEGER, locproduct_coverage DOUBLE, deleted INTEGER);";
+            char *sql_reading = "CREATE TABLE tbl_reading(read_id INTEGER PRIMARY KEY AUTOINCREMENT, read_locproductid INTEGER, read_date TEXT, read_uuid TEXT, read_rh INTEGER, read_temp INTEGER, read_battery INTEGER, read_depth INTEGER, read_gravity INTEGER, read_material INTEGER, read_mc INTEGER, deleted INTEGER);";
+            
+            BOOL bRet = [_database executeDDL:sql_job];
+            bRet = [_database executeDDL:sql_location];
+            bRet = [_database executeDDL:sql_product];
+            bRet = [_database executeDDL:sql_locproduct];
+            bRet = [_database executeDDL:sql_reading];
+        }
     }
 
     return self;
 }
 
 #pragma mark - job
-- (NSMutableArray *)getJobs:(NSInteger)archiveFlag searchField:(NSString *)searchField
-{
-    NSMutableArray *arrJobList = [[NSMutableArray alloc] init];
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM tbl_job where job_archived = '%ld' AND job_name like %@%@%@", archiveFlag, @"'%", searchField, @"%'"];
-    FMResultSet *results = [_database executeQuery:sql];
-    while ([results next]) {
-        FSJob *job  = [[[FSJob alloc] init] autorelease];
-        job.jobID       = [results stringForColumn:@"job_id"];
-        job.jobName     = [results stringForColumn:@"job_name"];
-        job.jobArchived = [results intForColumn:@"job_archived"];
-        
-        [arrJobList addObject:job];
-    }
-    return arrJobList;
-}
 
 - (NSMutableArray *)getAllJobs
 {
     NSMutableArray *arrJobList = [[NSMutableArray alloc] init];
-    FMResultSet *results = [_database executeQuery:@"SELECT * FROM tbl_job"];
+    FMResultSet *results = [_database executeQuery:@"SELECT * FROM tbl_job WHERE deleted = 0"];
     while ([results next]) {
         FSJob *job  = [[[FSJob alloc] init] autorelease];
-        job.jobID       = [results stringForColumn:@"job_id"];
+        job.jobID       = [results intForColumn:@"job_id"];
         job.jobName     = [results stringForColumn:@"job_name"];
         job.jobArchived = [results intForColumn:@"job_archived"];
         
@@ -72,75 +80,169 @@ static DataManager *sharedManager;
     return arrJobList;
 }
 
-- (FSJob *)getJobFromID:(NSInteger)jobID
+
+- (NSMutableArray *)getJobs:(long)archiveFlag searchField:(NSString *)searchField
 {
-    FSJob *job = [[FSJob alloc] init];
-    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_job WHERE job_id = '%ld'", jobID]];
+    NSMutableArray *arrJobList = [[NSMutableArray alloc] init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM tbl_job WHERE deleted = 0 and job_archived = %ld AND job_name like %@%@%@", (long)archiveFlag, @"'%", searchField, @"%'"];
+    FMResultSet *results = [_database executeQuery:sql];
     while ([results next]) {
-        job.jobID = [results stringForColumn:@"job_id"];
-        job.jobName = [results stringForColumn:@"job_name"];
+        FSJob *job  = [[[FSJob alloc] init] autorelease];
+        job.jobID       = [results intForColumn:@"job_id"];
+        job.jobName     = [results stringForColumn:@"job_name"];
         job.jobArchived = [results intForColumn:@"job_archived"];
-        break;
+        
+        [arrJobList addObject:job];
     }
-    return job;
+    return arrJobList;
 }
 
-- (void)addJobToDatabase:(FSJob *)job
+
+- (FSJob *)getJobFromID:(long)jobID
+{
+    FSJob *job = [[FSJob alloc] init];
+    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_job WHERE deleted = 0 and job_id = %ld", (long)jobID]];
+    while ([results next]) {
+        job.jobID = [results intForColumn:@"job_id"];
+        job.jobName = [results stringForColumn:@"job_name"];
+        job.jobArchived = [results intForColumn:@"job_archived"];
+        return job;
+    }
+    return nil;
+}
+
+- (int)addJobToDatabase:(FSJob *)job
 {
     NSString *sql;
-    sql = [NSString stringWithFormat:@"INSERT INTO tbl_job (job_archived, job_name) VALUES ('%ld', '%@')",job.jobArchived, job.jobName];
-    [_database executeUpdate:sql];
+    sql = [NSString stringWithFormat:@"INSERT INTO tbl_job (job_archived, job_name, deleted) VALUES (%ld, '%@', 0)",(long)job.jobArchived, job.jobName];
+    int retId = 0;
+    if ([_database executeUpdate:sql])
+    {
+        retId = (int)[_database lastInsertRowId];
+        return retId;
+    }
+    return 0;
 }
 
 - (void)updateJobToDatabase:(FSJob *)job
 {
     NSString *sql;
-    sql = [NSString stringWithFormat:@"update tbl_job set job_archived = '%ld' , job_name = '%@' WHERE job_id = '%@'", job.jobArchived, job.jobName, job.jobID];
+    sql = [NSString stringWithFormat:@"UPDATE tbl_job SET job_archived = %ld , job_name = '%@' WHERE job_id = %ld", (long)job.jobArchived, job.jobName, job.jobID];
     [_database executeUpdate:sql];
 }
 
 - (void)deleteJobFromDatabase:(FSJob *)job
 {
     NSString *sql;
-    sql = [NSString stringWithFormat:@"DELETE FROM tbl_job WHERE job_id = '%@'", job.jobID];
+    //sql = [NSString stringWithFormat:@"DELETE FROM tbl_job WHERE job_id = %ld", job.jobID];
+    sql = [NSString stringWithFormat:@"UPDATE tbl_job SET deleted = 1 WHERE job_id = %ld", job.jobID];
     [_database executeUpdate:sql];
+}
+
+
+#pragma mark - location
+
+- (NSMutableArray *)getLocations:(long)jobID
+{
+    NSMutableArray *arrLocList = [[NSMutableArray alloc] init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM tbl_location WHERE deleted = 0 and location_jobid  = %ld", jobID];
+    FMResultSet *results = [_database executeQuery:sql];
+    while ([results next]) {
+        FSLocation *loc  = [[[FSLocation alloc] init] autorelease];
+        loc.locID       = [results intForColumn:@"location_id"];
+        loc.locJobID    = [results intForColumn:@"location_jobid"];
+        loc.locName     = [results stringForColumn:@"location_name"];
+        [arrLocList addObject:loc];
+    }
+    return arrLocList;
+}
+
+- (FSLocation *)getLocationFromID:(long)locID
+{
+    FSLocation *loc = [[FSLocation alloc] init];
+    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_location WHERE deleted = 0 and location_id = %ld", locID]];
+    while ([results next]) {
+        loc.locID = [results intForColumn:@"location_id"];
+        loc.locJobID = [results intForColumn:@"location_jobid"];
+        loc.locName = [results stringForColumn:@"location_name"];
+        return loc;
+    }
+    return nil;
+}
+
+- (int)addLocationToDatabase:(FSLocation *)loc
+{
+    NSString *sql;
+    sql = [NSString stringWithFormat:@"INSERT INTO tbl_location (location_jobid, location_name, deleted) VALUES (%ld, '%@', 0)", loc.locJobID, loc.locName];
+    if([_database executeUpdate:sql])
+        return (int)[_database lastInsertRowId];
+    return 0;
+}
+
+- (void)updateLocToDatabase:(FSLocation *)loc
+{
+    NSString *sql;
+    sql = [NSString stringWithFormat:@"UPDATE tbl_location SET location_name = '%@' WHERE location_id = %ld", loc.locName, loc.locID];
+    [_database executeUpdate:sql];
+}
+
+- (void)deleteLocFromDatabase:(FSLocation *)loc
+{
+    NSString *sql;
+    //sql = [NSString stringWithFormat:@"DELETE FROM tbl_location WHERE location_id = '%@'", loc.locID];
+    sql = [NSString stringWithFormat:@"UPDATE tbl_location SET deleted = 1 WHERE location_id = %ld", loc.locID];
+    [_database executeUpdate:sql];
+}
+
+- (FSLocation *)getDefaultLocationOfJob:(long)jobID
+{
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM tbl_location WHERE deleted = 0 and location_jobid  = %ld and location_name = '%@'", jobID, FMD_DEFAULT_LOCATIONNAME];
+    FMResultSet *results = [_database executeQuery:sql];
+    while ([results next]) {
+        FSLocation *loc  = [[[FSLocation alloc] init] autorelease];
+        loc.locID       = [results intForColumn:@"location_id"];
+        loc.locJobID    = [results intForColumn:@"location_jobid"];
+        loc.locName     = [results stringForColumn:@"location_name"];
+        return loc;
+    }
+    return nil;
 }
 
 #pragma mark - product
 - (NSMutableArray *)getAllProducts
 {
     NSMutableArray *arrProductList = [[NSMutableArray alloc] init];
-    FMResultSet *results = [_database executeQuery:@"SELECT * FROM tbl_product"];
+    FMResultSet *results = [_database executeQuery:@"SELECT * FROM tbl_product WHERE deleted = 0"];
     while ([results next]) {
         
         FSProduct *product  = [[[FSProduct alloc] init] autorelease];
-        product.productID = [results stringForColumn:@"product_id"];
+        product.productID = [results intForColumn:@"product_id"];
         product.productName = [results stringForColumn:@"product_name"];
-        product.productFinished = [results intForColumn:@"product_finished"];
-        product.productDel = [results intForColumn:@"product_del"];
+        product.productType = [results intForColumn:@"product_type"];
+        product.productDeleted = [results intForColumn:@"deleted"];
         
         [arrProductList addObject:product];
     }
     return arrProductList;
 }
 
-- (NSMutableArray *)getProducts:(NSString *)searchField delFlag:(NSInteger)delFlag
+- (NSMutableArray *)getProducts:(NSString *)searchField
 {
     NSMutableArray *arrProductList = [[NSMutableArray alloc] init];
-    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_product WHERE product_del = '%ld' AND product_name like %@%@%@", delFlag,  @"'%", searchField, @"%'"]];
+    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_product WHERE deleted = 0 and product_name like %@%@%@", @"'%", searchField, @"%'"]];
     while ([results next]) {
         
         FSProduct *product  = [[[FSProduct alloc] init] autorelease];
-        product.productID = [results stringForColumn:@"product_id"];
+        product.productID = [results intForColumn:@"product_id"];
         product.productName = [results stringForColumn:@"product_name"];
-        product.productFinished = [results intForColumn:@"product_finished"];
-        product.productDel = [results intForColumn:@"product_del"];
+        product.productType = [results intForColumn:@"product_type"];
+        product.productDeleted = [results intForColumn:@"deleted"];
         
         [arrProductList addObject:product];
     }
     return arrProductList;
 }
-
+/*
 - (NSMutableArray *)getProducts:(NSMutableArray *)arrFeeds
 {
     NSMutableArray *arrProductList = [[NSMutableArray alloc] init];
@@ -187,147 +289,163 @@ static DataManager *sharedManager;
     }
     return arrProductList;
 }
+ */
 
-- (FSProduct *)getProductFromID:(NSInteger)procID
+- (FSProduct *)getProductFromID:(long)procID
 {
     FSProduct *product = [[FSProduct alloc] init];
-    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_product WHERE product_id = '%ld'", procID]];
+    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_product WHERE deleted = 0 AND product_id = %ld", procID]];
     while ([results next]) {
-        product.productID = [results stringForColumn:@"product_id"];
+        product.productID = [results intForColumn:@"product_id"];
         product.productName = [results stringForColumn:@"product_name"];
-        product.productDel = [results intForColumn:@"product_dell"];
-        product.productFinished = [results intForColumn:@"product_finished"];
-        break;
+        product.productType = [results intForColumn:@"product_type"];
+        product.productDeleted = [results intForColumn:@"deleted"];
+        return product;
     }
-    return product;
+    return nil;
 }
 
-- (void)addProductToDatabase:(FSProduct *)product
+- (int)addProductToDatabase:(FSProduct *)product
 {
     NSString *sql;
-    sql = [NSString stringWithFormat:@"INSERT INTO tbl_product (product_name, product_finished, product_del) VALUES ('%@', '%ld', '%ld')", product.productName, product.productFinished, product.productDel];
-    [_database executeUpdate:sql];
+    sql = [NSString stringWithFormat:@"INSERT INTO tbl_product (product_name, product_type, deleted) VALUES ('%@', %ld, 0)", product.productName, product.productType];
+    if ([_database executeUpdate:sql])
+        return (int)[_database lastInsertRowId];
+    return 0;
 }
 
 - (void)updateProductToDatabase:(FSProduct *)product
 {
     NSString *sql;
-    sql = [NSString stringWithFormat:@"update tbl_product set product_name = '%@', product_finished = '%ld', product_del = '%ld' WHERE product_id = '%@'", product.productName, product.productFinished, product.productDel, product.productID];
+    sql = [NSString stringWithFormat:@"UPDATE tbl_product SET product_name = '%@', product_type = %ld WHERE product_id = %ld", product.productName, product.productType, product.productID];
     [_database executeUpdate:sql];
 }
 
 - (void)deleteProductFromDatabase:(FSProduct *)product
 {
     NSString *sql;
-    sql = [NSString stringWithFormat:@"DELETE FROM tbl_product WHERE product_id = '%@'", product.productID];
+    //sql = [NSString stringWithFormat:@"DELETE FROM tbl_product WHERE product_id = '%@'", product.productID];
+    sql = [NSString stringWithFormat:@"UPDATE tbl_product SET deleted = 1 WHERE product_id = %ld", product.productID];
     [_database executeUpdate:sql];
 }
 
-#pragma mark - location
-- (NSMutableArray *)getMainLocations
+- (FSProduct *)getProductWithLocProduct:(FSLocProduct *)locProduct
 {
-    NSMutableArray *arrLocationList = [[NSMutableArray alloc] init];
-    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_location"]];
-    
+    FSProduct *product = [[FSProduct alloc] init];
+    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_product WHERE deleted = 0 AND product_name = '%@' and product_type = %ld", locProduct.locProductName, locProduct.locProductType]];
+    while ([results next]) {
+        product.productID = [results intForColumn:@"product_id"];
+        product.productName = [results stringForColumn:@"product_name"];
+        product.productType = [results intForColumn:@"product_type"];
+        product.productDeleted = [results intForColumn:@"deleted"];
+        return product;
+    }
+    return nil;
+}
+
+#pragma mark - Products for specific Locations
+
+- (NSMutableArray *)getLocProducts:(FSLocation *)loc searchField:(NSString *)searchField
+{
+    NSMutableArray *arrLocProductList = [[NSMutableArray alloc] init];
+    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_locproduct WHERE deleted = 0 AND locproduct_locid = %ld AND locproduct_productname like %@%@%@", loc.locID, @"'%", searchField, @"%'"]];
     while ([results next]) {
         
-        FSLocation *location  = [[[FSLocation alloc] init] autorelease];
-        location.locID = [results stringForColumn:@"location_id"];
-        location.locName = [results stringForColumn:@"location_name"];
+        FSLocProduct *locProduct  = [[[FSLocProduct alloc] init] autorelease];
+        locProduct.locProductID = [results intForColumn:@"locproduct_id"];
+        locProduct.locProductLocID = [results intForColumn:@"locproduct_locid"];
+        locProduct.locProductName = [results stringForColumn:@"locproduct_productname"];
+        locProduct.locProductType = [results intForColumn:@"locproduct_producttype"];
+        locProduct.locProductCoverage = [results doubleForColumn:@"locproduct_coverage"];
         
-        [arrLocationList addObject:location];
+        [arrLocProductList addObject:locProduct];
     }
-
-    return arrLocationList;
+    return arrLocProductList;
 }
 
-
-- (NSMutableArray *)getLocations:(NSMutableArray *)arrFeeds
+- (FSLocProduct *)getLocProductWithID:(long)locProductID
 {
-    NSMutableArray *arrLocationList = [[NSMutableArray alloc] init];
-    for (int i=0; i<[arrFeeds count]; i++) {
-        FSFeed *feed = (FSFeed *)[arrFeeds objectAtIndex:i];
-        FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_location WHERE location_id = '%ld'", [feed feedLocID]]];
-        while ([results next]) {
-
-            FSLocation *location  = [[[FSLocation alloc] init] autorelease];
-            location.locID = [results stringForColumn:@"location_id"];
-            location.locName = [results stringForColumn:@"location_name"];
-
-            [arrLocationList addObject:location];
-        }
-    }
-    return arrLocationList;
-}
-
-- (NSMutableArray *)getFeedLocations:(NSString *)jobID
-{
-    NSMutableArray *arrLocIDList = [[NSMutableArray alloc] init];
-    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT DISTINCT feed_locid FROM tbl_feed WHERE feed_jobid = '%@'", jobID]];
-    while ([results next]) {
-        NSString *str = [results stringForColumn:@"feed_locid"];
-        
-        [arrLocIDList addObject:str];
-    }
-    
-    NSMutableArray *arrLocationList = [[NSMutableArray alloc] init];
-    for (int i=0; i<[arrLocIDList count]; i++) {
-        FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_location WHERE location_id = '%@'", [arrLocIDList objectAtIndex:i]]];
-        while ([results next]) {
-            
-            FSLocation *location  = [[[FSLocation alloc] init] autorelease];
-            location.locID = [results stringForColumn:@"location_id"];
-            location.locName = [results stringForColumn:@"location_name"];
-            
-            [arrLocationList addObject:location];
-        }
-    }
-    return arrLocationList;
-}
-
-- (int)getMaxLocID
-{
-    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT MAX(location_id) FROM tbl_location"]];
+    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_locproduct WHERE deleted = 0 AND locproduct_id = %ld", locProductID]];
     while ([results next]) {
         
-        return [results intForColumn:@"MAX(location_id)"];
+        FSLocProduct *locProduct  = [[[FSLocProduct alloc] init] autorelease];
+        locProduct.locProductID = [results intForColumn:@"locproduct_id"];
+        locProduct.locProductLocID = [results intForColumn:@"locproduct_locid"];
+        locProduct.locProductName = [results stringForColumn:@"locproduct_productname"];
+        locProduct.locProductType = [results intForColumn:@"locproduct_producttype"];
+        locProduct.locProductCoverage = [results doubleForColumn:@"locproduct_coverage"];
+        
+        return locProduct;
     }
-    return -1;
+    return nil;
 }
 
-- (FSLocation *)getLocationFromID:(NSInteger)locID
+- (FSLocProduct *)getDefaultLocProductOfLocation:(FSLocation *)loc
 {
-    FSLocation *loc = [[FSLocation alloc] init];
-    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_location WHERE location_id = '%ld'", locID]];
+    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_locproduct WHERE deleted = 0 AND locproduct_locid = %ld AND locproduct_productname = '%@'", loc.locID, FMD_DEFAULT_PRODUCTNAME]];
     while ([results next]) {
         
-        loc.locID = [results stringForColumn:@"location_id"];
-        loc.locName = [results stringForColumn:@"location_name"];
-        break;
+        FSLocProduct *locProduct  = [[[FSLocProduct alloc] init] autorelease];
+        locProduct.locProductID = [results intForColumn:@"locproduct_id"];
+        locProduct.locProductLocID = [results intForColumn:@"locproduct_locid"];
+        locProduct.locProductName = [results stringForColumn:@"locproduct_productname"];
+        locProduct.locProductType = [results intForColumn:@"locproduct_producttype"];
+        locProduct.locProductCoverage = [results doubleForColumn:@"locproduct_coverage"];
+        
+        return locProduct;
     }
-    return loc;
+    return nil;
 }
 
-- (void)addLocationToDatabase:(FSLocation *)loc
+- (FSLocProduct *)getLocProductWithProduct:(FSProduct *)product locID:(long)locID
+{
+    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_locproduct WHERE deleted = 0 AND locproduct_locid = %ld AND locproduct_productname = '%@' AND locproduct_producttype = %ld", locID, product.productName, product.productType]];
+    while ([results next]) {
+        
+        FSLocProduct *locProduct  = [[[FSLocProduct alloc] init] autorelease];
+        locProduct.locProductID = [results intForColumn:@"locproduct_id"];
+        locProduct.locProductLocID = [results intForColumn:@"locproduct_locid"];
+        locProduct.locProductName = [results stringForColumn:@"locproduct_productname"];
+        locProduct.locProductType = [results intForColumn:@"locproduct_producttype"];
+        locProduct.locProductCoverage = [results doubleForColumn:@"locproduct_coverage"];
+        
+        return locProduct;
+    }
+    return nil;
+}
+
+- (int)addLocProductToDatabaseWithProduct:(FSProduct *)product locID:(long)locID coverage:(double)coverage
 {
     NSString *sql;
-    sql = [NSString stringWithFormat:@"INSERT INTO tbl_location (location_name) VALUES ('%@')", loc.locName];
-    [_database executeUpdate:sql];
+    sql = [NSString stringWithFormat:@"INSERT INTO tbl_locproduct (locproduct_locid, locproduct_productname, locproduct_producttype, locproduct_coverage, deleted) VALUES (%ld, '%@', %ld, %f, 0)", locID, product.productName, product.productType, coverage];
+    if ([_database executeUpdate:sql])
+        return (int)[_database lastInsertRowId];
+    return 0;
 }
 
-- (void)updateLocToDatabase:(FSLocation *)loc
+- (int)addLocProductToDatabase:(FSLocProduct *)locProduct
 {
     NSString *sql;
-    sql = [NSString stringWithFormat:@"update tbl_location set location_name = '%@' WHERE location_id = '%@'", loc.locName, loc.locID];
-    [_database executeUpdate:sql];
+    sql = [NSString stringWithFormat:@"INSERT INTO tbl_locproduct (locproduct_locid, locproduct_productname, locproduct_producttype, locproduct_coverage, deleted) VALUES (%ld, '%@', %ld, %f, 0)", locProduct.locProductLocID, locProduct.locProductName, locProduct.locProductType, locProduct.locProductCoverage];
+    if ([_database executeUpdate:sql])
+        return (int)[_database lastInsertRowId];
+    return 0;
 }
 
-- (void)deleteLocFromDatabase:(FSLocation *)loc
+- (BOOL)updateLocProductToDatabase:(FSLocProduct *)locProduct
 {
     NSString *sql;
-    sql = [NSString stringWithFormat:@"DELETE FROM tbl_location WHERE location_id = '%@'", loc.locID];
-    [_database executeUpdate:sql];
+    sql = [NSString stringWithFormat:@"UPDATE tbl_locproduct SET locproduct_locid = %ld, locproduct_productname = '%@', locproduct_producttype = %ld, locproduct_coverage = %f WHERE locproduct_id = %ld", locProduct.locProductLocID, locProduct.locProductName, locProduct.locProductType, locProduct.locProductCoverage, locProduct.locProductID];
+    return [_database executeUpdate:sql];
 }
+
+- (BOOL)deleteLocProductFromDatabase:(FSLocProduct *)locProduct
+{
+    NSString *sql;
+    sql = [NSString stringWithFormat:@"UPDATE tbl_locproduct SET deleted = 1 WHERE locproduct_id = %ld", locProduct.locProductID];
+    return [_database executeUpdate:sql];
+}
+
 
 #pragma mark - Feed
 - (NSMutableArray *)getFeeds:(NSString *)jobID locID:(NSInteger)locID procID:(NSInteger)procID
@@ -440,6 +558,7 @@ static DataManager *sharedManager;
     sql = [NSString stringWithFormat:@"DELETE FROM tbl_reading WHERE read_id = '%@'", reading.readID];
     [_database executeUpdate:sql];
 }
+
 
 #pragma mark - life cycle
 - (void)dealloc

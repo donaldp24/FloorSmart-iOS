@@ -90,11 +90,13 @@
     UIButton *tabItem = (UIButton *)sender;
     [self clearSelected];
     [tabItem setSelected:YES];
+    /*
     if (tabItem.tag == 5) {
         [self setSelected:3];
     } else {
         [self setSelected:tabItem.tag];
-    }
+    }*/
+    [self setSelected:tabItem.tag];
 }
 
 @end

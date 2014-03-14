@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSJobViewController.h"
 
 @interface FSArchiveJobViewController : UIViewController <UITableViewDelegate, UITextFieldDelegate>
 
@@ -15,6 +16,9 @@
 
 @property (nonatomic, assign) IBOutlet UIView *delete_alertview;
 @property (nonatomic, assign) IBOutlet UIImageView *imgAlertBack;
+@property (nonatomic, assign) IBOutlet UILabel *lblNoResult;
+@property (nonatomic, assign) id<FSJobSelectDelegate> jobSelectDelegate;
+@property (nonatomic) int mode;
 
 - (IBAction)onSearch:(id)sender;
 - (IBAction)onBack:(id)sender;

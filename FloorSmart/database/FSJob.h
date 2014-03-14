@@ -10,9 +10,9 @@
 
 @interface FSJob : NSObject
 
-@property (nonatomic, retain) NSString *jobID;
+@property (nonatomic, readwrite) long jobID;
 @property (nonatomic, retain) NSString *jobName;
-@property (nonatomic) NSInteger jobArchived;
+@property (nonatomic) long jobArchived;
 
 - (void)clear;
 

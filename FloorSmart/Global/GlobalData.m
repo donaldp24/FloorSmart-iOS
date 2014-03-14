@@ -9,6 +9,11 @@
 #import "GlobalData.h"
 #import "Global.h"
 
+#define KEY_ISSAVED     @"isSaved"
+#define KEY_SELECTEDJOBID   @"selectedJobID"
+#define KEY_SELECTEDLOCID   @"selectedLocID"
+#define KEY_SELECTEDLOCPRODUCTID    @"selectedLocProductID"
+
 GlobalData *_globalData = nil;
 
 @implementation GlobalData
@@ -70,6 +75,11 @@ GlobalData *_globalData = nil;
     _settingTemp = [self readBoolEntry:config key:@"temperature" defaults:YES];
     _settingArea = [self readBoolEntry:config key:@"Area" defaults:YES];
     _settingDateFormat = [self readEntry:config key:@"dateformat" defaults:US_DATEFORMAT];
+    
+    _isSaved = [self readBoolEntry:config key:KEY_ISSAVED defaults:NO];
+    _selectedJobID = [self readIntEntry:config key:KEY_SELECTEDJOBID defaults:0];
+    _selectedLocID = [self readIntEntry:config key:KEY_SELECTEDLOCID defaults:0];
+    _selectedLocProductID = [self readIntEntry:config key:KEY_SELECTEDLOCPRODUCTID defaults:0];
 }
 
 - (void)setSettingTemp:(BOOL)settingTemp
@@ -93,6 +103,34 @@ GlobalData *_globalData = nil;
     _settingDateFormat = settingDateFormat;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:settingDateFormat forKey:@"dateformat"];
+    [defaults synchronize];
+}
+
+- (void)setSavedData:(long)selectedJobID selectedLocID:(long)selectedLocID selectedLocProductID:(long)selectedLocProductID
+{
+    _isSaved = YES;
+    _selectedJobID = selectedJobID;
+    _selectedLocID = selectedLocID;
+    _selectedLocProductID = selectedLocProductID;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:_isSaved forKey:KEY_ISSAVED];
+    [defaults setInteger:selectedJobID forKey:KEY_SELECTEDJOBID];
+    [defaults setInteger:selectedLocID forKey:KEY_SELECTEDLOCID];
+    [defaults setInteger:selectedLocProductID forKey:KEY_SELECTEDLOCPRODUCTID];
+    [defaults synchronize];
+}
+
+- (void)resetSavedData
+{
+    _isSaved = NO;
+    _selectedJobID = 0;
+    _selectedLocID = 0;
+    _selectedLocProductID = 0;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:_isSaved forKey:KEY_ISSAVED];
+    [defaults setInteger:_selectedJobID forKey:KEY_SELECTEDJOBID];
+    [defaults setInteger:_selectedLocID forKey:KEY_SELECTEDLOCID];
+    [defaults setInteger:_selectedLocProductID forKey:KEY_SELECTEDLOCPRODUCTID];
     [defaults synchronize];
 }
 

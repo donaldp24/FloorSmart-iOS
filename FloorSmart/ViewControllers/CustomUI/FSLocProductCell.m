@@ -1,24 +1,24 @@
 //
-//  FSProductCell.m
+//  FSLocProductCell.m
 //  FloorSmart
 //
 //  Created by Lydia on 12/25/13.
 //  Copyright (c) 2013 Tim. All rights reserved.
 //
 
-#import "FSProductCell.h"
-#import "FSProductViewController.h"
+#import "FSLocProductCell.h"
+#import "FSLocProductViewController.h"
 #import "Defines.h"
 
-@implementation FSProductCell
+@implementation FSLocProductCell
 @synthesize lblProductName, txtProductName, lblProductType, viewEdit, viewEditing, viewEditingProcType, lblEditingProcType;
-@synthesize curProduct = _curProduct;
+@synthesize curLocProduct = _curLocProduct;
 @synthesize delegate;
 
-+ (FSProductCell *)sharedCell
++ (FSLocProductCell *)sharedCell
 {
-    NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"FSProductCell" owner:nil options:nil];
-    FSProductCell *cell = [array objectAtIndex:0];
+    NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"FSLocProductCell" owner:nil options:nil];
+    FSLocProductCell *cell = [array objectAtIndex:0];
     
     return cell;
 }
@@ -39,11 +39,11 @@
     // Configure the view for the selected state
 }
 
-- (void)setCurProduct:(FSProduct *)curProduct
+- (void)setCurLocProduct:(FSLocProduct *)curLocProduct
 {
-    _curProduct = curProduct;
-    [lblProductName setText:curProduct.productName];
-    [lblProductType setText:(curProduct.productType == FSProductTypeFinished) ? @"Finished" : @"Subfloor"];
+    _curLocProduct = curLocProduct;
+    [lblProductName setText:curLocProduct.locProductName];
+    [lblProductType setText:(curLocProduct.locProductType == FSProductTypeFinished) ? @"Finished" : @"Subfloor"];
 }
 
 #pragma mark - textfield delegate
@@ -56,7 +56,7 @@
 #pragma mark - Action
 - (IBAction)onEdit:(id)sender
 {
-    FSProductViewController *superController = (FSProductViewController *)self.delegate;
+    FSLocProductViewController *superController = (FSLocProductViewController *)self.delegate;
     if ([superController isEditing]) {
         return;
     }
@@ -78,7 +78,7 @@
 
 - (IBAction)onDelete:(id)sender
 {
-    FSProductViewController *superController = (FSProductViewController *)self.delegate;
+    FSLocProductViewController *superController = (FSLocProductViewController *)self.delegate;
     if ([superController isEditing]) {
         return;
     }
@@ -94,7 +94,7 @@
     {
         [self.delegate performSelector:@selector(didOK:) withObject:self];
     }
-    FSProductViewController *superController = (FSProductViewController *)self.delegate;
+    FSLocProductViewController *superController = (FSLocProductViewController *)self.delegate;
     [superController setIsEditing:NO];
     [txtProductName resignFirstResponder];
     [txtProductName setHidden:YES];
@@ -115,7 +115,7 @@
     {
         [self.delegate performSelector:@selector(didCancel:) withObject:self];
     }
-    FSProductViewController *superController = (FSProductViewController *)self.delegate;
+    FSLocProductViewController *superController = (FSLocProductViewController *)self.delegate;
     [superController setIsEditing:NO];
     [txtProductName resignFirstResponder];
     [txtProductName setHidden:YES];
@@ -139,10 +139,10 @@
 - (IBAction)onBgClick:(id)sender
 {
 
-        if([self.delegate respondsToSelector:@selector(didDetail:)])
-        {
-            [self.delegate performSelector:@selector(didDetail:) withObject:self];
-        }
+    if([self.delegate respondsToSelector:@selector(didDetail:)])
+    {
+        [self.delegate performSelector:@selector(didDetail:) withObject:self];
+    }
 
 }
 

@@ -9,6 +9,7 @@
 #import "FSLocationsViewController.h"
 #import "FSLocation.h"
 #import "DataManager.h"
+#import "Defines.h"
 
 @interface FSLocationsViewController () {
     NSMutableArray *arrLoc;
@@ -33,29 +34,45 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    arrLoc = [[DataManager sharedInstance] getFeedLocations:[self.curJob jobID]];
-    arrMainLoc = [[DataManager sharedInstance] getMainLocations];
+    arrLoc = [[DataManager sharedInstance] getLocations:self.curJob.jobID];
     
     [self.tblLoc setDataSource:self];
     [self.tblLoc setDelegate:self];
     [self.tblLoc setBackgroundColor:[UIColor clearColor]];
-    
-    [self.tblMainLoc setDataSource:self];
-    [self.tblMainLoc setDelegate:self];
     
     trasnfromHeight = 0;
     
     self.archive_alertview.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
     [self.archive_alertview setHidden:YES];
     
-    CGRect rt = self.viewAddMain.frame;
-    self.viewAddMain.frame = CGRectMake(rt.origin.x, self.viewAdd.frame.origin.y + self.viewAdd.frame.size.height, rt.size.width, rt.size.height);
+    [self.lblJobName setText:self.curJob.jobName];
+    
+    FSLocation *defaultLoc = [[FSLocation alloc] init];
+    defaultLoc.locID = 0;
+    defaultLoc.locJobID = self.curJob.jobID;
+    defaultLoc.locName = @"Default";
+    self.curLoc = defaultLoc;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self initTableData];
 }
 
 - (void)initTableData
 {
-    arrLoc = [[DataManager sharedInstance] getFeedLocations:[self.curJob jobID]];
+    arrLoc = [[DataManager sharedInstance] getLocations:self.curJob.jobID];
     [self.tblLoc reloadData];
+    
+    if ([arrLoc count] == 0)
+        [self.lblNoResult setHidden:NO];
+    else
+        [self.lblNoResult setHidden:YES];
+}
+
+- (void)initTableDataArray
+{
+    arrLoc = [[DataManager sharedInstance] getLocations:self.curJob.jobID];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,47 +83,24 @@
 
 #pragma mark - actions
 
-- (IBAction)onAddLoc:(id)sender
+- (IBAction)onAdd:(id)sender
 {
-    [self showAddLocView];
-}
-
-- (IBAction)onCloseAddView:(id)sender
-{
-    [self hideAddLocView];
-}
-
-- (void) showAddLocView
-{
-    [self.viewAdd setHidden:NO];
-    [self.viewAdd setAlpha:0];
-    [self.view bringSubviewToFront:self.viewAdd];
+    NSString *locationName = self.txtAdd.text;
+    FSLocation *loc = [[FSLocation alloc] init];
+    loc.locID = 0;
+    loc.locJobID = self.curJob.jobID;
+    loc.locName = locationName;
+        
+    loc.locID = [[DataManager sharedInstance] addLocationToDatabase:loc];
+    if (loc.locID != 0)
+    {
+        [self initTableData];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[arrLoc count] - 1 inSection:0];
+        [self.tblLoc scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    }
     
-    [UIView animateWithDuration:0.2f animations:^{
-        self.viewAdd.alpha = 1.0f;
-    }completion:^(BOOL finished){
-        [UIView animateWithDuration:0.07f animations:^{
-            CGRect rt = self.viewAddMain.frame;
-            self.viewAddMain.frame = CGRectMake(rt.origin.x, self.viewAdd.frame.origin.y + self.viewAdd.frame.size.height - rt.size.height, rt.size.width, rt.size.height);
-        }completion:nil];
-    }];
-}
-
-- (void) hideAddLocView
-{
-    [UIView animateWithDuration:0.2f animations:^{
-        self.viewAdd.alpha = 0.0f;
-        CGRect rt = self.viewAddMain.frame;
-        self.viewAddMain.frame = CGRectMake(rt.origin.x, self.viewAdd.frame.origin.y + self.viewAdd.frame.size.height, rt.size.width, rt.size.height);
-    }completion:^(BOOL finished){
-        [self.viewAdd setHidden:YES];
-    }];
-}
-
-
-- (IBAction)onSearch:(id)sender
-{
-    //
+    [self.txtAdd resignFirstResponder];
+    self.txtAdd.text = @"";
 }
 
 - (IBAction)onBack:(id)sender
@@ -116,13 +110,7 @@
 
 - (IBAction)onDeleteOk:(id)sender
 {
-   
-    FSFeed *feed = [[FSFeed alloc] init];
-    [feed setFeedJobID:[[self.curJob jobID] integerValue]];
-    [feed setFeedLocID:[[self.curLoc locID] integerValue]];
-    //[feed setFeedProcID:-1];
-
-    [[DataManager sharedInstance] deleteFeedFromDatabase:feed];
+    [[DataManager sharedInstance] deleteLocFromDatabase:self.curLoc];
     [self initTableData];
     [self hideAlertAnimation];
 }
@@ -177,34 +165,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.tblLoc)
+
+    FSLocationCell *cell = [self.tblLoc dequeueReusableCellWithIdentifier:@"FSLocationCell"];
+    
+    if(cell == nil)
     {
-        FSLocationCell *cell = [self.tblLoc dequeueReusableCellWithIdentifier:@"FSLocationCell"];
-        
-        if(cell == nil)
-        {
-            cell = (FSLocationCell *)[FSLocationCell cellFromNibNamed:@"FSLocationCell"];
-            [cell setIdentifier:@"FSLocationCell"];
-        }
-        cell.delegate = self;
-        [cell setData:[arrLoc objectAtIndex:indexPath.row]];
-        
-        return cell;
+        cell = (FSLocationCell *)[FSLocationCell cellFromNibNamed:@"FSLocationCell"];
+        [cell setIdentifier:@"FSLocationCell"];
     }
-    else
-    {
-        FSLocSelCell *cell = [self.tblMainLoc dequeueReusableCellWithIdentifier:@"FSLocSelCell"];
-        
-        if(cell == nil)
-        {
-            cell = (FSLocSelCell *)[FSLocSelCell cellFromNibNamed:@"FSLocSelCell"];
-            [cell setIdentifier:@"FSLocationCell"];
-        }
-        cell.delegate = self;
-        [cell setLocData:[arrMainLoc objectAtIndex:indexPath.row]];
-        
-        return cell;
-    }
+    cell.delegate = self;
+    [cell setData:[arrLoc objectAtIndex:indexPath.row]];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
 }
 
 #pragma mark - textfield delegate
@@ -213,11 +189,6 @@
     [textField resignFirstResponder];
     //[self onAdd:textField];
     return YES;
-}
-
-#pragma mark - UITableView Delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
 }
 
 #pragma mark - FSCellDelegate
@@ -283,7 +254,14 @@
 
 - (void)onSelectCell:(id)sender
 {
-    //
+    if (self.mode == MODE_RECORD)
+    {
+        FSLocationCell *cell = (FSLocationCell *)sender;
+        FSLocation *loc = (FSLocation *)cell.data;
+        if (self.locationSelectDelegate != nil)
+            [self.locationSelectDelegate locationSelected:loc];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (NSString *)getName:(id)sender
@@ -293,28 +271,5 @@
     return loc.locName;
 }
 
-#pragma mark - FSLocSelDelegate
-- (void)onAddSelLoc:(id)sender
-{
-    FSLocSelCell *cell = (FSLocSelCell *)sender;
-    FSLocation *loc = (FSLocation *)cell.locData;
-
-    FSFeed *feed = [[FSFeed alloc] init];
-    [feed setFeedJobID:[[self.curJob jobID] integerValue]];
-    [feed setFeedLocID:[[loc locID] integerValue]];
-    [feed setFeedProcID:-1];
-    [[DataManager sharedInstance] addFeedToDatabase:feed];
-    
-    [self initTableData];
-    
-    [self hideAddLocView];
-}
-
-- (NSString *)getLocName:(id)sender
-{
-    FSLocSelCell *cell = (FSLocSelCell *)sender;
-    FSLocation *loc = (FSLocation *)cell.locData;
-    return loc.locName;
-}
 
 @end

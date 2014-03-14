@@ -17,7 +17,7 @@
 {
     self = [super init];
     if (self) {
-        _jobID = @"-1";
+        _jobID = 0;
         _jobName = @"";
         _jobArchived = 0;
     }
@@ -26,7 +26,7 @@
 
 - (void)clear
 {
-    _jobID = @"-1";
+    _jobID = 0;
     _jobName = @"";
     _jobArchived = 0;
 }

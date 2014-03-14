@@ -10,18 +10,18 @@
 
 @implementation FSProduct
 @synthesize productID = _productID;
-@synthesize productFinished = _productFinished;
 @synthesize productName = _productName;
-@synthesize productDel = _productDel;
+@synthesize productType = _productType;
+@synthesize productDeleted = _productDeleted;
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        _productID = @"-1";
+        _productID = 0;
         _productName = @"";
-        _productFinished = -1;
-        _productDel = 0;
+        _productType = FSProductTypeFinished;
+        _productDeleted = 0;
     }
     return self;
 }
@@ -29,10 +29,26 @@
 
 - (void)clear
 {
-    _productID = @"-1";
+    _productID = 0;
     _productName = @"";
-    _productFinished = -1;
-    _productDel = -1;
+    _productType = FSProductTypeFinished;
+    _productDeleted = 0;
+}
+
+@end
+
+@implementation FSLocProduct
+- (id) init
+{
+    self = [super init];
+    if (self) {
+        _locProductID = 0;
+        _locProductLocID = 0;
+        _locProductName = @"";
+        _locProductType = FSProductTypeFinished;
+        _locProductCoverage = 0.0;
+    }
+    return self;
 }
 
 @end

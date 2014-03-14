@@ -1,40 +1,34 @@
 //
-//  FSProductViewController.m
+//  FSLocProductViewController.m
 //  FloorSmart
 //
 //  Created by Lydia on 12/23/13.
 //  Copyright (c) 2013 Tim. All rights reserved.
 //
 
-#import "FSProductViewController.h"
+#import "FSLocProductViewController.h"
 #import "FSProductCell.h"
+#import "FSLocProductCell.h"
 #import "DataManager.h"
 #import "Global.h"
 #import "FSProduct.h"
 #import "Defines.h"
 
-@interface FSProductViewController ()
+@interface FSLocProductViewController ()
 {
     NSMutableArray *arrProdcutList;
     CGFloat trasnfromHeight;
     int finishNum;
     FSProductCell *curCell;
+    FSLocProductCell *curLocCell;
     UITableView *tblProcType;
 }
 @end
 
-@implementation FSProductViewController
+@implementation FSLocProductViewController
 @synthesize isEditing = _isEditing;
 @synthesize tblProducts, viewTopAdd, viewTopSearch, txtAdd, txtSearch, viewSelectType, lblSelectType, btnFinished, btnSubfloor;
 @synthesize delete_alertview;
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-    }
-    return self;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,6 +71,24 @@
     [super viewWillAppear:animated];
     [self initTable];
     [tblProcType reloadData];
+    
+    NSString *jobName = @"";
+    NSString *locName = @"";
+    // set job.name
+    if (self.curLoc != nil)
+    {
+        if (self.curLoc.locJobID != 0)
+        {
+            FSJob *job = [[DataManager sharedInstance] getJobFromID:self.curLoc.locJobID];
+            if (job)
+            {
+                jobName = job.jobName;
+            }
+        }
+        locName = self.curLoc.locName;
+    }
+    
+    self.lblJobLocName.text = [NSString stringWithFormat:@"Location : %@.%@", jobName, locName];
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,6 +106,7 @@
     {
         [self.lblNoResult setHidden:NO];
     }
+    else
     {
         [self.lblNoResult setHidden:YES];
     }
@@ -101,7 +114,10 @@
 
 - (void)initTableArray
 {
+    if (self.switchShowMain.on)
         arrProdcutList = [[DataManager sharedInstance] getProducts:self.txtAdd.text];
+    else
+        arrProdcutList = [[DataManager sharedInstance] getLocProducts:self.curLoc searchField:self.txtAdd.text];
 }
 
 #pragma mark - UITableView DataSource
@@ -152,18 +168,37 @@
         
         return cell;
     }
-    FSProductCell *cell = [tblProducts dequeueReusableCellWithIdentifier:@"FSProductCell"];
-    
-    if(cell == nil)
+
+    if (self.switchShowMain.on)
     {
-        cell = [FSProductCell sharedCell];
+        FSProductCell *cell = [tblProducts dequeueReusableCellWithIdentifier:@"FSLocProductCell"];
+        
+        if(cell == nil)
+        {
+            cell = [FSProductCell sharedCell];
+        }
+        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setDelegate:self];
+        [cell setCurProduct:[arrProdcutList objectAtIndex:indexPath.row]];
+        return cell;
+    }
+    else
+    {
+        FSLocProductCell *cell = [tblProducts dequeueReusableCellWithIdentifier:@"FSLocProductCell"];
+        
+        if(cell == nil)
+        {
+            cell = [FSLocProductCell sharedCell];
+        }
+        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setDelegate:self];
+        [cell setCurLocProduct:[arrProdcutList objectAtIndex:indexPath.row]];
+        return cell;
     }
     
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setDelegate:self];
-    [cell setCurProduct:[arrProdcutList objectAtIndex:indexPath.row]];
-    
-    return cell;
+    return nil;
 }
 
 #pragma mark - UITableViewDelegate
@@ -171,11 +206,27 @@
 {
     if (tableView == tblProcType) {
         if (indexPath.row) {
-            [curCell.lblEditingProcType setText:@"Finished"];
-            [curCell.curProduct setProductType:FSProductTypeFinished];
+            if (self.switchShowMain.on)
+            {
+                [curCell.lblEditingProcType setText:@"Finished"];
+                [curCell.curProduct setProductType:FSProductTypeFinished];
+            }
+            else
+            {
+                [curLocCell.lblEditingProcType setText:@"Finished"];
+                [curLocCell.curLocProduct setLocProductType:FSProductTypeFinished];
+            }
         } else {
-            [curCell.lblEditingProcType setText:@"Subfloor"];
-            [curCell.curProduct setProductType:FSProductTypeSubfloor];
+            if (self.switchShowMain.on)
+            {
+                [curCell.lblEditingProcType setText:@"Subfloor"];
+                [curCell.curProduct setProductType:FSProductTypeSubfloor];
+            }
+            else
+            {
+                [curLocCell.lblEditingProcType setText:@"Subfloor"];
+                [curLocCell.curLocProduct setLocProductType:FSProductTypeSubfloor];
+            }
         }
         [self hideCombo];
     }
@@ -232,10 +283,23 @@
 }
 
 #pragma mark - Cell Delegate
-- (void)didEdit:(FSProductCell *)cell
+- (void)didEdit:(id)cell
 {
-    curCell = cell;
-    CGRect selectedCellFrame = [cell.superview convertRect:cell.frame toView:self.view];
+    CGRect selectedCellFrame;
+    if (self.switchShowMain.on)
+    {
+        curCell = cell;
+        curLocCell = nil;
+        selectedCellFrame = [curCell.superview convertRect:curCell.frame toView:self.view];
+    }
+    else
+    {
+        curLocCell = cell;
+        curCell = nil;
+        selectedCellFrame = [curLocCell.superview convertRect:curLocCell.frame toView:self.view];
+    }
+    
+    
     if (selectedCellFrame.origin.y + 80 >= [[UIScreen mainScreen] bounds].size.height - 216) {
         trasnfromHeight = selectedCellFrame.origin.y + 80 - [[UIScreen mainScreen] bounds].size.height + 216;
         [UIView animateWithDuration:0.1f animations:^{
@@ -247,19 +311,50 @@
     
 }
 
-- (void)didDelete:(FSProductCell *)cell
+- (void)didDelete:(id)cell
 {
-    curCell = cell;
+    if (self.switchShowMain.on)
+    {
+        curCell = (FSProductCell *)cell;
+        curLocCell = nil;
+    }
+    else
+    {
+        curCell = nil;
+        curLocCell = (FSLocProductCell *)cell;
+    }
     [self.view bringSubviewToFront:delete_alertview];
     [delete_alertview setHidden:NO];
     [self showAlertAnimation];
 }
 
-- (void)didOK:(FSProductCell *)cell
+- (void)didOK:(id)cell
 {
-    [curCell.curProduct setProductName:cell.txtProductName.text];
-    [[DataManager sharedInstance] updateProductToDatabase:curCell.curProduct];
-//    [curProduct clear];
+    if (self.switchShowMain.on)
+    {
+        curCell = (FSProductCell *)cell;
+        curLocCell = nil;
+        [curCell.curProduct setProductName:curCell.txtProductName.text];
+        [[DataManager sharedInstance] updateProductToDatabase:curCell.curProduct];
+    }
+    else
+    {
+        curCell = nil;
+        curLocCell = (FSLocProductCell *)cell;
+        [curLocCell.curLocProduct setLocProductName:curLocCell.txtProductName.text];
+        [[DataManager sharedInstance] updateLocProductToDatabase:curLocCell.curLocProduct];
+        FSProduct *sameProduct = [[DataManager sharedInstance] getProductWithLocProduct:curLocCell.curLocProduct];
+        if (sameProduct == nil)
+        {
+            sameProduct = [[FSProduct alloc] init];
+            sameProduct.productID = 0;
+            sameProduct.productName = curLocCell.curLocProduct.locProductName;
+            sameProduct.productType = curLocCell.curLocProduct.locProductType;
+            
+            [[DataManager sharedInstance] addProductToDatabase:sameProduct];
+        }
+    }
+
     if (trasnfromHeight != 0) {
         [UIView animateWithDuration:0.1f animations:^{
             [tblProducts setFrame:CGRectMake(tblProducts.frame.origin.x, tblProducts.frame.origin.y + trasnfromHeight, tblProducts.frame.size.width, tblProducts.frame.size.height)];
@@ -268,9 +363,8 @@
     [self hideCombo];
 }
 
-- (void)didCancel:(FSProductCell *)cell
+- (void)didCancel:(id)cell
 {
-//    [curProduct clear];
     if (trasnfromHeight != 0) {
         [UIView animateWithDuration:0.1f animations:^{
             [tblProducts setFrame:CGRectMake(tblProducts.frame.origin.x, tblProducts.frame.origin.y + trasnfromHeight, tblProducts.frame.size.width, tblProducts.frame.size.height)];
@@ -279,10 +373,23 @@
     [self hideCombo];
 }
 
-- (void)didCombo:(FSProductCell *)cell
+- (void)didCombo:(id)cell
 {
     CGRect frame = tblProcType.frame;
-    CGRect selectedCellProcViewFrame = [cell.viewEditingProcType.superview convertRect:cell.viewEditingProcType.frame toView:self.view];
+    CGRect selectedCellProcViewFrame;
+    
+    if (self.switchShowMain.on)
+    {
+        curCell = (FSProductCell *)cell;
+        curLocCell = nil;
+        selectedCellProcViewFrame = [curCell.viewEditingProcType.superview convertRect:curCell.viewEditingProcType.frame toView:self.view];
+    }
+    else
+    {
+        curCell = nil;
+        curLocCell = (FSLocProductCell *)cell;
+        selectedCellProcViewFrame = [curLocCell.viewEditingProcType.superview convertRect:curLocCell.viewEditingProcType.frame toView:self.view];
+    }
     frame.origin.x = selectedCellProcViewFrame.origin.x;
     frame.origin.y = selectedCellProcViewFrame.origin.y + 18.0f;
     [tblProcType setFrame:frame];
@@ -317,24 +424,44 @@
 
 - (void)didDetail:(id)sender
 {
-    FSProductCell *cell = (FSProductCell *)sender;
-    FSProduct *product = cell.curProduct;
+    if (self.switchShowMain.on)
+    {
+        FSProductCell *cell = (FSProductCell *)sender;
+        FSProduct *product = cell.curProduct;
+        if (self.locProductSelectDelegate)
+            [self.locProductSelectDelegate productSelected:product];
+    }
+    else
+    {
+        
+        FSLocProductCell *cell = (FSLocProductCell *)sender;
+        FSLocProduct *locProduct = cell.curLocProduct;
+        if (self.locProductSelectDelegate)
+            [self.locProductSelectDelegate locProductSelected:locProduct];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Action
 
 - (IBAction)onDelete_OK:(id)sender
 {
-    //curCell.curProduct.productDel = 1;
-    [[DataManager sharedInstance] deleteProductFromDatabase:curCell.curProduct];
-//    [curProduct clear];
+    if (self.switchShowMain.on)
+    {
+        [[DataManager sharedInstance] deleteProductFromDatabase:curCell.curProduct];
+    }
+    else
+    {
+        [[DataManager sharedInstance] deleteLocProductFromDatabase:curLocCell.curLocProduct];
+    }
+        
+
     [self initTable];
     [self hideAlertAnimation];
 }
 
 - (IBAction)onDelete_Cancel:(id)sender
 {
-//    [curProduct clear];
     [self hideAlertAnimation];
 }
 
@@ -369,20 +496,54 @@
         return;
     }
     
-    FSProduct *product = [[FSProduct alloc] init];
-    product.productName = txtAdd.text;
-    product.productType = finishNum;
-    product.productID = [[DataManager sharedInstance] addProductToDatabase:product];
-    
+    if (self.switchShowMain.on)
+    {
+        // add product to main product list
+        
+        FSProduct *product = [[FSProduct alloc] init];
+        product.productName = txtAdd.text;
+        product.productType = finishNum;
+        
+        product.productID = [[DataManager sharedInstance] addProductToDatabase:product];
+    }
+    else
+    {
+        // add product for a specific location
+        FSLocProduct *locProduct = [[FSLocProduct alloc] init];
+        locProduct.locProductID = 0;
+        locProduct.locProductLocID = 0;
+        locProduct.locProductName = txtAdd.text;
+        locProduct.locProductType = finishNum;
+        
+        // default location
+        if (self.curLoc.locID == 0)
+        {
+            // adde default location to location table
+            int loc_id = [[DataManager sharedInstance] addLocationToDatabase:self.curLoc];
+            self.curLoc = [[DataManager sharedInstance] getLocationFromID:loc_id];
+        }
+        if (self.curLoc != nil)
+        {
+            locProduct.locProductLocID = self.curLoc.locID;
+            [[DataManager sharedInstance] addLocProductToDatabase:locProduct];
+            
+            FSProduct *sameProduct = [[DataManager sharedInstance] getProductWithLocProduct:locProduct];
+            if (sameProduct == nil)
+            {
+                sameProduct = [[FSProduct alloc] init];
+                sameProduct.productID = 0;
+                sameProduct.productName = locProduct.locProductName;
+                sameProduct.productType = locProduct.locProductType;
+                
+                [[DataManager sharedInstance] addProductToDatabase:sameProduct];
+            }
+        }
+    }
     
     [self.txtAdd resignFirstResponder];
     [self.txtAdd setText:@""];
     
     [self initTable];
-    
-    
-    if (product.productID == 0)
-        return;
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[arrProdcutList count] - 1 inSection:0];
     
@@ -395,6 +556,11 @@
     [self initTable];
 }
 
+- (IBAction)onBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)onSearch:(id)sender
 {
     [self initTable];
@@ -405,6 +571,11 @@
     [txtSearch resignFirstResponder];
     [txtSearch setText:@""];
     
+    [self initTable];
+}
+
+- (IBAction)onSwitch:(id)sender
+{
     [self initTable];
 }
 

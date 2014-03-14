@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1404CAB11869F69100D7A24B /* FSProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404CAB01869F69100D7A24B /* FSProductCell.m */; };
-		1404CAB31869F6A400D7A24B /* FSProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1404CAB21869F6A400D7A24B /* FSProductCell.xib */; };
 		140E88EE18688D260038B5BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140E88ED18688D260038B5BF /* Foundation.framework */; };
 		140E88F018688D260038B5BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140E88EF18688D260038B5BF /* CoreGraphics.framework */; };
 		140E88F218688D260038B5BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140E88F118688D260038B5BF /* UIKit.framework */; };
@@ -133,7 +132,6 @@
 		14BED7A618705D500092A406 /* FSJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BED7A518705D500092A406 /* FSJob.m */; };
 		14BED7A918705E0A0092A406 /* FSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BED7A818705E0A0092A406 /* FSLocation.m */; };
 		14BED7AC18705E1D0092A406 /* FSProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BED7AB18705E1D0092A406 /* FSProduct.m */; };
-		14D1B9801891832100364EC6 /* FloorSmart.db in Resources */ = {isa = PBXBuildFile; fileRef = 14D1B97F1891832100364EC6 /* FloorSmart.db */; };
 		14D1B9831891893000364EC6 /* FSReading.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D1B9821891893000364EC6 /* FSReading.m */; };
 		14F537B018C0CA3C00C1318A /* FSReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F537AF18C0CA3C00C1318A /* FSReportCell.m */; };
 		14F537B218C0CA4B00C1318A /* FSReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F537B118C0CA4B00C1318A /* FSReportCell.xib */; };
@@ -210,6 +208,11 @@
 		D348DF5818CFA96400FE4946 /* FSLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D348DF5618CFA96400FE4946 /* FSLocationCell.xib */; };
 		D348DF6118CFC2BE00FE4946 /* FSLocSelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5F18CFC2BE00FE4946 /* FSLocSelCell.m */; };
 		D348DF6218CFC2BE00FE4946 /* FSLocSelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D348DF6018CFC2BE00FE4946 /* FSLocSelCell.xib */; };
+		D39E182218D2647B0054CF19 /* FSLocProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39E182018D2647B0054CF19 /* FSLocProductViewController.m */; };
+		D39E182318D2647B0054CF19 /* FSLocProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D39E182118D2647B0054CF19 /* FSLocProductViewController.xib */; };
+		D39E182518D2654E0054CF19 /* FSProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D39E182418D2654E0054CF19 /* FSProductCell.xib */; };
+		D39E182918D2657A0054CF19 /* FSLocProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D39E182718D2657A0054CF19 /* FSLocProductCell.m */; };
+		D39E182A18D2657A0054CF19 /* FSLocProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D39E182818D2657A0054CF19 /* FSLocProductCell.xib */; };
 		D3F142BD18CE7A4200720482 /* FSLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F142BB18CE7A4200720482 /* FSLocationsViewController.m */; };
 		D3F142BE18CE7A4200720482 /* FSLocationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F142BC18CE7A4200720482 /* FSLocationsViewController.xib */; };
 /* End PBXBuildFile section */
@@ -227,7 +230,6 @@
 /* Begin PBXFileReference section */
 		1404CAAF1869F69100D7A24B /* FSProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSProductCell.h; path = CustomUI/FSProductCell.h; sourceTree = "<group>"; };
 		1404CAB01869F69100D7A24B /* FSProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSProductCell.m; path = CustomUI/FSProductCell.m; sourceTree = "<group>"; };
-		1404CAB21869F6A400D7A24B /* FSProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSProductCell.xib; sourceTree = "<group>"; };
 		140E88EA18688D260038B5BF /* FloorSmart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloorSmart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		140E88ED18688D260038B5BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		140E88EF18688D260038B5BF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -381,7 +383,6 @@
 		14BED7A818705E0A0092A406 /* FSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSLocation.m; sourceTree = "<group>"; };
 		14BED7AA18705E1D0092A406 /* FSProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSProduct.h; sourceTree = "<group>"; };
 		14BED7AB18705E1D0092A406 /* FSProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSProduct.m; sourceTree = "<group>"; };
-		14D1B97F1891832100364EC6 /* FloorSmart.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = FloorSmart.db; path = FloorSmart/FloorSmart.db; sourceTree = SOURCE_ROOT; };
 		14D1B9811891893000364EC6 /* FSReading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSReading.h; sourceTree = "<group>"; };
 		14D1B9821891893000364EC6 /* FSReading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSReading.m; sourceTree = "<group>"; };
 		14F537AE18C0CA3C00C1318A /* FSReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSReportCell.h; path = CustomUI/FSReportCell.h; sourceTree = "<group>"; };
@@ -464,6 +465,13 @@
 		D348DF5E18CFC2BE00FE4946 /* FSLocSelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocSelCell.h; path = CustomUI/FSLocSelCell.h; sourceTree = "<group>"; };
 		D348DF5F18CFC2BE00FE4946 /* FSLocSelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSLocSelCell.m; path = CustomUI/FSLocSelCell.m; sourceTree = "<group>"; };
 		D348DF6018CFC2BE00FE4946 /* FSLocSelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSLocSelCell.xib; path = CustomUI/FSLocSelCell.xib; sourceTree = "<group>"; };
+		D39E181F18D2647B0054CF19 /* FSLocProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSLocProductViewController.h; sourceTree = "<group>"; };
+		D39E182018D2647B0054CF19 /* FSLocProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSLocProductViewController.m; sourceTree = "<group>"; };
+		D39E182118D2647B0054CF19 /* FSLocProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSLocProductViewController.xib; sourceTree = "<group>"; };
+		D39E182418D2654E0054CF19 /* FSProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSProductCell.xib; path = CustomUI/FSProductCell.xib; sourceTree = "<group>"; };
+		D39E182618D2657A0054CF19 /* FSLocProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocProductCell.h; path = CustomUI/FSLocProductCell.h; sourceTree = "<group>"; };
+		D39E182718D2657A0054CF19 /* FSLocProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSLocProductCell.m; path = CustomUI/FSLocProductCell.m; sourceTree = "<group>"; };
+		D39E182818D2657A0054CF19 /* FSLocProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSLocProductCell.xib; path = CustomUI/FSLocProductCell.xib; sourceTree = "<group>"; };
 		D3F142BA18CE7A4200720482 /* FSLocationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocationsViewController.h; path = Locations/FSLocationsViewController.h; sourceTree = "<group>"; };
 		D3F142BB18CE7A4200720482 /* FSLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSLocationsViewController.m; path = Locations/FSLocationsViewController.m; sourceTree = "<group>"; };
 		D3F142BC18CE7A4200720482 /* FSLocationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSLocationsViewController.xib; path = Locations/FSLocationsViewController.xib; sourceTree = "<group>"; };
@@ -624,6 +632,9 @@
 		140E892718688DEC0038B5BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				D39E181F18D2647B0054CF19 /* FSLocProductViewController.h */,
+				D39E182018D2647B0054CF19 /* FSLocProductViewController.m */,
+				D39E182118D2647B0054CF19 /* FSLocProductViewController.xib */,
 				140E894418688EB10038B5BF /* FSProductViewController.h */,
 				140E894518688EB10038B5BF /* FSProductViewController.m */,
 				140E894618688EB10038B5BF /* FSProductViewController.xib */,
@@ -667,7 +678,6 @@
 		140E895318688F870038B5BF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				14D1B97F1891832100364EC6 /* FloorSmart.db */,
 				1435C07D1887932A00AE1C87 /* new */,
 				14F7EB1F1886F12C00E4F088 /* origin */,
 				140E899E18688F870038B5BF /* navi_home.png */,
@@ -722,6 +732,9 @@
 		140E8A201868A9E40038B5BF /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
+				D39E182618D2657A0054CF19 /* FSLocProductCell.h */,
+				D39E182718D2657A0054CF19 /* FSLocProductCell.m */,
+				D39E182818D2657A0054CF19 /* FSLocProductCell.xib */,
 				D348DF5E18CFC2BE00FE4946 /* FSLocSelCell.h */,
 				D348DF5F18CFC2BE00FE4946 /* FSLocSelCell.m */,
 				D348DF6018CFC2BE00FE4946 /* FSLocSelCell.xib */,
@@ -741,7 +754,7 @@
 				140E8A3B1869350C0038B5BF /* FSArchiveCell.xib */,
 				1404CAAF1869F69100D7A24B /* FSProductCell.h */,
 				1404CAB01869F69100D7A24B /* FSProductCell.m */,
-				1404CAB21869F6A400D7A24B /* FSProductCell.xib */,
+				D39E182418D2654E0054CF19 /* FSProductCell.xib */,
 				1419AF3B1879C7D300C5F4F6 /* FSMeasureCell.h */,
 				1419AF3C1879C7D300C5F4F6 /* FSMeasureCell.m */,
 				1419AF3E1879C7E800C5F4F6 /* FSMeasureCell.xib */,
@@ -1025,7 +1038,6 @@
 				14F7EB711886F12C00E4F088 /* bg_job_overview_detail_bar.png in Resources */,
 				14F7EB661886F12C00E4F088 /* bg_add_job_bar.png in Resources */,
 				1435C0B91887932A00AE1C87 /* bg_overwiew_data_space.png in Resources */,
-				14D1B9801891832100364EC6 /* FloorSmart.db in Resources */,
 				1435C0AE1887932A00AE1C87 /* b_achived-jobs.png in Resources */,
 				1435C0CE1887932A00AE1C87 /* bt_fly.png in Resources */,
 				140E893E18688E720038B5BF /* FSRecordViewController.xib in Resources */,
@@ -1083,6 +1095,7 @@
 				14F7EB781886F12C00E4F088 /* bg_product_small_list.png in Resources */,
 				1435C0B71887932A00AE1C87 /* bg_job_tab.png in Resources */,
 				14F7EB741886F12C00E4F088 /* bg_main_banner.png in Resources */,
+				D39E182A18D2657A0054CF19 /* FSLocProductCell.xib in Resources */,
 				140E892F18688E040038B5BF /* FSMainViewController.xib in Resources */,
 				14F7EB941886F12C00E4F088 /* bt_title_bar_cancel.png in Resources */,
 				1435C0AF1887932A00AE1C87 /* bg_add_a_product_bg.png in Resources */,
@@ -1120,7 +1133,6 @@
 				14F7EBAA1886F12C00E4F088 /* splash-screen_02.png in Resources */,
 				1435C0B11887932A00AE1C87 /* bg_add_job_space.png in Resources */,
 				14F7EB6A1886F12C00E4F088 /* bg_black.png in Resources */,
-				1404CAB31869F6A400D7A24B /* FSProductCell.xib in Resources */,
 				1435C0B31887932A00AE1C87 /* bg_archive_job_tab.png in Resources */,
 				14F7EB8B1886F12C00E4F088 /* bt_Products_nl.png in Resources */,
 				14F7EB8F1886F12C00E4F088 /* bt_report_nl.png in Resources */,
@@ -1131,6 +1143,8 @@
 				D348DF6218CFC2BE00FE4946 /* FSLocSelCell.xib in Resources */,
 				1435C0D01887932A00AE1C87 /* bt_job_add.png in Resources */,
 				14F7EB7C1886F12C00E4F088 /* bg_select_type_bar.png in Resources */,
+				D39E182518D2654E0054CF19 /* FSProductCell.xib in Resources */,
+				D39E182318D2647B0054CF19 /* FSLocProductViewController.xib in Resources */,
 				14F7EB7A1886F12C00E4F088 /* bg_readings_list_bar.png in Resources */,
 				1435C0B01887932A00AE1C87 /* bg_add_a_product_space.png in Resources */,
 				14F7EB681886F12C00E4F088 /* bg_archive_job.png in Resources */,
@@ -1204,6 +1218,7 @@
 				140E88FA18688D260038B5BF /* main.m in Sources */,
 				D348DF5318CF75B800FE4946 /* XIBTableViewCell.m in Sources */,
 				140E8A261868B41F0038B5BF /* FSPopView.m in Sources */,
+				D39E182918D2657A0054CF19 /* FSLocProductCell.m in Sources */,
 				140E88FE18688D260038B5BF /* FSAppDelegate.m in Sources */,
 				140E894C18688EC60038B5BF /* FSReportViewController.m in Sources */,
 				14BED7AC18705E1D0092A406 /* FSProduct.m in Sources */,
@@ -1214,6 +1229,7 @@
 				140E8A231868AA130038B5BF /* FSPopContentController.m in Sources */,
 				14D1B9831891893000364EC6 /* FSReading.m in Sources */,
 				D348DF5718CFA96400FE4946 /* FSLocationCell.m in Sources */,
+				D39E182218D2647B0054CF19 /* FSLocProductViewController.m in Sources */,
 				D348DF6118CFC2BE00FE4946 /* FSLocSelCell.m in Sources */,
 				140E894718688EB10038B5BF /* FSProductViewController.m in Sources */,
 				14BED79518705B280092A406 /* FMDatabaseAdditions.m in Sources */,
@@ -1334,6 +1350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1349,6 +1366,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

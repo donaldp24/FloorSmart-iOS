@@ -13,28 +13,30 @@
 #import "FSLocation.h"
 #import "FSLocSelCell.h"
 
-@interface FSLocationsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, FSLocationCellDelegate, FSLocSelCellDelegate> {
+@protocol FSLocationSelectDelegate <NSObject>
+
+- (void)locationSelected:(FSLocation *)loc;
+
+@end
+
+@interface FSLocationsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, FSLocationCellDelegate> {
     //
 }
 
 @property (nonatomic, strong) FSJob *curJob;
 @property (nonatomic, strong) FSLocation *curLoc;
+@property (nonatomic, strong) IBOutlet UILabel *lblJobName;
 
 @property (nonatomic) BOOL isEditing;
 @property (nonatomic, assign) IBOutlet UITableView *tblLoc;
-@property (nonatomic, assign) IBOutlet UITableView *tblMainLoc;
-@property (nonatomic, assign) IBOutlet UIButton *btnAdd;
-@property (nonatomic, assign) IBOutlet UITextField *txtSearch;
+@property (nonatomic, assign) IBOutlet UITextField *txtAdd;
 @property (nonatomic, assign) IBOutlet UIView *archive_alertview;
+@property (nonatomic, assign) IBOutlet UILabel *lblNoResult;
 
-@property (nonatomic, assign) IBOutlet UIView *viewAdd;
-@property (nonatomic, assign) IBOutlet UIView *viewAddMain;
+@property (nonatomic) int mode;
+@property (nonatomic, retain) id<FSLocationSelectDelegate> locationSelectDelegate;
 
-- (IBAction)onAddLoc:(id)sender;
-
-- (IBAction)onCloseAddView:(id)sender;
-- (IBAction)onSearch:(id)sender;
-
+- (IBAction)onAdd:(id)sender;
 - (IBAction)onBack:(id)sender;
 - (IBAction)onDeleteOk:(id)sender;
 - (IBAction)onDeleteCancel:(id)sender;
@@ -48,8 +50,5 @@
 - (void)onSelectCell:(id)sender;
 - (NSString *)getName:(id)sender;
 
-// FSLocSelCellDelegate
-- (void)onAddSelLoc:(id)sender;
-- (NSString *)getLocName:(id)sender;
 
 @end

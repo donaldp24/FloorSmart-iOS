@@ -115,6 +115,7 @@
 
 - (void)fillFeed:(FSLocation *)loc andProc:(FSProduct *)proc
 {
+    /*
     if ([[_curJob jobID] isEqualToString:@"-1"]) {
         [self setCurFeed:[[FSFeed alloc] init]];
         [self fillContent:loc andProc:proc];
@@ -132,6 +133,7 @@
         [self setCurFeed:feed];
     }
     [self fillContent:loc andProc:proc];
+     */
 }
 
 - (void)fillContent:(FSLocation *)loc andProc:(FSProduct *)proc
@@ -167,8 +169,10 @@
         [tblProc reloadData];
         return;
     }
+    /*
     arrLoc = [[DataManager sharedInstance] getFeedLocations:[_curJob jobID]];
     arrProc = [[DataManager sharedInstance] getFeedProducts:[_curJob jobID] loc:[_curFeed feedLocID]];
+     */
     [tblLoc reloadData];
     [tblProc reloadData];
     if ([arrLoc count] == 0) {
@@ -573,6 +577,7 @@
 
 - (IBAction)onOKLoc:(id)sender
 {
+    /*
     FSLocation *loc = [[FSLocation alloc] init];
     [loc setLocName:txtAddLoc.text];
     [[DataManager sharedInstance] addLocationToDatabase:loc];
@@ -593,6 +598,7 @@
     [viewEditLoc setHidden:NO];
     
     [self fillFeed:loc andProc:nil];
+     */
 }
 
 - (IBAction)onCancelLoc:(id)sender
@@ -623,6 +629,7 @@
 
 - (IBAction)onOKProc:(id)sender
 {
+    /*
     FSFeed *feed = [[FSFeed alloc] init];
     [feed setFeedJobID:[[_curJob jobID] integerValue]];
     [feed setFeedLocID:[_curFeed feedLocID]];
@@ -646,6 +653,7 @@
     [lblProc setHidden:NO];
     [viewEditingProc setHidden:YES];
     [viewEditProc setHidden:NO];
+     */
 }
 
 - (IBAction)onCancelProc:(id)sender

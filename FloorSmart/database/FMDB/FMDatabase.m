@@ -800,6 +800,17 @@
     return [self executeUpdate:sql withArgumentsInArray:arguments];
 }
 
+- (BOOL)executeDDL:(char *)sql{
+    char *errMsg;
+    if (sqlite3_exec(db, sql, NULL, NULL, &errMsg) != SQLITE_OK)
+    {
+        NSLog(@"Fail sql %s", sql);
+        return NO;
+    }
+    return YES;
+}
+
+
 - (BOOL)update:(NSString*)sql error:(NSError**)outErr bind:(id)bindArgs, ... {
     va_list args;
     va_start(args, bindArgs);

@@ -16,19 +16,29 @@
 #import "FSReportViewController.h"
 #import "FSMainViewController.h"
 #import "FSLocationsViewController.h"
+#import "Defines.h"
 
 @interface FSJobViewController ()
 {
     NSMutableArray *arrJobNames;
     CGFloat trasnfromHeight;
     FSJob *curJob;
+    UITextField *curTextField;
 }
 @end
 
 @implementation FSJobViewController
 @synthesize isEditing = _isEditing;
-@synthesize tblJobs, btnFly, popView, viewTopAdd, viewTopSearch;
+@synthesize tblJobs, btnFly, viewTopAdd;
 @synthesize archive_alertview;
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        //
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,20 +59,44 @@
     trasnfromHeight = 0;
     _isEditing = NO;
     curJob = [[FSJob alloc] init];
-
-    [popView setArrContents:[NSArray arrayWithObjects:@"Add a Job", @"Search Job", @"View Archived Jobs", nil]];
-    [popView setDelegate:self];
-    CGRect popFrame = popView.frame;
-    popFrame.size.height = 0;
-    [popView setFrame:popFrame];
     
-    [self initTableData];
+    curTextField = nil;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //[self initTableData];
+    if (self.mode == MODE_JOBMANAGEMENT || self.mode == MODE_RECORD)
+    {
+        [self.viewTopAdd setHidden:NO];
+        [self.viewSearch setHidden:YES];
+        
+        if (self.mode == MODE_RECORD)
+        {
+            [self.btnFly setHidden:NO];
+            [self.btnBack setHidden:NO];
+        }
+        else
+        {
+            [self.btnBack setHidden:YES];
+            [self.btnFly setHidden:NO];
+        }
+    }
+    else
+    {
+        [self.viewTopAdd setHidden:YES];
+        [self.viewSearch setHidden:NO];
+        [self.btnFly setHidden:YES];
+        [self.btnBack setHidden:NO];
+    }
+    [self initTableData];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    if (curTextField != nil)
+        [curTextField resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,14 +106,26 @@
 
 - (void)initTableData
 {
-    arrJobNames = [[DataManager sharedInstance] getJobs:0 searchField:@""];
-    //[tblJobs setContentSize:CGSizeMake(tblJobs.frame.size.width, 60 * [arrJobNames count])];
+    [self initTableDataArray];
+
     [tblJobs reloadData];
+    
+    if ([arrJobNames count] == 0)
+    {
+        [self.lblNoResult setHidden:NO];
+    }
+    else
+    {
+        [self.lblNoResult setHidden:YES];
+    }
 }
 
 - (void)initTableDataArray
 {
-    arrJobNames = [[DataManager sharedInstance] getJobs:0 searchField:@""];
+    if (self.mode == MODE_JOBMANAGEMENT || self.mode == MODE_RECORD)
+        arrJobNames = [[DataManager sharedInstance] getJobs:0 searchField:self.txtEdit.text];
+    else
+        arrJobNames = [[DataManager sharedInstance] getJobs:0 searchField:self.txtSearch.text];
 }
 
 #pragma mark - textfield delegate
@@ -88,6 +134,17 @@
     [textField resignFirstResponder];
     //[self onAdd:textField];
     return YES;
+}
+
+- (IBAction)BeginEditing:(UITextField *)sender
+{
+    curTextField = sender;
+}
+
+- (IBAction)EndEditing:(UITextField *)sender
+{
+    curTextField = nil;
+    [sender resignFirstResponder];
 }
 
 #pragma mark - UITableView DataSource
@@ -129,40 +186,12 @@
     return cell;
 }
 
-#pragma mark - PopView Delegate
-- (void)didPopUpItem
-{
-    [UIView animateWithDuration:0.2f animations:^{
-        CGRect popFrame = popView.frame;
-        popFrame.size.height = 0.0f;
-        [popView setFrame:popFrame];
-    }completion:^(BOOL finished){
-        [popView setHidden:YES];
-        switch (popView.selectedNum) {
-            case 0: //add
-                [viewTopSearch setHidden:YES];
-                [viewTopAdd setHidden:NO];
-                [self initTableData];
-                [self.txtEdit setText:@""];
-                [self.txtEdit becomeFirstResponder];
-                break;
-            case 1: //search
-                [viewTopAdd setHidden:YES];
-                [viewTopSearch setHidden:NO];
-                [self.txtSearch setText:@""];
-                [self.txtSearch becomeFirstResponder];
-                break;
-            default: //archive
-                [self navigateArchive];
-                break;
-        }
-    }];
-}
-
 #pragma mark - custom
 - (void)navigateArchive
 {
     FSArchiveJobViewController *vc = [[FSArchiveJobViewController alloc] initWithNibName:@"FSArchiveJobViewController" bundle:nil];
+    vc.mode = self.mode;
+    vc.jobSelectDelegate = self.jobSelectDelegate;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -241,31 +270,24 @@
     [mainController selectItem:mainController.btnReports];
      */
     
-    FSLocationsViewController *vc = [[FSLocationsViewController alloc] initWithNibName:@"FSLocationsViewController" bundle:nil];
-    vc.curJob = cell.curJob;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.mode == MODE_JOBMANAGEMENT)
+    {
+        FSLocationsViewController *vc = [[FSLocationsViewController alloc] initWithNibName:@"FSLocationsViewController" bundle:nil];
+        vc.curJob = cell.curJob;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else
+    {
+        if (self.jobSelectDelegate)
+            [self.jobSelectDelegate jobSelected:cell.curJob];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - Actions
 - (IBAction)onFly:(id)sender;
 {    
-    if (popView.hidden) {
-        [popView setHidden:NO];
-        [UIView animateWithDuration:0.1f animations:^{
-            CGRect popFrame = popView.frame;
-            popFrame.size.height = 90.0f;
-            [popView setFrame:popFrame];
-        }completion:nil];
-    } else {
-        [UIView animateWithDuration:0.1f animations:^{
-            CGRect popFrame = popView.frame;
-            popFrame.size.height = 0.0f;
-            [popView setFrame:popFrame];
-        }completion:^(BOOL finished){
-            [popView setHidden:YES];
-            
-        }];
-    }
+    [self navigateArchive];
 }
 
 - (IBAction)onArchive_OK:(id)sender
@@ -290,45 +312,27 @@
     }
     FSJob *job = [[FSJob alloc] init];
     job.jobName = self.txtEdit.text;
-    [[DataManager sharedInstance] addJobToDatabase:job];
-    //[self initTableData];
+    job.jobID = [[DataManager sharedInstance] addJobToDatabase:job];
     
     [self.txtEdit resignFirstResponder];
     [self.txtEdit setText:@""];
     
-    [self initTableDataArray];
-    
+    [self initTableData];
+   
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[arrJobNames count] - 1 inSection:0];
-    
-    FSJobCell *cell = [tblJobs dequeueReusableCellWithIdentifier:@"FSJobCell"];
-    
-    if(cell == nil)
-    {
-        cell = [FSJobCell sharedCell];
-    }
-    
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setDelegate:self];
-    [cell setCurJob:[arrJobNames objectAtIndex:indexPath.row]];
-
-    
-    [tblJobs beginUpdates];
-    [tblJobs insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    [tblJobs endUpdates];
-    
-    [tblJobs scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    [tblJobs scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
 }
 
 - (IBAction)onClose:(id)sender
 {
     [self.txtEdit setText:@""];
+    [self initTableData];
 }
 
 - (IBAction)onSearch:(id)sender
 {
-    arrJobNames = [[DataManager sharedInstance] getJobs:0 searchField:self.txtSearch.text];
-    [tblJobs reloadData];
+    [self initTableData];
 }
 
 - (IBAction)onBtnBg:(id)sender
@@ -338,22 +342,19 @@
       //  [self.txtEditing resignFirstResponder];
 }
 
-- (IBAction)txtSearchChanged:(id)sender
-{
-    [self onSearch:sender];
-}
-
 - (IBAction)onBtnCancel:(id)sender
 {
     [self.txtSearch resignFirstResponder];
-    popView.selectedNum = 0;//
-    //[self didPopUpItem];
-    
-    [viewTopSearch setHidden:YES];
-    [viewTopAdd setHidden:NO];
+    [self.txtSearch setText:@""];
     [self initTableData];
-    [self.txtEdit setText:@""];
 }
+
+- (IBAction)onBtnBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 @end
 
 

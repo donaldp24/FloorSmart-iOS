@@ -8,13 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef enum : long
+{
+    FSProductTypeFinished,
+    FSProductTypeSubfloor
+}FSProductType;
+
+
 @interface FSProduct : NSObject
 
-@property (nonatomic, retain) NSString *productID;
+@property (nonatomic) long productID;
 @property (nonatomic, retain) NSString *productName;
-@property (nonatomic) NSInteger productFinished;
-@property (nonatomic) NSInteger productDel;
+@property (nonatomic) long productType;
+@property (nonatomic) long productDeleted;
 
 - (void)clear;
+
+@end
+
+
+@interface FSLocProduct : NSObject
+
+@property (nonatomic) long locProductID;
+@property (nonatomic) long locProductLocID;
+@property (nonatomic, retain) NSString *locProductName;
+@property (nonatomic) long locProductType;
+@property (nonatomic) double locProductCoverage;
 
 @end

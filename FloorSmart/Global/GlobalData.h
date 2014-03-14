@@ -17,6 +17,11 @@
 @property (nonatomic) BOOL settingArea;
 @property (nonatomic, strong) NSString *settingDateFormat;
 
+@property (nonatomic) BOOL isSaved;
+@property (nonatomic) long selectedJobID;
+@property (nonatomic) long selectedLocID;
+@property (nonatomic) long selectedLocProductID;
+
 - (void)loadInitData;
 
 -(BOOL) readBoolEntry:(NSUserDefaults *)config key:(NSString *) key defaults:(BOOL)defaults;
@@ -29,5 +34,8 @@
 - (NSString *)convertDateToString:(NSDate *)aDate format:(NSString *)format;
 - (NSString *)getCurrentDate:(NSString *)format;
 - (NSString *)getCurrentDateAndTime:(NSString *)format;
+
+- (void)setSavedData:(long)selectedJobID selectedLocID:(long)selectedLocID selectedLocProductID:(long)selectedLocProductID;
+- (void)resetSavedData;
 
 @end

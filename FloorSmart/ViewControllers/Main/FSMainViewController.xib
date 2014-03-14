@@ -17,19 +17,19 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </tabBar>
             <viewControllers>
-                <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="spv-hx-S0l">
-                    <tabBarItem key="tabBarItem" title="Item" id="5BU-aC-Sjb"/>
+                <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="jjn-uQ-INt">
+                    <tabBarItem key="tabBarItem" title="Item" id="aBk-qE-L3M"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Eym-CU-83I">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oh9-Cd-VWu">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <viewControllers>
-                        <viewController id="OQg-Rv-6wN" customClass="FSJobViewController">
-                            <navigationItem key="navigationItem" title="Item" id="w86-7s-gLf"/>
+                        <viewController id="wt8-WC-Y8U" customClass="FSJobViewController">
+                            <navigationItem key="navigationItem" title="Item" id="i0c-ix-q2I"/>
                             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                             <nil key="simulatedTopBarMetrics"/>
                             <nil key="simulatedBottomBarMetrics"/>
@@ -94,6 +94,27 @@
                         <viewController id="kiB-Sg-g4c" customClass="FSSettingViewController">
                             <navigationItem key="navigationItem" title="Root View Controller" id="TPo-1m-zrk"/>
                             <nil key="simulatedStatusBarMetrics"/>
+                            <nil key="simulatedTopBarMetrics"/>
+                            <nil key="simulatedBottomBarMetrics"/>
+                            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                            <nil key="simulatedDestinationMetrics"/>
+                        </viewController>
+                    </viewControllers>
+                </navigationController>
+                <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="spv-hx-S0l">
+                    <tabBarItem key="tabBarItem" title="Item" id="5BU-aC-Sjb"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Eym-CU-83I">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <viewControllers>
+                        <viewController id="OQg-Rv-6wN" customClass="FSRecordViewController">
+                            <navigationItem key="navigationItem" title="Item" id="w86-7s-gLf"/>
+                            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                             <nil key="simulatedTopBarMetrics"/>
                             <nil key="simulatedBottomBarMetrics"/>
                             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>

@@ -10,7 +10,8 @@
 
 @interface FSLocation : NSObject
 
-@property (nonatomic, retain) NSString *locID;
+@property (nonatomic, readwrite) long locID;
+@property (nonatomic, readwrite) long locJobID;
 @property (nonatomic, retain) NSString *locName;
 
 @end

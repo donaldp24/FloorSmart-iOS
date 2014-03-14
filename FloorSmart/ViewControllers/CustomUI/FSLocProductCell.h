@@ -1,5 +1,5 @@
 //
-//  FSProductCell.h
+//  FSLocProductCell.h
 //  FloorSmart
 //
 //  Created by Lydia on 12/25/13.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FSProduct.h"
 
-@interface FSProductCell : UITableViewCell <UITextFieldDelegate>
+@interface FSLocProductCell : UITableViewCell <UITextFieldDelegate>
 
 @property (nonatomic, assign) IBOutlet UILabel *lblProductName;
 @property (nonatomic, assign) IBOutlet UITextField *txtProductName;
@@ -19,11 +19,11 @@
 @property (nonatomic, assign) IBOutlet UIView *viewEditingProcType;
 @property (nonatomic, assign) IBOutlet UILabel *lblEditingProcType;
 
-@property (nonatomic, strong) FSProduct *curProduct;
+@property (nonatomic, strong) FSLocProduct *curLocProduct;
 
 @property (nonatomic, strong) id delegate;
 
-+ (FSProductCell *)sharedCell;
++ (FSLocProductCell *)sharedCell;
 
 - (IBAction)onEdit:(id)sender;
 - (IBAction)onDelete:(id)sender;

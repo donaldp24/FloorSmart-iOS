@@ -16,6 +16,7 @@
 @property (nonatomic, assign) IBOutlet UIView *viewEdit;
 @property (nonatomic, assign) IBOutlet UIView *viewEditing;
 @property (nonatomic, assign) IBOutlet UIButton *btnDetail;
+@property (nonatomic, assign) IBOutlet UIButton *btnArchive;
 
 @property (nonatomic, strong) FSJob *curJob;
 

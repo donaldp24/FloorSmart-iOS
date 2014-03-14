@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="delete_alertview" destination="Nae-fs-YUf" id="SXD-FT-Ruf"/>
                 <outlet property="imgAlertBack" destination="MrQ-wP-UoW" id="7S0-js-ihW"/>
+                <outlet property="lblNoResult" destination="Q7M-u9-FqH" id="ao5-Y8-tKS"/>
                 <outlet property="tblArchives" destination="fXT-s4-0Yc" id="Y2r-cf-6UG"/>
                 <outlet property="txtTop" destination="LP6-rO-uax" id="wc3-bj-GKk"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -65,8 +66,15 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Archived Jobs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q7M-u9-FqH" userLabel="no results">
+                    <rect key="frame" x="75" y="229" width="169" height="23"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Nwi-g0-YMn" userLabel="Button - Back">
-                    <rect key="frame" x="20" y="7" width="20" height="28"/>
+                    <rect key="frame" x="10" y="7" width="28" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                     <state key="normal" image="bt_back.png">

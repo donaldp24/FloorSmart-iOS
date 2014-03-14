@@ -7,7 +7,52 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSJobViewController.h"
+#import "FSLocationsViewController.h"
+#import "FSProductViewController.h"
+#import "FSLocProductViewController.h"
 
-@interface FSRecordViewController : UIViewController <UITextFieldDelegate>
+@interface FSRecordViewController : UIViewController <UITextFieldDelegate, FSJobSelectDelegate, FSLocationSelectDelegate, FSLocProductSelectDelegate> {
+    
+    FSJob *selectedJob;
+    FSLocation *selectedLocation;
+    FSProduct *selectedProduct;
+    FSLocProduct *selectedLocProduct;
+    
+    FSLocation *defaultLocation;
+    FSProduct *defaultProduct;
+    
+    UITextField *curTextField;
+}
 
+@property (nonatomic, retain) IBOutlet UITextField *txtJob;
+@property (nonatomic, retain) IBOutlet UITextField *txtLocation;
+@property (nonatomic, retain) IBOutlet UITextField *txtProduct;
+@property (nonatomic, retain) IBOutlet UITextField *txtCoverage;
+
+@property (nonatomic, retain) IBOutlet UIButton *btnSave;
+@property (nonatomic, retain) IBOutlet UIButton *btnCancel;
+@property (nonatomic, retain) IBOutlet UIButton *btnSummary;
+
+- (IBAction)onSelJob:(id)sender;
+- (IBAction)onSelLocation:(id)sender;
+- (IBAction)onSelProduct:(id)sender;
+
+- (void)jobSelected:(FSJob *)job;
+
+- (void)locationSelected:(FSLocation *)loc;
+
+- (void)locProductSelected:(FSLocProduct *)locProduct;
+- (void)productSelected:(FSProduct *)product;
+
+- (IBAction)onSaveClicked:(id)sender;
+- (IBAction)onCancelClicked:(id)sender;
+- (IBAction)onSummaryClicked:(id)sender;
+
+- (BOOL)isSelectable;
+- (void)showAlertForNotSelectable;
+
+
+- (IBAction)BeginEditing:(UITextField *)sender;
+- (IBAction)EndEditing:(UITextField *)sender;
 @end

@@ -4,13 +4,15 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FSProductViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FSLocProductViewController">
             <connections>
                 <outlet property="btnFinished" destination="rFC-h9-1Sk" id="C72-49-Hid"/>
                 <outlet property="btnSubfloor" destination="bgX-IQ-QHK" id="xJ2-0Z-9u5"/>
                 <outlet property="delete_alertview" destination="kdE-U0-UDs" id="tE9-eD-B30"/>
-                <outlet property="lblNoResult" destination="T4P-0a-HzT" id="Yw9-hF-ZHb"/>
+                <outlet property="lblJobLocName" destination="ppq-9F-7cb" id="BOj-Cs-4UM"/>
+                <outlet property="lblNoResult" destination="1jC-V2-jzk" id="TXS-Ps-wdy"/>
                 <outlet property="lblSelectType" destination="tVA-yZ-NnS" id="uEa-H1-26s"/>
+                <outlet property="switchShowMain" destination="AK1-TQ-O3p" id="g5H-sL-9TZ"/>
                 <outlet property="tblProducts" destination="vAH-wN-QAf" id="4Xw-ig-UGo"/>
                 <outlet property="txtAdd" destination="Gt8-Km-rhj" id="si3-eZ-ama"/>
                 <outlet property="txtSearch" destination="PWe-9B-gvL" id="DUp-PJ-12h"/>
@@ -65,6 +67,25 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="H3e-7K-1OY" userLabel="Button - Back">
+                    <rect key="frame" x="10" y="7" width="28" height="28"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                    <state key="normal" image="bt_back.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onBack:" destination="-1" eventType="touchUpInside" id="Kou-TN-ZEW"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ppq-9F-7cb" userLabel="job.location">
+                    <rect key="frame" x="12" y="72" width="297" height="23"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Products" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mMa-NF-wFS">
                     <rect key="frame" x="85" y="10" width="151" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -72,7 +93,21 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Products" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T4P-0a-HzT" userLabel="no results">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Main Products" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dV5-Y0-Tng">
+                    <rect key="frame" x="69" y="121" width="151" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="AK1-TQ-O3p">
+                    <rect key="frame" x="12" y="116" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="onSwitch:" destination="-1" eventType="valueChanged" id="Ahi-rK-4ig"/>
+                    </connections>
+                </switch>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Products" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1jC-V2-jzk" userLabel="no results">
                     <rect key="frame" x="75" y="229" width="169" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -80,7 +115,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" id="Z0x-4a-Bpy">
-                    <rect key="frame" x="12" y="57" width="183" height="42"/>
+                    <rect key="frame" x="12" y="155" width="183" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_add_job_bar.png" id="BDB-3a-qOb">
@@ -164,7 +199,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="5W1-mV-BYA">
-                    <rect key="frame" x="206" y="57" width="100" height="42"/>
+                    <rect key="frame" x="209" y="155" width="100" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_select_type_bar.png" id="51O-CP-wz4">
@@ -193,11 +228,11 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="nvw-st-yCP">
-                    <rect key="frame" x="12" y="108" width="297" height="322"/>
+                    <rect key="frame" x="12" y="205" width="297" height="225"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vAH-wN-QAf">
-                            <rect key="frame" x="0.0" y="0.0" width="297" height="322"/>
+                            <rect key="frame" x="0.0" y="0.0" width="297" height="225"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -210,7 +245,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view hidden="YES" alpha="0.59999999999999998" contentMode="scaleToFill" id="gK3-0Z-KMe">
-                    <rect key="frame" x="211" y="92" width="90" height="50"/>
+                    <rect key="frame" x="214" y="192" width="90" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rFC-h9-1Sk">
@@ -266,6 +301,7 @@
         <image name="bg_title_bar.png" width="640" height="103"/>
         <image name="bt_alertcancel.png" width="113" height="33"/>
         <image name="bt_arrow_down.png" width="30" height="27"/>
+        <image name="bt_back.png" width="15" height="28"/>
         <image name="bt_job_add.png" width="30" height="26"/>
         <image name="bt_job_delete.png" width="31" height="36"/>
         <image name="bt_ok.png" width="113" height="33"/>

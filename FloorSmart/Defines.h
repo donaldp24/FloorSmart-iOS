@@ -16,6 +16,11 @@
 
 #define END_OF_DATA @"<EOD>"
 
+#define MODE_JOBMANAGEMENT  0
+#define MODE_RECORD         1
+#define MODE_REVIEW         2
+#define MODE_PRODUCTMANAGEMENT  3
+
 typedef struct AdvertisementPackage{
     UInt32 uuid;//uuid to identify the messages
     UInt16 S1RH;//Sensor 1 RH reading – SHT25A

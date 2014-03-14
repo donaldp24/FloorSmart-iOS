@@ -13,6 +13,7 @@
 #import "FSJob.h"
 #import "FSMainViewController.h"
 #import "FSReportViewController.h"
+#import "Defines.h"
 
 @interface FSArchiveJobViewController ()
 {
@@ -62,6 +63,15 @@
     arrJobNames = [[DataManager sharedInstance] getJobs:1 searchField:txtTop.text];
     [tblArchives setContentSize:CGSizeMake(tblArchives.frame.size.width, 60 * [arrJobNames count])];
     [tblArchives reloadData];
+    
+    if ([arrJobNames count] == 0)
+    {
+        [self.lblNoResult setHidden:NO];
+    }
+    else
+    {
+        [self.lblNoResult setHidden:YES];
+    }
 }
 
 #pragma mark - textfield delegate
@@ -126,11 +136,21 @@
 
 - (void)didDetail:(FSArchiveCell *)cell
 {
+    /*
     FSMainViewController *mainController = [FSMainViewController sharedController];
     UINavigationController *nav =(UINavigationController *)[[mainController viewControllers] objectAtIndex:2];
     FSReportViewController *report = (FSReportViewController *)[[nav viewControllers] objectAtIndex:0];
     [report setCurJob:cell.curJob];
     [mainController selectItem:mainController.btnReports];
+     */
+    if (self.mode == MODE_RECORD)
+    {
+        if (self.jobSelectDelegate != nil)
+        {
+            [self.jobSelectDelegate jobSelected:cell.curJob];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }
 }
 
 #pragma mark - custom
