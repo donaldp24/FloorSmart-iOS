@@ -10,11 +10,19 @@
 
 @interface FSReading : NSObject
 
-@property (nonatomic, retain) NSString *readID;
-@property (nonatomic) NSInteger readFeedID;
-@property (nonatomic) NSInteger readRH;//0-100
-@property (nonatomic) NSInteger readTemp;//0-130
-@property (nonatomic) NSInteger readMC;//0-1000
-@property (nonatomic, retain) NSString *readDate;
+@property (nonatomic) long readID;
+@property (nonatomic) long readLocProductID;
+@property (nonatomic, retain) NSDate *readTimestamp;
+@property (nonatomic, retain) NSString *readUuid;
+@property (nonatomic) long readRH; //
+@property (nonatomic) double readConvRH; //0-100
+@property (nonatomic) long readTemp;
+@property (nonatomic) double readConvTemp; //0-130
+@property (nonatomic) long readBattery;
+@property (nonatomic) long readDepth;
+@property (nonatomic) long readGravity;
+@property (nonatomic) long readMaterial;
+@property (nonatomic) long readMC; //0-1000
 
 @end
+

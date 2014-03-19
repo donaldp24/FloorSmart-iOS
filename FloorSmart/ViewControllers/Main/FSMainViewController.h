@@ -7,14 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ScanManager.h"
+#import "ScanManagerDelegate.h"
 
-@interface FSMainViewController : UITabBarController
+@interface FSMainViewController : UITabBarController <ScanManagerDelegate>
+
+@property (nonatomic, retain) ScanManager *scanManager;
 
 @property (nonatomic, assign) IBOutlet UIView *viewForTabbar;
+@property (nonatomic, assign) IBOutlet UIButton *btnRecord;
 @property (nonatomic, assign) IBOutlet UIButton *btnHome;
 @property (nonatomic, assign) IBOutlet UIButton *btnReports;
 
 + (FSMainViewController *) sharedController;
+
 
 - (void)selectItem:(UIButton *)btnItem;
 

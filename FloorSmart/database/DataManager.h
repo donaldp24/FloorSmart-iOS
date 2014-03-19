@@ -64,16 +64,12 @@
 - (BOOL)deleteLocProductFromDatabase:(FSLocProduct *)locProduct;
 
 
-- (NSMutableArray *)getFeeds:(NSString *)jobID locID:(NSInteger)locID procID:(NSInteger)procID;
-- (void)addFeedToDatabase:(FSFeed *)feed;
-- (void)updateFeedToDatabase:(FSFeed *)feed;
-- (void)deleteFeedFromDatabase:(FSFeed *)feed;
-
-- (NSMutableArray *)getAllReadingDates:(NSString *)feedID;
-- (NSMutableArray *)getReadings:(NSString *)feedID withDate:(NSString *)feedDate;
-- (NSInteger)getReadingsCount:(NSString *)feedID;
-- (void)addReadingToDatabase:(FSReading *)reading;
-- (void)updateReadingToDatabase:(FSReading *)reading;
-- (void)deleteReadingFromDatabase:(FSReading *)reading;
+- (NSMutableArray *)getCurReadings:(long)locProductID;
+- (NSMutableArray *)getAllReadingDates:(long)locProductID;
+- (NSMutableArray *)getReadings:(long)locProductID withDate:(NSDate *)date;
+- (NSInteger)getReadingsCount:(long)locProductID;
+- (int)addReadingToDatabase:(FSReading *)reading;
+- (BOOL)updateReadingToDatabase:(FSReading *)reading;
+- (BOOL)deleteReadingFromDatabase:(FSReading *)reading;
 
 @end

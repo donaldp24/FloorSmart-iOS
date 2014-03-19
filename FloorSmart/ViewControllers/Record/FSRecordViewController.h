@@ -34,17 +34,18 @@
 @property (nonatomic, retain) IBOutlet UIButton *btnCancel;
 @property (nonatomic, retain) IBOutlet UIButton *btnSummary;
 
+// actions
 - (IBAction)onSelJob:(id)sender;
 - (IBAction)onSelLocation:(id)sender;
 - (IBAction)onSelProduct:(id)sender;
 
+// delegate methods
 - (void)jobSelected:(FSJob *)job;
-
 - (void)locationSelected:(FSLocation *)loc;
-
 - (void)locProductSelected:(FSLocProduct *)locProduct;
 - (void)productSelected:(FSProduct *)product;
 
+// button actions
 - (IBAction)onSaveClicked:(id)sender;
 - (IBAction)onCancelClicked:(id)sender;
 - (IBAction)onSummaryClicked:(id)sender;
@@ -52,7 +53,7 @@
 - (BOOL)isSelectable;
 - (void)showAlertForNotSelectable;
 
-
+// text delegates
 - (IBAction)BeginEditing:(UITextField *)sender;
 - (IBAction)EndEditing:(UITextField *)sender;
 @end

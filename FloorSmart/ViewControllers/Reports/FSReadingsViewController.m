@@ -35,7 +35,7 @@
 @synthesize tblDetal, txtReceiveData, internalInfoLabel, popView;
 @synthesize lblLocName, lblProcName, lblJobName;
 @synthesize tblReadingDates, viewOverall, lblOverEMCAVG, lblOverMCAVG, lblOverMCHigh, lblOverMCLow, lblOverRHAVG, lblOverTempAVG;
-@synthesize curFeed = _curFeed;
+@synthesize curLocProduct = _curLocProduct;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,7 +77,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    /*//
     if (_curFeed) {
         NSLog(@"%@, %ld, %ld, %ld", _curFeed.feedID, _curFeed.feedJobID, _curFeed.feedLocID, _curFeed.feedProcID);
         [self initDateTable];
@@ -88,6 +88,7 @@
         [lblLocName setText:[NSString stringWithFormat:@"Location: %@", locName]];
         [lblProcName setText:[NSString stringWithFormat:@"Product: %@", procName]];
     }
+     */
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -114,9 +115,11 @@
 
 - (void)initDateTable
 {
+    /*//
     arrReadingCounts = [[DataManager sharedInstance] getAllReadingDates:[_curFeed feedID]];
     [tblReadingDates setContentSize:CGSizeMake(tblReadingDates.frame.size.width, 40 * [arrReadingCounts count])];
     [tblReadingDates reloadData];
+     */
 }
 
 #pragma mark - UITableView DataSource
@@ -288,6 +291,7 @@
 
 - (NSString *)getMessageBody
 {
+    /*//
     NSString *locName = [(FSLocation *)[[DataManager sharedInstance] getLocationFromID:[_curFeed feedLocID]] locName];
     NSString *procName = [(FSProduct *)[[DataManager sharedInstance] getProductFromID:[_curFeed feedProcID]] productName];
     NSString *feedMode = @"";
@@ -328,6 +332,8 @@
     NSString *embedHTML = [NSString stringWithFormat:@"%@%@%@", @"<html><head></head><body><p>", [NSString stringWithFormat:@"Job Name : %@\n Location : %@</p><p>Product : %@</p><p>Coverage : %@</p><p>Mode : %@</p><p>Material : %@</p><p>S.G : %@</p><p>Readings : %@", jobName, locName, procName, [_curFeed feedCoverage], feedMode, feedMaterial, feedSG, feedReadings], @"</p></body></html>"];
     
     return embedHTML;
+     */
+    return @"";
 }
 
 - (void)print
@@ -359,6 +365,7 @@
 
 - (void)setOverallData
 {
+    /*//
     [selectedCell setIsOpened:!selectedCell.isOpened];
     CGRect frame = viewOverall.frame;
     CGRect selectedCellProcViewFrame = [selectedCell.btnDisclosure.superview convertRect:selectedCell.btnDisclosure.frame toView:self.view];
@@ -376,6 +383,7 @@
     [lblOverRHAVG setText:[NSString stringWithFormat:@"RH Avg:%d%@", (int)[firstRow readRH], @"%"]];
     [lblOverTempAVG setText:[NSString stringWithFormat:@"Temp Avg:%d%@", (int)[firstRow readTemp], @"%"]];
     [tblDetal reloadData];
+     */
 }
 
 - (void)showOverall
@@ -524,6 +532,7 @@
 
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
+    /*//
     [centralManager stopScan];
     
     NSArray* uuidsArray = advertisementData[CBAdvertisementDataServiceUUIDsKey];
@@ -605,6 +614,7 @@
     
     
 //    [CommonMethods showAlertUsingTitle:@"DataInfo" andMessage:outputtedString];
+     */
 }
 
 -(void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral

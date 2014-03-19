@@ -80,6 +80,9 @@ GlobalData *_globalData = nil;
     _selectedJobID = [self readIntEntry:config key:KEY_SELECTEDJOBID defaults:0];
     _selectedLocID = [self readIntEntry:config key:KEY_SELECTEDLOCID defaults:0];
     _selectedLocProductID = [self readIntEntry:config key:KEY_SELECTEDLOCPRODUCTID defaults:0];
+    
+    [TestFlight passCheckpoint:@"loadInitData"];
+    
 }
 
 - (void)setSettingTemp:(BOOL)settingTemp

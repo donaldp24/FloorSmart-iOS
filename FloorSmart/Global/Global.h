@@ -26,6 +26,7 @@ extern GlobalData *_globalData;
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 #define DATABASE_FILENAME   "FloorSmart.db"
-#define DATE_FORMAT @"YYYY-MM-dd"// HH-mm"
-#define US_DATEFORMAT @"MM/dd/YYYY"
-#define EU_DATEFORMAT @"dd.MM.YYYY"
+#define DATE_FORMAT @"yyyy-MM-dd"// HH-mm"
+#define US_DATEFORMAT @"MM/dd/yyyy"
+#define EU_DATEFORMAT @"dd.MM.yyyy"
+#define DATETIME_FORMAT @"yyyy-MM-dd HH:mm:ss"

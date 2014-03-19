@@ -184,6 +184,14 @@
 - (IBAction)onDelete_OK:(id)sender
 {
     if (arcVSdelete) {
+        // check this job is recording now
+        GlobalData *globalData = [GlobalData sharedData];
+        if (globalData.isSaved && globalData.selectedJobID == curJob.jobID)
+        {
+            [CommonMethods showAlertUsingTitle:@"" andMessage:@"Recording is for this job now. \nPlease 'Cancel' recording first to delete this job."];
+            return;
+        }
+        
         [[DataManager sharedInstance] deleteJobFromDatabase:curJob];
     } else {
         [curJob setJobArchived:0];

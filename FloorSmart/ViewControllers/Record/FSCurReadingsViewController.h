@@ -1,5 +1,5 @@
 //
-//  FSReadingsViewController.h
+//  FSCurReadingsViewController.h
 //  FloorSmart
 //
 //  Created by Lydia on 1/5/14.
@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FSPopView.h"
 #import "FSProduct.h"
+#import "FSPopView.h"
 #import <MessageUI/MessageUI.h>
 
-@interface FSReadingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UIPrintInteractionControllerDelegate>
+@interface FSCurReadingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, assign) IBOutlet UITableView *tblDetal;
-@property (nonatomic, assign) IBOutlet FSPopView *popView;
 
 @property (nonatomic, assign) IBOutlet UITableView *tblReadingDates;
 
@@ -36,6 +35,5 @@
 @property (nonatomic, strong) FSLocProduct *curLocProduct;
 
 - (IBAction)onBack:(id)sender;
-- (IBAction)onFly:(id)sender;
 
 @end

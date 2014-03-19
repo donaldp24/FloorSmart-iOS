@@ -12,6 +12,7 @@
 #import "CommonMethods.h"
 #import "DataManager.h"
 #import "GlobalData.h"
+#import "FSCurReadingsViewController.h"
 
 @interface FSRecordViewController ()
 
@@ -66,6 +67,17 @@
         selectedProduct = nil;
         selectedLocProduct = [[DataManager sharedInstance] getLocProductWithID:globalData.selectedLocProductID];
         
+        if (selectedJob == nil
+            || selectedLocation == nil
+            || selectedLocProduct == nil)
+        {
+            NSLog(@"global data : jobid(%ld - %ld), locid(%ld - %ld), locproductid(%ld - %ld) ", globalData.selectedJobID, (selectedJob == nil ? 0 : selectedJob.jobID), globalData.selectedLocID, (selectedLocation == nil ? 0 : selectedLocation.locID), globalData.selectedLocProductID, (selectedLocProduct == nil ? 0 : selectedLocProduct.locProductID));
+        }
+        else
+        {
+            NSLog(@"global data : jobid(%ld - %@), locid(%ld - %@), locproductid(%ld - %@) ", selectedJob.jobID, selectedJob.jobName, selectedLocation.locID, selectedLocation.locName, selectedLocProduct.locProductID, selectedLocProduct.locProductName);
+        }
+        
         self.txtJob.text = selectedJob.jobName;
         self.txtLocation.text = selectedLocation.locName;
         self.txtProduct.text = selectedLocProduct.locProductName;
@@ -106,6 +118,7 @@
     BOOL isKeeped = YES;
     if (selectedJob)
     {
+        FSJob *orgJob = selectedJob;
         selectedJob = [[DataManager sharedInstance] getJobFromID:selectedJob.jobID];
         if (selectedJob == nil)
         {
@@ -113,32 +126,39 @@
             selectedLocation = nil;
             selectedLocProduct = nil;
             selectedProduct = nil;
+            NSLog(@"don't keep - job : %ld, %@", orgJob.jobID, orgJob.jobName);
         }
     }
     if (selectedLocation)
     {
+        FSLocation *orgLoc = selectedLocation;
         selectedLocation = [[DataManager sharedInstance] getLocationFromID:selectedLocation.locID];
         if (selectedLocation == nil)
         {
             isKeeped = NO;
             selectedProduct = nil;
             selectedLocProduct = nil;
+            NSLog(@"don't keep - loc : %ld, %@", orgLoc.locID, orgLoc.locName);
         }
     }
     
     if (selectedProduct)
     {
+        FSProduct *orgProduct = selectedProduct;
         selectedProduct = [[DataManager sharedInstance] getProductFromID:selectedProduct.productID];
         if (selectedProduct == nil) {
             isKeeped = NO;
+            NSLog(@"don't keep - product : %ld, %@", orgProduct.productID, orgProduct.productName);
         }
     }
     
     if (selectedLocProduct)
     {
+        FSLocProduct *orgLocProduct = selectedLocProduct;
         selectedLocProduct = [[DataManager sharedInstance] getLocProductWithID:selectedLocProduct.locProductID];
         if (selectedLocProduct == nil) {
             isKeeped = NO;
+            NSLog(@"don't keep - locproduct : %ld, %@", orgLocProduct.locProductID, orgLocProduct.locProductName);
         }
     }
     
@@ -408,6 +428,14 @@
 {
     if (curTextField != nil)
         [curTextField resignFirstResponder];
+    
+    if (selectedLocProduct == nil)
+        return;
+    
+    FSCurReadingsViewController *curReadingsVC = [[FSCurReadingsViewController alloc] initWithNibName:@"FSCurReadingsViewController" bundle:nil];
+    [curReadingsVC setCurLocProduct:selectedLocProduct];
+    [self.navigationController pushViewController:curReadingsVC animated:YES];
+    
 }
 
 - (BOOL)isSelectable

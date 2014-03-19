@@ -10,10 +10,15 @@
 #import "FSMainViewController.h"
 #import "Global.h"
 
+
 @implementation FSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#ifdef TESTFLIGHT_ENABLED
+    [TestFlight takeOff:@"0bfc809f-45e8-4edb-a502-cc12779d2357"];
+#endif
+    
     [[GlobalData sharedData] loadInitData];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

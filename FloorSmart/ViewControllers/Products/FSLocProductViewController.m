@@ -452,6 +452,13 @@
     }
     else
     {
+        // check recording is for this product
+        GlobalData *globalData = [GlobalData sharedData];
+        if (globalData.isSaved && globalData.selectedLocProductID == curLocCell.curLocProduct.locProductID)
+        {
+            [CommonMethods showAlertUsingTitle:@"" andMessage:@"Recording is for this Product.\nPlease 'Cancel' recording first to delete this product."];
+            return;
+        }
         [[DataManager sharedInstance] deleteLocProductFromDatabase:curLocCell.curLocProduct];
     }
         

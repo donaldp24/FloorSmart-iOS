@@ -125,6 +125,7 @@
             </viewControllers>
             <connections>
                 <outlet property="btnHome" destination="5xE-3Q-on8" id="dwx-7l-kyo"/>
+                <outlet property="btnRecord" destination="BC1-Iw-0pQ" id="NrI-w8-xcZ"/>
                 <outlet property="btnReports" destination="OYF-nc-Q4T" id="Ofz-Sw-eLk"/>
                 <outlet property="viewForTabbar" destination="sjV-vh-qjm" id="8eg-Wd-gIk"/>
             </connections>

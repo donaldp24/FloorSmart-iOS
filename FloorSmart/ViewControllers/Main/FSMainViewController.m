@@ -7,6 +7,8 @@
 //
 
 #import "FSMainViewController.h"
+#import "FSRecordViewController.h"
+#import "FSReadingsViewController.h"
 
 @interface FSMainViewController ()
 
@@ -14,6 +16,8 @@
 
 @implementation FSMainViewController
 @synthesize viewForTabbar, btnHome, btnReports;
+
+const int scanDelay = 5;
 
 + (FSMainViewController *) sharedController
 {
@@ -44,6 +48,10 @@
     
     [self setSelected:1];
     [btnHome setSelected:YES];
+    
+    /* start scanning */
+    _scanManager = [[ScanManager alloc] init];
+    [_scanManager setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -98,5 +106,50 @@
     }*/
     [self setSelected:tabItem.tag];
 }
+
+
+#pragma mark - Bluetooth Management Helper Functions
+
+
+- (void)scanManagerDidStartScanning:(ScanManager *)scanManager {
+    
+#ifdef TESTFLIGHT_ENABLED
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"FloorSmart:scanForPeripheralsWithServices"]];
+    NSLog(@"FloorSmart:scanPeripheralsWithServices");
+#endif
+}
+
+- (void)scanManager:(ScanManager *)scanManager didFindSensor:(NSDictionary *)sensorData {
+    
+    SEL aSelector = NSSelectorFromString(@"startScan");
+    [self.scanManager stopScan];
+    [self.scanManager performSelector:aSelector withObject:nil afterDelay:scanDelay];
+    NSLog(@"FloorSmart:scanManager.didFindSensor");
+    
+    /*
+    ScanSensorViewController * scanSensorVC;
+    CustomNavigationController * custNC = [self.viewControllers objectAtIndex:1];
+    if (custNC) {
+        [self setSelectedViewController: custNC];
+        scanSensorVC = custNC.viewControllers.firstObject;
+        scanSensorVC.sensorData = sensorData;
+        [scanSensorVC resetUI];
+        [scanSensorVC displayData:scanSensorVC.sensorData];
+    }
+     */
+    FSRecordViewController *recordVC = nil;
+    UINavigationController *NC = [self.viewControllers objectAtIndex:4];
+    if (NC) {
+        recordVC = NC.viewControllers.firstObject;
+        if (recordVC)
+        {
+            //
+        }
+    }
+    
+    
+    [self onTabItem:(id)self.btnRecord];
+}
+
 
 @end

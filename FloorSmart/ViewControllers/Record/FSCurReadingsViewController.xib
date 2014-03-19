@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FSReadingsViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FSCurReadingsViewController">
             <connections>
                 <outlet property="lblJobName" destination="Rut-ln-Esa" id="ffq-fG-60g"/>
                 <outlet property="lblLocName" destination="dMh-go-jgM" id="YUW-Ao-qRq"/>
@@ -52,16 +52,6 @@
                     </state>
                     <connections>
                         <action selector="onBack:" destination="-1" eventType="touchUpInside" id="9zw-Pb-rFK"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eIa-IR-e12">
-                    <rect key="frame" x="271" y="10" width="25" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="fly" image="bt_fly.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onFly:" destination="-1" eventType="touchUpInside" id="Wc4-Ul-oza"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" id="p65-GX-4zm">
@@ -270,7 +260,6 @@
         <image name="bg_job_overview_detail_list_01.png" width="545" height="48"/>
         <image name="bg_title_bar.png" width="640" height="103"/>
         <image name="bt_back.png" width="15" height="28"/>
-        <image name="bt_fly.png" width="35" height="35"/>
         <image name="ic_delete.png" width="20" height="30"/>
     </resources>
 </document>

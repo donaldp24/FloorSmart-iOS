@@ -50,7 +50,7 @@ static DataManager *sharedManager;
             char *sql_location = "CREATE TABLE tbl_location(location_id INTEGER PRIMARY KEY AUTOINCREMENT, location_jobid INTEGER, location_name TEXT, deleted INTEGER);";
             char *sql_product = "CREATE TABLE tbl_product(product_id INTEGER PRIMARY KEY AUTOINCREMENT, product_name TEXT, product_type INTEGER, deleted INTEGER);";
             char *sql_locproduct = "CREATE TABLE tbl_locproduct(locproduct_id INTEGER PRIMARY KEY AUTOINCREMENT, locproduct_locid INTEGER, locproduct_productname TEXT, locproduct_producttype INTEGER, locproduct_coverage DOUBLE, deleted INTEGER);";
-            char *sql_reading = "CREATE TABLE tbl_reading(read_id INTEGER PRIMARY KEY AUTOINCREMENT, read_locproductid INTEGER, read_date TEXT, read_uuid TEXT, read_rh INTEGER, read_temp INTEGER, read_battery INTEGER, read_depth INTEGER, read_gravity INTEGER, read_material INTEGER, read_mc INTEGER, deleted INTEGER);";
+            char *sql_reading = "CREATE TABLE tbl_reading(read_id INTEGER PRIMARY KEY AUTOINCREMENT, read_locproductid INTEGER, read_date TEXT, read_uuid TEXT, read_rh INTEGER, read_convrh DOUBLE, read_temp INTEGER, read_convtemp DOUBLE, read_battery INTEGER, read_depth INTEGER, read_gravity INTEGER, read_material INTEGER, read_mc INTEGER, deleted INTEGER);";
             
             BOOL bRet = [_database executeDDL:sql_job];
             bRet = [_database executeDDL:sql_location];
@@ -446,90 +446,70 @@ static DataManager *sharedManager;
     return [_database executeUpdate:sql];
 }
 
-
-#pragma mark - Feed
-- (NSMutableArray *)getFeeds:(NSString *)jobID locID:(NSInteger)locID procID:(NSInteger)procID
-{
-    NSMutableArray *arrFeedList = [[NSMutableArray alloc] init];
-    
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT * FROM tbl_feed WHERE feed_jobid = %@", jobID];
-    [sql appendString:(locID > -1) ? [NSString stringWithFormat:@" AND feed_locid = %ld", locID] : @""];
-    [sql appendString:(procID > -1) ? [NSString stringWithFormat:@" AND feed_procid = %ld", procID] : @""];
-    FMResultSet *results = [_database executeQuery:sql];
-    while ([results next]) {
-        
-        FSFeed *feed = [[[FSFeed alloc] init] autorelease];
-        feed.feedID = [results stringForColumn:@"feed_id"];
-        feed.feedJobID = [results intForColumn:@"feed_jobid"];
-        feed.feedLocID = [results intForColumn:@"feed_locid"];
-        feed.feedProcID = [results intForColumn:@"feed_procid"];
-        feed.feedCoverage = [results stringForColumn:@"feed_coverage"];
-        feed.feedMode = [results intForColumn:@"feed_mode"];
-        feed.feedmaterial = [results intForColumn:@"feed_material"];
-        feed.feedsg = [results intForColumn:@"feed_sg"];
-        
-        [arrFeedList addObject:feed];
-    }
-    return arrFeedList;
-}
-
-- (void)addFeedToDatabase:(FSFeed *)feed
-{
-    NSString *sql;
-    sql = [NSString stringWithFormat:@"INSERT INTO tbl_feed (feed_jobid, feed_locid, feed_procid, feed_coverage, feed_mode, feed_material, feed_sg) VALUES ('%ld', '%ld', '%ld', '%@', '%ld', '%ld', '%ld')",feed.feedJobID, feed.feedLocID, feed.feedProcID, feed.feedCoverage, feed.feedMode, feed.feedmaterial, feed.feedsg];
-    [_database executeUpdate:sql];
-}
-
-- (void)updateFeedToDatabase:(FSFeed *)feed
-{
-    NSString *sql;
-    sql = [NSString stringWithFormat:@"update tbl_feed set feed_jobid = '%ld', feed_locid = '%ld', feed_procid = '%ld', feed_coverage = '%@', feed_mode = '%ld', feed_material = '%ld', feed_sg = '%ld' WHERE feed_id = '%@'", feed.feedJobID, feed.feedLocID, feed.feedProcID, feed.feedCoverage, feed.feedMode, feed.feedmaterial, feed.feedsg, feed.feedID];
-    [_database executeUpdate:sql];
-}
-
-- (void)deleteFeedFromDatabase:(FSFeed *)feed
-{
-    NSString *sql;
-    sql = [NSString stringWithFormat:@"DELETE FROM tbl_feed WHERE feed_id = '%@'", feed.feedID];
-    [_database executeUpdate:sql];
-}
-
 #pragma mark - Readings
-- (NSMutableArray *)getAllReadingDates:(NSString *)feedID
+- (NSMutableArray *)getCurReadings:(long)locProductID
+{
+    /*
+     read_locproductid
+     read_date
+     read_uuid
+     read_rh
+     read_convrh
+     read_temp
+     read_convtemp
+     read_battery
+     read_depth
+     read_gravity
+     read_material
+     read_mc
+     deleted
+*/
+    NSMutableArray *arrReadingsList = [[NSMutableArray alloc] init];
+    NSDate *curDate = [NSDate date];
+    return [self getReadings:locProductID withDate:curDate];
+}
+
+- (NSMutableArray *)getAllReadingDates:(long)locProductID
 {
     NSMutableArray *arrDates = [[NSMutableArray alloc] init];
-    NSString *sql = [NSString stringWithFormat:@"SELECT DISTINCT(read_date) FROM tbl_reading WHERE read_feedid = '%@' ORDER BY read_date DESC", feedID];
+    NSString *sql = [NSString stringWithFormat:@"SELECT DISTINCT(SUBSTR(read_date, 1, 10)) as read_date FROM tbl_reading WHERE read_locproductid = %ld ORDER BY read_date DESC", locProductID];
     FMResultSet *results = [_database executeQuery:sql];
     while ([results next]) {
-        [arrDates addObject:[results stringForColumn:@"read_date"]];
+        NSString *strDateOnly = [[results stringForColumn:@"read_date"] substringToIndex:10];
+        [arrDates addObject:strDateOnly];
     }
     return arrDates;
 }
 
-- (NSMutableArray *)getReadings:(NSString *)feedID withDate:(NSString *)feedDate
+- (NSMutableArray *)getReadings:(long)locProductID withDate:(NSDate *)date
 {
-    NSMutableArray *arrReadingList = [[NSMutableArray alloc] init];
-    
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT * FROM tbl_reading WHERE read_feedid = '%@' AND read_date = '%@'", feedID, feedDate];
+    NSMutableArray *arrReadingsList = [[NSMutableArray alloc] init];
+    NSString *strDate = [CommonMethods date2str:date withFormat:DATE_FORMAT];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM tbl_reading WHERE deleted = 0 AND  read_locproductid = %ld AND SUBSTR(read_date, 1, 10) = '%@'", locProductID, strDate];
     FMResultSet *results = [_database executeQuery:sql];
-
     while ([results next]) {
-        FSReading *reading = [[[FSReading alloc] init] autorelease];
-        reading.readID = [results stringForColumn:@"read_id"];
-        reading.readFeedID = [results intForColumn:@"read_feedid"];
-        reading.readRH = [results intForColumn:@"read_rh"];
-        reading.readTemp = [results intForColumn:@"read_temp"];
-        reading.readMC = [results intForColumn:@"read_mc"];
-        reading.readDate = [results stringForColumn:@"read_date"];
-        
-        [arrReadingList addObject:reading];
+        FSReading *reading = [[FSReading alloc] init];
+        reading.readID = [results longForColumn:@"read_id"];
+        reading.readLocProductID = [results longForColumn:@"read_locproductid"];
+        reading.readTimestamp = [CommonMethods str2date:[results stringForColumn:@"read_date"] withFormat:DATETIME_FORMAT];
+        reading.readUuid = [results stringForColumn:@"read_uuid"];
+        reading.readRH = [results longForColumn:@"read_rh"];
+        reading.readConvRH = [results doubleForColumn:@"read_convrh"];
+        reading.readTemp = [results longForColumn:@"read_temp"];
+        reading.readConvTemp = [results doubleForColumn:@"read_convtemp"];
+        reading.readBattery = [results longForColumn:@"read_battery"];
+        reading.readDepth = [results longForColumn:@"read_depth"];
+        reading.readGravity = [results longForColumn:@"read_gravity"];
+        reading.readMaterial = [results longForColumn:@"read_material"];
+        reading.readMC = [results longForColumn:@"read_mc"];
+        [arrReadingsList addObject:reading];
     }
-    return arrReadingList;
+    return arrReadingsList;
 }
 
-- (NSInteger)getReadingsCount:(NSString *)feedID
+- (NSInteger)getReadingsCount:(long)locProductID
 {
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM tbl_reading WHERE read_feedid = %@", feedID];
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM tbl_reading WHERE deleted = 0 AND read_locproductid = %ld", locProductID];
     FMResultSet *results = [_database executeQuery:sql];
     
     while ([results next]) {
@@ -538,25 +518,43 @@ static DataManager *sharedManager;
     return 0;
 }
 
-- (void)addReadingToDatabase:(FSReading *)reading
+- (int)addReadingToDatabase:(FSReading *)reading
 {
+    /*
+     read_locproductid
+     read_date
+     read_uuid
+     read_rh
+     read_convrh
+     read_temp
+     read_convtemp
+     read_battery
+     read_depth
+     read_gravity
+     read_material
+     read_mc
+     deleted
+     */
+    
     NSString *sql;
-    sql = [NSString stringWithFormat:@"INSERT INTO tbl_reading (read_feedid, read_rh, read_temp, read_mc, read_date) VALUES ('%ld', '%ld', '%ld', '%ld', '%@')",reading.readFeedID, reading.readRH, reading.readTemp, reading.readMC, reading.readDate];
-    [_database executeUpdate:sql];
+    sql = [NSString stringWithFormat:@"INSERT INTO tbl_reading (read_locproductid, read_date, read_uuid, read_rh, read_convrh, read_temp, read_convtemp, read_battery, read_depth, read_gravity, read_material, read_mc, deleted) VALUES (%ld, '%@', '%@', %ld, %f, %ld, %f, %ld, %ld, %ld, %ld, %ld, 0)", reading.readLocProductID, [CommonMethods date2str:reading.readTimestamp withFormat:DATETIME_FORMAT], reading.readUuid, reading.readRH, reading.readConvRH, reading.readTemp, reading.readConvTemp, reading.readBattery, reading.readDepth, reading.readGravity, reading.readMaterial, reading.readMC];
+    if ([_database executeUpdate:sql])
+        return (int)[_database lastInsertRowId];
+    return 0;
 }
 
-- (void)updateReadingToDatabase:(FSReading *)reading
+- (BOOL)updateReadingToDatabase:(FSReading *)reading
 {
     NSString *sql;
-    sql = [NSString stringWithFormat:@"update tbl_reading set read_feedid = '%ld', read_rh = '%ld', read_temp = '%ld', read_mc = '%ld', read_date = '%@' WHERE read_id = '%@'", reading.readFeedID, reading.readRH, reading.readTemp, reading.readMC, reading.readDate, reading.readID];
-    [_database executeUpdate:sql];
+    sql = [NSString stringWithFormat:@"UPDATE tbl_reading set read_locproductid = %ld, read_date = '%@', read_uuid = '%@', read_rh = %ld, read_convrh = %f, read_temp = %ld, read_convtemp = %f, read_battery = %ld, read_depth = %ld, read_gravity = %ld, read_material = %ld, read_mc = %ld", reading.readLocProductID, [CommonMethods date2str:reading.readTimestamp withFormat:DATETIME_FORMAT], reading.readUuid, reading.readRH, reading.readConvRH, reading.readTemp, reading.readConvTemp, reading.readBattery, reading.readDepth, reading.readGravity, reading.readMaterial, reading.readMC];
+    return [_database executeUpdate:sql];
 }
 
-- (void)deleteReadingFromDatabase:(FSReading *)reading
+- (BOOL)deleteReadingFromDatabase:(FSReading *)reading
 {
     NSString *sql;
-    sql = [NSString stringWithFormat:@"DELETE FROM tbl_reading WHERE read_id = '%@'", reading.readID];
-    [_database executeUpdate:sql];
+    sql = [NSString stringWithFormat:@"UPDATE tbl_reading SET deleted = 1 WHERE read_id = %ld", reading.readID];
+    return [_database executeUpdate:sql];
 }
 
 

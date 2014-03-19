@@ -11,7 +11,6 @@
 #import "FSReadingsViewController.h"
 #import "DataManager.h"
 #import "Global.h"
-#import "FSFeed.h"
 
 @interface FSReportViewController ()
 {
@@ -34,7 +33,7 @@
 @synthesize lblCover, viewEditCover, viewEditingCover, txtAddCover, lblMode, lblMaterial, lblSG, lblReadings;
 @synthesize lblRecentDate, lblRecentEMCAVG, lblRecentMCAVG, lblRecentMCHigh, lblRecentMCLow, lblRecentRHAVG, lblRecentTempAVG;
 @synthesize curJob = _curJob;
-@synthesize curFeed = _curFeed;
+@synthesize curLocProduct = _curLocProduct;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -138,6 +137,7 @@
 
 - (void)fillContent:(FSLocation *)loc andProc:(FSProduct *)proc
 {
+    /* //
     if ([_curFeed feedJobID] == -1) {
         [lblJob setText:@"No Job"];
         [lblLoc setText:@""];
@@ -169,10 +169,10 @@
         [tblProc reloadData];
         return;
     }
-    /*
+    
     arrLoc = [[DataManager sharedInstance] getFeedLocations:[_curJob jobID]];
     arrProc = [[DataManager sharedInstance] getFeedProducts:[_curJob jobID] loc:[_curFeed feedLocID]];
-     */
+     
     [tblLoc reloadData];
     [tblProc reloadData];
     if ([arrLoc count] == 0) {
@@ -187,10 +187,12 @@
     }
     [self showFeedMasters];
     [self showRecentData];
+     */
 }
 
 - (void)showFeedMasters
 {
+    /* //
     [lblCover setText:[_curFeed feedCoverage]];//needed
     NSString *str = @"";
     switch (_curFeed.feedMode) {
@@ -224,12 +226,15 @@
             break;
     }
     [lblMaterial setText:str];
-    [lblSG setText:[NSString stringWithFormat:@"%.2f", (float)[_curFeed feedsg] / 100]];
+    
+    [lblSG setText:[NSString stringWithFormat:@"%.2f", (float)[_curLocProduct feedsg] / 100]];
     [lblReadings setText:[NSString stringWithFormat:@"%d", (int)[[DataManager sharedInstance] getReadingsCount:[_curFeed feedID]]]];
+     */
 }
 
 - (void)showRecentData
 {
+    /* //
     NSMutableArray *arrRecentDates = [[DataManager sharedInstance] getAllReadingDates:[_curFeed feedID]];
     if (![arrRecentDates count]) {
         [lblRecentDate setText:@""];
@@ -252,6 +257,7 @@
     [lblRecentEMCAVG setText:[NSString stringWithFormat:@"EMC Avg: 39%@", @"%" ]];//needed
     [lblRecentRHAVG setText:[NSString stringWithFormat:@"RH Avg:%d%@", (int)[firstRow readRH], @"%"]];
     [lblRecentTempAVG setText:[NSString stringWithFormat:@"Temp Avg:%d%@", (int)[firstRow readTemp], @"%"]];//needed
+     */
 }
 
 #pragma mark - textfield delegate
@@ -313,6 +319,7 @@
 #pragma mark - UITableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*//
     if (tableView == tblJob) {
         [self setCurJob:(FSJob *)[arrJobs objectAtIndex:indexPath.row]];
         [self fillFeed:nil andProc:nil];
@@ -327,6 +334,7 @@
     }
     
     [self hideCombo:tableView];
+     */
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate mothods
@@ -346,6 +354,7 @@
 #pragma mark - PopView Delegate
 - (void)didPopUpItem
 {
+    /*//
     [UIView animateWithDuration:0.1f animations:^{
         CGRect popFrame = popView.frame;
         popFrame.size.height = 0.0f;
@@ -371,6 +380,7 @@
                 break;
         }
     }];
+     */
 }
 
 #pragma mark - UIPrinterInteractionDelegate
@@ -407,6 +417,7 @@
 
 - (NSString *)getEmailBody
 {
+    /*//
     NSString *locName = [(FSLocation *)[[DataManager sharedInstance] getLocationFromID:[_curFeed feedLocID]] locName];
     NSString *procName = [(FSProduct *)[[DataManager sharedInstance] getProductFromID:[_curFeed feedProcID]] productName];
     NSString *feedMode = @"";
@@ -446,6 +457,8 @@
     NSString *embedHTML = [NSString stringWithFormat:@"%@%@%@", @"<html><head></head><body><p>", [NSString stringWithFormat:@"Job Name : %@\n Location : %@</p><p>Product : %@</p><p>Coverage : %@</p><p>Mode : %@</p><p>Material : %@</p><p>S.G : %@</p><p>Readings : %@", [_curJob jobName], locName, procName, [_curFeed feedCoverage], feedMode, feedMaterial, feedSG, feedReadings], @"</p></body></html>"];
     
     return embedHTML;
+     */
+    return @"";
 }
 
 - (void)print
@@ -549,11 +562,12 @@
 - (IBAction)onBack:(id)sender
 {
     FSMainViewController *mainController = [FSMainViewController sharedController];
-    [mainController selectItem:mainController.btnHome];
+    //[mainController selectItem:mainController.btnHome];
 }
 
 - (IBAction)onReading:(id)sender
 {
+    /*//
     if ([_curFeed feedJobID] == -1) {
         return;
     }
@@ -563,6 +577,7 @@
     FSReadingsViewController *vc = [[FSReadingsViewController alloc] initWithNibName:@"FSReadingsViewController" bundle:nil];
     [vc setCurFeed:_curFeed];
     [self.navigationController pushViewController:vc animated:YES];
+     */
 }
 
 - (IBAction)onAddLoc:(id)sender
@@ -614,6 +629,7 @@
 
 - (IBAction)onAddProc:(id)sender
 {
+    /*//
     if ([_curFeed feedLocID] == -1) {
         [CommonMethods showAlertUsingTitle:@"" andMessage:@"Add a location first!"];
         return;
@@ -625,11 +641,12 @@
     curAddProc = (FSProduct *)[arrAddProc objectAtIndex:0];
     [lblAddProc setText:[curAddProc productName]];
     [lblAddProc setHidden:NO];
+     */
 }
 
 - (IBAction)onOKProc:(id)sender
 {
-    /*
+    /*//
     FSFeed *feed = [[FSFeed alloc] init];
     [feed setFeedJobID:[[_curJob jobID] integerValue]];
     [feed setFeedLocID:[_curFeed feedLocID]];
@@ -685,6 +702,7 @@
 
 - (IBAction)onOKCover:(id)sender
 {
+    /*//
     isEditing = NO;
     [txtAddCover resignFirstResponder];
     [lblCover setText:txtAddCover.text];
@@ -694,6 +712,7 @@
     [lblCover setHidden:NO];
     [viewEditingCover setHidden:YES];
     [viewEditCover setHidden:NO];
+     */
 }
 
 - (IBAction)onCancelCover:(id)sender

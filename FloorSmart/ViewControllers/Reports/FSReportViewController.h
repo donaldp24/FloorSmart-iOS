@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FSJob.h"
-#import "FSFeed.h"
 #import "FSPopView.h"
 #import <MessageUI/MessageUI.h>
+#import "FSProduct.h"
 
 @interface FSReportViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, MFMailComposeViewControllerDelegate, UIPrintInteractionControllerDelegate>
 
@@ -46,7 +46,7 @@
 @property (nonatomic, assign) IBOutlet FSPopView *popView;
 
 @property (nonatomic, strong) FSJob *curJob;
-@property (nonatomic, strong) FSFeed *curFeed;
+@property (nonatomic, strong) FSLocProduct *curLocProduct;
 
 - (IBAction)onAddLoc:(id)sender;
 - (IBAction)onOKLoc:(id)sender;

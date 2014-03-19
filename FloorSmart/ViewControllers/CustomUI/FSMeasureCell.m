@@ -40,12 +40,13 @@
 - (void)setCurReading:(FSReading *)curReading
 {
     _curReading = curReading;
-    NSDate *curReadDate = [CommonMethods str2date:[curReading readDate] withFormat:DATE_FORMAT];
+    NSDate *curReadDate = curReading.readTimestamp;
     [lblTime setText:[NSString stringWithFormat:@"%@hrs", [CommonMethods date2str:curReadDate withFormat:@"HH:mm"]]];
-    [lblMC setText:[NSString stringWithFormat:@"%.1f", (float)[curReading readMC] / 10]];
+    [lblMC setText:[NSString stringWithFormat:@"%.1f", (float)curReading.readMC / 10]];
     [lblEMC setText:@"7.4"];
-    [lblRH setText:[NSString stringWithFormat:@"%d", (int)[curReading readRH]]];
-    [lblTemperature setText:[NSString stringWithFormat:@"%d", (int)[curReading readTemp]]];
+    [lblRH setText:[NSString stringWithFormat:@"%d", (int)curReading.readConvRH]];
+    [lblTemperature setText:[NSString stringWithFormat:@"%d", (int)curReading.readConvTemp]];
+    
 }
 
 #pragma mark - Action

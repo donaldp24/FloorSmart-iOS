@@ -10,6 +10,7 @@
 #import "FSLocation.h"
 #import "DataManager.h"
 #import "Defines.h"
+#import "GlobalData.h"
 
 @interface FSLocationsViewController () {
     NSMutableArray *arrLoc;
@@ -110,6 +111,14 @@
 
 - (IBAction)onDeleteOk:(id)sender
 {
+    // check whether this location is using for recording
+    GlobalData *globalData = [GlobalData sharedData];
+    if (globalData.isSaved && globalData.selectedLocID == self.curLoc.locID)
+    {
+        [CommonMethods showAlertUsingTitle:@"" andMessage:@"Recording is for this Location,\nPlease 'Cancel' recording first to delete this location."];
+        return;
+    }
+    
     [[DataManager sharedInstance] deleteLocFromDatabase:self.curLoc];
     [self initTableData];
     [self hideAlertAnimation];
