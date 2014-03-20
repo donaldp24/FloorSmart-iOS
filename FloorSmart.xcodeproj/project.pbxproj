@@ -1421,7 +1421,7 @@
 				INFOPLIST_FILE = "FloorSmart/FloorSmart-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/RyuCJ/work/floorsmart-ios/FloorSmart",
+					"$(SRCROOT)/FloorSmart",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1441,7 +1441,7 @@
 				INFOPLIST_FILE = "FloorSmart/FloorSmart-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/RyuCJ/work/floorsmart-ios/FloorSmart",
+					"$(SRCROOT)/FloorSmart",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
