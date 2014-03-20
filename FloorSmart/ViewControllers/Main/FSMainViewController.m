@@ -9,6 +9,7 @@
 #import "FSMainViewController.h"
 #import "FSRecordViewController.h"
 #import "FSReadingsViewController.h"
+#import "GlobalData.h"
 
 @interface FSMainViewController ()
 
@@ -137,18 +138,25 @@ const int scanDelay = 5;
         [scanSensorVC displayData:scanSensorVC.sensorData];
     }
      */
+    
+    GlobalData *globalData = [GlobalData sharedData];
+    if (globalData.isSaved == NO)
+        return;
+    
+    [self onTabItem:(id)self.btnRecord];
+    
     FSRecordViewController *recordVC = nil;
     UINavigationController *NC = [self.viewControllers objectAtIndex:4];
     if (NC) {
         recordVC = NC.viewControllers.firstObject;
         if (recordVC)
         {
-            //
+            [recordVC showReadingView];
         }
     }
     
     
-    [self onTabItem:(id)self.btnRecord];
+    
 }
 
 

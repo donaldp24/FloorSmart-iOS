@@ -138,7 +138,7 @@ NSString * const kSensorDataReadingTimestampKey = @"timestamp";
     
     int uuidOffset = kUuidOffset + offset;
     
-    for(int i=0;i<3;++i)
+    for(int i=0;i<4;++i)
     {
         UInt8 temp;
         [data getBytes:&temp range:NSMakeRange((i*1)+uuidOffset, 1)];

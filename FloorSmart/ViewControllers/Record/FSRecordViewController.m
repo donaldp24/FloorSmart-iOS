@@ -13,6 +13,11 @@
 #import "DataManager.h"
 #import "GlobalData.h"
 #import "FSCurReadingsViewController.h"
+#import "FSMainViewController.h"
+
+#import "EmulatorReadingParser.h"
+#import "SensorReadingParser.h"
+#import "Global.h"
 
 @interface FSRecordViewController ()
 
@@ -59,6 +64,8 @@
     
     [self initMember];
     
+    readingVC = nil;
+    
     GlobalData *globalData = [GlobalData sharedData];
     if (globalData.isSaved == YES)
     {
@@ -92,6 +99,7 @@
         self.btnSave.enabled = NO;
         self.btnCancel.enabled = YES;
         self.btnSummary.enabled = YES;
+        self.txtCoverage.enabled = NO;
     }
     else
     {
@@ -108,6 +116,7 @@
         self.btnSave.enabled = YES;
         self.btnCancel.enabled = NO;
         self.btnSummary.enabled = NO;
+        self.txtCoverage.enabled = YES;
     }
     
     curTextField = nil;
@@ -115,6 +124,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    readingVC = nil;
+    
     BOOL isKeeped = YES;
     if (selectedJob)
     {
@@ -223,6 +234,15 @@
 {
     curTextField = nil;
     [sender resignFirstResponder];
+}
+
+- (IBAction)onBgClicked:(id)sender
+{
+    if (curTextField != nil)
+    {
+        [curTextField resignFirstResponder];
+        curTextField = nil;
+    }
 }
 
 
@@ -401,6 +421,8 @@
         return;
     }
     
+    self.txtCoverage.enabled = NO;
+    
     
     
     [[GlobalData sharedData] setSavedData:selectedJob.jobID selectedLocID:selectedLocation.locID selectedLocProductID:selectedLocProduct.locProductID];
@@ -408,6 +430,10 @@
     self.btnSummary.enabled = YES;
     self.btnCancel.enabled = YES;
     self.btnSave.enabled = NO;
+    
+    FSMainViewController *mainController = [FSMainViewController sharedController];
+    [mainController.scanManager stopScan];
+    [mainController.scanManager performSelector:@selector(startScan) withObject:nil afterDelay:2];
     
 }
 
@@ -422,6 +448,8 @@
     self.btnCancel.enabled = NO;
     self.btnSave.enabled = YES;
     
+    self.txtCoverage.enabled = YES;
+    
 }
 
 - (IBAction)onSummaryClicked:(id)sender
@@ -432,9 +460,9 @@
     if (selectedLocProduct == nil)
         return;
     
-    FSCurReadingsViewController *curReadingsVC = [[FSCurReadingsViewController alloc] initWithNibName:@"FSCurReadingsViewController" bundle:nil];
-    [curReadingsVC setCurLocProduct:selectedLocProduct];
-    [self.navigationController pushViewController:curReadingsVC animated:YES];
+    readingVC = [[FSCurReadingsViewController alloc] initWithNibName:@"FSCurReadingsViewController" bundle:nil];
+    [readingVC setCurLocProduct:selectedLocProduct];
+    [self.navigationController pushViewController:readingVC animated:YES];
     
 }
 
@@ -449,6 +477,50 @@
 - (void)showAlertForNotSelectable
 {
     [CommonMethods showAlertUsingTitle:@"" andMessage:@"Cannot change selection, \n Please press 'Cancel' button to stop recording first!"];
+}
+
+- (void)saveNewData:(NSDictionary *)data
+{
+    if (selectedLocProduct == nil)
+        return;
+    FSReading *reading = [[FSReading alloc] init];
+    reading.readID = 0;
+    reading.readLocProductID = selectedLocProduct.locProductID;
+    reading.readTimestamp = [CommonMethods str2date:[data objectForKey:kSensorDataReadingTimestampKey] withFormat:DATETIME_FORMAT];
+    reading.readUuid = [data objectForKey:kSensorDataUuidKey];
+    reading.readRH = (long)[[data objectForKey:kSensorDataRHKey] intValue];
+    reading.readConvRH = (double)[[data objectForKey:kSensorDataConvRHKey] floatValue];
+    reading.readTemp = (long)[[data objectForKey:kSensorDataTemperatureKey] intValue];
+    reading.readConvTemp = (double)[[data objectForKey:kSensorDataConvTempKey] floatValue];
+    reading.readBattery = (long)[[data objectForKey:kSensorDataBatteryKey] intValue];
+    reading.readDepth = (long)[[data objectForKey:kSensorDataDepthKey] intValue];
+    reading.readGravity = (long)[[data objectForKey:kSensorDataGravityKey] intValue];
+    reading.readMaterial = (long)[[data objectForKey:kSensorDataMaterialKey] intValue];
+    reading.readMC = (long)[[data objectForKey:kSensorDataMCKey] intValue];
+    [[DataManager sharedInstance] addReadingToDatabase:reading];
+}
+
+- (void)showReadingView
+{
+    [self performSelectorOnMainThread:@selector(navigateToReadingVC) withObject:nil waitUntilDone:NO];
+}
+
+- (void)navigateToReadingVC
+{
+    if (readingVC == nil)
+    {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        
+        if (curTextField != nil)
+            [curTextField resignFirstResponder];
+        
+        if (selectedLocProduct == nil)
+            return;
+        
+        readingVC = [[FSCurReadingsViewController alloc] initWithNibName:@"FSCurReadingsViewController" bundle:nil];
+        [readingVC setCurLocProduct:selectedLocProduct];
+        [self.navigationController pushViewController:readingVC animated:YES];
+    }
 }
 
 @end

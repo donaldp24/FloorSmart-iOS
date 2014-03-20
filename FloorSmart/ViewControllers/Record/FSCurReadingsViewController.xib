@@ -15,7 +15,6 @@
                 <outlet property="lblOverRHAVG" destination="9vd-la-mhb" id="giN-dE-Uua"/>
                 <outlet property="lblOverTempAVG" destination="0IA-bC-n27" id="Tdk-tS-215"/>
                 <outlet property="lblProcName" destination="3NV-2D-LqX" id="ji3-vX-hAd"/>
-                <outlet property="popView" destination="sQI-MC-gU7" id="ebS-kR-33x"/>
                 <outlet property="tblDetal" destination="rC2-V6-2Mh" id="MTY-W9-hpk"/>
                 <outlet property="tblReadingDates" destination="85G-1z-DTV" id="CCF-HC-I2q"/>
                 <outlet property="view" destination="1" id="3"/>

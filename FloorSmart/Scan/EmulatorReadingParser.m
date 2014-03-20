@@ -102,23 +102,14 @@
 }
 
 - (float)RHFromBytes:(UInt16)rh {
-    
-    int measurement = (int)((rh + 6.0) / 125.0 * 65536.0);
-    int b1 = measurement & 0xFF;
-    int b2 = measurement & 0xFF00;
-    
-    float convrh = (-6.0f + (125.0f * (b1 + b2)/65536.0f));
+    float convrh = (-6.0f + (125.0f * rh/65536.0f));
     return convrh;
 }
 
 
 - (float)temperatureFromBytes:(UInt16)temp {
     
-    int measurement = (int)((((temp*1.0-32.f)/1.8f)+46.85f)/175.72f*65536.f);
-    int b1 = measurement & 0xFF;
-    int b2 = measurement & 0xFF00;
-    
-    float convtemperature = roundf((-46.85f + (175.72f * (b1 + b2)/65536.0f))*1.8f+32.0f);
+    float convtemperature = (-46.85f + (175.72f * temp /65536.0f));
     return convtemperature;
 }
 /*
@@ -144,7 +135,7 @@
     
     int uuidOffset = kUuidOffset + offset;
     
-    for(int i=0;i<3;++i)
+    for(int i=0;i<4;++i)
     {
         UInt8 temp;
         [data getBytes:&temp range:NSMakeRange((i*1)+uuidOffset, 1)];

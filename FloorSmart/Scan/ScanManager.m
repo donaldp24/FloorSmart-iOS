@@ -6,12 +6,9 @@
 //
 
 #import "ScanManager.h"
+#import "GlobalData.h"
 
-#ifdef TEST_FLIGHT_ENGAGED
-#import "TestFlight.h"
-#endif
-
-static const int kPackageID = 0xDEB93390;
+static const int kPackageID = 0xDEB93391;
 
 @interface ScanManager ()
 
@@ -44,8 +41,12 @@ static const int kPackageID = 0xDEB93390;
 }
 
 - (void)startScan {
+    /*
     [[self bluetoothCentralManager] scanForPeripheralsWithServices:nil
                                                            options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
+     */
+    [[self bluetoothCentralManager] scanForPeripheralsWithServices:nil
+                                                           options:nil];
 
     if ([[self delegate] respondsToSelector:@selector(scanManagerDidStartScanning:)]) {
         [[self delegate] scanManagerDidStartScanning:self];
@@ -71,6 +72,7 @@ static const int kPackageID = 0xDEB93390;
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
 
     NSString *stateDescription;
+    GlobalData *globalData = [GlobalData sharedData];
 
     switch ([central state]) {
         case CBCentralManagerStateResetting:
@@ -93,7 +95,8 @@ static const int kPackageID = 0xDEB93390;
             break;
         case CBCentralManagerStatePoweredOn:
             stateDescription = [NSString stringWithFormat:@"CBCentralManagerStatePoweredOn %d ", central.state];
-            [self startScan];
+            if (globalData.isSaved == YES)
+                [self startScan];
             break;
         case CBCentralManagerStateUnknown:
             stateDescription = [NSString stringWithFormat:@"CBCentralManagerStateUnknown %d ", central.state];
@@ -130,7 +133,7 @@ static const int kPackageID = 0xDEB93390;
     NSNumber *transmitPower = [advertisementData valueForKey:CBAdvertisementDataTxPowerLevelKey];
 
     NSMutableData* dataToParse = nil;
-    NSInteger offset;
+    NSInteger offset = 0;
     NSDictionary *sensorData;
 
     if (manufacturedData) {
@@ -156,7 +159,19 @@ static const int kPackageID = 0xDEB93390;
         NSArray* uuidsArray = advertisementData[CBAdvertisementDataServiceUUIDsKey];
 
         CBUUID* uuid1 = [uuidsArray firstObject];
+        
+#ifndef RELEASE
+        NSString *outputString = @"";
+        for (int ix = 0 ; ix < [uuid1 data].length; ix++) {
+            unsigned char c;
+            [[uuid1 data] getBytes:&c range:NSMakeRange(ix, 1)];
+            outputString = [outputString stringByAppendingFormat:@"%02X ",c];
+        }
+        NSLog(@"Debug output sensor data: %@",outputString);
+#endif
 
+        
+#if false
         UInt32 packageID = kPackageID;
         ///uuid comes right after flag, length and dataType bytes.
         if(![[[uuid1 data] subdataWithRange:NSMakeRange(5, 4)] isEqualToData:
@@ -166,7 +181,6 @@ static const int kPackageID = 0xDEB93390;
             return;
         }
         
-
         CBUUID* uuid2 = uuidsArray[1];
         CBUUID* uuid3 = uuidsArray[2];
         CBUUID* uuid4 = uuidsArray[3];
@@ -183,20 +197,33 @@ static const int kPackageID = 0xDEB93390;
         [dataToParse appendData:serialData];
         [dataToParse appendData:[secondPackage subdataWithRange:NSMakeRange(1, 1)]];
         offset = 5;
+#else
+        UInt32 packageID = kPackageID;
+        ///uuid comes right after flag, length and dataType bytes.
+        if(![[[uuid1 data] subdataWithRange:NSMakeRange(0, 4)] isEqualToData:
+             [NSData dataWithBytes:&packageID length:4]])
+        {
+            NSLog(@"Third party package was received.");
+            return;
+        }
+        
+        NSData* firstPackage = [uuid1 data];
+        dataToParse = [NSMutableData dataWithData:firstPackage];
+        offset = 0;
+#endif
 
         EmulatorReadingParser *parser = [[EmulatorReadingParser alloc] init];
         sensorData = [parser parseData:dataToParse  withOffset:offset];
     }
 
 #ifndef RELEASE
-    NSString * outputString = @"";
-    NSLog(@"%@",outputString);
+    NSString * dataToParseString = @"";
     for (int ix=offset; ix<dataToParse.length; ix++) {
         unsigned char c;
         [dataToParse getBytes:&c range:NSMakeRange(ix, 1)];
-        outputString = [outputString stringByAppendingFormat:@"%02X ",c];
+        dataToParseString = [dataToParseString stringByAppendingFormat:@"%02X ",c];
     }
-    NSLog(@"Debug output sensor data: %@",outputString);
+    NSLog(@"Debug output sensor data: %@",dataToParseString);
 #endif
 
     [[self delegate] scanManager:self

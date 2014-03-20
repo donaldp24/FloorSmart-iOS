@@ -11,6 +11,7 @@
 #import "FSLocationsViewController.h"
 #import "FSProductViewController.h"
 #import "FSLocProductViewController.h"
+#import "FSCurReadingsViewController.h"
 
 @interface FSRecordViewController : UIViewController <UITextFieldDelegate, FSJobSelectDelegate, FSLocationSelectDelegate, FSLocProductSelectDelegate> {
     
@@ -23,6 +24,8 @@
     FSProduct *defaultProduct;
     
     UITextField *curTextField;
+    FSCurReadingsViewController *readingVC;
+    
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *txtJob;
@@ -56,4 +59,9 @@
 // text delegates
 - (IBAction)BeginEditing:(UITextField *)sender;
 - (IBAction)EndEditing:(UITextField *)sender;
+- (IBAction)onBgClicked:(id)sender;
+
+// save incoming data
+- (void)saveNewData:(NSDictionary *)data;
+- (void)showReadingView;
 @end
