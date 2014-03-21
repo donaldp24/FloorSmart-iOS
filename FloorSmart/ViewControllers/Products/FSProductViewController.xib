@@ -80,7 +80,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" id="Z0x-4a-Bpy">
-                    <rect key="frame" x="12" y="57" width="183" height="42"/>
+                    <rect key="frame" x="12" y="65" width="183" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_add_job_bar.png" id="BDB-3a-qOb">
@@ -164,7 +164,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="5W1-mV-BYA">
-                    <rect key="frame" x="206" y="57" width="100" height="42"/>
+                    <rect key="frame" x="206" y="65" width="100" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_select_type_bar.png" id="51O-CP-wz4">
@@ -193,11 +193,11 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="nvw-st-yCP">
-                    <rect key="frame" x="12" y="108" width="297" height="322"/>
+                    <rect key="frame" x="12" y="116" width="297" height="302"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vAH-wN-QAf">
-                            <rect key="frame" x="0.0" y="0.0" width="297" height="322"/>
+                            <rect key="frame" x="0.0" y="0.0" width="297" height="302"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

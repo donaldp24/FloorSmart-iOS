@@ -99,13 +99,13 @@ const int scanDelay = 5;
     UIButton *tabItem = (UIButton *)sender;
     [self clearSelected];
     [tabItem setSelected:YES];
-    /*
-    if (tabItem.tag == 5) {
-        [self setSelected:3];
+    
+    if (tabItem.tag == 3) {
+        [self setSelected:1];
     } else {
         [self setSelected:tabItem.tag];
-    }*/
-    [self setSelected:tabItem.tag];
+    }
+    //[self setSelected:tabItem.tag];
 }
 
 

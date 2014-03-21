@@ -89,7 +89,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1gc-Ww-H1u">
-                    <rect key="frame" x="270" y="8" width="25" height="25"/>
+                    <rect key="frame" x="270" y="10" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="fly" image="bt_fly.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -174,7 +174,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5rJ-Bd-9ju" userLabel="btnSearch">
                                     <rect key="frame" x="9" y="12" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" image="64B286D3-8C89-47A1-BCCB-2A62EF86D6B2">
+                                    <state key="normal" image="BD9E409E-ECE0-4F68-B8BE-7827F00EE265">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
@@ -221,7 +221,7 @@
         </view>
     </objects>
     <resources>
-        <image name="64B286D3-8C89-47A1-BCCB-2A62EF86D6B2" width="31" height="31">
+        <image name="BD9E409E-ECE0-4F68-B8BE-7827F00EE265" width="31" height="31">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

@@ -9,6 +9,8 @@
                 <outlet property="btnCancel" destination="Fiv-MM-zgS" id="xB9-fB-718"/>
                 <outlet property="btnSave" destination="yF8-M8-XSe" id="tSD-AW-CI5"/>
                 <outlet property="btnSummary" destination="sID-xo-jLA" id="C8P-lp-oEk"/>
+                <outlet property="lblUnitFt" destination="igA-nJ-sIF" id="lV1-5O-3bE"/>
+                <outlet property="lblUnitM" destination="oj8-fQ-uRK" id="Q3J-rX-KqG"/>
                 <outlet property="txtCoverage" destination="on9-PL-LpW" id="Cui-wx-Jn0"/>
                 <outlet property="txtJob" destination="g6z-61-IfB" id="h1Z-gn-ium"/>
                 <outlet property="txtLocation" destination="zkQ-VL-5ys" id="bkD-bz-X5t"/>
@@ -150,6 +152,27 @@
                     <rect key="frame" x="20" y="293" width="114" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ft" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="igA-nJ-sIF">
+                    <rect key="frame" x="279" y="319" width="16" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oj8-fQ-uRK">
+                    <rect key="frame" x="279" y="319" width="16" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xn3-eX-FYB">
+                    <rect key="frame" x="290" y="313" width="16" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="7"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>

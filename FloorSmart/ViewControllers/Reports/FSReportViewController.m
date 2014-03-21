@@ -561,7 +561,7 @@
 - (IBAction)onBack:(id)sender
 {
     FSMainViewController *mainController = [FSMainViewController sharedController];
-    //[mainController selectItem:mainController.btnHome];
+    [mainController selectItem:mainController.btnHome];
 }
 
 - (IBAction)onReading:(id)sender

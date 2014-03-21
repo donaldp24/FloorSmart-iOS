@@ -38,4 +38,9 @@
 - (void)setSavedData:(long)selectedJobID selectedLocID:(long)selectedLocID selectedLocProductID:(long)selectedLocProductID;
 - (void)resetSavedData;
 
+- (NSString *)getDisplayTemperature:(CGFloat) ctemp;
+- (NSString *)getDisplayTemperatureWithoutUnit:(CGFloat) ctemp;
++ (CGFloat) sqft2sqm:(CGFloat) sqft;
++ (CGFloat) sqm2sqft:(CGFloat) sqm;
+
 @end

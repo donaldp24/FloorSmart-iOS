@@ -272,9 +272,16 @@
     
     if (self.mode == MODE_JOBMANAGEMENT)
     {
+        /*
         FSLocationsViewController *vc = [[FSLocationsViewController alloc] initWithNibName:@"FSLocationsViewController" bundle:nil];
         vc.curJob = cell.curJob;
         [self.navigationController pushViewController:vc animated:YES];
+         */
+        FSMainViewController *mainController = [FSMainViewController sharedController];
+        UINavigationController *nav =(UINavigationController *)[[mainController viewControllers] objectAtIndex:2];
+        FSReportViewController *report = (FSReportViewController *)[[nav viewControllers] objectAtIndex:0];
+        [report setCurJob:cell.curJob];
+        [mainController selectItem:mainController.btnReports];
     }
     else
     {

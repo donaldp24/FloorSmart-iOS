@@ -10,12 +10,11 @@
 #import "FSProduct.h"
 #import "FSPopView.h"
 #import <MessageUI/MessageUI.h>
+#import "FSReading.h"
 
 @interface FSCurReadingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, assign) IBOutlet UITableView *tblDetal;
-
-@property (nonatomic, assign) IBOutlet UITableView *tblReadingDates;
 
 @property (nonatomic, assign) IBOutlet UILabel *lblJobName;
 @property (nonatomic, assign) IBOutlet UILabel *lblLocName;
@@ -29,11 +28,21 @@
 @property (nonatomic, assign) IBOutlet UILabel *lblOverRHAVG;
 @property (nonatomic, assign) IBOutlet UILabel *lblOverTempAVG;
 
-@property (weak, nonatomic) IBOutlet UILabel *internalInfoLabel;
-@property (nonatomic, assign) IBOutlet UITextView *txtReceiveData;
-
 @property (nonatomic, strong) FSLocProduct *curLocProduct;
 
+@property (nonatomic, assign) IBOutlet UILabel *lblCurrent;
+@property (nonatomic, assign) IBOutlet UILabel *lblCurRH;
+@property (nonatomic, assign) IBOutlet UILabel *lblCurTemp;
+@property (nonatomic, assign) IBOutlet UILabel *lblCurBattery;
+@property (nonatomic, assign) IBOutlet UILabel *lblCurDepth;
+@property (nonatomic, assign) IBOutlet UILabel *lblCurGravity;
+@property (nonatomic, assign) IBOutlet UILabel *lblCurMaterial;
+@property (nonatomic, assign) IBOutlet UILabel *lblCurMC;
+
 - (IBAction)onBack:(id)sender;
+
+- (void)setCurData:(FSReading *)data;
+- (void)initDateTable;
+
 
 @end

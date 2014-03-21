@@ -12,6 +12,8 @@
 #import "DataManager.h"
 #import "FSReading.h"
 #import "FSReportCell.h"
+#import "CommonMethods.h"
+#import "GlobalData.h"
 //----
 #import "Defines.h"
 
@@ -26,9 +28,9 @@
     NSMutableData *receivedData;
     UIColor *infoColorOrdinal, *infoColorError, *infoColorSubscribed;
 }
-@synthesize tblDetal, txtReceiveData, internalInfoLabel;
+@synthesize tblDetal;
 @synthesize lblLocName, lblProcName, lblJobName;
-@synthesize tblReadingDates, viewOverall, lblOverEMCAVG, lblOverMCAVG, lblOverMCHigh, lblOverMCLow, lblOverRHAVG, lblOverTempAVG;
+@synthesize viewOverall, lblOverEMCAVG, lblOverMCAVG, lblOverMCHigh, lblOverMCLow, lblOverRHAVG, lblOverTempAVG;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,14 +49,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [tblDetal setBackgroundColor:[UIColor clearColor]];
-    [tblReadingDates setBackgroundColor:[UIColor clearColor]];
-    
-    CGRect overallFrame = viewOverall.frame;
-    overallFrame.size.height = 0;
-    [viewOverall setFrame:overallFrame];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -62,7 +56,6 @@
     [super viewWillAppear:animated];
     
     if (_curLocProduct) {
-        [self initDateTable];
         FSLocation *loc = [[DataManager sharedInstance] getLocationFromID:self.curLocProduct.locProductLocID];
         if (loc == nil)
             return;
@@ -73,11 +66,23 @@
         NSString *jobName = job.jobName;
         NSString *locName = loc.locName;
         NSString *procName = self.curLocProduct.locProductName;
+        
         [lblJobName setText:jobName];
         [lblLocName setText:[NSString stringWithFormat:@"Location: %@", locName]];
         [lblProcName setText:[NSString stringWithFormat:@"Product: %@", procName]];
     }
+    else
+    {
+        [lblJobName setText:@""];
+        [lblLocName setText:[NSString stringWithFormat:@"Location: %@", @""]];
+        [lblProcName setText:[NSString stringWithFormat:@"Product: %@", @""]];
+    }
+
+    
+    [self initDateTable];
+    
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -98,9 +103,24 @@
 
 - (void)initDateTable
 {
-    arrReadingCounts = [[DataManager sharedInstance] getAllReadingDates:self.curLocProduct.locProductID];
-    [tblReadingDates setContentSize:CGSizeMake(tblReadingDates.frame.size.width, 40 * [arrReadingCounts count])];
-    [tblReadingDates reloadData];
+    //arrReadingCounts = [[DataManager sharedInstance] getAllReadingDates:self.curLocProduct.locProductID];
+    if (self.curLocProduct == nil) {
+        arrOverallReadings = [[NSMutableArray alloc] init];
+        [self setCurData:nil];
+        [self setOverallData];
+    } else {
+        
+        arrOverallReadings = [[DataManager sharedInstance] getReadings:self.curLocProduct.locProductID withDate:[NSDate date]];
+        
+        [self setCurData:[arrOverallReadings lastObject]];
+        [self setOverallData];
+        
+        if ([arrOverallReadings count] > 0)
+        {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[arrOverallReadings count] - 1 inSection:0];
+            [self.tblDetal scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        }
+    }
 }
 
 #pragma mark - UITableView DataSource
@@ -151,6 +171,7 @@
         
         return cell;
     }
+    /* //
     FSReportCell *cell = [tblReadingDates dequeueReusableCellWithIdentifier:@"FSReportCell"];
     
     if(cell == nil)
@@ -164,6 +185,8 @@
     [cell setCurDate:[CommonMethods str2date:strDate withFormat:DATE_FORMAT]];
     
     return cell;
+     */
+    return nil;
 }
 
 #pragma mark - UITableViewDelegate
@@ -175,6 +198,7 @@
 #pragma mark - Cell Delegate
 - (void)didDisclosure:(FSReportCell *)cell
 {
+    /*
     if (cell.curDate != selectedCell.curDate) {
         if (selectedCell) {
             if (selectedCell.isOpened) {
@@ -192,10 +216,12 @@
     } else {
         [self hideOverall:NO];
     }
+     */
 }
 
 - (void)didDelete:(FSMeasureCell *)cell
 {
+    /*
     if (selectedCell.isOpened) {
         [self hideOverall:NO];
         selectedCell.isOpened = NO;
@@ -206,47 +232,56 @@
     [self initDateTable];
     [arrOverallReadings removeAllObjects];
     [tblDetal reloadData];
+     */
 }
 
 - (void)setOverallData
 {
+    /*
     [selectedCell setIsOpened:!selectedCell.isOpened];
     CGRect frame = viewOverall.frame;
     CGRect selectedCellProcViewFrame = [selectedCell.btnDisclosure.superview convertRect:selectedCell.btnDisclosure.frame toView:self.view];
     frame.origin.y = selectedCellProcViewFrame.origin.y + 28.0f;
     [viewOverall setFrame:frame];
+     */
     
     //setOverall Items
-    if (self.curLocProduct == nil) {
-        arrOverallReadings = [[NSMutableArray alloc] init];
+    if (arrOverallReadings == nil || [arrOverallReadings count] == 0) {
 
         float mcValue = 0;
         int rh = 0;
         int temp = 0;
         [lblOverMCAVG setText:[NSString stringWithFormat:@"MC Avg: %.1f%@", mcValue, @"%"]];
-        [lblOverMCHigh setText:[NSString stringWithFormat:@"MC High: %.1f%@", mcValue, @"%"]];
-        [lblOverMCLow setText:[NSString stringWithFormat:@"MC Low: %.1f%@", mcValue, @"%"]];
-        [lblOverEMCAVG setText:[NSString stringWithFormat:@"EMC Avg: 39%@", @"%" ]];//needed
-        [lblOverRHAVG setText:[NSString stringWithFormat:@"RH Avg:%d%@", (int)rh, @"%"]];
-        [lblOverTempAVG setText:[NSString stringWithFormat:@"Temp Avg:%d%@", (int)temp, @"%"]];
+        [lblOverMCHigh setText:[NSString stringWithFormat:@"MC High: %ld%@", (long)mcValue, @"%"]];
+        [lblOverMCLow setText:[NSString stringWithFormat:@"MC Low: %ld%@", (long)mcValue, @"%"]];
+        [lblOverEMCAVG setText:[NSString stringWithFormat:@"EMC Avg: 0%@", @"%" ]];
+        [lblOverRHAVG setText:[NSString stringWithFormat:@"RH Avg: %d%@", (int)rh, @"%"]];
+        [lblOverTempAVG setText:[NSString stringWithFormat:@"Temp Avg: %d", (int)temp]];
     }
     else
     {
-        arrOverallReadings = [[DataManager sharedInstance] getReadings:self.curLocProduct.locProductID withDate:selectedCell.curDate];
-        FSReading *firstRow = (FSReading *)[arrOverallReadings objectAtIndex:0];//needed
-        float mcValue = (float)[firstRow readMC] / 10;
-        [lblOverMCAVG setText:[NSString stringWithFormat:@"MC Avg: %.1f%@", mcValue, @"%"]];
-        [lblOverMCHigh setText:[NSString stringWithFormat:@"MC High: %.1f%@", mcValue, @"%"]];
-        [lblOverMCLow setText:[NSString stringWithFormat:@"MC Low: %.1f%@", mcValue, @"%"]];
-        [lblOverEMCAVG setText:[NSString stringWithFormat:@"EMC Avg: 39%@", @"%" ]];//needed
-        [lblOverRHAVG setText:[NSString stringWithFormat:@"RH Avg:%d%@", (int)[firstRow readRH], @"%"]];
-        [lblOverTempAVG setText:[NSString stringWithFormat:@"Temp Avg:%d%@", (int)[firstRow readTemp], @"%"]];
+        CGFloat mcavg = [FSReading getMCAvg:arrOverallReadings];
+        CGFloat mchigh = [FSReading getMCMax:arrOverallReadings];
+        CGFloat mclow = [FSReading getMCMax:arrOverallReadings];
+        CGFloat rhavg = [FSReading getRHAvg:arrOverallReadings];
+        CGFloat tempavg = [FSReading getTempAvg:arrOverallReadings];
+        CGFloat emcavg = [FSReading getEmcAvg:arrOverallReadings];
+        
+        GlobalData *globalData = [GlobalData sharedData];
+        
+        [lblOverMCAVG setText:[NSString stringWithFormat:@"MC Avg: %.1f%@", mcavg, @"%"]];
+        [lblOverMCHigh setText:[NSString stringWithFormat:@"MC High: %ld%@", (long)mchigh, @"%"]];
+        [lblOverMCLow setText:[NSString stringWithFormat:@"MC Low: %ld%@", (long)mclow, @"%"]];
+        [lblOverEMCAVG setText:[NSString stringWithFormat:@"EMC Avg: %d%@", (int)emcavg, @"%" ]];
+        [lblOverRHAVG setText:[NSString stringWithFormat:@"RH Avg:%d%@", (int)rhavg, @"%"]];
+        [lblOverTempAVG setText:[NSString stringWithFormat:@"Temp Avg:%@", [globalData getDisplayTemperature:tempavg]]];
     }
     [tblDetal reloadData];
 }
 
 - (void)showOverall
 {
+    /*
     CGRect frame = viewOverall.frame;
     frame.size.height = 80.0f;
     [UIView animateWithDuration:0.15f animations:^{
@@ -254,10 +289,12 @@
     }completion:^(BOOL finished){
         [tblReadingDates setScrollEnabled:NO];
     }];
+     */
 }
 
 - (void)hideOverall:(BOOL)next
 {
+    /*
     CGRect frame = viewOverall.frame;
     frame.size.height = 0.0f;
     [UIView animateWithDuration:0.15f animations:^{
@@ -269,6 +306,7 @@
             [self showOverall];
         }
     }];
+     */
 }
 
 
@@ -276,6 +314,36 @@
 - (IBAction)onBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)setCurData:(FSReading *)data
+{
+    GlobalData *globalData = [GlobalData sharedData];
+    if (data != nil)
+    {
+        self.lblCurrent.text = [NSString stringWithFormat:@"Today(%@) Last Readings(%@)", [CommonMethods date2str:data.readTimestamp withFormat:globalData.settingDateFormat], [CommonMethods date2str:data.readTimestamp withFormat:@"HH:mm"]];
+        self.lblCurRH.text = [NSString stringWithFormat:@"RH : %.1f", data.readConvRH];
+        
+
+        self.lblCurTemp.text = [NSString stringWithFormat:@"Temp : %@", [globalData getDisplayTemperature:data.readConvTemp]];
+        
+        self.lblCurBattery.text = [NSString stringWithFormat:@"Battery : %ld%%", data.readBattery];
+        self.lblCurDepth.text = [NSString stringWithFormat:@"Depth : %@", [FSReading getDisplayDepth:data.readDepth]];
+        self.lblCurMaterial.text = [NSString stringWithFormat:@"Material : %@", [FSReading getDisplayMaterial:data.readMaterial]];
+        self.lblCurGravity.text = [NSString stringWithFormat:@"Gravity : %ld", data.readGravity];
+        self.lblCurMC.text = [NSString stringWithFormat:@"MC : %ld%%", data.readMC];
+    }
+    else
+    {
+        self.lblCurrent.text = [NSString stringWithFormat:@"Today(%@) Last Readings", [CommonMethods date2str:data.readTimestamp withFormat:globalData.settingDateFormat]];
+        self.lblCurRH.text = [NSString stringWithFormat:@"RH :"];
+        self.lblCurTemp.text = [NSString stringWithFormat:@"Temp : "];
+        self.lblCurBattery.text = [NSString stringWithFormat:@"Battery : "];
+        self.lblCurDepth.text = [NSString stringWithFormat:@"Depth : "];
+        self.lblCurMaterial.text = [NSString stringWithFormat:@"Material : "];
+        self.lblCurGravity.text = [NSString stringWithFormat:@"Gravity : "];
+        self.lblCurMC.text = [NSString stringWithFormat:@"MC : "];
+    }
 }
 
 @end

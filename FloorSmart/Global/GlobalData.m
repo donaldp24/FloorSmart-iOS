@@ -269,4 +269,32 @@ GlobalData *_globalData = nil;
     return currentDateAndTime;
 }
 
+- (NSString *)getDisplayTemperature:(CGFloat) ctemp
+{
+    CGFloat ftemp = ctemp * 9 / 5 + 32;
+    if (self.settingTemp == YES)
+        return [NSString stringWithFormat:@"%.1fF", ftemp];
+    return [NSString stringWithFormat:@"%.1fC", ctemp];
+}
+
+- (NSString *)getDisplayTemperatureWithoutUnit:(CGFloat)ctemp
+{
+    CGFloat ftemp = ctemp * 9 / 5 + 32;
+    if (self.settingTemp == YES)
+        return [NSString stringWithFormat:@"%d", (int)ftemp];
+    return [NSString stringWithFormat:@"%d", (int)ctemp];
+}
+
++ (CGFloat)sqft2sqm:(CGFloat)sqft
+{
+    CGFloat sqm = 0.09290304 * sqft;
+    return sqm;
+}
+
++ (CGFloat)sqm2sqft:(CGFloat)sqm
+{
+    CGFloat sqft = sqm / 0.09290304;
+    return sqft;
+}
+
 @end

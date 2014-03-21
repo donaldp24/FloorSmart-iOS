@@ -88,8 +88,15 @@
         self.txtJob.text = selectedJob.jobName;
         self.txtLocation.text = selectedLocation.locName;
         self.txtProduct.text = selectedLocProduct.locProductName;
-        self.txtCoverage.text = [NSString stringWithFormat:@"%.2f", selectedLocProduct.locProductCoverage];
         
+        if (globalData.settingArea == YES) //ft
+        {
+            self.txtCoverage.text = [NSString stringWithFormat:@"%.2f", selectedLocProduct.locProductCoverage];
+        }
+        else
+        {
+            self.txtCoverage.text = [NSString stringWithFormat:@"%.2f", [GlobalData sqft2sqm:selectedLocProduct.locProductCoverage]];
+        }
         
         if ([selectedLocation.locName isEqualToString:FMD_DEFAULT_LOCATIONNAME])
             self.txtLocation.text = @"";
@@ -98,7 +105,7 @@
         
         self.btnSave.enabled = NO;
         self.btnCancel.enabled = YES;
-        self.btnSummary.enabled = YES;
+        //self.btnSummary.enabled = YES;
         self.txtCoverage.enabled = NO;
     }
     else
@@ -115,8 +122,23 @@
         
         self.btnSave.enabled = YES;
         self.btnCancel.enabled = NO;
-        self.btnSummary.enabled = NO;
+        //self.btnSummary.enabled = NO;
         self.txtCoverage.enabled = YES;
+    }
+    
+    if (globalData.settingArea == YES) //ft
+    {
+        self.lblUnitFt.hidden = NO;
+        self.lblUnitM.hidden = YES;
+        
+        isPrevSqureFoot = YES;
+    }
+    else
+    {
+        self.lblUnitFt.hidden = YES;
+        self.lblUnitM.hidden = NO;
+        
+        isPrevSqureFoot = NO;
     }
     
     self.txtJob.enabled = NO;
@@ -124,11 +146,14 @@
     self.txtProduct.enabled = NO;
     
     curTextField = nil;
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     readingVC = nil;
+    GlobalData *globalData = [GlobalData sharedData];
     
     BOOL isKeeped = YES;
     if (selectedJob)
@@ -185,7 +210,7 @@
             [globalData resetSavedData];
             self.btnCancel.enabled = NO;
             self.btnSave.enabled = YES;
-            self.btnSummary.enabled = NO;
+            //self.btnSummary.enabled = NO;
         }
         
         if (selectedJob == nil) {
@@ -212,8 +237,41 @@
                     selectedLocProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
             }
         }
-        
     }
+    
+    self.btnSummary.enabled = YES;
+    
+    // set txtcoverage
+    CGFloat coverage = [self.txtCoverage.text floatValue];
+    // have to convert unit
+    if (isPrevSqureFoot == globalData.settingArea)
+        coverage = coverage;
+    else
+    {
+        if (globalData.settingArea == YES)
+        {
+            coverage = [GlobalData sqm2sqft:coverage];
+            isPrevSqureFoot = YES;
+        }
+        else
+        {
+            coverage = [GlobalData sqft2sqm:coverage];
+            isPrevSqureFoot = NO;
+        }
+    }
+    
+    if (globalData.settingArea == YES)
+    {
+        self.lblUnitFt.hidden = NO;
+        self.lblUnitM.hidden = YES;
+    }
+    else
+    {
+        self.lblUnitFt.hidden = YES;
+        self.lblUnitM.hidden = NO;
+    }
+    self.txtCoverage.text = [NSString stringWithFormat:@"%.2f", coverage];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -312,17 +370,26 @@
 - (void)jobSelected:(FSJob *)job
 {
     selectedJob = job;
-    self.txtJob.text = job.jobName;
-    
-    selectedLocation = [[DataManager sharedInstance] getDefaultLocationOfJob:job.jobID];
+    selectedLocation = nil;
     selectedProduct = nil;
-    if (selectedLocation != nil)
-        selectedLocProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
+    selectedLocProduct = nil;
     
-    defaultLocation.locJobID = job.jobID;
+    self.txtJob.text = job.jobName;
     
     self.txtLocation.text = @"";
     self.txtProduct.text = @"";
+    
+    
+    selectedLocation = [[DataManager sharedInstance] getDefaultLocationOfJob:job.jobID];
+    if (selectedLocation != nil)
+    {
+        //selectedLocProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
+        [self locationSelected:selectedLocation];
+    }
+    
+    defaultLocation.locJobID = job.jobID;
+    
+    
     
 }
 
@@ -332,9 +399,15 @@
     selectedLocation = loc;
     self.txtLocation.text = loc.locName;
     
+    self.txtProduct.text = @"";
+    
     selectedProduct = nil;
     selectedLocProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
-    self.txtProduct.text = @"";
+    if (selectedLocProduct != nil)
+    {
+        [self locProductSelected:selectedLocProduct];
+    }
+    
 }
 
 #pragma mark - LocProduct Select Delegate
@@ -352,6 +425,16 @@
     selectedProduct = nil;
     
     self.txtProduct.text = selectedLocProduct.locProductName;
+    
+    float coverage = selectedLocProduct.locProductCoverage;
+    GlobalData *globalData = [GlobalData sharedData];
+    
+    if (globalData.settingArea == YES) //ft
+        coverage = coverage;
+    else
+        coverage = [GlobalData sqft2sqm:coverage];
+    [self.txtCoverage setText:[NSString stringWithFormat:@"%.2f", coverage]];
+    
 }
 
 #pragma mark - Actions
@@ -368,7 +451,13 @@
         return;
     }
     
-    double coverage = [self.txtCoverage.text doubleValue];
+    GlobalData *globalData = [GlobalData sharedData];
+    
+    float coverage = [self.txtCoverage.text floatValue];
+    if (globalData.settingArea == YES) //ft
+        coverage = coverage;
+    else
+        coverage = [GlobalData sqm2sqft:coverage];
     
     if (selectedLocation == nil)
     {
@@ -431,7 +520,7 @@
     
     [[GlobalData sharedData] setSavedData:selectedJob.jobID selectedLocID:selectedLocation.locID selectedLocProductID:selectedLocProduct.locProductID];
     
-    self.btnSummary.enabled = YES;
+    //self.btnSummary.enabled = YES;
     self.btnCancel.enabled = YES;
     self.btnSave.enabled = NO;
     
@@ -448,7 +537,7 @@
     
     [[GlobalData sharedData] resetSavedData];
     
-    self.btnSummary.enabled = NO;
+    //self.btnSummary.enabled = NO;
     self.btnCancel.enabled = NO;
     self.btnSave.enabled = YES;
     
@@ -461,8 +550,6 @@
     if (curTextField != nil)
         [curTextField resignFirstResponder];
     
-    if (selectedLocProduct == nil)
-        return;
     if (readingVC == nil)
     {
         readingVC = [[FSCurReadingsViewController alloc] initWithNibName:@"FSCurReadingsViewController" bundle:nil];
@@ -526,6 +613,10 @@
         readingVC = [[FSCurReadingsViewController alloc] initWithNibName:@"FSCurReadingsViewController" bundle:nil];
         [readingVC setCurLocProduct:selectedLocProduct];
         [self.navigationController pushViewController:readingVC animated:YES];
+    }
+    else
+    {
+        [readingVC initDateTable];
     }
 }
 

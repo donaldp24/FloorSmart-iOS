@@ -26,12 +26,16 @@
     UITextField *curTextField;
     FSCurReadingsViewController *readingVC;
     
+    BOOL isPrevSqureFoot;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *txtJob;
 @property (nonatomic, retain) IBOutlet UITextField *txtLocation;
 @property (nonatomic, retain) IBOutlet UITextField *txtProduct;
 @property (nonatomic, retain) IBOutlet UITextField *txtCoverage;
+
+@property (nonatomic, retain) IBOutlet UILabel *lblUnitFt;
+@property (nonatomic, retain) IBOutlet UILabel *lblUnitM;
 
 @property (nonatomic, retain) IBOutlet UIButton *btnSave;
 @property (nonatomic, retain) IBOutlet UIButton *btnCancel;

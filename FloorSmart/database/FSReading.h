@@ -24,5 +24,19 @@
 @property (nonatomic) long readMaterial;
 @property (nonatomic) long readMC; //0-1000
 
+- (CGFloat) getEmcValue;
+
++ (NSString *) getDisplayDepth:(long)depth;
++ (NSString *) getDisplayMaterial:(long)material;
++ (CGFloat) getCTemperature:(CGFloat)ftemp;
++ (CGFloat) getFTemperature:(CGFloat)ctemp;
+
++ (CGFloat) getMCAvg:(NSMutableArray *)array;
++ (CGFloat) getMCMax:(NSMutableArray *)array;
++ (CGFloat) getMCMin:(NSMutableArray *)array;
++ (CGFloat) getRHAvg:(NSMutableArray *)array;
++ (CGFloat) getTempAvg:(NSMutableArray *)array;
++ (CGFloat) getEmcAvg:(NSMutableArray *)array;
+
 @end
 
