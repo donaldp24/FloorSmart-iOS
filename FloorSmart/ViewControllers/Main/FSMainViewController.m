@@ -151,6 +151,7 @@ const int scanDelay = 5;
         recordVC = NC.viewControllers.firstObject;
         if (recordVC)
         {
+            [recordVC saveNewData:sensorData];
             [recordVC showReadingView];
         }
     }

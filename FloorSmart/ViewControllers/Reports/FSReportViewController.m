@@ -114,13 +114,12 @@
 
 - (void)fillFeed:(FSLocation *)loc andProc:(FSProduct *)proc
 {
-    /*
-    if ([[_curJob jobID] isEqualToString:@"-1"]) {
-        [self setCurFeed:[[FSFeed alloc] init]];
-        [self fillContent:loc andProc:proc];
+    if (self.curJob == nil || self.curJob.jobID == 0) {
+        //[self setCurFeed:[[FSFeed alloc] init]];
+        //[self fillContent:loc andProc:proc];
         return;
     }
-    
+    /*
     NSInteger locID = (loc) ? [loc.locID integerValue] : -1;
     NSInteger procID = (proc) ? [proc.productID integerValue] : -1;
     arrFeeds = [[DataManager sharedInstance] getFeeds:[_curJob jobID] locID:locID procID:procID];

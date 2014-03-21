@@ -145,7 +145,7 @@ static DataManager *sharedManager;
 - (NSMutableArray *)getLocations:(long)jobID
 {
     NSMutableArray *arrLocList = [[NSMutableArray alloc] init];
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM tbl_location WHERE deleted = 0 and location_jobid  = %ld", jobID];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM tbl_location WHERE deleted = 0 and location_jobid  = %ld and location_name != '%@' ", jobID, FMD_DEFAULT_LOCATIONNAME];
     FMResultSet *results = [_database executeQuery:sql];
     while ([results next]) {
         FSLocation *loc  = [[[FSLocation alloc] init] autorelease];
@@ -348,7 +348,7 @@ static DataManager *sharedManager;
 - (NSMutableArray *)getLocProducts:(FSLocation *)loc searchField:(NSString *)searchField
 {
     NSMutableArray *arrLocProductList = [[NSMutableArray alloc] init];
-    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_locproduct WHERE deleted = 0 AND locproduct_locid = %ld AND locproduct_productname like %@%@%@", loc.locID, @"'%", searchField, @"%'"]];
+    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_locproduct WHERE deleted = 0 AND locproduct_locid = %ld AND locproduct_productname like %@%@%@ and locproduct_productname != '%@'", loc.locID, @"'%", searchField, @"%'", FMD_DEFAULT_PRODUCTNAME]];
     while ([results next]) {
         
         FSLocProduct *locProduct  = [[[FSLocProduct alloc] init] autorelease];

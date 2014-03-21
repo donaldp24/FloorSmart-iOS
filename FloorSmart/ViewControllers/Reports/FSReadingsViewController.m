@@ -69,9 +69,8 @@
     CGRect overallFrame = viewOverall.frame;
     overallFrame.size.height = 0;
     [viewOverall setFrame:overallFrame];
-    
-    //----
-//    centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+   
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -115,11 +114,19 @@
 
 - (void)initDateTable
 {
-    /*//
-    arrReadingCounts = [[DataManager sharedInstance] getAllReadingDates:[_curFeed feedID]];
-    [tblReadingDates setContentSize:CGSizeMake(tblReadingDates.frame.size.width, 40 * [arrReadingCounts count])];
+    if (self.curLocProduct == nil)
+    {
+        arrReadingCounts = [[NSMutableArray alloc] init];
+    }
+    else
+    {
+        /* //
+        arrReadingCounts = [[DataManager sharedInstance] getAllReadingDates:[_curFeed feedID]];
+        [tblReadingDates setContentSize:CGSizeMake(tblReadingDates.frame.size.width, 40 * [arrReadingCounts count])];
+         */
+    }
     [tblReadingDates reloadData];
-     */
+ 
 }
 
 #pragma mark - UITableView DataSource
@@ -291,7 +298,7 @@
 
 - (NSString *)getMessageBody
 {
-    /*//
+    /*
     NSString *locName = [(FSLocation *)[[DataManager sharedInstance] getLocationFromID:[_curFeed feedLocID]] locName];
     NSString *procName = [(FSProduct *)[[DataManager sharedInstance] getProductFromID:[_curFeed feedProcID]] productName];
     NSString *feedMode = @"";

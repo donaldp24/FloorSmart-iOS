@@ -119,6 +119,10 @@
         self.txtCoverage.enabled = YES;
     }
     
+    self.txtJob.enabled = NO;
+    self.txtLocation.enabled = NO;
+    self.txtProduct.enabled = NO;
+    
     curTextField = nil;
 }
 
@@ -459,10 +463,12 @@
     
     if (selectedLocProduct == nil)
         return;
-    
-    readingVC = [[FSCurReadingsViewController alloc] initWithNibName:@"FSCurReadingsViewController" bundle:nil];
-    [readingVC setCurLocProduct:selectedLocProduct];
-    [self.navigationController pushViewController:readingVC animated:YES];
+    if (readingVC == nil)
+    {
+        readingVC = [[FSCurReadingsViewController alloc] initWithNibName:@"FSCurReadingsViewController" bundle:nil];
+        [readingVC setCurLocProduct:selectedLocProduct];
+        [self.navigationController pushViewController:readingVC animated:YES];
+    }
     
 }
 

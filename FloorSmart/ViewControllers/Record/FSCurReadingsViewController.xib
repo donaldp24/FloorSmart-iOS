@@ -255,7 +255,10 @@
     <resources>
         <image name="background.png" width="640" height="1136"/>
         <image name="bg_data_bar.png" width="595" height="102"/>
+        <image name="bg_data_bar.png" width="595" height="102"/>
         <image name="bg_job_overview_detail_bar.png" width="595" height="214"/>
+        <image name="bg_job_overview_detail_bar.png" width="595" height="214"/>
+        <image name="bg_job_overview_detail_list_01.png" width="545" height="48"/>
         <image name="bg_job_overview_detail_list_01.png" width="545" height="48"/>
         <image name="bg_title_bar.png" width="640" height="103"/>
         <image name="bt_back.png" width="15" height="28"/>

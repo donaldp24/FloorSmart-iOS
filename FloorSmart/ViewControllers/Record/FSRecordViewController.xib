@@ -88,7 +88,7 @@
                         <action selector="onSelJob:" destination="-1" eventType="touchUpInside" id="OPS-Nv-8ly"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Not selected" minimumFontSize="17" id="g6z-61-IfB">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Not selected" minimumFontSize="17" id="g6z-61-IfB" userLabel="txtJob">
                     <rect key="frame" x="20" y="97" width="245" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -120,7 +120,7 @@
                         <action selector="onSelLocation:" destination="-1" eventType="touchUpInside" id="5S6-YL-Thq"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Default" minimumFontSize="17" id="zkQ-VL-5ys">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Default" minimumFontSize="17" id="zkQ-VL-5ys" userLabel="txtLocation">
                     <rect key="frame" x="20" y="179" width="245" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
