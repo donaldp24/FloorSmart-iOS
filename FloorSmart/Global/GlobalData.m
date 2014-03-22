@@ -297,4 +297,6 @@ GlobalData *_globalData = nil;
     return sqft;
 }
 
+
+
 @end

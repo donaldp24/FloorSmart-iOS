@@ -29,6 +29,7 @@
 @property (nonatomic, assign) IBOutlet UILabel *lblOverTempAVG;
 
 @property (nonatomic, strong) FSLocProduct *curLocProduct;
+@property (nonatomic, assign) NSDate *curDate;
 
 @property (nonatomic, assign) IBOutlet UILabel *lblCurrent;
 @property (nonatomic, assign) IBOutlet UILabel *lblCurRH;

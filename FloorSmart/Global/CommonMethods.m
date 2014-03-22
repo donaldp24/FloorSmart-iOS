@@ -248,4 +248,23 @@
     return NO;
 }
 
++ (NSComparisonResult)compareOnlyDate:(NSDate *)date1 date2:(NSDate *)date2
+{
+    NSUInteger dateFlags = NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit;
+    NSCalendar *gregorianCalendar = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
+    NSDateComponents *selfComponents = [gregorianCalendar components:dateFlags fromDate:date1];
+    NSDate *selfDateOnly = [gregorianCalendar dateFromComponents:selfComponents];
+    
+    NSDateComponents *otherCompents = [gregorianCalendar components:dateFlags fromDate:date2];
+    NSDate *otherDateOnly = [gregorianCalendar dateFromComponents:otherCompents];
+    return [selfDateOnly compare:otherDateOnly];
+}
+
++ (CGFloat)widthOfString:(NSString *)string withFont:(id)font
+{
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
+    return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].width;
+}
+
 @end

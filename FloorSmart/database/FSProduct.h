@@ -25,6 +25,8 @@ typedef enum : long
 
 - (void)clear;
 
++ (NSString *)getDisplayProductType:(long)productType;
+
 @end
 
 

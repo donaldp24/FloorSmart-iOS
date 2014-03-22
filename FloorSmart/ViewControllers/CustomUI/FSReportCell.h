@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataManager.h"
 
 @interface FSReportCell : UITableViewCell
 
 @property (nonatomic, assign) IBOutlet UILabel *lblReadingDate;
 @property (nonatomic, assign) IBOutlet UIButton *btnDisclosure;
 
+@property (nonatomic, retain) FSLocation *loc;
+@property (nonatomic, retain) FSLocProduct *locProduct;
 @property (nonatomic, strong) NSDate *curDate;
 @property (nonatomic) BOOL isOpened;
 

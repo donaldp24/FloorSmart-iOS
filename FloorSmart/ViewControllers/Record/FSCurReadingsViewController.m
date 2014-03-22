@@ -103,14 +103,15 @@
 
 - (void)initDateTable
 {
-    //arrReadingCounts = [[DataManager sharedInstance] getAllReadingDates:self.curLocProduct.locProductID];
     if (self.curLocProduct == nil) {
         arrOverallReadings = [[NSMutableArray alloc] init];
         [self setCurData:nil];
         [self setOverallData];
     } else {
         
-        arrOverallReadings = [[DataManager sharedInstance] getReadings:self.curLocProduct.locProductID withDate:[NSDate date]];
+        if (self.curDate == nil)
+            self.curDate = [NSDate date];
+        arrOverallReadings = [[DataManager sharedInstance] getReadings:self.curLocProduct.locProductID withDate:self.curDate];
         
         [self setCurData:[arrOverallReadings lastObject]];
         [self setOverallData];
@@ -321,7 +322,14 @@
     GlobalData *globalData = [GlobalData sharedData];
     if (data != nil)
     {
-        self.lblCurrent.text = [NSString stringWithFormat:@"Today(%@) Last Readings(%@)", [CommonMethods date2str:data.readTimestamp withFormat:globalData.settingDateFormat], [CommonMethods date2str:data.readTimestamp withFormat:@"HH:mm"]];
+        if ([CommonMethods compareOnlyDate:self.curDate date2:[NSDate date]] == NSOrderedSame)
+        {
+            self.lblCurrent.text = [NSString stringWithFormat:@"Today(%@) Last Readings(%@)", [CommonMethods date2str:data.readTimestamp withFormat:globalData.settingDateFormat], [CommonMethods date2str:data.readTimestamp withFormat:@"HH:mm"]];
+        }
+        else
+        {
+            self.lblCurrent.text = [NSString stringWithFormat:@"Date(%@) Last Readings(%@)", [CommonMethods date2str:data.readTimestamp withFormat:globalData.settingDateFormat], [CommonMethods date2str:data.readTimestamp withFormat:@"HH:mm"]];
+        }
         self.lblCurRH.text = [NSString stringWithFormat:@"RH : %.1f", data.readConvRH];
         
 
@@ -335,7 +343,14 @@
     }
     else
     {
-        self.lblCurrent.text = [NSString stringWithFormat:@"Today(%@) Last Readings", [CommonMethods date2str:data.readTimestamp withFormat:globalData.settingDateFormat]];
+        if ([CommonMethods compareOnlyDate:self.curDate date2:[NSDate date]] == NSOrderedSame)
+        {
+            self.lblCurrent.text = [NSString stringWithFormat:@"Today(%@) Last Readings", [CommonMethods date2str:data.readTimestamp withFormat:globalData.settingDateFormat]];
+        }
+        else
+        {
+            self.lblCurrent.text = [NSString stringWithFormat:@"Date(%@) Last Readings", [CommonMethods date2str:data.readTimestamp withFormat:globalData.settingDateFormat]];
+        }
         self.lblCurRH.text = [NSString stringWithFormat:@"RH :"];
         self.lblCurTemp.text = [NSString stringWithFormat:@"Temp : "];
         self.lblCurBattery.text = [NSString stringWithFormat:@"Battery : "];

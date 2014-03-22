@@ -157,6 +157,25 @@ static DataManager *sharedManager;
     return arrLocList;
 }
 
+- (NSMutableArray *)getLocations:(long)jobID containDefault:(BOOL) isContain
+{
+    NSMutableArray *arrLocList = [[NSMutableArray alloc] init];
+    NSString *sql = @"";
+    if (isContain)
+        sql = [NSString stringWithFormat:@"SELECT * FROM tbl_location WHERE deleted = 0 and location_jobid  = %ld", jobID];
+    else
+        sql = [NSString stringWithFormat:@"SELECT * FROM tbl_location WHERE deleted = 0 and location_jobid  = %ld and location_name != '%@' ", jobID, FMD_DEFAULT_LOCATIONNAME];
+    FMResultSet *results = [_database executeQuery:sql];
+    while ([results next]) {
+        FSLocation *loc  = [[[FSLocation alloc] init] autorelease];
+        loc.locID       = [results intForColumn:@"location_id"];
+        loc.locJobID    = [results intForColumn:@"location_jobid"];
+        loc.locName     = [results stringForColumn:@"location_name"];
+        [arrLocList addObject:loc];
+    }
+    return arrLocList;
+}
+
 - (FSLocation *)getLocationFromID:(long)locID
 {
     FSLocation *loc = [[FSLocation alloc] init];
@@ -363,6 +382,30 @@ static DataManager *sharedManager;
     return arrLocProductList;
 }
 
+- (NSMutableArray *)getLocProducts:(FSLocation *)loc searchField:(NSString *)searchField containDefault:(BOOL) isContain
+{
+    NSMutableArray *arrLocProductList = [[NSMutableArray alloc] init];
+    NSString *sql = @"";
+    if (isContain == YES)
+        sql = [NSString stringWithFormat:@"SELECT * FROM tbl_locproduct WHERE deleted = 0 AND locproduct_locid = %ld AND locproduct_productname like %@%@%@", loc.locID, @"'%", searchField, @"%'"];
+    else
+        sql = [NSString stringWithFormat:@"SELECT * FROM tbl_locproduct WHERE deleted = 0 AND locproduct_locid = %ld AND locproduct_productname like %@%@%@ and locproduct_productname != '%@'", loc.locID, @"'%", searchField, @"%'", FMD_DEFAULT_PRODUCTNAME];
+    
+    FMResultSet *results = [_database executeQuery:sql];
+    while ([results next]) {
+        
+        FSLocProduct *locProduct  = [[[FSLocProduct alloc] init] autorelease];
+        locProduct.locProductID = [results intForColumn:@"locproduct_id"];
+        locProduct.locProductLocID = [results intForColumn:@"locproduct_locid"];
+        locProduct.locProductName = [results stringForColumn:@"locproduct_productname"];
+        locProduct.locProductType = [results intForColumn:@"locproduct_producttype"];
+        locProduct.locProductCoverage = [results doubleForColumn:@"locproduct_coverage"];
+        
+        [arrLocProductList addObject:locProduct];
+    }
+    return arrLocProductList;
+}
+
 - (FSLocProduct *)getLocProductWithID:(long)locProductID
 {
     FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_locproduct WHERE deleted = 0 AND locproduct_id = %ld", locProductID]];
@@ -476,7 +519,8 @@ static DataManager *sharedManager;
     FMResultSet *results = [_database executeQuery:sql];
     while ([results next]) {
         NSString *strDateOnly = [[results stringForColumn:@"read_date"] substringToIndex:10];
-        [arrDates addObject:strDateOnly];
+        NSDate *date = [CommonMethods str2date:strDateOnly withFormat:DATE_FORMAT];
+        [arrDates addObject:date];
     }
     return arrDates;
 }

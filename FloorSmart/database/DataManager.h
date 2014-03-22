@@ -36,6 +36,7 @@
 
 // location
 - (NSMutableArray *)getLocations:(long)jobID;
+- (NSMutableArray *)getLocations:(long)jobID containDefault:(BOOL) isContain;
 - (FSLocation *)getLocationFromID:(long)locID;
 - (int)addLocationToDatabase:(FSLocation *)loc;
 - (void)updateLocToDatabase:(FSLocation *)loc;
@@ -55,6 +56,7 @@
 
 // products for specific location
 - (NSMutableArray *)getLocProducts:(FSLocation *)loc searchField:(NSString *)searchField;
+- (NSMutableArray *)getLocProducts:(FSLocation *)loc searchField:(NSString *)searchField containDefault:(BOOL) isContain;
 - (FSLocProduct *)getLocProductWithID:(long)locProductID;
 - (FSLocProduct *)getDefaultLocProductOfLocation:(FSLocation *)loc;
 - (FSLocProduct *)getLocProductWithProduct:(FSProduct *)product locID:(long)locID;

@@ -35,6 +35,11 @@
     _productDeleted = 0;
 }
 
++ (NSString *)getDisplayProductType:(long)productType
+{
+    return (productType == FSProductTypeFinished) ? @"Finished" : @"Subfloor";
+}
+
 @end
 
 @implementation FSLocProduct

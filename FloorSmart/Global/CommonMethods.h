@@ -30,4 +30,8 @@
 + (NSString *)date2str:(NSDate *)convertDate withFormat:(NSString *)formatString;
 + (NSDate *)str2date:(NSString *)dateString withFormat:(NSString *)formatString;
 
++ (NSComparisonResult) compareOnlyDate:(NSDate *)date1 date2:(NSDate *)date2;
+
++ (CGFloat)widthOfString:(NSString *)string withFont:(id)font;
+
 @end
