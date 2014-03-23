@@ -515,7 +515,7 @@ static DataManager *sharedManager;
 - (NSMutableArray *)getAllReadingDates:(long)locProductID
 {
     NSMutableArray *arrDates = [[NSMutableArray alloc] init];
-    NSString *sql = [NSString stringWithFormat:@"SELECT DISTINCT(SUBSTR(read_date, 1, 10)) as read_date FROM tbl_reading WHERE read_locproductid = %ld ORDER BY read_date DESC", locProductID];
+    NSString *sql = [NSString stringWithFormat:@"SELECT DISTINCT(SUBSTR(read_date, 1, 10)) as read_date FROM tbl_reading WHERE read_locproductid = %ld ORDER BY read_date ASC", locProductID];
     FMResultSet *results = [_database executeQuery:sql];
     while ([results next]) {
         NSString *strDateOnly = [[results stringForColumn:@"read_date"] substringToIndex:10];

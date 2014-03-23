@@ -267,4 +267,10 @@
     return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].width;
 }
 
++ (NSString *)getDocumentDirectory {
+    
+	NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    return documentsDirectory;
+}
+
 @end

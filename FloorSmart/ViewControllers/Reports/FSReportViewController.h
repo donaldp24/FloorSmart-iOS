@@ -12,13 +12,15 @@
 #import <MessageUI/MessageUI.h>
 #import "FSLocation.h"
 #import "FSProduct.h"
+#import "ReaderViewController.h"
 
-@interface FSReportViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, MFMailComposeViewControllerDelegate, UIPrintInteractionControllerDelegate>
+@interface FSReportViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, MFMailComposeViewControllerDelegate, UIPrintInteractionControllerDelegate, ReaderViewControllerDelegate>
 
 @property (nonatomic, assign) IBOutlet UITableView *tblMain;
 @property (nonatomic, assign) IBOutlet UILabel *lblJob;
 @property (nonatomic, assign) IBOutlet FSPopView *popView;
 @property (nonatomic, strong) FSJob *curJob;
+@property (nonatomic, retain) ReaderViewController *pdfReaderViewController;
 
 
 - (IBAction)onBack:(id)sender;

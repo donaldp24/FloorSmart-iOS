@@ -14,10 +14,13 @@
 #import "FSReportHeaderView.h"
 #import "FSReportCell.h"
 #import "FSCurReadingsViewController.h"
+#import "FSReportHelper.h"
+#import "ReaderDocument.h"
 
 @interface FSReportViewController ()
 {
     NSMutableArray *arrayJob;
+    FSReportHelper *reportHelper;
 }
 
 @end
@@ -194,21 +197,13 @@
 #pragma mark - PopView Delegate
 - (void)didPopUpItem
 {
-    /*//
+    
     [UIView animateWithDuration:0.1f animations:^{
         CGRect popFrame = popView.frame;
         popFrame.size.height = 0.0f;
         [popView setFrame:popFrame];
     }completion:^(BOOL finished){
         [popView setHidden:YES];
-        if ([_curFeed feedJobID] == -1) {
-            [CommonMethods showAlertUsingTitle:@"Info" andMessage:@"No Job!"];
-            return;
-        }
-        if ([[_curFeed feedID] isEqualToString:@"-1"]) {
-            [CommonMethods showAlertUsingTitle:@"Info" andMessage:@"Add Location and Product!"];
-            return;
-        }
         switch (popView.selectedNum) {
             case 0:
                 [self sendEmail];
@@ -220,7 +215,6 @@
                 break;
         }
     }];
-     */
 }
 
 #pragma mark - UIPrinterInteractionDelegate
@@ -303,6 +297,7 @@
 
 - (void)print
 {
+#if false
     UIPrintInteractionController *pic = [UIPrintInteractionController sharedPrintController];
     pic.delegate = self;
     
@@ -326,6 +321,28 @@
     };
 
     [pic presentAnimated:YES completionHandler:completionHandler];
+#else
+
+    if (reportHelper == nil)
+        reportHelper = [[FSReportHelper alloc] init];
+    NSString *pdfFullPath = [reportHelper generateReportForJob:self.curJob];
+    
+    if (pdfFullPath == nil)
+        return;
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:pdfFullPath]) {
+        ReaderDocument *document = [ReaderDocument withDocumentFilePath:pdfFullPath password:nil];
+        
+        if (document) {
+            ReaderViewController *readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
+            readerViewController.delegate = self;
+            readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+            self.pdfReaderViewController = readerViewController;
+            [self presentViewController:self.pdfReaderViewController animated:YES completion:nil];
+        }
+    }
+#endif
 }
 
 - (IBAction)onBack:(id)sender
@@ -336,6 +353,7 @@
 
 - (IBAction)onFly:(id)sender
 {
+#if false
     if (popView.hidden) {
         [popView setHidden:NO];
         [UIView animateWithDuration:0.1f animations:^{
@@ -353,6 +371,11 @@
             
         }];
     }
+#else
+    
+    [self print];
+#endif
+    
 }
 
 - (void)didDisclosure:(FSReportCell *)cell
@@ -361,6 +384,14 @@
     vc.curDate = cell.curDate;
     vc.curLocProduct = cell.locProduct;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - ReaderViewControllerDelegate
+- (void)dismissReaderViewController:(ReaderViewController *)viewController {
+    
+    if (viewController) {
+        [viewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

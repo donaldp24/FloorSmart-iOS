@@ -38,7 +38,7 @@
                         <rect key="frame" x="246" y="8" width="25" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <state key="normal" image="bt_arrow_down1.png">
+                        <state key="normal" image="bt_arrow_right1.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -58,6 +58,6 @@
     </objects>
     <resources>
         <image name="bg_product_list_bar.png" width="595" height="82"/>
-        <image name="bt_arrow_down1.png" width="30" height="27"/>
+        <image name="bt_arrow_right1.png" width="30" height="27"/>
     </resources>
 </document>

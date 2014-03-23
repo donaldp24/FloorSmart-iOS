@@ -34,4 +34,6 @@
 
 + (CGFloat)widthOfString:(NSString *)string withFont:(id)font;
 
++ (NSString *)getDocumentDirectory;
+
 @end

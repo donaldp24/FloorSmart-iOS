@@ -29,7 +29,8 @@
 @property (nonatomic, assign) IBOutlet UILabel *lblOverTempAVG;
 
 @property (nonatomic, strong) FSLocProduct *curLocProduct;
-@property (nonatomic, assign) NSDate *curDate;
+@property (nonatomic, strong) NSDate *curDate;
+@property (nonatomic, strong) FSReading *curReading;
 
 @property (nonatomic, assign) IBOutlet UILabel *lblCurrent;
 @property (nonatomic, assign) IBOutlet UILabel *lblCurRH;
@@ -39,6 +40,8 @@
 @property (nonatomic, assign) IBOutlet UILabel *lblCurGravity;
 @property (nonatomic, assign) IBOutlet UILabel *lblCurMaterial;
 @property (nonatomic, assign) IBOutlet UILabel *lblCurMC;
+
+@property (nonatomic, assign) IBOutlet UIView *archive_alertview;
 
 - (IBAction)onBack:(id)sender;
 

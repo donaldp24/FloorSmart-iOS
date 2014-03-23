@@ -49,6 +49,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.archive_alertview.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
+    [self.archive_alertview setHidden:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -222,19 +225,46 @@
 
 - (void)didDelete:(FSMeasureCell *)cell
 {
-    /*
-    if (selectedCell.isOpened) {
-        [self hideOverall:NO];
-        selectedCell.isOpened = NO;
-    }
-    if (cell) {
-        [[DataManager sharedInstance] deleteReadingFromDatabase:cell.curReading];
-    }
-    [self initDateTable];
-    [arrOverallReadings removeAllObjects];
-    [tblDetal reloadData];
-     */
+    self.curReading = cell.curReading;
+    
+    [self.view bringSubviewToFront:self.archive_alertview];
+    [self.archive_alertview setHidden:NO];
+    [self showAlertAnimation];
 }
+
+- (IBAction)didDeleteOk:(id)sender
+{
+    if (self.curReading)
+        [[DataManager sharedInstance] deleteReadingFromDatabase:self.curReading];
+    [self hideAlertAnimation];
+    [self initDateTable];
+}
+
+- (IBAction)didDeleteCancel:(id)sender
+{
+    [self hideAlertAnimation];
+}
+
+- (void)showAlertAnimation
+{
+    [UIView animateWithDuration:0.2f animations:^{
+        self.archive_alertview.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
+    }completion:^(BOOL finished){
+        [UIView animateWithDuration:0.07f animations:^{
+            self.archive_alertview.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+        }completion:nil];
+    }];
+}
+
+- (void)hideAlertAnimation
+{
+    [UIView animateWithDuration:0.1f animations:^{
+        self.archive_alertview.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+    }completion:^(BOOL finished){
+        [self.archive_alertview setHidden:YES];
+    }];
+}
+
 
 - (void)setOverallData
 {

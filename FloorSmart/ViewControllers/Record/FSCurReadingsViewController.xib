@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FSCurReadingsViewController">
             <connections>
+                <outlet property="archive_alertview" destination="gWt-51-Pnd" id="wuQ-Dp-Oms"/>
                 <outlet property="lblCurBattery" destination="KzC-3I-9xz" id="IYb-jl-fQR"/>
                 <outlet property="lblCurDepth" destination="q7L-d7-mAM" id="I1a-dE-PUP"/>
                 <outlet property="lblCurGravity" destination="1lY-Rp-TXq" id="eTh-nd-EP9"/>
@@ -34,6 +35,38 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" id="gWt-51-Pnd">
+                    <rect key="frame" x="0.0" y="44" width="320" height="480"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_archive_job.png" id="kBn-dP-U6N">
+                            <rect key="frame" x="42" y="166" width="236" height="148"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="byK-46-yjp">
+                            <rect key="frame" x="64" y="275" width="90" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="ok" image="bt_ok.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="didDeleteOk:" destination="-1" eventType="touchUpInside" id="JHQ-hD-Sfy"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YJc-t6-4qL">
+                            <rect key="frame" x="162" y="275" width="90" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="cancel" image="bt_alertcancel.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="didDeleteCancel:" destination="-1" eventType="touchUpInside" id="jh4-EM-7cT"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.51000000000000001" colorSpace="calibratedRGB"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" id="eeP-EG-wzi">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -324,11 +357,14 @@
     </objects>
     <resources>
         <image name="background.png" width="640" height="1136"/>
+        <image name="bg_archive_job.png" width="355" height="179"/>
         <image name="bg_data_bar.png" width="595" height="102"/>
         <image name="bg_job_overview_detail_bar.png" width="595" height="214"/>
         <image name="bg_job_overview_detail_list_01.png" width="545" height="48"/>
         <image name="bg_title_bar.png" width="640" height="103"/>
+        <image name="bt_alertcancel.png" width="113" height="33"/>
         <image name="bt_back.png" width="15" height="28"/>
+        <image name="bt_ok.png" width="113" height="33"/>
         <image name="ic_delete.png" width="20" height="30"/>
     </resources>
 </document>
