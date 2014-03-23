@@ -83,6 +83,17 @@
         }
     }
     [self.tblMain reloadData];
+    
+    if ([arrayJob count] == 0)
+    {
+        self.lblNoResults.hidden = NO;
+        self.btnFly.hidden = YES;
+    }
+    else
+    {
+        self.lblNoResults.hidden = YES;
+        self.btnFly.hidden = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning

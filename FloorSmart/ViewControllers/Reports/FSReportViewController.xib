@@ -7,7 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FSReportViewController">
             <connections>
+                <outlet property="btnFly" destination="LJA-cr-q6K" id="XnM-6l-pni"/>
                 <outlet property="lblJob" destination="CAi-lk-AgB" id="bYD-IR-aya"/>
+                <outlet property="lblNoResults" destination="IyB-HA-e71" id="NIs-F3-CnL"/>
                 <outlet property="popView" destination="qB5-co-rC8" id="XCj-Gg-WlV"/>
                 <outlet property="tblMain" destination="gtd-79-wbN" id="PgO-zx-u7C"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -93,6 +95,13 @@
                         <action selector="onFly:" destination="-1" eventType="touchUpInside" id="bE3-Vp-ISK"/>
                     </connections>
                 </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Readings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IyB-HA-e71" userLabel="no results">
+                    <rect key="frame" x="75" y="233" width="169" height="23"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view hidden="YES" contentMode="scaleToFill" id="qB5-co-rC8" customClass="FSPopView">
                     <rect key="frame" x="175" y="33" width="120" height="90"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

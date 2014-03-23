@@ -23,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_delete_job.png" id="w8z-BH-Q2S">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_delete_location.png" id="w8z-BH-Q2S">
                             <rect key="frame" x="42" y="166" width="236" height="148"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -178,7 +178,7 @@
     </objects>
     <resources>
         <image name="background.png" width="640" height="1136"/>
-        <image name="bg_delete_job.png" width="355" height="179"/>
+        <image name="bg_delete_location.png" width="355" height="180"/>
         <image name="bg_job_keyword.png" width="595" height="61"/>
         <image name="bg_title_bar.png" width="640" height="103"/>
         <image name="bt_alertcancel.png" width="113" height="33"/>

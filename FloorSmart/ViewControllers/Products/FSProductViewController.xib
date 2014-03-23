@@ -29,7 +29,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_archive_job.png" id="O3c-IA-LnE">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_product_delete.png" id="O3c-IA-LnE">
                             <rect key="frame" x="42" y="166" width="236" height="148"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -260,7 +260,7 @@
     <resources>
         <image name="background.png" width="640" height="1136"/>
         <image name="bg_add_job_bar.png" width="365" height="61"/>
-        <image name="bg_archive_job.png" width="355" height="179"/>
+        <image name="bg_product_delete.png" width="355" height="180"/>
         <image name="bg_product_small_list.png" width="120" height="25"/>
         <image name="bg_select_type_bar.png" width="215" height="61"/>
         <image name="bg_title_bar.png" width="640" height="103"/>

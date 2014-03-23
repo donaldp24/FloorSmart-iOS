@@ -264,6 +264,8 @@
 		D3F8EF5418D3C28F00572FA0 /* EmulatorReadingParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8EF5018D3C28F00572FA0 /* EmulatorReadingParser.m */; };
 		D3F8EF5518D3C28F00572FA0 /* ScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8EF5218D3C28F00572FA0 /* ScanManager.m */; };
 		D3F8EF5818D3C2B300572FA0 /* SensorReadingParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8EF5718D3C2B300572FA0 /* SensorReadingParser.m */; };
+		D3FBF7F418DF8B2E009CE69F /* bg_product_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FBF7F218DF8B2E009CE69F /* bg_product_delete.png */; };
+		D3FBF7F618DF8C11009CE69F /* bg_delete_location.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FBF7F518DF8C11009CE69F /* bg_delete_location.png */; };
 		D3FE795E18D6907100F747E2 /* bg_main_banner_tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FE795D18D6907100F747E2 /* bg_main_banner_tabbar.png */; };
 /* End PBXBuildFile section */
 
@@ -602,6 +604,8 @@
 		D3F8EF5318D3C28F00572FA0 /* ScanManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScanManagerDelegate.h; path = Scan/ScanManagerDelegate.h; sourceTree = "<group>"; };
 		D3F8EF5618D3C2B300572FA0 /* SensorReadingParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SensorReadingParser.h; path = Scan/SensorReadingParser.h; sourceTree = "<group>"; };
 		D3F8EF5718D3C2B300572FA0 /* SensorReadingParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SensorReadingParser.m; path = Scan/SensorReadingParser.m; sourceTree = "<group>"; };
+		D3FBF7F218DF8B2E009CE69F /* bg_product_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_product_delete.png; path = FloorSmart/resource/new/bg_product_delete.png; sourceTree = SOURCE_ROOT; };
+		D3FBF7F518DF8C11009CE69F /* bg_delete_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_delete_location.png; path = FloorSmart/resource/new/bg_delete_location.png; sourceTree = SOURCE_ROOT; };
 		D3FE795D18D6907100F747E2 /* bg_main_banner_tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_main_banner_tabbar.png; path = FloorSmart/resource/origin/bg_main_banner_tabbar.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -914,6 +918,8 @@
 		1435C07D1887932A00AE1C87 /* new */ = {
 			isa = PBXGroup;
 			children = (
+				D3FBF7F518DF8C11009CE69F /* bg_delete_location.png */,
+				D3FBF7F218DF8B2E009CE69F /* bg_product_delete.png */,
 				D3F4C4B418DDDB2B006F40D1 /* bt_arrow_right1.png */,
 				14F537B318C0ECB500C1318A /* bt_arrow_down1.png */,
 				14F537B418C0ECB500C1318A /* bt_arrow_up1.png */,
@@ -1345,6 +1351,7 @@
 				D3F4C4CB18DE3AC9006F40D1 /* AppIcon-072.png in Resources */,
 				1435C0C81887932A00AE1C87 /* bt_box_sl.png in Resources */,
 				14F7EB7D1886F12C00E4F088 /* bg_select_type_nl.png in Resources */,
+				D3FBF7F418DF8B2E009CE69F /* bg_product_delete.png in Resources */,
 				14F7EB871886F12C00E4F088 /* bt_jobs_nl.png in Resources */,
 				CE1A63AA18878E160011E6EA /* Default-568h@2x.png in Resources */,
 				1435C0B41887932A00AE1C87 /* bg_delete_readings.png in Resources */,
@@ -1361,6 +1368,7 @@
 				14F7EBA51886F12C00E4F088 /* bg_dateformat.png in Resources */,
 				14F7EB6D1886F12C00E4F088 /* bg_delete_job.png in Resources */,
 				14F7EB781886F12C00E4F088 /* bg_product_small_list.png in Resources */,
+				D3FBF7F618DF8C11009CE69F /* bg_delete_location.png in Resources */,
 				1435C0B71887932A00AE1C87 /* bg_job_tab.png in Resources */,
 				14F7EB741886F12C00E4F088 /* bg_main_banner.png in Resources */,
 				D39E182A18D2657A0054CF19 /* FSLocProductCell.xib in Resources */,

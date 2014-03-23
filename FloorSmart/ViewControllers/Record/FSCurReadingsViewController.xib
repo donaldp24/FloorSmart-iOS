@@ -39,7 +39,7 @@
                     <rect key="frame" x="0.0" y="44" width="320" height="480"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_archive_job.png" id="kBn-dP-U6N">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_delete_readings.png" id="kBn-dP-U6N">
                             <rect key="frame" x="42" y="166" width="236" height="148"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -357,8 +357,8 @@
     </objects>
     <resources>
         <image name="background.png" width="640" height="1136"/>
-        <image name="bg_archive_job.png" width="355" height="179"/>
         <image name="bg_data_bar.png" width="595" height="102"/>
+        <image name="bg_delete_readings.png" width="355" height="179"/>
         <image name="bg_job_overview_detail_bar.png" width="595" height="214"/>
         <image name="bg_job_overview_detail_list_01.png" width="545" height="48"/>
         <image name="bg_title_bar.png" width="640" height="103"/>

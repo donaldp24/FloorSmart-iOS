@@ -21,6 +21,8 @@
 @property (nonatomic, assign) IBOutlet FSPopView *popView;
 @property (nonatomic, strong) FSJob *curJob;
 @property (nonatomic, retain) ReaderViewController *pdfReaderViewController;
+@property (nonatomic, retain) IBOutlet UILabel *lblNoResults;
+@property (nonatomic, retain) IBOutlet UIButton *btnFly;
 
 
 - (IBAction)onBack:(id)sender;

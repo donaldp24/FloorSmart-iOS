@@ -28,6 +28,8 @@ static CGFloat const kHeaderHeight = 110.f;
 static CGFloat const kSubtitleHeight = 120.f;
 static CGFloat const kDateHeight = 50.f;
 static CGFloat const kRowHeight = 40.0f;
+static CGFloat const kStatisticHeight = 40.f;
+static CGFloat const kGap = 10.f;
 
 @interface NSMutableString (Placeholder)
 
@@ -187,12 +189,12 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
     }
 }
 
-- (void)renderHeader:(NSString *)locName {
+- (void)renderHeader:(FSJob *)job loc:(FSLocation *)loc {
     
     UIGraphicsBeginPDFPageWithInfo(CGRectMake(0, 0, pageSize.width, pageSize.height), nil);
     
     UIFont *font = [UIFont systemFontOfSize:12.0f];
-    NSString *strHeader = [NSString stringWithFormat:@"Location: %@", locName];
+    NSString *strHeader = [NSString stringWithFormat:@"Job: %@ \t\t Location: %@", job.jobName, loc.locName];
     CGFloat width = [CommonMethods widthOfString:strHeader withFont:font] + 20;
     
     [self drawText:strHeader
@@ -211,26 +213,47 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
     [self drawPageNumber:currentPage];
 }
 
-- (void) renderSubtitle:(CGFloat)ypos locName:(NSString *)locName locProductName:(NSString *)locProductName {
+- (void) renderSubtitle:(CGFloat)ypos loc:(FSLocation *)loc locProduct:(FSLocProduct *)locProduct {
     
     
     ypos += 30;
     
     UIFont *font = [UIFont systemFontOfSize:22.0f];
-    NSString *strHeader = [NSString stringWithFormat:@"Location: %@", locName];
+    NSString *strHeader = [NSString stringWithFormat:@"Location: %@", loc.locName];
     CGFloat width = [CommonMethods widthOfString:strHeader withFont:font] + 20;
     
     [self drawText:strHeader
          withFrame:CGRectMake(60, ypos, width, 20)
           withFont:font];
     
-    ypos += 20;
+    ypos += 30;
 
-    strHeader = [NSString stringWithFormat:@"Product: %@", locProductName];
+    strHeader = [NSString stringWithFormat:@"Product: %@", locProduct.locProductName];
     width = [CommonMethods widthOfString:strHeader withFont:font] + 20;
     [self drawText:strHeader
-         withFrame:CGRectMake(60, ypos + 30, width, 30)
+         withFrame:CGRectMake(60, ypos, width, 30)
           withFont:font];
+    if ([locProduct.locProductName isEqualToString:FMD_DEFAULT_PRODUCTNAME])
+    {
+        int xpos = 60 + width;
+        strHeader = [NSString stringWithFormat:@"(%@)", [FSProduct getDisplayProductType:locProduct.locProductType]];
+        font = [UIFont systemFontOfSize:22.0f];
+        width = [CommonMethods widthOfString:strHeader withFont:font] + 20;
+        [self drawText:strHeader
+             withFrame:CGRectMake(xpos, ypos, width, 30)
+              withFont:font];
+    }
+    
+    ypos += 30;
+    
+    font = [UIFont italicSystemFontOfSize:22.0f];
+    //GlobalData *globalData = [GlobalData sharedData];
+    strHeader = [NSString stringWithFormat:@"Coverage: %.1f square feet", locProduct.locProductCoverage];
+    width = [CommonMethods widthOfString:strHeader withFont:font] + 20;
+    [self drawText:strHeader
+         withFrame:CGRectMake(60, ypos, width, 30)
+          withFont:font];
+    
 }
 
 - (void) renderDate:(CGFloat)ypos date:(NSDate *)date {
@@ -250,20 +273,44 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
 }
 
 - (BOOL) isInPage:(CGFloat)ypos {
-    if (ypos >= A4PAPER_HEIGHT_IN_PORTRATE-340)
+    if (ypos >= A4PAPER_HEIGHT_IN_PORTRATE-120)
         return NO;
     return YES;
 }
 
 - (CGFloat) heightRemains:(CGFloat)ypos {
-    return A4PAPER_HEIGHT_IN_PORTRATE-340-ypos;
+    return A4PAPER_HEIGHT_IN_PORTRATE-120-ypos;
 }
+
+- (void) renderStatistics:(CGFloat)ypos arrayReadings:(NSMutableArray *)arrayReadings {
+    
+    CGFloat xOrigin = 100;
+    CGFloat yOrigin = ypos;
+    // draw statistics
+    
+    UIFont *font = [UIFont systemFontOfSize:18.0f];
+    CGFloat mcavg = [FSReading getMCAvg:arrayReadings];
+    CGFloat rhavg = [FSReading getRHAvg:arrayReadings];
+    CGFloat tempavg = [FSReading getTempAvg:arrayReadings];
+    CGFloat emcavg = [FSReading getEmcAvg:arrayReadings];
+    
+    NSString *strStatistic = [NSString stringWithFormat:@"MC Avg: %.1f%%;\t\tRH Avg: %ld%%;\t\tTemp Avg: %ldC;\t\tEMC Avg:%.1f%%", mcavg, (long)rhavg, (long)tempavg, emcavg];
+    
+    CGFloat width = [CommonMethods widthOfString:strStatistic withFont:font] + 20;
+    
+    [self drawText:strStatistic
+         withFrame:CGRectMake(xOrigin, yOrigin, width, 30)
+          withFont:font];
+    
+    ypos += 25;
+}
+
 
 - (void) renderRows:(CGFloat)ypos data:(NSMutableArray *)data startIndex:(long)startIndex count:(long)count {
     
     CGFloat xOrigin = 100;
     CGFloat yOrigin = ypos;
-    CGFloat columnWidth = 100;
+    CGFloat columnWidth = 150;
     int numberOfColumns = 6;
     
     // table header
@@ -274,10 +321,10 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
        andColumnCount:numberOfColumns];
     
     NSArray *labels = @[@"No",
-                        @"MC",
-                        @"RH",
-                        @"Temp",
-                        @"EMC",
+                        @"MC (%)",
+                        @"RH (%)",
+                        @"Temp (C)",
+                        @"EMC (%)",
                         @"Time"
                         ];
     
@@ -405,7 +452,7 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
         if (isStart == YES) {
             
             // draw header.
-            [self renderHeader:loc.locName];
+            [self renderHeader:aJob loc:loc];
             isStart = NO;
             yPos = kHeaderHeight;
         }
@@ -419,13 +466,16 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
             if ([self isInPage:yPos + kSubtitleHeight] == NO) {
                 [self drawPageNumber:currentPage++ + 1];
                 
-                [self renderHeader:loc.locName];
+                [self renderHeader:aJob loc:loc];
                 yPos = kHeaderHeight;
             }
             
             // draw subtitle
-            [self renderSubtitle:yPos locName:loc.locName locProductName:locProduct.locProductName];
+            [self renderSubtitle:yPos loc:loc locProduct:locProduct];
             yPos += kSubtitleHeight;
+            
+            // draw parameters of product
+            //
 
             
             for (int k = 0; k < [arrayLocProductsDates count]; k++) {
@@ -433,11 +483,13 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
                 NSDate *date = (NSDate *)[dic2 objectForKey:kDateKey];
                 NSMutableArray *arrayReadings = [dic2 objectForKey:kReadingsKey];
                 
+                yPos += kGap;
+                
                 // page break and render header
                 if ([self isInPage:yPos + kDateHeight] == NO) {
                     [self drawPageNumber:currentPage++ + 1];
                     
-                    [self renderHeader:loc.locName];
+                    [self renderHeader:aJob loc:loc];
                     yPos = kHeaderHeight;
                 }
                 
@@ -445,8 +497,13 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
                 [self renderDate:yPos date:date];
                 yPos += kDateHeight;
                 
-                long m = 0;
-                long count = [arrayReadings count];
+                // draw statistics
+                [self renderStatistics:yPos arrayReadings:arrayReadings];
+                yPos += kStatisticHeight;
+                
+                
+                int m = 0;
+                int count = (int)[arrayReadings count];
                 isStart = NO;
                 while (m < count) {
                     
@@ -454,18 +511,22 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
                     {
                         [self drawPageNumber:currentPage++ + 1];
                         
-                        [self renderHeader:loc.locName];
+                        [self renderHeader:aJob loc:loc];
                         yPos = kHeaderHeight;
                         
                         isStart = NO;
                     }
                     
                     CGFloat remains = [self heightRemains:yPos];
-                    long remainRows = remains / kRowHeight - 1;
+                    int remainRows = remains / kRowHeight - 1;
+                    
                     
                     if (remainRows <= count - m) {
                         isStart = YES;
                     }
+                    
+                    if (remainRows <= 0)
+                        continue;
                     
                     if (remainRows > count - m)
                         remainRows = count - m;
