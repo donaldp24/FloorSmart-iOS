@@ -268,9 +268,9 @@
         
         GlobalData *globalData = [GlobalData sharedData];
         
-        [lblOverMCAVG setText:[NSString stringWithFormat:@"MC Avg: %.1f%@", mcavg, @"%"]];
-        [lblOverMCHigh setText:[NSString stringWithFormat:@"MC High: %ld%@", (long)mchigh, @"%"]];
-        [lblOverMCLow setText:[NSString stringWithFormat:@"MC Low: %ld%@", (long)mclow, @"%"]];
+        [lblOverMCAVG setText:[NSString stringWithFormat:@"MC Avg: %.1f%@", mcavg / 10.f, @"%"]];
+        [lblOverMCHigh setText:[NSString stringWithFormat:@"MC High: %.1f%@", mchigh / 10.f, @"%"]];
+        [lblOverMCLow setText:[NSString stringWithFormat:@"MC Low: %.1f%@", mclow / 10.f, @"%"]];
         [lblOverEMCAVG setText:[NSString stringWithFormat:@"EMC Avg: %d%@", (int)emcavg, @"%" ]];
         [lblOverRHAVG setText:[NSString stringWithFormat:@"RH Avg:%d%@", (int)rhavg, @"%"]];
         [lblOverTempAVG setText:[NSString stringWithFormat:@"Temp Avg:%@", [globalData getDisplayTemperature:tempavg]]];
@@ -330,7 +330,7 @@
         self.lblCurDepth.text = [NSString stringWithFormat:@"Depth : %@", [FSReading getDisplayDepth:data.readDepth]];
         self.lblCurMaterial.text = [NSString stringWithFormat:@"Material : %@", [FSReading getDisplayMaterial:data.readMaterial]];
         self.lblCurGravity.text = [NSString stringWithFormat:@"Gravity : %ld", data.readGravity];
-        self.lblCurMC.text = [NSString stringWithFormat:@"MC : %ld%%", data.readMC];
+        self.lblCurMC.text = [NSString stringWithFormat:@"MC : %.1f%%", data.readMC / 10.f];
     }
     else
     {

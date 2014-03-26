@@ -498,8 +498,8 @@
 
 - (IBAction)onAdd:(id)sender
 {
-    if ([txtAdd.text isEqualToString:@""]) {
-        [CommonMethods showAlertUsingTitle:@"" andMessage:@"Input Product Name to add!"];
+    if (txtAdd.text == nil || [txtAdd.text isEqualToString:@""]) {
+        [CommonMethods showAlertUsingTitle:@"" andMessage:@"Please input product name to add!"];
         return;
     }
     

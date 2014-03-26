@@ -87,6 +87,10 @@
 - (IBAction)onAdd:(id)sender
 {
     NSString *locationName = self.txtAdd.text;
+    if (locationName == nil || [locationName isEqualToString:@""]) {
+        [CommonMethods showAlertUsingTitle:@"" andMessage:@"Please input location name to add!"];
+        return;
+    }
     FSLocation *loc = [[FSLocation alloc] init];
     loc.locID = 0;
     loc.locJobID = self.curJob.jobID;

@@ -16,7 +16,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 #ifdef TESTFLIGHT_ENABLED
-    [TestFlight takeOff:@"0bfc809f-45e8-4edb-a502-cc12779d2357"];
+    [TestFlight takeOff:@"f5bf72b9-aacc-4d6f-91dc-e2325536c1be"];
 #endif
     
     [[GlobalData sharedData] loadInitData];

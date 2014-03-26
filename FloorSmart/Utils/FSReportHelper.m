@@ -294,7 +294,7 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
     CGFloat tempavg = [FSReading getTempAvg:arrayReadings];
     CGFloat emcavg = [FSReading getEmcAvg:arrayReadings];
     
-    NSString *strStatistic = [NSString stringWithFormat:@"MC Avg: %.1f%%;\t\tRH Avg: %ld%%;\t\tTemp Avg: %ldC;\t\tEMC Avg:%.1f%%", mcavg, (long)rhavg, (long)tempavg, emcavg];
+    NSString *strStatistic = [NSString stringWithFormat:@"MC Avg: %.1f%%;\t\tRH Avg: %ld%%;\t\tTemp Avg: %ldC;\t\tEMC Avg:%.1f%%", mcavg / 10.f, (long)rhavg, (long)tempavg, emcavg];
     
     CGFloat width = [CommonMethods widthOfString:strStatistic withFont:font] + 20;
     
@@ -363,7 +363,7 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
         
         // MC(%)
         column++;
-        [self drawText:[NSString stringWithFormat:@"%ld", reading.readMC]
+        [self drawText:[NSString stringWithFormat:@"%.1f", reading.readMC / 10.f]
              withFrame:CGRectMake(xOrigin + 10 + (columnWidth * column),
                                   yOrigin + 10 + (kRowHeight * (i - startIndex)),
                                   columnWidth - 20,

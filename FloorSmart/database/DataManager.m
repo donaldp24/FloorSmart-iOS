@@ -84,6 +84,8 @@ static DataManager *sharedManager;
 - (NSMutableArray *)getJobs:(long)archiveFlag searchField:(NSString *)searchField
 {
     NSMutableArray *arrJobList = [[NSMutableArray alloc] init];
+    if (searchField == nil)
+        searchField = @"";
     NSString *sql = [NSString stringWithFormat:@"SELECT * FROM tbl_job WHERE deleted = 0 and job_archived = %ld AND job_name like %@%@%@", (long)archiveFlag, @"'%", searchField, @"%'"];
     FMResultSet *results = [_database executeQuery:sql];
     while ([results next]) {
@@ -248,6 +250,8 @@ static DataManager *sharedManager;
 - (NSMutableArray *)getProducts:(NSString *)searchField
 {
     NSMutableArray *arrProductList = [[NSMutableArray alloc] init];
+    if (searchField == nil)
+        searchField = @"";
     FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_product WHERE deleted = 0 and product_name like %@%@%@", @"'%", searchField, @"%'"]];
     while ([results next]) {
         
@@ -367,6 +371,8 @@ static DataManager *sharedManager;
 - (NSMutableArray *)getLocProducts:(FSLocation *)loc searchField:(NSString *)searchField
 {
     NSMutableArray *arrLocProductList = [[NSMutableArray alloc] init];
+    if (searchField == nil)
+        searchField = @"";
     FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_locproduct WHERE deleted = 0 AND locproduct_locid = %ld AND locproduct_productname like %@%@%@ and locproduct_productname != '%@'", loc.locID, @"'%", searchField, @"%'", FMD_DEFAULT_PRODUCTNAME]];
     while ([results next]) {
         
@@ -385,6 +391,9 @@ static DataManager *sharedManager;
 - (NSMutableArray *)getLocProducts:(FSLocation *)loc searchField:(NSString *)searchField containDefault:(BOOL) isContain
 {
     NSMutableArray *arrLocProductList = [[NSMutableArray alloc] init];
+    if (searchField == nil)
+        searchField = @"";
+    
     NSString *sql = @"";
     if (isContain == YES)
         sql = [NSString stringWithFormat:@"SELECT * FROM tbl_locproduct WHERE deleted = 0 AND locproduct_locid = %ld AND locproduct_productname like %@%@%@", loc.locID, @"'%", searchField, @"%'"];

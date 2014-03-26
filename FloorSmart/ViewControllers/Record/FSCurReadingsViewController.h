@@ -32,14 +32,14 @@
 @property (nonatomic, strong) NSDate *curDate;
 @property (nonatomic, strong) FSReading *curReading;
 
-@property (nonatomic, assign) IBOutlet UILabel *lblCurrent;
-@property (nonatomic, assign) IBOutlet UILabel *lblCurRH;
-@property (nonatomic, assign) IBOutlet UILabel *lblCurTemp;
-@property (nonatomic, assign) IBOutlet UILabel *lblCurBattery;
-@property (nonatomic, assign) IBOutlet UILabel *lblCurDepth;
-@property (nonatomic, assign) IBOutlet UILabel *lblCurGravity;
-@property (nonatomic, assign) IBOutlet UILabel *lblCurMaterial;
-@property (nonatomic, assign) IBOutlet UILabel *lblCurMC;
+@property (nonatomic, strong) IBOutlet UILabel *lblCurrent;
+@property (nonatomic, strong) IBOutlet UILabel *lblCurRH;
+@property (nonatomic, strong) IBOutlet UILabel *lblCurTemp;
+@property (nonatomic, strong) IBOutlet UILabel *lblCurBattery;
+@property (nonatomic, strong) IBOutlet UILabel *lblCurDepth;
+@property (nonatomic, strong) IBOutlet UILabel *lblCurGravity;
+@property (nonatomic, strong) IBOutlet UILabel *lblCurMaterial;
+@property (nonatomic, strong) IBOutlet UILabel *lblCurMC;
 
 @property (nonatomic, assign) IBOutlet UIView *archive_alertview;
 

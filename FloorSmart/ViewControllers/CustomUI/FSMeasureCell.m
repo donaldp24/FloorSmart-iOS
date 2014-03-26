@@ -42,7 +42,7 @@
     _curReading = curReading;
     NSDate *curReadDate = curReading.readTimestamp;
     [lblTime setText:[NSString stringWithFormat:@"%@hrs", [CommonMethods date2str:curReadDate withFormat:@"HH:mm"]]];
-    [lblMC setText:[NSString stringWithFormat:@"%ld", curReading.readMC]];
+    [lblMC setText:[NSString stringWithFormat:@"%.1f", curReading.readMC / 10.f]];
     [lblEMC setText:[NSString stringWithFormat:@"%.1f", [curReading getEmcValue]]];
     [lblRH setText:[NSString stringWithFormat:@"%d", (int)curReading.readConvRH]];
     GlobalData *globalData = [GlobalData sharedData];

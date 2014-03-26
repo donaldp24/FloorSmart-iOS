@@ -49,6 +49,9 @@
     kMCValueOffset = 12;
 }
 
+#define EMULATOR_IS_BIGENDIAN
+#define CHANGE_ENDIAN(a) ((((a) & 0xFF00) >> 8) + (((a) & 0xFF) << 8))
+
 - (NSDictionary*)parseData:(NSData *)manufactureData withOffset:(NSInteger)offset {
 
     NSLog(@"EmulatorReadingParser");
@@ -67,23 +70,31 @@
     
     NSString *uuidString = [self uuidFromData:manufactureData withOffset:offset];
     
+#ifdef EMULATOR_IS_BIGENDIAN
     UInt16 rh = *(UInt16*)[[manufactureData subdataWithRange:NSMakeRange(rhValueOffset, 2)] bytes];
-    
-    float convrh = [self RHFromBytes:rh];
-    
+    rh = CHANGE_ENDIAN(rh);
     UInt16 temp = *(UInt16*)[[manufactureData subdataWithRange:NSMakeRange(tempValueOffset, 2)] bytes];
-    
-    float convtemp = [self temperatureFromBytes:temp];
+    temp = CHANGE_ENDIAN(temp);
+    UInt16 mc = *(UInt16*)[[manufactureData subdataWithRange:NSMakeRange(mcValueOffset, 2)] bytes];
+    mc = CHANGE_ENDIAN(mc);
+#else
+    UInt16 rh = *(UInt16*)[[manufactureData subdataWithRange:NSMakeRange(rhValueOffset, 2)] bytes];
+    UInt16 temp = *(UInt16*)[[manufactureData subdataWithRange:NSMakeRange(tempValueOffset, 2)] bytes];
+    UInt16 mc = *(UInt16*)[[manufactureData subdataWithRange:NSMakeRange(mcValueOffset, 2)] bytes];
+#endif
+
     
     UInt8 batteryLevel = *(UInt8*)[[manufactureData subdataWithRange:NSMakeRange(batteryLevelValueOffset, 1)] bytes];
     UInt8 depth = *(UInt8*)[[manufactureData subdataWithRange:NSMakeRange(depthModeValueOffset, 1)] bytes];
     UInt8 gravity = *(UInt8*)[[manufactureData subdataWithRange:NSMakeRange(gravityValueOffset, 1)] bytes];
     UInt8 material = *(UInt8*)[[manufactureData subdataWithRange:NSMakeRange(materialValueOffset, 1)] bytes];
-    UInt16 mc = *(UInt16*)[[manufactureData subdataWithRange:NSMakeRange(mcValueOffset, 2)] bytes];
     
     NSDateFormatter * dFormatter = [[NSDateFormatter alloc] init];
     [dFormatter setDateFormat:DATETIME_FORMAT];
     NSString * readingTimeStamp = [dFormatter stringFromDate:[NSDate date]];
+    
+    float convrh = [self RHFromBytes:rh];
+    float convtemp = [self temperatureFromBytes:temp];
     
     [sensorData setObject:readingTimeStamp forKey:kSensorDataReadingTimestampKey];
     [sensorData setObject:uuidString forKey:kSensorDataUuidKey];

@@ -135,8 +135,22 @@ static const int kPackageID = 0xDEB93391;
     NSMutableData* dataToParse = nil;
     NSInteger offset = 0;
     NSDictionary *sensorData;
+    
+    /* for test sensordataparser
+    NSArray* uuidsArray = advertisementData[CBAdvertisementDataServiceUUIDsKey];
+    manufacturedData = [[uuidsArray firstObject] data];
+     */
 
     if (manufacturedData) {
+        
+        NSString * dataToParseString = @"";
+        for (int ix=0; ix<manufacturedData.length; ix++) {
+            unsigned char c;
+            [manufacturedData getBytes:&c range:NSMakeRange(ix, 1)];
+            dataToParseString = [dataToParseString stringByAppendingFormat:@"%02X ",c];
+        }
+        NSLog(@"Debug output manufacture data: %@",dataToParseString);
+        
         if(![[manufacturedData subdataWithRange:NSMakeRange(0, 4)] isEqualToData:
              [NSData dataWithBytes:&kPackageID length:4]])
         {
@@ -160,15 +174,13 @@ static const int kPackageID = 0xDEB93391;
 
         CBUUID* uuid1 = [uuidsArray firstObject];
         
-#ifndef RELEASE
         NSString *outputString = @"";
         for (int ix = 0 ; ix < [uuid1 data].length; ix++) {
             unsigned char c;
             [[uuid1 data] getBytes:&c range:NSMakeRange(ix, 1)];
             outputString = [outputString stringByAppendingFormat:@"%02X ",c];
         }
-        NSLog(@"Debug output sensor data: %@",outputString);
-#endif
+        NSLog(@"Debug output sensor data(uuid1): %@",outputString);
 
         
 #if false
@@ -200,7 +212,7 @@ static const int kPackageID = 0xDEB93391;
 #else
         UInt32 packageID = kPackageID;
         ///uuid comes right after flag, length and dataType bytes.
-        if(![[[uuid1 data] subdataWithRange:NSMakeRange(0, 4)] isEqualToData:
+        if([[uuid1 data] length] < 4 || ![[[uuid1 data] subdataWithRange:NSMakeRange(0, 4)] isEqualToData:
              [NSData dataWithBytes:&packageID length:4]])
         {
             NSLog(@"Third party package was received.");
@@ -216,15 +228,6 @@ static const int kPackageID = 0xDEB93391;
         sensorData = [parser parseData:dataToParse  withOffset:offset];
     }
 
-#ifndef RELEASE
-    NSString * dataToParseString = @"";
-    for (int ix=offset; ix<dataToParse.length; ix++) {
-        unsigned char c;
-        [dataToParse getBytes:&c range:NSMakeRange(ix, 1)];
-        dataToParseString = [dataToParseString stringByAppendingFormat:@"%02X ",c];
-    }
-    NSLog(@"Debug output sensor data: %@",dataToParseString);
-#endif
 
     [[self delegate] scanManager:self
                    didFindSensor:sensorData];

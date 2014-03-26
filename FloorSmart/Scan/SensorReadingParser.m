@@ -52,6 +52,9 @@ NSString * const kSensorDataReadingTimestampKey = @"timestamp";
     kMCValueOffset = 12;
 }
 
+
+#define CHANGE_ENDIAN(a) ((((a) & 0xFF00) >> 8) + (((a) & 0xFF) << 8))
+
 - (NSDictionary*)parseData:(NSData *)manufactureData withOffset:(NSInteger)offset {
 
     NSLog(@"SensorReadingParser");
@@ -71,23 +74,25 @@ NSString * const kSensorDataReadingTimestampKey = @"timestamp";
     NSString *uuidString = [self uuidFromData:manufactureData withOffset:offset];
     
     UInt16 rh = *(UInt16*)[[manufactureData subdataWithRange:NSMakeRange(rhValueOffset, 2)] bytes];
-    
-    float convrh = [self RHFromBytes:rh];
-    
+    rh = CHANGE_ENDIAN(rh);
     UInt16 temp = *(UInt16*)[[manufactureData subdataWithRange:NSMakeRange(tempValueOffset, 2)] bytes];
-    
-    float convtemp = [self temperatureFromBytes:temp];
+    temp = CHANGE_ENDIAN(temp);
+    UInt16 mc = *(UInt16*)[[manufactureData subdataWithRange:NSMakeRange(mcValueOffset, 2)] bytes];
+    mc = CHANGE_ENDIAN(mc);
+
     
     UInt8 batteryLevel = *(UInt8*)[[manufactureData subdataWithRange:NSMakeRange(batteryLevelValueOffset, 1)] bytes];
     UInt8 depth = *(UInt8*)[[manufactureData subdataWithRange:NSMakeRange(depthModeValueOffset, 1)] bytes];
     UInt8 gravity = *(UInt8*)[[manufactureData subdataWithRange:NSMakeRange(gravityValueOffset, 1)] bytes];
     UInt8 material = *(UInt8*)[[manufactureData subdataWithRange:NSMakeRange(materialValueOffset, 1)] bytes];
-    UInt16 mc = *(UInt16*)[[manufactureData subdataWithRange:NSMakeRange(mcValueOffset, 2)] bytes];
+
     
     NSDateFormatter * dFormatter = [[NSDateFormatter alloc] init];
     [dFormatter setDateFormat:DATETIME_FORMAT];
     NSString * readingTimeStamp = [dFormatter stringFromDate:[NSDate date]];
     
+    float convrh = [self RHFromBytes:rh];
+    float convtemp = [self temperatureFromBytes:temp];
     [sensorData setObject:readingTimeStamp forKey:kSensorDataReadingTimestampKey];
     [sensorData setObject:uuidString forKey:kSensorDataUuidKey];
     [sensorData setObject:[NSNumber numberWithInt:rh] forKey:kSensorDataRHKey];
@@ -98,7 +103,9 @@ NSString * const kSensorDataReadingTimestampKey = @"timestamp";
     [sensorData setObject:[NSNumber numberWithInt:depth] forKey:kSensorDataDepthKey];
     [sensorData setObject:[NSNumber numberWithInt:gravity] forKey:kSensorDataGravityKey];
     [sensorData setObject:[NSNumber numberWithInt:material] forKey:kSensorDataMaterialKey];
-    [sensorData setObject:[NSNumber numberWithInt:mc] forKey:kSensorDataMCKey];;
+    [sensorData setObject:[NSNumber numberWithInt:mc] forKey:kSensorDataMCKey];
+    
+    NSLog(@"SensorReadingParser parsing result ; RH:%hu(%.2f), Temp:%hu(%.2f), BT:%hhu, D:%hhu, SG:%hhu, MT:%hhu, MC:%hu", rh, convrh, temp, convtemp, batteryLevel, depth, gravity, material, mc);
     
     // return immutable dictionary
     return [NSDictionary dictionaryWithDictionary:sensorData];
@@ -113,9 +120,11 @@ NSString * const kSensorDataReadingTimestampKey = @"timestamp";
     // with no 0.1 precision (i.e. precision = 0 in your case, but should equal 1
     
     // bytes need to be swapped
+    /*
     if(CFByteOrderGetCurrent() == CFByteOrderLittleEndian) {
         rh = CFSwapInt16BigToHost(rh);
     }
+     */
     float convrh = (-6.0f + (125.0f * rh / 65536.0f));
     //  rh = (UInt16)roundf(-6.0f + (125.0f * (rh/256 + (rh & 0xff) * 256) / 65536.0f));
     return convrh;
@@ -124,11 +133,13 @@ NSString * const kSensorDataReadingTimestampKey = @"timestamp";
 - (float)temperatureFromBytes:(int)temp {
     float temperature = temp;
     // bytes need to be swapped
+    /*
     if(CFByteOrderGetCurrent() == CFByteOrderLittleEndian) {
         temperature = CFSwapInt16BigToHost(temperature);
     }
+     */
     temperature = (-46.85f + (175.72f * temperature / 65536.0f));  // celsius
-    temperature = temperature * 1.8f + 32.0f;  // convert to fahrenheit
+    //temperature = temperature * 1.8f + 32.0f;  // convert to fahrenheit
     return temperature;
 }
 

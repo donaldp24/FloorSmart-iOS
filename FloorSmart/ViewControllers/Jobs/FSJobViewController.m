@@ -123,9 +123,13 @@
 - (void)initTableDataArray
 {
     if (self.mode == MODE_JOBMANAGEMENT || self.mode == MODE_RECORD)
+    {
         arrJobNames = [[DataManager sharedInstance] getJobs:0 searchField:self.txtEdit.text];
+    }
     else
+    {
         arrJobNames = [[DataManager sharedInstance] getJobs:0 searchField:self.txtSearch.text];
+    }
 }
 
 #pragma mark - textfield delegate
@@ -313,8 +317,8 @@
 
 - (IBAction)onAdd:(id)sender
 {
-    if ([self.txtEdit.text isEqualToString:@""]) {
-        [CommonMethods showAlertUsingTitle:@"" andMessage:@"Input Job Name to add!"];
+    if (self.txtEdit.text == nil || [self.txtEdit.text isEqualToString:@""]) {
+        [CommonMethods showAlertUsingTitle:@"" andMessage:@"Please input job name to add!"];
         return;
     }
     FSJob *job = [[FSJob alloc] init];
