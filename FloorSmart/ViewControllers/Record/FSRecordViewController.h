@@ -49,6 +49,7 @@
 // delegate methods
 - (void)jobSelected:(FSJob *)job;
 - (void)locationSelected:(FSLocation *)loc;
+- (void)locationAdded:(FSLocation *)loc;
 - (void)locProductSelected:(FSLocProduct *)locProduct;
 - (void)productSelected:(FSProduct *)product;
 

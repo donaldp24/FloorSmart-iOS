@@ -19,7 +19,9 @@
 #import "SensorReadingParser.h"
 #import "Global.h"
 
-@interface FSRecordViewController ()
+@interface FSRecordViewController () {
+    CGFloat trasnfromHeight;
+}
 
 @end
 
@@ -30,6 +32,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        trasnfromHeight = 0.0f;
     }
     return self;
 }
@@ -63,6 +66,8 @@
     // Do any additional setup after loading the view from its nib.
     
     [self initMember];
+    
+    trasnfromHeight = 0.0f;
     
     readingVC = nil;
     
@@ -224,6 +229,9 @@
         }
         else
         {
+            self.txtLocation.text = @"";
+            self.txtProduct.text = @"";
+            
             if (selectedLocation == nil)
             {
                 selectedLocation = [[DataManager sharedInstance] getDefaultLocationOfJob:selectedJob.jobID];
@@ -235,7 +243,12 @@
             {
                 if (selectedLocProduct == nil && selectedProduct == nil)
                     selectedLocProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
+                
+                self.txtLocation.text = selectedLocation.locName;
             }
+            
+            if (selectedLocProduct != nil)
+                self.txtProduct.text = selectedLocProduct.locProductName;
         }
     }
     
@@ -272,7 +285,17 @@
     }
     self.txtCoverage.text = [NSString stringWithFormat:@"%.2f", coverage];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.view.window];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -290,10 +313,13 @@
 - (IBAction)BeginEditing:(UITextField *)sender
 {
     curTextField = sender;
+    
 }
 
 - (IBAction)EndEditing:(UITextField *)sender
 {
+    
+
     curTextField = nil;
     [sender resignFirstResponder];
 }
@@ -302,6 +328,7 @@
 {
     if (curTextField != nil)
     {
+        
         [curTextField resignFirstResponder];
         curTextField = nil;
     }
@@ -386,6 +413,19 @@
         //selectedLocProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
         [self locationSelected:selectedLocation];
     }
+    else
+    {
+        /*
+        defaultLocation.locID = 0;
+        defaultLocation.locName = FMD_DEFAULT_LOCATIONNAME;
+        defaultLocation.locJobID = selectedJob.jobID;
+        
+        int retId = [[DataManager sharedInstance] addLocationToDatabase:defaultLocation];
+        defaultLocation = [[DataManager sharedInstance] getLocationFromID:retId];
+        
+        [self locationSelected:selectedLocation];
+         */
+    }
     
     defaultLocation.locJobID = job.jobID;
     
@@ -411,6 +451,23 @@
 }
 
 #pragma mark - LocProduct Select Delegate
+- (void)locationAdded:(FSLocation *)loc
+{
+    selectedLocation = loc;
+    self.txtLocation.text = loc.locName;
+    
+    self.txtProduct.text = @"";
+    
+    selectedProduct = nil;
+    selectedLocProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
+    if (selectedLocProduct != nil)
+    {
+        [self locProductSelected:selectedLocProduct];
+    }
+    
+}
+
+
 - (void)productSelected:(FSProduct *)product
 {
     selectedProduct = product;
@@ -618,6 +675,36 @@
     {
         [readingVC initDateTable];
     }
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    if (curTextField == self.txtCoverage)
+    {
+        CGRect selectedCellFrame = self.txtCoverage.frame;
+        if (selectedCellFrame.origin.y + 40 >= [[UIScreen mainScreen] bounds].size.height - KEYBOARD_HEIGHT /* 216 */) {
+            trasnfromHeight = selectedCellFrame.origin.y + 40 - [[UIScreen mainScreen] bounds].size.height + KEYBOARD_HEIGHT;
+            [UIView animateWithDuration:0.1f animations:^{
+                [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - trasnfromHeight, self.view.frame.size.width, self.view.frame.size.height)];
+            }];
+        } else {
+            trasnfromHeight = 0;
+        }
+        
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    if (trasnfromHeight != 0) {
+        [UIView animateWithDuration:0.1f animations:^{
+            [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + trasnfromHeight, self.view.frame.size.width, self.view.frame.size.height)];
+        }];
+    }
+    
+    trasnfromHeight = 0.0f;
+    
+    curTextField = nil;
 }
 
 @end

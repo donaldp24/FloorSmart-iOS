@@ -300,8 +300,8 @@
     }
     
     
-    if (selectedCellFrame.origin.y + 80 >= [[UIScreen mainScreen] bounds].size.height - 216) {
-        trasnfromHeight = selectedCellFrame.origin.y + 80 - [[UIScreen mainScreen] bounds].size.height + 216;
+    if (selectedCellFrame.origin.y + 80 >= [[UIScreen mainScreen] bounds].size.height - KEYBOARD_HEIGHT /* 216 */) {
+        trasnfromHeight = selectedCellFrame.origin.y + 80 - [[UIScreen mainScreen] bounds].size.height + KEYBOARD_HEIGHT /* 216 */;
         [UIView animateWithDuration:0.1f animations:^{
             [tblProducts setFrame:CGRectMake(tblProducts.frame.origin.x, tblProducts.frame.origin.y - trasnfromHeight, tblProducts.frame.size.width, tblProducts.frame.size.height)];
         }];
@@ -528,6 +528,8 @@
             // adde default location to location table
             int loc_id = [[DataManager sharedInstance] addLocationToDatabase:self.curLoc];
             self.curLoc = [[DataManager sharedInstance] getLocationFromID:loc_id];
+            if (self.locProductSelectDelegate)
+                [self.locProductSelectDelegate locationAdded:self.curLoc];
         }
         if (self.curLoc != nil)
         {

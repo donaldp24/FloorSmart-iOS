@@ -8,7 +8,6 @@
 
 #import "FSMainViewController.h"
 #import "FSRecordViewController.h"
-#import "FSReadingsViewController.h"
 #import "GlobalData.h"
 
 @interface FSMainViewController ()

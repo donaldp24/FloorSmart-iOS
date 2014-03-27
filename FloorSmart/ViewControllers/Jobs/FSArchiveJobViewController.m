@@ -118,7 +118,7 @@
 {
     curJob = cell.curJob;
     arcVSdelete = 0;
-    [imgAlertBack setImage:[UIImage imageNamed:@"bg_archive_job"]];
+    [imgAlertBack setImage:[UIImage imageNamed:@"bg_cancelarchive_job"]];
     [self.view bringSubviewToFront:delete_alertview];
     [delete_alertview setHidden:NO];
     [self showAlertAnimation];

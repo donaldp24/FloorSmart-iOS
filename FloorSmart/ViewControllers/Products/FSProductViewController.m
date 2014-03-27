@@ -236,8 +236,8 @@
 {
     curCell = cell;
     CGRect selectedCellFrame = [cell.superview convertRect:cell.frame toView:self.view];
-    if (selectedCellFrame.origin.y + 80 >= [[UIScreen mainScreen] bounds].size.height - 216) {
-        trasnfromHeight = selectedCellFrame.origin.y + 80 - [[UIScreen mainScreen] bounds].size.height + 216;
+    if (selectedCellFrame.origin.y + 80 >= [[UIScreen mainScreen] bounds].size.height - KEYBOARD_HEIGHT /* 216 */) {
+        trasnfromHeight = selectedCellFrame.origin.y + 80 - [[UIScreen mainScreen] bounds].size.height + KEYBOARD_HEIGHT;
         [UIView animateWithDuration:0.1f animations:^{
             [tblProducts setFrame:CGRectMake(tblProducts.frame.origin.x, tblProducts.frame.origin.y - trasnfromHeight, tblProducts.frame.size.width, tblProducts.frame.size.height)];
         }];

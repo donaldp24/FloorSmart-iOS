@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
@@ -23,7 +24,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_delete_job.png" id="MrQ-wP-UoW">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_cancelarchive_job.png" id="MrQ-wP-UoW">
                             <rect key="frame" x="42" y="196" width="236" height="148"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -125,7 +126,7 @@
                                 <action selector="onSearch:" destination="-1" eventType="touchUpInside" id="ae4-YI-Y63"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fH0-EC-FJY" userLabel="btnCancel">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fH0-EC-FJY" userLabel="btnCancel">
                             <rect key="frame" x="245" y="6" width="46" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -141,11 +142,11 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="7xt-5D-wx9">
-                    <rect key="frame" x="12" y="116" width="297" height="300"/>
+                    <rect key="frame" x="12" y="116" width="297" height="344"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fXT-s4-0Yc">
-                            <rect key="frame" x="0.0" y="0.0" width="297" height="300"/>
+                            <rect key="frame" x="0.0" y="0.0" width="297" height="344"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -165,7 +166,7 @@
     </objects>
     <resources>
         <image name="background.png" width="640" height="1136"/>
-        <image name="bg_delete_job.png" width="355" height="179"/>
+        <image name="bg_cancelarchive_job.png" width="356" height="180"/>
         <image name="bg_job_keyword.png" width="595" height="61"/>
         <image name="bg_title_bar.png" width="640" height="103"/>
         <image name="bt_alertcancel.png" width="113" height="33"/>

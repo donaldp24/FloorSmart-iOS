@@ -200,6 +200,7 @@
 		14F7EBA91886F12C00E4F088 /* bt_ustime_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F7EB641886F12C00E4F088 /* bt_ustime_selected.png */; };
 		14F7EBAA1886F12C00E4F088 /* splash-screen_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F7EB651886F12C00E4F088 /* splash-screen_02.png */; };
 		CE1A63AA18878E160011E6EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1A63A918878E160011E6EA /* Default-568h@2x.png */; };
+		D304C1F418E381D0001EE1D1 /* bg_cancelarchive_job.png in Resources */ = {isa = PBXBuildFile; fileRef = D304C1F318E381D0001EE1D1 /* bg_cancelarchive_job.png */; };
 		D348DF5318CF75B800FE4946 /* XIBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5218CF75B800FE4946 /* XIBTableViewCell.m */; };
 		D348DF5718CFA96400FE4946 /* FSLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5518CFA96400FE4946 /* FSLocationCell.m */; };
 		D348DF5818CFA96400FE4946 /* FSLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D348DF5618CFA96400FE4946 /* FSLocationCell.xib */; };
@@ -259,8 +260,6 @@
 		D3F4C51D18DE5278006F40D1 /* wagner_pdf_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C51B18DE5278006F40D1 /* wagner_pdf_image@2x.png */; };
 		D3F591B818DCE59C00D8111C /* FSReportHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F591B718DCE59B00D8111C /* FSReportHeaderView.m */; };
 		D3F591BA18DCE5B900D8111C /* FSReportHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F591B918DCE5B900D8111C /* FSReportHeaderView.xib */; };
-		D3F591BE18DD2CD900D8111C /* FSReadingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F591BC18DD2CD900D8111C /* FSReadingsViewController.m */; };
-		D3F591BF18DD2CD900D8111C /* FSReadingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F591BD18DD2CD900D8111C /* FSReadingsViewController.xib */; };
 		D3F8EF5418D3C28F00572FA0 /* EmulatorReadingParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8EF5018D3C28F00572FA0 /* EmulatorReadingParser.m */; };
 		D3F8EF5518D3C28F00572FA0 /* ScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8EF5218D3C28F00572FA0 /* ScanManager.m */; };
 		D3F8EF5818D3C2B300572FA0 /* SensorReadingParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8EF5718D3C2B300572FA0 /* SensorReadingParser.m */; };
@@ -504,6 +503,7 @@
 		14F7EB641886F12C00E4F088 /* bt_ustime_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_ustime_selected.png; sourceTree = "<group>"; };
 		14F7EB651886F12C00E4F088 /* splash-screen_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-screen_02.png"; sourceTree = "<group>"; };
 		CE1A63A918878E160011E6EA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D304C1F318E381D0001EE1D1 /* bg_cancelarchive_job.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_cancelarchive_job.png; path = FloorSmart/resource/new/bg_cancelarchive_job.png; sourceTree = SOURCE_ROOT; };
 		D348DF5118CF75B800FE4946 /* XIBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XIBTableViewCell.h; path = CustomUI/XIBTableViewCell.h; sourceTree = "<group>"; };
 		D348DF5218CF75B800FE4946 /* XIBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XIBTableViewCell.m; path = CustomUI/XIBTableViewCell.m; sourceTree = "<group>"; };
 		D348DF5418CFA96400FE4946 /* FSLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocationCell.h; path = CustomUI/FSLocationCell.h; sourceTree = "<group>"; };
@@ -594,9 +594,6 @@
 		D3F591B618DCE59B00D8111C /* FSReportHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSReportHeaderView.h; path = CustomUI/FSReportHeaderView.h; sourceTree = "<group>"; };
 		D3F591B718DCE59B00D8111C /* FSReportHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSReportHeaderView.m; path = CustomUI/FSReportHeaderView.m; sourceTree = "<group>"; };
 		D3F591B918DCE5B900D8111C /* FSReportHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSReportHeaderView.xib; path = CustomUI/FSReportHeaderView.xib; sourceTree = "<group>"; };
-		D3F591BB18DD2CD900D8111C /* FSReadingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSReadingsViewController.h; sourceTree = "<group>"; };
-		D3F591BC18DD2CD900D8111C /* FSReadingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSReadingsViewController.m; sourceTree = "<group>"; };
-		D3F591BD18DD2CD900D8111C /* FSReadingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSReadingsViewController.xib; sourceTree = "<group>"; };
 		D3F8EF4F18D3C28F00572FA0 /* EmulatorReadingParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorReadingParser.h; path = Scan/EmulatorReadingParser.h; sourceTree = "<group>"; };
 		D3F8EF5018D3C28F00572FA0 /* EmulatorReadingParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorReadingParser.m; path = Scan/EmulatorReadingParser.m; sourceTree = "<group>"; };
 		D3F8EF5118D3C28F00572FA0 /* ScanManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScanManager.h; path = Scan/ScanManager.h; sourceTree = "<group>"; };
@@ -801,9 +798,6 @@
 				140E894918688EC60038B5BF /* FSReportViewController.h */,
 				140E894A18688EC60038B5BF /* FSReportViewController.m */,
 				140E894B18688EC60038B5BF /* FSReportViewController.xib */,
-				D3F591BB18DD2CD900D8111C /* FSReadingsViewController.h */,
-				D3F591BC18DD2CD900D8111C /* FSReadingsViewController.m */,
-				D3F591BD18DD2CD900D8111C /* FSReadingsViewController.xib */,
 			);
 			path = Reports;
 			sourceTree = "<group>";
@@ -918,6 +912,7 @@
 		1435C07D1887932A00AE1C87 /* new */ = {
 			isa = PBXGroup;
 			children = (
+				D304C1F318E381D0001EE1D1 /* bg_cancelarchive_job.png */,
 				D3FBF7F518DF8C11009CE69F /* bg_delete_location.png */,
 				D3FBF7F218DF8B2E009CE69F /* bg_product_delete.png */,
 				D3F4C4B418DDDB2B006F40D1 /* bt_arrow_right1.png */,
@@ -1317,7 +1312,6 @@
 				14F7EB7B1886F12C00E4F088 /* bg_search_bar.png in Resources */,
 				14F7EB901886F12C00E4F088 /* bt_report_sl.png in Resources */,
 				140E8A0518688F880038B5BF /* bg_bottombar.png in Resources */,
-				D3F591BF18DD2CD900D8111C /* FSReadingsViewController.xib in Resources */,
 				14F7EB691886F12C00E4F088 /* bg_avg.png in Resources */,
 				140E8A0A18688F880038B5BF /* tap_1.png in Resources */,
 				1435C0BB1887932A00AE1C87 /* bg_overwiew_tap_data_01.png in Resources */,
@@ -1458,6 +1452,7 @@
 				1435C0D31887932A00AE1C87 /* bt_white_arrow_down.png in Resources */,
 				14F7EB811886F12C00E4F088 /* bg_title_bar.png in Resources */,
 				140E8A1018688F880038B5BF /* tap_products1.png in Resources */,
+				D304C1F418E381D0001EE1D1 /* bg_cancelarchive_job.png in Resources */,
 				14F7EBA11886F12C00E4F088 /* segment_ft.png in Resources */,
 				D3F4C4D518DE3AC9006F40D1 /* Reader-Mark-N@2x.png in Resources */,
 				140E8A0F18688F880038B5BF /* tap_products0.png in Resources */,
@@ -1530,7 +1525,6 @@
 				140E894218688E9B0038B5BF /* FSJobViewController.m in Sources */,
 				140E8A1E1868A77D0038B5BF /* GlobalData.m in Sources */,
 				D3F4C50B18DE3AEC006F40D1 /* ReaderThumbCache.m in Sources */,
-				D3F591BE18DD2CD900D8111C /* FSReadingsViewController.m in Sources */,
 				1404CAB11869F69100D7A24B /* FSProductCell.m in Sources */,
 				14BED7A618705D500092A406 /* FSJob.m in Sources */,
 				140E8A231868AA130038B5BF /* FSPopContentController.m in Sources */,
@@ -1680,7 +1674,7 @@
 					"$(SRCROOT)/FloorSmart",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0EEA7797-D2AD-4523-A1C0-4F517E38D3C8";
+				PROVISIONING_PROFILE = "6E87F8C7-8A4B-4DCB-AE6B-140B3C45216D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1703,7 +1697,7 @@
 					"$(SRCROOT)/FloorSmart",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7C9CE84E-6BFF-4A01-8729-A97368553AC8";
+				PROVISIONING_PROFILE = "D099C660-756B-4529-81C0-58DD86FB62E0";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

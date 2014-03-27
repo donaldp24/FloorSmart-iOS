@@ -13,6 +13,7 @@
 
 @protocol FSLocProductSelectDelegate <NSObject>
 
+- (void)locationAdded:(FSLocation *)loc;
 - (void)productSelected:(FSProduct *)product;
 - (void)locProductSelected:(FSLocProduct *)locProduct;
 

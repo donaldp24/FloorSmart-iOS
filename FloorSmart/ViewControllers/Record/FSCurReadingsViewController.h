@@ -40,6 +40,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblCurGravity;
 @property (nonatomic, strong) IBOutlet UILabel *lblCurMaterial;
 @property (nonatomic, strong) IBOutlet UILabel *lblCurMC;
+@property (nonatomic, strong) IBOutlet UILabel *lblCurEMC;
 
 @property (nonatomic, assign) IBOutlet UIView *archive_alertview;
 

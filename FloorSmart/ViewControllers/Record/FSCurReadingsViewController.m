@@ -49,7 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
     self.archive_alertview.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
     [self.archive_alertview setHidden:YES];
 }
@@ -106,14 +106,14 @@
 
 - (void)initDateTable
 {
+    if (self.curDate == nil)
+        self.curDate = [NSDate date];
+    
     if (self.curLocProduct == nil) {
         arrOverallReadings = [[NSMutableArray alloc] init];
         [self setCurData:nil];
         [self setOverallData];
     } else {
-        
-        if (self.curDate == nil)
-            self.curDate = [NSDate date];
         arrOverallReadings = [[DataManager sharedInstance] getReadings:self.curLocProduct.locProductID withDate:self.curDate];
         
         [self setCurData:[arrOverallReadings lastObject]];
@@ -283,8 +283,8 @@
         int rh = 0;
         int temp = 0;
         [lblOverMCAVG setText:[NSString stringWithFormat:@"MC Avg: %.1f%@", mcValue, @"%"]];
-        [lblOverMCHigh setText:[NSString stringWithFormat:@"MC High: %ld%@", (long)mcValue, @"%"]];
-        [lblOverMCLow setText:[NSString stringWithFormat:@"MC Low: %ld%@", (long)mcValue, @"%"]];
+        [lblOverMCHigh setText:[NSString stringWithFormat:@"MC High: %.1f%@", mcValue, @"%"]];
+        [lblOverMCLow setText:[NSString stringWithFormat:@"MC Low: %.1f%@", mcValue, @"%"]];
         [lblOverEMCAVG setText:[NSString stringWithFormat:@"EMC Avg: 0%@", @"%" ]];
         [lblOverRHAVG setText:[NSString stringWithFormat:@"RH Avg: %d%@", (int)rh, @"%"]];
         [lblOverTempAVG setText:[NSString stringWithFormat:@"Temp Avg: %d", (int)temp]];
@@ -293,7 +293,7 @@
     {
         CGFloat mcavg = [FSReading getMCAvg:arrOverallReadings];
         CGFloat mchigh = [FSReading getMCMax:arrOverallReadings];
-        CGFloat mclow = [FSReading getMCMax:arrOverallReadings];
+        CGFloat mclow = [FSReading getMCMin:arrOverallReadings];
         CGFloat rhavg = [FSReading getRHAvg:arrOverallReadings];
         CGFloat tempavg = [FSReading getTempAvg:arrOverallReadings];
         CGFloat emcavg = [FSReading getEmcAvg:arrOverallReadings];
@@ -303,9 +303,14 @@
         [lblOverMCAVG setText:[NSString stringWithFormat:@"MC Avg: %.1f%@", mcavg / 10.f, @"%"]];
         [lblOverMCHigh setText:[NSString stringWithFormat:@"MC High: %.1f%@", mchigh / 10.f, @"%"]];
         [lblOverMCLow setText:[NSString stringWithFormat:@"MC Low: %.1f%@", mclow / 10.f, @"%"]];
-        [lblOverEMCAVG setText:[NSString stringWithFormat:@"EMC Avg: %d%@", (int)emcavg, @"%" ]];
-        [lblOverRHAVG setText:[NSString stringWithFormat:@"RH Avg:%d%@", (int)rhavg, @"%"]];
-        [lblOverTempAVG setText:[NSString stringWithFormat:@"Temp Avg:%@", [globalData getDisplayTemperature:tempavg]]];
+        [lblOverEMCAVG setText:[NSString stringWithFormat:@"EMC Avg: %.1f%@", emcavg, @"%" ]];
+        [lblOverRHAVG setText:[NSString stringWithFormat:@"RH Avg: %d%@", ROUND(rhavg), @"%"]];
+        
+        // temperature
+        NSString *tempUnit = [globalData getTempUnit];
+        if (globalData.settingTemp == YES) //f
+            tempavg = [FSReading getFTemperature:tempavg];
+        [lblOverTempAVG setText:[NSString stringWithFormat:@"Temp Avg: %d%@", ROUND(tempavg), tempUnit]];
     }
     [tblDetal reloadData];
 }
@@ -360,26 +365,37 @@
         {
             self.lblCurrent.text = [NSString stringWithFormat:@"Date(%@) Last Readings(%@)", [CommonMethods date2str:data.readTimestamp withFormat:globalData.settingDateFormat], [CommonMethods date2str:data.readTimestamp withFormat:@"HH:mm"]];
         }
-        self.lblCurRH.text = [NSString stringWithFormat:@"RH : %.1f", data.readConvRH];
         
-
-        self.lblCurTemp.text = [NSString stringWithFormat:@"Temp : %@", [globalData getDisplayTemperature:data.readConvTemp]];
+        // RH, rounded whole unit
+        self.lblCurRH.text = [NSString stringWithFormat:@"RH : %d%%", ROUND(data.readConvRH)];
         
+        
+        // Temperature (F or C)
+        NSString *tempUnit = [globalData getTempUnit];
+        CGFloat temp = data.readConvTemp;
+        if (globalData.settingTemp == YES)
+            temp = [FSReading getFTemperature:temp];
+        self.lblCurTemp.text = [NSString stringWithFormat:@"Temp : %d%@", ROUND(temp), tempUnit];
+        
+        // Battery
         self.lblCurBattery.text = [NSString stringWithFormat:@"Battery : %ld%%", data.readBattery];
         self.lblCurDepth.text = [NSString stringWithFormat:@"Depth : %@", [FSReading getDisplayDepth:data.readDepth]];
         self.lblCurMaterial.text = [NSString stringWithFormat:@"Material : %@", [FSReading getDisplayMaterial:data.readMaterial]];
         self.lblCurGravity.text = [NSString stringWithFormat:@"Gravity : %ld", data.readGravity];
         self.lblCurMC.text = [NSString stringWithFormat:@"MC : %.1f%%", data.readMC / 10.f];
+        
+        // Current EMC
+        self.lblCurEMC.text = [NSString stringWithFormat:@"EMC : %.1f%%", [data getEmcValue]];
     }
     else
     {
         if ([CommonMethods compareOnlyDate:self.curDate date2:[NSDate date]] == NSOrderedSame)
         {
-            self.lblCurrent.text = [NSString stringWithFormat:@"Today(%@) Last Readings", [CommonMethods date2str:data.readTimestamp withFormat:globalData.settingDateFormat]];
+            self.lblCurrent.text = [NSString stringWithFormat:@"Today(%@) Last Readings", [CommonMethods date2str:self.curDate withFormat:globalData.settingDateFormat]];
         }
         else
         {
-            self.lblCurrent.text = [NSString stringWithFormat:@"Date(%@) Last Readings", [CommonMethods date2str:data.readTimestamp withFormat:globalData.settingDateFormat]];
+            self.lblCurrent.text = [NSString stringWithFormat:@"Date(%@) Last Readings", [CommonMethods date2str:self.curDate withFormat:globalData.settingDateFormat]];
         }
         self.lblCurRH.text = [NSString stringWithFormat:@"RH :"];
         self.lblCurTemp.text = [NSString stringWithFormat:@"Temp : "];
@@ -388,6 +404,8 @@
         self.lblCurMaterial.text = [NSString stringWithFormat:@"Material : "];
         self.lblCurGravity.text = [NSString stringWithFormat:@"Gravity : "];
         self.lblCurMC.text = [NSString stringWithFormat:@"MC : "];
+        
+        self.lblCurEMC.text = [NSString stringWithFormat:@"EMC : "];
     }
 }
 

@@ -30,3 +30,5 @@ extern GlobalData *_globalData;
 #define US_DATEFORMAT @"MM/dd/yyyy"
 #define EU_DATEFORMAT @"dd.MM.yyyy"
 #define DATETIME_FORMAT @"yyyy-MM-dd HH:mm:ss"
+
+#define KEYBOARD_HEIGHT     240

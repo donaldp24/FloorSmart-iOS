@@ -7,6 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
+#ifndef ROUND
+#define ROUND(a) ((int)(a + 0.5))
+#endif
+
 @interface CommonMethods : NSObject {
 
 }
@@ -35,5 +39,6 @@
 + (CGFloat)widthOfString:(NSString *)string withFont:(id)font;
 
 + (NSString *)getDocumentDirectory;
+
 
 @end

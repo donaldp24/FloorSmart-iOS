@@ -247,8 +247,13 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
     ypos += 30;
     
     font = [UIFont italicSystemFontOfSize:22.0f];
-    //GlobalData *globalData = [GlobalData sharedData];
-    strHeader = [NSString stringWithFormat:@"Coverage: %.1f square feet", locProduct.locProductCoverage];
+    GlobalData *globalData = [GlobalData sharedData];
+    if (globalData.settingArea == YES) //feet
+        strHeader = [NSString stringWithFormat:@"Coverage: %.1f square feet", locProduct.locProductCoverage];
+    else
+    {
+        strHeader = [NSString stringWithFormat:@"Coverage: %.1f square meter", [GlobalData sqft2sqm:locProduct.locProductCoverage]];
+    }
     width = [CommonMethods widthOfString:strHeader withFont:font] + 20;
     [self drawText:strHeader
          withFrame:CGRectMake(60, ypos, width, 30)
@@ -294,7 +299,7 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
     CGFloat tempavg = [FSReading getTempAvg:arrayReadings];
     CGFloat emcavg = [FSReading getEmcAvg:arrayReadings];
     
-    NSString *strStatistic = [NSString stringWithFormat:@"MC Avg: %.1f%%;\t\tRH Avg: %ld%%;\t\tTemp Avg: %ldC;\t\tEMC Avg:%.1f%%", mcavg / 10.f, (long)rhavg, (long)tempavg, emcavg];
+    NSString *strStatistic = [NSString stringWithFormat:@"MC Avg: %.1f%%;\t\tRH Avg: %d%%;\t\tTemp Avg: %dC;\t\tEMC Avg:%.1f%%", mcavg / 10.f, ROUND(rhavg), ROUND(tempavg), emcavg];
     
     CGFloat width = [CommonMethods widthOfString:strStatistic withFont:font] + 20;
     
@@ -373,7 +378,7 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
         
         // RH(%)
         column++;
-        [self drawText:[NSString stringWithFormat:@"%.1f", reading.readConvRH]
+        [self drawText:[NSString stringWithFormat:@"%d", ROUND(reading.readConvRH)]
              withFrame:CGRectMake(xOrigin + 10 + (columnWidth * column),
                                   yOrigin + 10 + (kRowHeight * (i - startIndex)),
                                   columnWidth - 20,
@@ -383,7 +388,7 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
         
         // Temp(C)
         column++;
-        [self drawText:[NSString stringWithFormat:@"%.1f", reading.readConvTemp]
+        [self drawText:[NSString stringWithFormat:@"%d", ROUND(reading.readConvTemp)]
              withFrame:CGRectMake(xOrigin + 10 + (columnWidth * column),
                                   yOrigin + 10 + (kRowHeight * (i - startIndex)),
                                   columnWidth - 20,

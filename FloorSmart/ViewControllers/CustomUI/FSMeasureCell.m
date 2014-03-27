@@ -43,10 +43,19 @@
     NSDate *curReadDate = curReading.readTimestamp;
     [lblTime setText:[NSString stringWithFormat:@"%@hrs", [CommonMethods date2str:curReadDate withFormat:@"HH:mm"]]];
     [lblMC setText:[NSString stringWithFormat:@"%.1f", curReading.readMC / 10.f]];
+    
+    // EMC
     [lblEMC setText:[NSString stringWithFormat:@"%.1f", [curReading getEmcValue]]];
-    [lblRH setText:[NSString stringWithFormat:@"%d", (int)curReading.readConvRH]];
+    
+    // RH, is rounded whole unit
+    [lblRH setText:[NSString stringWithFormat:@"%d", ROUND(curReading.readConvRH)]];
     GlobalData *globalData = [GlobalData sharedData];
-    [lblTemperature setText:[NSString stringWithFormat:@"%@", [globalData getDisplayTemperatureWithoutUnit:curReading.readConvTemp]]];
+    
+    // Temperature
+    CGFloat temp = curReading.readConvTemp;
+    if (globalData.settingTemp == YES) //f
+        temp = [FSReading getFTemperature:temp];
+    [lblTemperature setText:[NSString stringWithFormat:@"%d", ROUND(temp)]];
     
 }
 
