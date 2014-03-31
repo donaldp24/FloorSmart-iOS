@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FSProduct.h"
+#import "FSProductCell.h"
 
 @interface FSLocProductCell : UITableViewCell <UITextFieldDelegate>
 
@@ -20,8 +21,9 @@
 @property (nonatomic, assign) IBOutlet UILabel *lblEditingProcType;
 
 @property (nonatomic, strong) FSLocProduct *curLocProduct;
+@property (nonatomic) long curLocProductType;
 
-@property (nonatomic, strong) id delegate;
+@property (nonatomic, strong) id<FSProductCellDelegate> delegate;
 
 + (FSLocProductCell *)sharedCell;
 

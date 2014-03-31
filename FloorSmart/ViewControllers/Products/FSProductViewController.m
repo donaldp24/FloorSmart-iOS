@@ -90,6 +90,9 @@
     
     [self initTableArray];
     [tblProducts reloadData];
+    
+    self.isEditing = NO;
+    
     if ([arrProdcutList count] == 0)
     {
         [self.lblNoResult setHidden:NO];
@@ -171,12 +174,13 @@
 {
     if (tableView == tblProcType) {
         if (indexPath.row) {
-            [curCell.lblEditingProcType setText:@"Finished"];
-            [curCell.curProduct setProductType:FSProductTypeFinished];
+            curCell.curProductType = FSProductTypeFinished;
         } else {
-            [curCell.lblEditingProcType setText:@"Subfloor"];
-            [curCell.curProduct setProductType:FSProductTypeSubfloor];
+            curCell.curProductType = FSProductTypeSubfloor;
         }
+
+        [curCell.lblEditingProcType setText:[FSProduct getDisplayProductType:curCell.curProductType]];
+
         [self hideCombo];
     }
 }
@@ -255,10 +259,27 @@
     [self showAlertAnimation];
 }
 
-- (void)didOK:(FSProductCell *)cell
+- (BOOL)didOK:(FSProductCell *)cell
 {
-    [curCell.curProduct setProductName:cell.txtProductName.text];
-    [[DataManager sharedInstance] updateProductToDatabase:curCell.curProduct];
+    if ([curCell.curProduct.productName isEqualToString:cell.txtProductName.text]
+        && curCell.curProduct.productType == curCell.curProductType)
+    {
+        //
+    }
+    else
+    {
+#if CHECK_PRODUCT_DUPLICATE
+        if ([[DataManager sharedInstance] isExistSameProduct:cell.txtProductName.text productType:cell.curProductType] )
+        {
+            [CommonMethods showAlertUsingTitle:@"" andMessage:[NSString stringWithFormat:@"Product '%@(%@)' is already exist", cell.txtProductName.text, [FSProduct getDisplayProductType:cell.curProductType]]];
+            return NO;
+        }
+#endif
+        [curCell.curProduct setProductName:cell.txtProductName.text];
+        [curCell.curProduct setProductType:cell.curProductType];
+        
+        [[DataManager sharedInstance] updateProductToDatabase:curCell.curProduct];
+    }
 //    [curProduct clear];
     if (trasnfromHeight != 0) {
         [UIView animateWithDuration:0.1f animations:^{
@@ -266,6 +287,7 @@
         }];
     }
     [self hideCombo];
+    return YES;
 }
 
 - (void)didCancel:(FSProductCell *)cell
@@ -368,6 +390,14 @@
         [CommonMethods showAlertUsingTitle:@"" andMessage:@"Please input product name to add!"];
         return;
     }
+    
+#if CHECK_PRODUCT_DUPLICATE
+    if ([[DataManager sharedInstance] isExistSameProduct:self.txtAdd.text productType:finishNum] )
+    {
+        [CommonMethods showAlertUsingTitle:@"" andMessage:[NSString stringWithFormat:@"Product '%@(%@)' is already exist", self.txtAdd.text, [FSProduct getDisplayProductType:finishNum]]];
+        return;
+    }
+#endif
     
     FSProduct *product = [[FSProduct alloc] init];
     product.productName = txtAdd.text;

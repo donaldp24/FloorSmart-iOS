@@ -31,5 +31,6 @@
 
 - (void)onAddSelLoc:(id)sender;
 - (NSString *) getLocName:(id)sender;
+- (BOOL)onEditFinishedOk:(id)sender;
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FSPopView.h"
 #import "FSProduct.h"
+#import "FSProductCell.h"
 
 @protocol FSProductSelectDelegate <NSObject>
 
@@ -16,7 +17,7 @@
 
 @end
 
-@interface FSProductViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface FSProductViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, FSProductCellDelegate>
 
 @property (nonatomic) BOOL isEditing;
 

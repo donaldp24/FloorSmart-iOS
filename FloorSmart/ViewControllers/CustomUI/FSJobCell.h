@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "FSJob.h"
 
+@protocol FSJobCellDelegate;
+
+
 @interface FSJobCell : UITableViewCell <UITextFieldDelegate>
 
 @property (nonatomic, assign) IBOutlet UILabel *lblJobName;
@@ -20,7 +23,7 @@
 
 @property (nonatomic, strong) FSJob *curJob;
 
-@property (nonatomic, strong) id delegate;
+@property (nonatomic, strong) id<FSJobCellDelegate> delegate;
 
 + (FSJobCell *)sharedCell;
 
@@ -29,5 +32,11 @@
 - (IBAction)onOK:(id)sender;
 - (IBAction)onCancel:(id)sender;
 - (IBAction)onDetail:(id)sender;
+
+@end
+
+@protocol FSJobCellDelegate <NSObject>
+
+- (BOOL) didOK:(FSJobCell *)cell;
 
 @end

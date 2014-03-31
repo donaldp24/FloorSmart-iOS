@@ -69,17 +69,20 @@
     if (!self.delegate)
         return;
     
-    [self.delegate onEditFinishedOk:self];
+    BOOL ret = [self.delegate onEditFinishedOk:self];
     
-    //[superController setIsEditing:NO];
-    
-    [self.txtName resignFirstResponder];
-    [self.txtName setHidden:YES];
-    [self.lblName setText:[self.txtName text]];
-    [self.txtName setText:@""];
-    [self.lblName setHidden:NO];
-    [self.viewEditing setHidden:YES];
-    [self.viewControl setHidden:NO];
+    if (ret)
+    {
+        //[superController setIsEditing:NO];
+        
+        [self.txtName resignFirstResponder];
+        [self.txtName setHidden:YES];
+        [self.lblName setText:[self.txtName text]];
+        [self.txtName setText:@""];
+        [self.lblName setHidden:NO];
+        [self.viewEditing setHidden:YES];
+        [self.viewControl setHidden:NO];
+    }
 }
 
 - (IBAction)onBtnCancel:(id)sender

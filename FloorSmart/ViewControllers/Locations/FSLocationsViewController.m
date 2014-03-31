@@ -64,7 +64,7 @@
 {
     arrLoc = [[DataManager sharedInstance] getLocations:self.curJob.jobID];
     [self.tblLoc reloadData];
-    
+    self.isEditing = NO;
     if ([arrLoc count] == 0)
         [self.lblNoResult setHidden:NO];
     else
@@ -91,6 +91,15 @@
         [CommonMethods showAlertUsingTitle:@"" andMessage:@"Please input location name to add!"];
         return;
     }
+    
+#if CHECK_LOC_DUPLICATE
+    if ([[DataManager sharedInstance] isExistSameLocation:self.curJob.jobID locName:self.txtAdd.text])
+    {
+        [CommonMethods showAlertUsingTitle:@"" andMessage:[NSString stringWithFormat:@"Location '%@' is already exist in this Job", self.txtAdd.text]];
+        return;
+    }
+#endif
+    
     FSLocation *loc = [[FSLocation alloc] init];
     loc.locID = 0;
     loc.locJobID = self.curJob.jobID;
@@ -232,21 +241,34 @@
     [self showAlertAnimation];
 }
 
-- (void)onEditFinishedOk:(id)sender
+- (BOOL)onEditFinishedOk:(id)sender
 {
     self.isEditing = NO;
     
     FSLocationCell *cell = (FSLocationCell *)sender;
-    [self.curLoc setLocName:[cell.txtName text]];
-    
-    
-    [[DataManager sharedInstance] updateLocToDatabase:self.curLoc];
+    if ([self.curLoc.locName isEqualToString:cell.txtName.text])
+    {
+        //
+    }
+    else
+    {
+#if CHECK_LOC_DUPLICATE
+        if ([[DataManager sharedInstance] isExistSameLocation:self.curJob.jobID locName:cell.txtName.text])
+        {
+            [CommonMethods showAlertUsingTitle:@"" andMessage:[NSString stringWithFormat:@"Location '%@' is already exist in this Job", cell.txtName.text]];
+            return NO;
+        }
+#endif
+        [self.curLoc setLocName:[cell.txtName text]];
+        [[DataManager sharedInstance] updateLocToDatabase:self.curLoc];
+    }
     if (trasnfromHeight != 0) {
         [UIView animateWithDuration:0.2f animations:^{
             [self.tblLoc setFrame:CGRectMake(self.tblLoc.frame.origin.x, self.tblLoc.frame.origin.y + trasnfromHeight, self.tblLoc.frame.size.width, self.tblLoc.frame.size.height)];
         }];
     }
     [self initTableData];
+    return YES;
 }
 
 - (void)onEditFinishedCancel:(id)sender

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FSJob.h"
+#import "FSJobCell.h"
 
 @protocol FSJobSelectDelegate <NSObject>
 
@@ -15,7 +16,7 @@
 
 @end
 
-@interface FSJobViewController : UIViewController <UITableViewDelegate, UITextFieldDelegate>
+@interface FSJobViewController : UIViewController <UITableViewDelegate, UITextFieldDelegate, FSJobCellDelegate>
 
 @property (nonatomic) BOOL isEditing;
 

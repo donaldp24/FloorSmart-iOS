@@ -11,7 +11,6 @@
 #import "FSJob.h"
 #import "FSLocationCell.h"
 #import "FSLocation.h"
-#import "FSLocSelCell.h"
 
 @protocol FSLocationSelectDelegate <NSObject>
 
@@ -44,7 +43,7 @@
 // FSLocationCellDelegate
 - (void)onEditCell:(id)sender;
 - (void)onDeleteCell:(id)sender;
-- (void)onEditFinishedOk:(id)sender;
+- (BOOL)onEditFinishedOk:(id)sender;
 - (void)onEditFinishedCancel:(id)sender;
 - (BOOL)isEditing:(id)sender;
 - (void)onSelectCell:(id)sender;

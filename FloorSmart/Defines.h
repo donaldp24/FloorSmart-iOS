@@ -21,6 +21,11 @@
 #define MODE_REVIEW         2
 #define MODE_PRODUCTMANAGEMENT  3
 
+#define CHECK_JOB_DUPLICATE     1
+#define CHECK_LOC_DUPLICATE     1
+#define CHECK_PRODUCT_DUPLICATE 1
+#define CHECK_LOCPRODUCT_DUPLICATE  1
+
 typedef struct AdvertisementPackage{
     UInt32 uuid;//uuid to identify the messages
     UInt16 S1RH;//Sensor 1 RH reading – SHT25A

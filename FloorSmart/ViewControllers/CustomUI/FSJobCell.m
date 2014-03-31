@@ -86,24 +86,21 @@
 
 - (IBAction)onOK:(id)sender
 {
-    if([self.delegate respondsToSelector:@selector(didOK:)])
+    BOOL ret = YES;
+    ret = [self.delegate didOK:self];
+    if (ret == YES)
     {
-        [self.delegate performSelector:@selector(didOK:) withObject:self];
+        FSJobViewController *superController = (FSJobViewController *)self.delegate;
+        [superController setIsEditing:NO];
+        [txtJobName resignFirstResponder];
+        [txtJobName setHidden:YES];
+        [lblJobName setText:[txtJobName text]];
+        [txtJobName setText:@""];
+        [lblJobName setHidden:NO];
+        //[btnDetail setHidden:NO];
+        [viewEditing setHidden:YES];
+        [viewEdit setHidden:NO];
     }
-    if([self.delegate respondsToSelector:@selector(onJobEditFinished::)])
-    {
-        [self.delegate performSelector:@selector(onJobEditFinished:) withObject:txtJobName];
-    }
-    FSJobViewController *superController = (FSJobViewController *)self.delegate;
-    [superController setIsEditing:NO];
-    [txtJobName resignFirstResponder];
-    [txtJobName setHidden:YES];
-    [lblJobName setText:[txtJobName text]];
-    [txtJobName setText:@""];
-    [lblJobName setHidden:NO];
-    //[btnDetail setHidden:NO];
-    [viewEditing setHidden:YES];
-    [viewEdit setHidden:NO];
 }
 
 - (IBAction)onCancel:(id)sender

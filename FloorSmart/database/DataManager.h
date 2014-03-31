@@ -29,6 +29,7 @@
 // job
 - (NSMutableArray *)getAllJobs;
 - (NSMutableArray *)getJobs:(long)archiveFlag searchField:(NSString *)searchField;
+- (BOOL)isExistSameJob:(NSString *)jobName;
 - (FSJob *)getJobFromID:(long)jobID;
 - (int)addJobToDatabase:(FSJob *)job;
 - (void)updateJobToDatabase:(FSJob *)job;
@@ -37,6 +38,7 @@
 // location
 - (NSMutableArray *)getLocations:(long)jobID;
 - (NSMutableArray *)getLocations:(long)jobID containDefault:(BOOL) isContain;
+- (BOOL)isExistSameLocation:(long)jobID locName:(NSString *)locName;
 - (FSLocation *)getLocationFromID:(long)locID;
 - (int)addLocationToDatabase:(FSLocation *)loc;
 - (void)updateLocToDatabase:(FSLocation *)loc;
@@ -46,6 +48,7 @@
 // product
 - (NSMutableArray *)getAllProducts;
 - (NSMutableArray *)getProducts:(NSString *)searchField;
+- (BOOL)isExistSameProduct:(NSString *)productName productType:(long)productType;
 //- (NSMutableArray *)getProducts:(NSMutableArray *)arrFeeds;
 //- (NSMutableArray *)getFeedProducts:(NSString *)jobID loc:(NSInteger)locID;
 - (FSProduct *)getProductFromID:(long)procID;
@@ -57,6 +60,7 @@
 // products for specific location
 - (NSMutableArray *)getLocProducts:(FSLocation *)loc searchField:(NSString *)searchField;
 - (NSMutableArray *)getLocProducts:(FSLocation *)loc searchField:(NSString *)searchField containDefault:(BOOL) isContain;
+- (BOOL)isExistSameLocProduct:(long)locID locProductName:(NSString *)locProductName locProductType:(long)locProductType;
 - (FSLocProduct *)getLocProductWithID:(long)locProductID;
 - (FSLocProduct *)getDefaultLocProductOfLocation:(FSLocation *)loc;
 - (FSLocProduct *)getLocProductWithProduct:(FSProduct *)product locID:(long)locID;

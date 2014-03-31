@@ -41,7 +41,7 @@
 @optional
 - (void) onEditCell:(id)sender;
 - (void) onDeleteCell:(id)sender;
-- (void) onEditFinishedOk:(id)sender;
+- (BOOL) onEditFinishedOk:(id)sender;
 - (void) onEditFinishedCancel:(id)sender;
 - (void) onSelectCell:(id)sender;
 - (BOOL) isEditing:(id)sender;

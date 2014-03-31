@@ -102,6 +102,7 @@
     
     [self initTableArray];
     [tblProducts reloadData];
+    self.isEditing = NO;
     if ([arrProdcutList count] == 0)
     {
         [self.lblNoResult setHidden:NO];
@@ -208,26 +209,29 @@
         if (indexPath.row) {
             if (self.switchShowMain.on)
             {
-                [curCell.lblEditingProcType setText:@"Finished"];
-                [curCell.curProduct setProductType:FSProductTypeFinished];
+                curCell.curProductType = FSProductTypeFinished;
+                [curCell.lblEditingProcType setText:[FSProduct getDisplayProductType:curLocCell.curLocProductType]];
             }
             else
             {
-                [curLocCell.lblEditingProcType setText:@"Finished"];
-                [curLocCell.curLocProduct setLocProductType:FSProductTypeFinished];
+
+                curLocCell.curLocProductType = FSProductTypeFinished;
+                [curLocCell.lblEditingProcType setText:[FSProduct getDisplayProductType:curLocCell.curLocProductType]];
             }
+            
+            
         } else {
             if (self.switchShowMain.on)
             {
-                [curCell.lblEditingProcType setText:@"Subfloor"];
-                [curCell.curProduct setProductType:FSProductTypeSubfloor];
+                curCell.curProductType = FSProductTypeSubfloor;
+                [curCell.lblEditingProcType setText:[FSProduct getDisplayProductType:curLocCell.curLocProductType]];
             }
             else
             {
-                [curLocCell.lblEditingProcType setText:@"Subfloor"];
-                [curLocCell.curLocProduct setLocProductType:FSProductTypeSubfloor];
-            }
-        }
+                
+                curLocCell.curLocProductType = FSProductTypeSubfloor;
+                [curLocCell.lblEditingProcType setText:[FSProduct getDisplayProductType:curLocCell.curLocProductType]];
+            }        }
         [self hideCombo];
     }
 }
@@ -328,20 +332,50 @@
     [self showAlertAnimation];
 }
 
-- (void)didOK:(id)cell
+- (BOOL)didOK:(id)cell
 {
     if (self.switchShowMain.on)
     {
         curCell = (FSProductCell *)cell;
         curLocCell = nil;
-        [curCell.curProduct setProductName:curCell.txtProductName.text];
-        [[DataManager sharedInstance] updateProductToDatabase:curCell.curProduct];
+        
+        if ([curCell.curProduct.productName isEqualToString:curCell.txtProductName.text]
+            && curCell.curProduct.productType == curCell.curProductType)
+        {
+            //
+        }
+        else
+        {
+#if CHECK_PRODUCT_DUPLICATE
+            if ([[DataManager sharedInstance] isExistSameProduct:curCell.txtProductName.text productType:curCell.curProductType] )
+            {
+                [CommonMethods showAlertUsingTitle:@"" andMessage:[NSString stringWithFormat:@"Product '%@(%@)' is already exist", curCell.txtProductName.text, [FSProduct getDisplayProductType:curCell.curProductType]]];
+                return NO;
+            }
+#endif
+            
+            [curCell.curProduct setProductName:curCell.txtProductName.text];
+            [curCell.curProduct setProductType:curCell.curProductType];
+            
+            [[DataManager sharedInstance] updateProductToDatabase:curCell.curProduct];
+        }
     }
     else
     {
         curCell = nil;
         curLocCell = (FSLocProductCell *)cell;
+        
+#if CHECK_LOCPRODUCT_DUPLICATE
+        if ([[DataManager sharedInstance] isExistSameLocProduct:self.curLoc.locID locProductName:curLocCell.txtProductName.text locProductType:curLocCell.curLocProductType] )
+        {
+            [CommonMethods showAlertUsingTitle:@"" andMessage:[NSString stringWithFormat:@"Product '%@(%@)' is already exist", curLocCell.txtProductName.text, [FSProduct getDisplayProductType:curLocCell.curLocProductType]]];
+            return NO;
+        }
+#endif
+        
         [curLocCell.curLocProduct setLocProductName:curLocCell.txtProductName.text];
+        [curLocCell.curLocProduct setLocProductType:curLocCell.curLocProductType];
+        
         [[DataManager sharedInstance] updateLocProductToDatabase:curLocCell.curLocProduct];
         FSProduct *sameProduct = [[DataManager sharedInstance] getProductWithLocProduct:curLocCell.curLocProduct];
         if (sameProduct == nil)
@@ -361,6 +395,7 @@
         }];
     }
     [self hideCombo];
+    return YES;
 }
 
 - (void)didCancel:(id)cell
@@ -505,6 +540,15 @@
     
     if (self.switchShowMain.on)
     {
+#if CHECK_PRODUCT_DUPLICATE
+        if ([[DataManager sharedInstance] isExistSameProduct:self.txtAdd.text productType:finishNum] )
+        {
+            [CommonMethods showAlertUsingTitle:@"" andMessage:[NSString stringWithFormat:@"Product '%@(%@)' is already exist", self.txtAdd.text, [FSProduct getDisplayProductType:finishNum]]];
+            return;
+        }
+#endif
+    
+        
         // add product to main product list
         
         FSProduct *product = [[FSProduct alloc] init];
@@ -533,6 +577,13 @@
         }
         if (self.curLoc != nil)
         {
+#if CHECK_LOCPRODUCT_DUPLICATE
+            if ([[DataManager sharedInstance] isExistSameLocProduct:self.curLoc.locID locProductName:self.txtAdd.text locProductType:finishNum])
+            {
+                [CommonMethods showAlertUsingTitle:@"" andMessage:[NSString stringWithFormat:@"Product '%@(%@)' is already exist in this Location", self.txtAdd.text, [FSProduct getDisplayProductType:finishNum]]];
+                return;
+            }
+#endif
             locProduct.locProductLocID = self.curLoc.locID;
             [[DataManager sharedInstance] addLocProductToDatabase:locProduct];
             

@@ -10,6 +10,7 @@
 #import "FSPopView.h"
 #import "FSProduct.h"
 #import "FSLocation.h"
+#import "FSProductCell.h"
 
 @protocol FSLocProductSelectDelegate <NSObject>
 
@@ -19,7 +20,7 @@
 
 @end
 
-@interface FSLocProductViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface FSLocProductViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, FSProductCellDelegate>
 
 @property (nonatomic) BOOL isEditing;
 

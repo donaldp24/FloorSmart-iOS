@@ -204,8 +204,6 @@
 		D348DF5318CF75B800FE4946 /* XIBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5218CF75B800FE4946 /* XIBTableViewCell.m */; };
 		D348DF5718CFA96400FE4946 /* FSLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5518CFA96400FE4946 /* FSLocationCell.m */; };
 		D348DF5818CFA96400FE4946 /* FSLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D348DF5618CFA96400FE4946 /* FSLocationCell.xib */; };
-		D348DF6118CFC2BE00FE4946 /* FSLocSelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5F18CFC2BE00FE4946 /* FSLocSelCell.m */; };
-		D348DF6218CFC2BE00FE4946 /* FSLocSelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D348DF6018CFC2BE00FE4946 /* FSLocSelCell.xib */; };
 		D3653E6718D69CD8000A5493 /* FSCurReadingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3653E6518D69CD8000A5493 /* FSCurReadingsViewController.m */; };
 		D3653E6818D69CD8000A5493 /* FSCurReadingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3653E6618D69CD8000A5493 /* FSCurReadingsViewController.xib */; };
 		D39E182218D2647B0054CF19 /* FSLocProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39E182018D2647B0054CF19 /* FSLocProductViewController.m */; };
@@ -509,9 +507,6 @@
 		D348DF5418CFA96400FE4946 /* FSLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocationCell.h; path = CustomUI/FSLocationCell.h; sourceTree = "<group>"; };
 		D348DF5518CFA96400FE4946 /* FSLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSLocationCell.m; path = CustomUI/FSLocationCell.m; sourceTree = "<group>"; };
 		D348DF5618CFA96400FE4946 /* FSLocationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSLocationCell.xib; path = CustomUI/FSLocationCell.xib; sourceTree = "<group>"; };
-		D348DF5E18CFC2BE00FE4946 /* FSLocSelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocSelCell.h; path = CustomUI/FSLocSelCell.h; sourceTree = "<group>"; };
-		D348DF5F18CFC2BE00FE4946 /* FSLocSelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSLocSelCell.m; path = CustomUI/FSLocSelCell.m; sourceTree = "<group>"; };
-		D348DF6018CFC2BE00FE4946 /* FSLocSelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSLocSelCell.xib; path = CustomUI/FSLocSelCell.xib; sourceTree = "<group>"; };
 		D3653E6418D69CD8000A5493 /* FSCurReadingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCurReadingsViewController.h; sourceTree = "<group>"; };
 		D3653E6518D69CD8000A5493 /* FSCurReadingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCurReadingsViewController.m; sourceTree = "<group>"; };
 		D3653E6618D69CD8000A5493 /* FSCurReadingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSCurReadingsViewController.xib; sourceTree = "<group>"; };
@@ -874,9 +869,6 @@
 				D39E182618D2657A0054CF19 /* FSLocProductCell.h */,
 				D39E182718D2657A0054CF19 /* FSLocProductCell.m */,
 				D39E182818D2657A0054CF19 /* FSLocProductCell.xib */,
-				D348DF5E18CFC2BE00FE4946 /* FSLocSelCell.h */,
-				D348DF5F18CFC2BE00FE4946 /* FSLocSelCell.m */,
-				D348DF6018CFC2BE00FE4946 /* FSLocSelCell.xib */,
 				D348DF5418CFA96400FE4946 /* FSLocationCell.h */,
 				D348DF5518CFA96400FE4946 /* FSLocationCell.m */,
 				D348DF5618CFA96400FE4946 /* FSLocationCell.xib */,
@@ -1420,7 +1412,6 @@
 				D3F4C4D318DE3AC9006F40D1 /* Reader-Email@2x.png in Resources */,
 				1435C0D61887932A00AE1C87 /* ic_refresh.png in Resources */,
 				140E8A1218688F880038B5BF /* tap_reports1.png in Resources */,
-				D348DF6218CFC2BE00FE4946 /* FSLocSelCell.xib in Resources */,
 				1435C0D01887932A00AE1C87 /* bt_job_add.png in Resources */,
 				14F7EB7C1886F12C00E4F088 /* bg_select_type_bar.png in Resources */,
 				D39E182518D2654E0054CF19 /* FSProductCell.xib in Resources */,
@@ -1536,7 +1527,6 @@
 				D3F4C51918DE3BA3006F40D1 /* FSReportHelper.m in Sources */,
 				D3F4C51018DE3AEC006F40D1 /* ReaderThumbsView.m in Sources */,
 				D39E182218D2647B0054CF19 /* FSLocProductViewController.m in Sources */,
-				D348DF6118CFC2BE00FE4946 /* FSLocSelCell.m in Sources */,
 				140E894718688EB10038B5BF /* FSProductViewController.m in Sources */,
 				14BED79518705B280092A406 /* FMDatabaseAdditions.m in Sources */,
 			);

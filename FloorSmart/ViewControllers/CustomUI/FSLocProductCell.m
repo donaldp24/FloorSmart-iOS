@@ -43,7 +43,8 @@
 {
     _curLocProduct = curLocProduct;
     [lblProductName setText:curLocProduct.locProductName];
-    [lblProductType setText:(curLocProduct.locProductType == FSProductTypeFinished) ? @"Finished" : @"Subfloor"];
+    [lblProductType setText:[FSProduct getDisplayProductType:curLocProduct.locProductType]];
+    self.curLocProductType = curLocProduct.locProductType;
 }
 
 #pragma mark - textfield delegate
@@ -90,23 +91,23 @@
 
 - (IBAction)onOK:(id)sender
 {
-    if([self.delegate respondsToSelector:@selector(didOK:)])
+    BOOL ret = [self.delegate didOK:self];
+    if (ret)
     {
-        [self.delegate performSelector:@selector(didOK:) withObject:self];
+        FSLocProductViewController *superController = (FSLocProductViewController *)self.delegate;
+        [superController setIsEditing:NO];
+        [txtProductName resignFirstResponder];
+        [txtProductName setHidden:YES];
+        [lblProductName setText:[txtProductName text]];
+        [txtProductName setText:@""];
+        [lblProductName setHidden:NO];
+        [viewEditing setHidden:YES];
+        [viewEdit setHidden:NO];
+        [lblProductType setText:lblEditingProcType.text];
+        [lblProductType setHidden:NO];
+        [viewEditingProcType setHidden:YES];
+        [lblEditingProcType setText:@""];
     }
-    FSLocProductViewController *superController = (FSLocProductViewController *)self.delegate;
-    [superController setIsEditing:NO];
-    [txtProductName resignFirstResponder];
-    [txtProductName setHidden:YES];
-    [lblProductName setText:[txtProductName text]];
-    [txtProductName setText:@""];
-    [lblProductName setHidden:NO];
-    [viewEditing setHidden:YES];
-    [viewEdit setHidden:NO];
-    [lblProductType setText:lblEditingProcType.text];
-    [lblProductType setHidden:NO];
-    [viewEditingProcType setHidden:YES];
-    [lblEditingProcType setText:@""];
 }
 
 - (IBAction)onCancel:(id)sender

@@ -21,7 +21,7 @@
         databasePath        = [aPath copy];
         openResultSets      = [[NSMutableSet alloc] init];
         db                  = 0x00;
-        logsErrors          = 0x00;
+        logsErrors          = 0x01;
         crashOnErrors       = 0x00;
         busyRetryTimeout    = 0x00;
     }

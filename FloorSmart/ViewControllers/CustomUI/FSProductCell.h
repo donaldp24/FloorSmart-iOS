@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "FSProduct.h"
 
+@protocol FSProductCellDelegate;
+
 @interface FSProductCell : UITableViewCell <UITextFieldDelegate>
 
 @property (nonatomic, assign) IBOutlet UILabel *lblProductName;
@@ -20,8 +22,9 @@
 @property (nonatomic, assign) IBOutlet UILabel *lblEditingProcType;
 
 @property (nonatomic, strong) FSProduct *curProduct;
+@property (nonatomic) long curProductType;
 
-@property (nonatomic, strong) id delegate;
+@property (nonatomic, strong) id<FSProductCellDelegate> delegate;
 
 + (FSProductCell *)sharedCell;
 
@@ -31,5 +34,11 @@
 - (IBAction)onCancel:(id)sender;
 - (IBAction)onComboProc:(id)sender;
 - (IBAction)onBgClick:(id)sender;
+
+@end
+
+@protocol FSProductCellDelegate <NSObject>
+
+- (BOOL)didOK:(id)cell;
 
 @end

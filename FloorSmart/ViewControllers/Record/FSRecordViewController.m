@@ -173,6 +173,8 @@
             selectedProduct = nil;
             NSLog(@"don't keep - job : %ld, %@", orgJob.jobID, orgJob.jobName);
         }
+        else
+            self.txtJob.text = [NSString stringWithFormat:@"%@", selectedJob.jobName];
     }
     if (selectedLocation)
     {
@@ -185,6 +187,8 @@
             selectedLocProduct = nil;
             NSLog(@"don't keep - loc : %ld, %@", orgLoc.locID, orgLoc.locName);
         }
+        else
+            self.txtLocation.text = [NSString stringWithFormat:@"%@", selectedLocation.locName];
     }
     
     if (selectedProduct)
@@ -195,6 +199,8 @@
             isKeeped = NO;
             NSLog(@"don't keep - product : %ld, %@", orgProduct.productID, orgProduct.productName);
         }
+        else
+            self.txtProduct.text = [NSString stringWithFormat:@"%@", selectedProduct.productName];
     }
     
     if (selectedLocProduct)
@@ -205,6 +211,8 @@
             isKeeped = NO;
             NSLog(@"don't keep - locproduct : %ld, %@", orgLocProduct.locProductID, orgLocProduct.locProductName);
         }
+        else
+            self.txtProduct.text = [NSString stringWithFormat:@"%@", selectedLocProduct.locProductName];
     }
     
     if (isKeeped == NO)

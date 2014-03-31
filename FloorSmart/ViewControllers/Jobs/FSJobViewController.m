@@ -110,6 +110,8 @@
 
     [tblJobs reloadData];
     
+    self.isEditing = NO;
+    
     if ([arrJobNames count] == 0)
     {
         [self.lblNoResult setHidden:NO];
@@ -242,16 +244,36 @@
     [self showAlertAnimation];
 }
 
-- (void)didOK:(FSJobCell *)cell
+#pragma mark - Job Cell Delegate
+
+- (BOOL)didOK:(FSJobCell *)cell
 {
-    [curJob setJobName:[cell.txtJobName text]];
-    [[DataManager sharedInstance] updateJobToDatabase:curJob];
+    if ([curJob.jobName isEqualToString:[cell.txtJobName text]])
+    {
+        //
+    }
+    else
+    {
+#if CHECK_JOB_DUPLICATE
+        if ([[DataManager sharedInstance] isExistSameJob:cell.txtJobName.text])
+        {
+            [CommonMethods showAlertUsingTitle:@"" andMessage:[NSString stringWithFormat:@"Job '%@' is already exist", cell.txtJobName.text]];
+            return NO;
+        }
+#endif
+        [curJob setJobName:[cell.txtJobName text]];
+        [[DataManager sharedInstance] updateJobToDatabase:curJob];
+    }
+    
     if (trasnfromHeight != 0) {
         [UIView animateWithDuration:0.2f animations:^{
             [tblJobs setFrame:CGRectMake(tblJobs.frame.origin.x, tblJobs.frame.origin.y + trasnfromHeight, tblJobs.frame.size.width, tblJobs.frame.size.height)];
         }];
     }
+
     [self initTableData];
+    
+    return YES;
 }
 
 - (void)didCancel:(FSJobCell *)cell
@@ -321,6 +343,16 @@
         [CommonMethods showAlertUsingTitle:@"" andMessage:@"Please input job name to add!"];
         return;
     }
+    
+#if CHECK_JOB_DUPLICATE
+    if ([[DataManager sharedInstance] isExistSameJob:self.txtEdit.text])
+    {
+        [CommonMethods showAlertUsingTitle:@"" andMessage:[NSString stringWithFormat:@"Job '%@' is already exist", self.txtEdit.text]];
+        return;
+    }
+#endif
+    
+    
     FSJob *job = [[FSJob alloc] init];
     job.jobName = self.txtEdit.text;
     job.jobID = [[DataManager sharedInstance] addJobToDatabase:job];

@@ -99,6 +99,18 @@ static DataManager *sharedManager;
     return arrJobList;
 }
 
+- (BOOL)isExistSameJob:(NSString *)jobName
+{
+    NSString *sql = [NSString stringWithFormat:@"SELECT COUNT(*) AS samecount  FROM tbl_job WHERE deleted = 0 and job_name = '%@'", jobName];
+    FMResultSet *results = [_database executeQuery:sql];
+    while ([results next]) {
+        int count       = [results intForColumn:@"samecount"];
+        if (count > 0)
+            return YES;
+        return NO;
+    }
+    return NO;
+}
 
 - (FSJob *)getJobFromID:(long)jobID
 {
@@ -177,6 +189,21 @@ static DataManager *sharedManager;
     }
     return arrLocList;
 }
+
+- (BOOL)isExistSameLocation:(long)jobID locName:(NSString *)locName
+{
+    NSString *sql = @"";
+    sql = [NSString stringWithFormat:@"SELECT COUNT(*) AS samecount FROM tbl_location WHERE deleted = 0 and location_jobid  = %ld and location_name = '%@'", jobID, locName];
+    FMResultSet *results = [_database executeQuery:sql];
+    while ([results next]) {
+        int count       = [results intForColumn:@"samecount"];
+        if (count > 0)
+            return YES;
+        return NO;
+    }
+    return NO;
+}
+
 
 - (FSLocation *)getLocationFromID:(long)locID
 {
@@ -265,54 +292,20 @@ static DataManager *sharedManager;
     }
     return arrProductList;
 }
-/*
-- (NSMutableArray *)getProducts:(NSMutableArray *)arrFeeds
-{
-    NSMutableArray *arrProductList = [[NSMutableArray alloc] init];
-    for (int i=0; i<[arrFeeds count]; i++) {
-        FSFeed *feed = (FSFeed *)[arrFeeds objectAtIndex:i];
-        FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_product WHERE product_id = '%ld'", [feed feedProcID]]];
-        while ([results next]) {
-            
-            FSProduct *product  = [[[FSProduct alloc] init] autorelease];
-            product.productID = [results stringForColumn:@"product_id"];
-            product.productName = [results stringForColumn:@"product_name"];
-            product.productFinished = [results intForColumn:@"product_finished"];
-            product.productDel = [results intForColumn:@"product_del"];
-            
-            [arrProductList addObject:product];
-        }
-    }
-    return arrProductList;
-}
 
-- (NSMutableArray *)getFeedProducts:(NSString *)jobID loc:(NSInteger)locID
+- (BOOL)isExistSameProduct:(NSString *)productName productType:(long)productType
 {
-    NSMutableArray *arrProcIDList = [[NSMutableArray alloc] init];
-    FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT DISTINCT feed_procid FROM tbl_feed WHERE feed_jobid = '%@' AND feed_locid = '%ld'", jobID, locID]];
+    NSString *sql = @"";
+    sql = [NSString stringWithFormat:@"SELECT COUNT(*) AS samecount FROM tbl_product WHERE deleted = 0 and product_type = %ld and product_name = '%@'", productType, productName];
+    FMResultSet *results = [_database executeQuery:sql];
     while ([results next]) {
-        NSString *str = [results stringForColumn:@"feed_procid"];
-        
-        [arrProcIDList addObject:str];
+        int count       = [results intForColumn:@"samecount"];
+        if (count > 0)
+            return YES;
+        return NO;
     }
-    
-    NSMutableArray *arrProductList = [[NSMutableArray alloc] init];
-    for (int i=0; i<[arrProcIDList count]; i++) {
-        FMResultSet *results = [_database executeQuery:[NSString stringWithFormat:@"SELECT * FROM tbl_product WHERE product_id = '%@'", [arrProcIDList objectAtIndex:i]]];
-        while ([results next]) {
-            
-            FSProduct *product  = [[[FSProduct alloc] init] autorelease];
-            product.productID = [results stringForColumn:@"product_id"];
-            product.productName = [results stringForColumn:@"product_name"];
-            product.productFinished = [results intForColumn:@"product_finished"];
-            product.productDel = [results intForColumn:@"product_del"];
-            
-            [arrProductList addObject:product];
-        }
-    }
-    return arrProductList;
+    return NO;
 }
- */
 
 - (FSProduct *)getProductFromID:(long)procID
 {
@@ -413,6 +406,20 @@ static DataManager *sharedManager;
         [arrLocProductList addObject:locProduct];
     }
     return arrLocProductList;
+}
+
+- (BOOL)isExistSameLocProduct:(long)locID locProductName:(NSString *)locProductName locProductType:(long)locProductType
+{
+    NSString *sql = @"";
+    sql = [NSString stringWithFormat:@"SELECT COUNT(*) AS samecount FROM tbl_locproduct WHERE deleted = 0 and locproduct_locid = %ld and locproduct_producttype = %ld and locproduct_productname = '%@'", locID, locProductType, locProductName];
+    FMResultSet *results = [_database executeQuery:sql];
+    while ([results next]) {
+        int count       = [results intForColumn:@"samecount"];
+        if (count > 0)
+            return YES;
+        return NO;
+    }
+    return NO;
 }
 
 - (FSLocProduct *)getLocProductWithID:(long)locProductID
