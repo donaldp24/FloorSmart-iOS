@@ -8,6 +8,10 @@
 #import "CommonMethods.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Global.h"
+#import <AudioToolbox/AudioToolbox.h>
+
+static CFURLRef        soundFileURLRef = nil;
+static SystemSoundID   soundFileObject;
 
 @implementation CommonMethods
 
@@ -271,6 +275,38 @@
     
 	NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     return documentsDirectory;
+}
+
++ (void)playTapSound
+{
+#if true
+    /*
+    if (soundFileURLRef == nil)
+    {
+        // Create the URL for the source audio file. The URLForResource:withExtension: method is
+        //    new in iOS 4.0.
+        NSURL *tapSound   = [[NSBundle mainBundle] URLForResource: @"tap"
+                                                    withExtension: @"aif"];
+        
+        // Store the URL as a CFURLRef instance
+        soundFileURLRef = (CFURLRef) [tapSound retain];
+        
+        
+        // Create a system sound object representing the sound file.
+        AudioServicesCreateSystemSoundID (
+                                          
+                                          soundFileURLRef,
+                                          &soundFileObject
+                                          );
+    }
+    
+    AudioServicesPlaySystemSound (soundFileObject);
+     */
+    AudioServicesPlaySystemSound(0x450);
+#else
+    
+    [[UIDevice currentDevice] playInputClick];
+#endif
 }
 
 @end

@@ -49,7 +49,7 @@
 {
     [super viewDidLoad];
     
-    delete_alertview.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
+    //delete_alertview.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
     [delete_alertview setHidden:YES];
     [tblProducts setBackgroundColor:[UIColor clearColor]];
     trasnfromHeight = 0;
@@ -96,7 +96,17 @@
     if ([arrProdcutList count] == 0)
     {
         [self.lblNoResult setHidden:NO];
+        
+        if (self.txtAdd.text == nil || [self.txtAdd.text isEqualToString:@""])
+        {
+            [self.lblNoResult setText:@"No Products"];
+        }
+        else
+        {
+            [self.lblNoResult setText:@"Searching..."];
+        }
     }
+    else
     {
         [self.lblNoResult setHidden:YES];
     }
@@ -238,6 +248,8 @@
 #pragma mark - Cell Delegate
 - (void)didEdit:(FSProductCell *)cell
 {
+    [CommonMethods playTapSound];
+    
     curCell = cell;
     CGRect selectedCellFrame = [cell.superview convertRect:cell.frame toView:self.view];
     if (selectedCellFrame.origin.y + 80 >= [[UIScreen mainScreen] bounds].size.height - KEYBOARD_HEIGHT /* 216 */) {
@@ -253,6 +265,8 @@
 
 - (void)didDelete:(FSProductCell *)cell
 {
+    [CommonMethods playTapSound];
+    
     curCell = cell;
     [self.view bringSubviewToFront:delete_alertview];
     [delete_alertview setHidden:NO];
@@ -261,6 +275,8 @@
 
 - (BOOL)didOK:(FSProductCell *)cell
 {
+    [CommonMethods playTapSound];
+    
     if ([curCell.curProduct.productName isEqualToString:cell.txtProductName.text]
         && curCell.curProduct.productType == curCell.curProductType)
     {
@@ -292,6 +308,10 @@
 
 - (void)didCancel:(FSProductCell *)cell
 {
+    
+    [CommonMethods playTapSound];
+    
+    
 //    [curProduct clear];
     if (trasnfromHeight != 0) {
         [UIView animateWithDuration:0.1f animations:^{
@@ -303,6 +323,8 @@
 
 - (void)didCombo:(FSProductCell *)cell
 {
+    [CommonMethods playTapSound];
+    
     CGRect frame = tblProcType.frame;
     CGRect selectedCellProcViewFrame = [cell.viewEditingProcType.superview convertRect:cell.viewEditingProcType.frame toView:self.view];
     frame.origin.x = selectedCellProcViewFrame.origin.x;
@@ -339,6 +361,8 @@
 
 - (void)didDetail:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     FSProductCell *cell = (FSProductCell *)sender;
     FSProduct *product = cell.curProduct;
 }
@@ -347,6 +371,8 @@
 
 - (IBAction)onDelete_OK:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     //curCell.curProduct.productDel = 1;
     [[DataManager sharedInstance] deleteProductFromDatabase:curCell.curProduct];
 //    [curProduct clear];
@@ -356,18 +382,24 @@
 
 - (IBAction)onDelete_Cancel:(id)sender
 {
+    [CommonMethods playTapSound];
+    
 //    [curProduct clear];
     [self hideAlertAnimation];
 }
 
 - (IBAction)onSelectType:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     [self.view bringSubviewToFront:viewSelectType];
     [self showSelectTypeView];
 }
 
 - (IBAction)onSelectFinished:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     finishNum = FSProductTypeFinished;
     [lblSelectType setText:@"Finished"];
     [btnSubfloor setSelected:NO];
@@ -377,6 +409,8 @@
 
 - (IBAction)onSelectSubfloor:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     finishNum = FSProductTypeSubfloor;
     [lblSelectType setText:@"Subfloor"];
     [btnSubfloor setSelected:YES];
@@ -386,6 +420,8 @@
 
 - (IBAction)onAdd:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     if (txtAdd.text == nil || [txtAdd.text isEqualToString:@""]) {
         [CommonMethods showAlertUsingTitle:@"" andMessage:@"Please input product name to add!"];
         return;
@@ -421,6 +457,8 @@
 
 - (IBAction)onClose:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     [txtAdd setText:@""];
     [self initTable];
 }
@@ -432,6 +470,8 @@
 
 - (IBAction)onSearchCancel:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     [txtSearch resignFirstResponder];
     [txtSearch setText:@""];
     

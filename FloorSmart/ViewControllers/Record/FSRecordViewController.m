@@ -21,6 +21,8 @@
 
 @interface FSRecordViewController () {
     CGFloat trasnfromHeight;
+    
+    NSMutableArray *arrayJobs;
 }
 
 @end
@@ -90,9 +92,9 @@
             NSLog(@"global data : jobid(%ld - %@), locid(%ld - %@), locproductid(%ld - %@) ", selectedJob.jobID, selectedJob.jobName, selectedLocation.locID, selectedLocation.locName, selectedLocProduct.locProductID, selectedLocProduct.locProductName);
         }
         
-        self.txtJob.text = selectedJob.jobName;
-        self.txtLocation.text = selectedLocation.locName;
-        self.txtProduct.text = selectedLocProduct.locProductName;
+        [self setLabelSelected:self.lblJob text:selectedJob.jobName];
+        [self setLabelSelected:self.lblLocation text:selectedLocation.locName];
+        [self setLabelSelected:self.lblProduct text:selectedLocProduct.locProductName];
         
         if (globalData.settingArea == YES) //ft
         {
@@ -104,9 +106,13 @@
         }
         
         if ([selectedLocation.locName isEqualToString:FMD_DEFAULT_LOCATIONNAME])
-            self.txtLocation.text = @"";
+        {
+            [self setLabelNotSelected:self.lblLocation];
+        }
         if ([selectedLocProduct.locProductName isEqualToString:FMD_DEFAULT_PRODUCTNAME])
-            self.txtProduct.text = @"";
+        {
+            [self setLabelNotSelected:self.lblProduct];
+        }
         
         self.btnSave.enabled = NO;
         self.btnCancel.enabled = YES;
@@ -120,9 +126,9 @@
         selectedProduct = nil;
         selectedLocProduct = nil;
         
-        self.txtJob.text = @"";
-        self.txtLocation.text = @"";
-        self.txtProduct.text = @"";
+        [self setLabelNotSelected:self.lblJob];
+        [self setLabelNotSelected:self.lblLocation];
+        [self setLabelNotSelected:self.lblProduct];
         self.txtCoverage.text = @"";
         
         self.btnSave.enabled = YES;
@@ -145,10 +151,6 @@
         
         isPrevSqureFoot = NO;
     }
-    
-    self.txtJob.enabled = NO;
-    self.txtLocation.enabled = NO;
-    self.txtProduct.enabled = NO;
     
     curTextField = nil;
     
@@ -174,8 +176,11 @@
             NSLog(@"don't keep - job : %ld, %@", orgJob.jobID, orgJob.jobName);
         }
         else
-            self.txtJob.text = [NSString stringWithFormat:@"%@", selectedJob.jobName];
+        {
+            [self setLabelSelected:self.lblJob text:[NSString stringWithFormat:@"%@", selectedJob.jobName]];
+        }
     }
+
     if (selectedLocation)
     {
         FSLocation *orgLoc = selectedLocation;
@@ -188,7 +193,9 @@
             NSLog(@"don't keep - loc : %ld, %@", orgLoc.locID, orgLoc.locName);
         }
         else
-            self.txtLocation.text = [NSString stringWithFormat:@"%@", selectedLocation.locName];
+        {
+            [self setLabelSelected:self.lblLocation text:[NSString stringWithFormat:@"%@", selectedLocation.locName]];
+        }
     }
     
     if (selectedProduct)
@@ -200,7 +207,9 @@
             NSLog(@"don't keep - product : %ld, %@", orgProduct.productID, orgProduct.productName);
         }
         else
-            self.txtProduct.text = [NSString stringWithFormat:@"%@", selectedProduct.productName];
+        {
+            [self setLabelSelected:self.lblProduct text:[NSString stringWithFormat:@"%@", selectedProduct.productName]];
+        }
     }
     
     if (selectedLocProduct)
@@ -212,7 +221,9 @@
             NSLog(@"don't keep - locproduct : %ld, %@", orgLocProduct.locProductID, orgLocProduct.locProductName);
         }
         else
-            self.txtProduct.text = [NSString stringWithFormat:@"%@", selectedLocProduct.locProductName];
+        {
+            [self setLabelSelected:self.lblProduct text:[NSString stringWithFormat:@"%@", selectedLocProduct.locProductName]];
+        }
     }
     
     if (isKeeped == NO)
@@ -227,9 +238,10 @@
         }
         
         if (selectedJob == nil) {
-            self.txtJob.text = @"";
-            self.txtLocation.text = @"";
-            self.txtProduct.text = @"";
+            [self setLabelNotSelected:self.lblJob];
+            [self setLabelNotSelected:self.lblLocation];
+            [self setLabelNotSelected:self.lblProduct];
+
             self.txtCoverage.text = @"";
             selectedLocation = nil;
             selectedLocProduct = nil;
@@ -237,8 +249,8 @@
         }
         else
         {
-            self.txtLocation.text = @"";
-            self.txtProduct.text = @"";
+            [self setLabelNotSelected:self.lblLocation];
+            [self setLabelNotSelected:self.lblProduct];
             
             if (selectedLocation == nil)
             {
@@ -252,11 +264,19 @@
                 if (selectedLocProduct == nil && selectedProduct == nil)
                     selectedLocProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
                 
-                self.txtLocation.text = selectedLocation.locName;
+                if ([selectedLocation.locName isEqualToString:FMD_DEFAULT_LOCATIONNAME])
+                    [self setLabelNotSelected:self.lblLocation];
+                else
+                    [self setLabelSelected:self.lblLocation text:selectedLocation.locName];
             }
             
             if (selectedLocProduct != nil)
-                self.txtProduct.text = selectedLocProduct.locProductName;
+            {
+                if ([selectedLocProduct.locProductName isEqualToString:FMD_DEFAULT_PRODUCTNAME])
+                    [self setLabelNotSelected:self.lblProduct];
+                else
+                    [self setLabelSelected:self.lblProduct text:selectedLocProduct.locProductName];
+            }
         }
     }
     
@@ -296,6 +316,9 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.view.window];
+    
+    
+    arrayJobs = [[DataManager sharedInstance] getJobs:0 searchField:@""];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -346,6 +369,8 @@
 #pragma mark - Actions
 - (IBAction)onSelJob:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     if ([self isSelectable] == NO)
     {
         [self showAlertForNotSelectable];
@@ -359,6 +384,9 @@
 
 - (IBAction)onSelLocation:(id)sender
 {
+    
+    [CommonMethods playTapSound];
+    
     if ([self isSelectable] == NO)
     {
         [self showAlertForNotSelectable];
@@ -380,6 +408,9 @@
 
 - (IBAction)onSelProduct:(id)sender
 {
+    
+    [CommonMethods playTapSound];
+    
     if ([self isSelectable] == NO)
     {
         [self showAlertForNotSelectable];
@@ -401,18 +432,156 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (IBAction)onJobClick:(id)sender
+{
+    [self.txtCoverage resignFirstResponder];
+    
+    NSMutableArray *arrayData = [[DataManager sharedInstance] getJobs:0 searchField:@""];
+    if (arrayData.count <= 0)
+    {
+        [self onSelJob:nil];
+        return;
+    }
+    
+    [CommonMethods playTapSound];
+    
+    if ([self isSelectable] == NO)
+    {
+        [self showAlertForNotSelectable];
+        return;
+    }
+    
+    
+    jobSelector = [[FSSelectViewController alloc] initWithParent:@"FSSelectViewController" bundle:nil parent:self mode:MODE_SELECT_JOB parentNode:nil];
+    if (selectedJob != nil)
+        [jobSelector setCurSelected:selectedJob];
+    
+    [self.view addSubview:jobSelector.view]; [self.view bringSubviewToFront:jobSelector.view];
+    /*
+    [UIView transitionWithView:self.view duration:0.3 options:UIViewAnimationOptionCurveLinear animations:^ { [self.view addSubview:jobSelector.view]; [self.view bringSubviewToFront:jobSelector.view]; } completion:nil];
+     */
+
+}
+
+- (IBAction)onLocationClick:(id)sender
+{
+    [self.txtCoverage resignFirstResponder];
+    
+    if (selectedJob == nil)
+    {
+        [self onSelLocation:nil];
+        return;
+    }
+    
+    NSMutableArray *arrayData = [[DataManager sharedInstance] getLocations:selectedJob.jobID];
+    if (arrayData.count <= 0)
+    {
+        [self onSelLocation:nil];
+        return;
+    }
+    
+    [CommonMethods playTapSound];
+    
+    if ([self isSelectable] == NO)
+    {
+        [self showAlertForNotSelectable];
+        return;
+    }
+    
+    if (selectedJob == nil)
+    {
+        [CommonMethods showAlertUsingTitle:@"" andMessage:@"Please select a job"];
+        return;
+    }
+    
+    jobSelector = [[FSSelectViewController alloc] initWithParent:@"FSSelectViewController" bundle:nil parent:self mode:MODE_SELECT_LOCATION parentNode:selectedJob];
+    if (selectedLocation != nil)
+        [jobSelector setCurSelected:selectedLocation];
+    
+    [self.view addSubview:jobSelector.view]; [self.view bringSubviewToFront:jobSelector.view];
+    /*
+    [UIView transitionWithView:self.view duration:0.3 options:UIViewAnimationOptionCurveLinear animations:^ { [self.view addSubview:jobSelector.view]; [self.view bringSubviewToFront:jobSelector.view]; } completion:nil];
+     */
+
+}
+
+- (IBAction)onProductClick:(id)sender
+{
+    [self.txtCoverage resignFirstResponder];
+    
+    FSLocation *loc = nil;
+    if (selectedLocation == nil)
+        loc = defaultLocation;
+    else
+        loc = selectedLocation;
+    
+    if (loc == nil)
+    {
+        [self onSelProduct:nil];
+        return;
+    }
+    
+    NSMutableArray *arrayData = [[DataManager sharedInstance] getLocProducts:loc searchField:@""];
+    if (arrayData.count <= 0)
+    {
+        [self onSelProduct:nil];
+        return;
+    }
+    
+    [CommonMethods playTapSound];
+    
+    if ([self isSelectable] == NO)
+    {
+        [self showAlertForNotSelectable];
+        return;
+    }
+    
+    if (selectedJob == nil)
+    {
+        [CommonMethods showAlertUsingTitle:@"" andMessage:@"Please select a job"];
+        return;
+    }
+    
+    
+    jobSelector = [[FSSelectViewController alloc] initWithParent:@"FSSelectViewController" bundle:nil parent:self mode:MODE_SELECT_PRODUCT parentNode:loc];
+    if (selectedLocProduct != nil)
+        [jobSelector setCurSelected:selectedLocProduct];
+    
+    [self.view addSubview:jobSelector.view]; [self.view bringSubviewToFront:jobSelector.view];
+    /*
+    [UIView transitionWithView:self.view duration:0.3 options:UIViewAnimationOptionCurveLinear animations:^ { [self.view addSubview:jobSelector.view]; [self.view bringSubviewToFront:jobSelector.view]; } completion:nil];
+     */
+}
+
+- (void)showSummary
+{
+    self.btnSummary.hidden = NO;
+}
+
+- (void)hideSummary
+{
+    self.btnSummary.hidden = YES;
+}
+
 #pragma mark - Job Select Delegate
 - (void)jobSelected:(FSJob *)job
 {
+    
+    [self.lblHintJob setHidden:YES];
+    
+    if (selectedJob.jobID == job.jobID)
+        return;
+    
     selectedJob = job;
     selectedLocation = nil;
     selectedProduct = nil;
     selectedLocProduct = nil;
     
-    self.txtJob.text = job.jobName;
-    
-    self.txtLocation.text = @"";
-    self.txtProduct.text = @"";
+    [self setLabelSelected:self.lblJob text:job.jobName];
+   
+    [self setLabelNotSelected:self.lblLocation];
+    [self setLabelNotSelected:self.lblProduct];
+
     
     
     selectedLocation = [[DataManager sharedInstance] getDefaultLocationOfJob:job.jobID];
@@ -444,10 +613,16 @@
 #pragma mark - Location Select Delegate
 - (void)locationSelected:(FSLocation *)loc
 {
-    selectedLocation = loc;
-    self.txtLocation.text = loc.locName;
+    [self.lblHintLocation setHidden:YES];
     
-    self.txtProduct.text = @"";
+    if (selectedLocation.locID == loc.locID)
+        return;
+    
+    selectedLocation = loc;
+    
+    [self setLabelSelected:self.lblLocation text:loc.locName];
+    
+    [self setLabelNotSelected:self.lblProduct];
     
     selectedProduct = nil;
     selectedLocProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
@@ -462,9 +637,10 @@
 - (void)locationAdded:(FSLocation *)loc
 {
     selectedLocation = loc;
-    self.txtLocation.text = loc.locName;
     
-    self.txtProduct.text = @"";
+    [self setLabelSelected:self.lblLocation text:loc.locName];
+    
+    [self setLabelNotSelected:self.lblProduct];
     
     selectedProduct = nil;
     selectedLocProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
@@ -478,18 +654,28 @@
 
 - (void)productSelected:(FSProduct *)product
 {
+    [self.lblHintProduct setHidden:YES];
+    
+    if (selectedProduct.productID == product.productID)
+        return;
+    
     selectedProduct = product;
     selectedLocProduct = nil;
     
-    self.txtProduct.text = selectedProduct.productName;
+    [self setLabelSelected:self.lblProduct text:selectedProduct.productName];
 }
 
 - (void)locProductSelected:(FSLocProduct *)locProduct
 {
+    [self.lblHintProduct setHidden:YES];
+    
+    if (selectedLocProduct.locProductID == locProduct.locProductID)
+        return;
+    
     selectedLocProduct = locProduct;
     selectedProduct = nil;
     
-    self.txtProduct.text = selectedLocProduct.locProductName;
+    [self setLabelSelected:self.lblProduct text:selectedLocProduct.locProductName];
     
     float coverage = selectedLocProduct.locProductCoverage;
     GlobalData *globalData = [GlobalData sharedData];
@@ -505,6 +691,8 @@
 #pragma mark - Actions
 - (IBAction)onSaveClicked:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     if (curTextField != nil)
     {
         [curTextField resignFirstResponder];
@@ -597,6 +785,8 @@
 
 - (IBAction)onCancelClicked:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     if (curTextField != nil)
         [curTextField resignFirstResponder];
     
@@ -612,6 +802,8 @@
 
 - (IBAction)onSummaryClicked:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     if (curTextField != nil)
         [curTextField resignFirstResponder];
     
@@ -714,5 +906,19 @@
     
     curTextField = nil;
 }
+
+- (void)setLabelNotSelected:(UILabel *)label
+{
+    [label setText:@"Not selected..."];
+    [label setTextColor:[UIColor colorWithRed:168/255.0 green:168/255.0 blue:168/255.0 alpha:1.0]];
+    [label setFont:[UIFont italicSystemFontOfSize:14.0]];
+}
+- (void)setLabelSelected:(UILabel *)label text:(NSString *)text
+{
+    [label setText:text];
+    [label setTextColor:[UIColor whiteColor]];
+    [label setFont:[UIFont boldSystemFontOfSize:16.0]];
+}
+
 
 @end

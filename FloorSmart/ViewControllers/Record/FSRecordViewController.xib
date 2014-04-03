@@ -10,12 +10,15 @@
                 <outlet property="btnCancel" destination="Fiv-MM-zgS" id="xB9-fB-718"/>
                 <outlet property="btnSave" destination="yF8-M8-XSe" id="tSD-AW-CI5"/>
                 <outlet property="btnSummary" destination="sID-xo-jLA" id="C8P-lp-oEk"/>
+                <outlet property="lblHintJob" destination="j6R-rk-QkF" id="W1S-Dh-8lq"/>
+                <outlet property="lblHintLocation" destination="tMp-13-aRc" id="Qig-Pt-PQL"/>
+                <outlet property="lblHintProduct" destination="t2a-k6-S1F" id="M5x-gg-9G0"/>
+                <outlet property="lblJob" destination="h3y-JH-9O7" id="AVg-S6-qlQ"/>
+                <outlet property="lblLocation" destination="nFE-9A-3UP" id="Use-lc-ETz"/>
+                <outlet property="lblProduct" destination="bbL-1C-pJf" id="T5O-Lk-o6m"/>
                 <outlet property="lblUnitFt" destination="igA-nJ-sIF" id="lV1-5O-3bE"/>
                 <outlet property="lblUnitM" destination="oj8-fQ-uRK" id="Q3J-rX-KqG"/>
                 <outlet property="txtCoverage" destination="on9-PL-LpW" id="Cui-wx-Jn0"/>
-                <outlet property="txtJob" destination="g6z-61-IfB" id="h1Z-gn-ium"/>
-                <outlet property="txtLocation" destination="zkQ-VL-5ys" id="bkD-bz-X5t"/>
-                <outlet property="txtProduct" destination="JPE-P5-ueK" id="a5X-KF-asu"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -94,14 +97,28 @@
                         <action selector="onSaveClicked:" destination="-1" eventType="touchUpInside" id="1Hf-bL-lMY"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_readings_list_bar.png" id="sfa-TP-lbB">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_add_a_product_bg.png" id="sfa-TP-lbB">
                     <rect key="frame" x="11" y="68" width="297" height="65"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Job" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2R2-6o-H8j">
-                    <rect key="frame" x="20" y="74" width="114" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2R2-6o-H8j">
+                    <rect key="frame" x="20" y="74" width="86" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not selected..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h3y-JH-9O7">
+                    <rect key="frame" x="36" y="99" width="212" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to select a job..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j6R-rk-QkF">
+                    <rect key="frame" x="110" y="74" width="137" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -125,25 +142,39 @@
                         <action selector="onSelJob:" destination="-1" eventType="touchUpInside" id="m4r-Ln-xwr"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Not selected" minimumFontSize="17" id="g6z-61-IfB" userLabel="txtJob">
-                    <rect key="frame" x="20" y="97" width="245" height="25"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7pJ-Bj-twd">
+                    <rect key="frame" x="11" y="67" width="254" height="65"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
-                        <action selector="BeginEditing:" destination="-1" eventType="editingDidBegin" id="yHa-OW-qRH"/>
-                        <action selector="EndEditing:" destination="-1" eventType="editingDidEndOnExit" id="l6E-lC-bBn"/>
-                        <outlet property="delegate" destination="-1" id="kRX-35-Cre"/>
+                        <action selector="onJobClick:" destination="-1" eventType="touchUpInside" id="YCk-Di-7ff"/>
                     </connections>
-                </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_readings_list_bar.png" id="LJ6-6c-Zgq">
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_add_a_product_bg.png" id="LJ6-6c-Zgq">
                     <rect key="frame" x="11" y="148" width="297" height="65"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BBj-A1-Asi">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BBj-A1-Asi">
                     <rect key="frame" x="20" y="154" width="114" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not selected..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nFE-9A-3UP">
+                    <rect key="frame" x="36" y="181" width="212" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to select a location..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tMp-13-aRc">
+                    <rect key="frame" x="107" y="154" width="158" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -167,36 +198,54 @@
                         <action selector="onSelLocation:" destination="-1" eventType="touchUpInside" id="gHW-bf-JXv"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Default" minimumFontSize="17" id="zkQ-VL-5ys" userLabel="txtLocation">
-                    <rect key="frame" x="20" y="179" width="245" height="25"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yd7-1Z-OkM">
+                    <rect key="frame" x="11" y="147" width="254" height="65"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
-                        <action selector="BeginEditing:" destination="-1" eventType="editingDidBegin" id="XRg-VK-8CR"/>
-                        <action selector="EndEditing:" destination="-1" eventType="editingDidEndOnExit" id="gk4-Lq-8O0"/>
-                        <outlet property="delegate" destination="-1" id="oNf-Bt-KF4"/>
+                        <action selector="onLocationClick:" destination="-1" eventType="touchUpInside" id="VvM-Jg-puL"/>
                     </connections>
-                </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_readings_list_bar.png" id="n5b-TE-dD4">
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_add_a_product_bg.png" id="n5b-TE-dD4">
                     <rect key="frame" x="11" y="223" width="297" height="65"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_readings_list_bar.png" id="Dej-DT-RoS">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_add_a_product_bg.png" id="Dej-DT-RoS">
                     <rect key="frame" x="11" y="288" width="297" height="65"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_text.png" id="uxz-GU-188">
+                    <rect key="frame" x="33" y="316" width="232" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CJo-Tb-dyz">
                     <rect key="frame" x="20" y="229" width="114" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not selected..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bbL-1C-pJf">
+                    <rect key="frame" x="36" y="254" width="212" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to select a product..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t2a-k6-S1F">
+                    <rect key="frame" x="107" y="229" width="158" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coverage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b5N-Do-jUO">
                     <rect key="frame" x="20" y="293" width="114" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -241,19 +290,19 @@
                         <action selector="onSelProduct:" destination="-1" eventType="touchUpInside" id="yY7-6q-H4G"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Default" minimumFontSize="17" id="JPE-P5-ueK" userLabel="txtProduct">
-                    <rect key="frame" x="20" y="252" width="245" height="25"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TQE-yl-dn9">
+                    <rect key="frame" x="11" y="225" width="254" height="65"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
-                        <action selector="BeginEditing:" destination="-1" eventType="editingDidBegin" id="JvE-KX-AI8"/>
-                        <action selector="EndEditing:" destination="-1" eventType="editingDidEndOnExit" id="87s-L6-DCx"/>
-                        <outlet property="delegate" destination="-1" id="nbr-RP-RFP"/>
+                        <action selector="onProductClick:" destination="-1" eventType="touchUpInside" id="fK1-rS-5Ax"/>
                     </connections>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0.0" minimumFontSize="17" id="on9-PL-LpW" userLabel="txtCoverage">
-                    <rect key="frame" x="20" y="318" width="245" height="25"/>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0.0" clearsOnBeginEditing="YES" minimumFontSize="17" id="on9-PL-LpW" userLabel="txtCoverage">
+                    <rect key="frame" x="39" y="318" width="226" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
@@ -282,7 +331,8 @@
     </objects>
     <resources>
         <image name="background.png" width="640" height="1136"/>
-        <image name="bg_readings_list_bar.png" width="595" height="101"/>
+        <image name="bg_add_a_product_bg.png" width="365" height="61"/>
+        <image name="bg_text.png" width="490" height="30"/>
         <image name="bg_title_bar.png" width="640" height="103"/>
         <image name="bt_Summary.png" width="334" height="73"/>
         <image name="bt_title_bar_cancel.png" width="91" height="28"/>

@@ -66,7 +66,9 @@
     [self.tblLoc reloadData];
     self.isEditing = NO;
     if ([arrLoc count] == 0)
+    {
         [self.lblNoResult setHidden:NO];
+    }
     else
         [self.lblNoResult setHidden:YES];
 }
@@ -86,6 +88,8 @@
 
 - (IBAction)onAdd:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     NSString *locationName = self.txtAdd.text;
     if (locationName == nil || [locationName isEqualToString:@""]) {
         [CommonMethods showAlertUsingTitle:@"" andMessage:@"Please input location name to add!"];
@@ -117,13 +121,25 @@
     self.txtAdd.text = @"";
 }
 
+- (IBAction)onClose:(id)sender
+{
+    [CommonMethods playTapSound];
+    
+    [self.txtAdd resignFirstResponder];
+    [self.txtAdd setText:@""];
+}
+
 - (IBAction)onBack:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)onDeleteOk:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     // check whether this location is using for recording
     GlobalData *globalData = [GlobalData sharedData];
     if (globalData.isSaved && globalData.selectedLocID == self.curLoc.locID)
@@ -139,6 +155,8 @@
 
 - (IBAction)onDeleteCancel:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     [self hideAlertAnimation];
 }
 
@@ -216,6 +234,8 @@
 #pragma mark - FSCellDelegate
 - (void)onEditCell:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     FSLocationCell *cell = (FSLocationCell *)sender;
     _curLoc = (FSLocation *)cell.data;
     CGRect selectedCellFrame = [cell.superview convertRect:cell.frame toView:self.view];
@@ -234,6 +254,8 @@
 
 - (void)onDeleteCell:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     FSLocationCell *cell = (FSLocationCell *)sender;
     self.curLoc = cell.data;
     [self.view bringSubviewToFront:self.archive_alertview];
@@ -243,6 +265,8 @@
 
 - (BOOL)onEditFinishedOk:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     self.isEditing = NO;
     
     FSLocationCell *cell = (FSLocationCell *)sender;
@@ -273,6 +297,8 @@
 
 - (void)onEditFinishedCancel:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     self.isEditing = NO;
     
     if (trasnfromHeight != 0) {
@@ -289,6 +315,9 @@
 
 - (void)onSelectCell:(id)sender
 {
+    
+    [CommonMethods playTapSound];
+    
     if (self.mode == MODE_RECORD)
     {
         FSLocationCell *cell = (FSLocationCell *)sender;

@@ -53,7 +53,7 @@
 {
     [super viewDidLoad];
 
-    archive_alertview.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
+
     [archive_alertview setHidden:YES];
     [tblJobs setBackgroundColor:[UIColor clearColor]];
     trasnfromHeight = 0;
@@ -115,6 +115,14 @@
     if ([arrJobNames count] == 0)
     {
         [self.lblNoResult setHidden:NO];
+        if (self.txtEdit.text == nil || [self.txtEdit.text isEqualToString:@""])
+        {
+            [self.lblNoResult setText:@"No Jobs"];
+        }
+        else
+        {
+            [self.lblNoResult setText:@"Searching..."];
+        }
     }
     else
     {
@@ -224,6 +232,8 @@
 #pragma mark - Cell Delegate
 - (void)didEdit:(FSJobCell *)cell
 {
+    [CommonMethods playTapSound];
+    
     curJob = cell.curJob;
     CGRect selectedCellFrame = [cell.superview convertRect:cell.frame toView:self.view];
     if (selectedCellFrame.origin.y + 60 >= [[UIScreen mainScreen] bounds].size.height - 216) {
@@ -238,6 +248,8 @@
 
 - (void)didArchive:(FSJobCell *)cell
 {
+    [CommonMethods playTapSound];
+    
     curJob = cell.curJob;
     [self.view bringSubviewToFront:archive_alertview];
     [archive_alertview setHidden:NO];
@@ -248,6 +260,8 @@
 
 - (BOOL)didOK:(FSJobCell *)cell
 {
+    [CommonMethods playTapSound];
+    
     if ([curJob.jobName isEqualToString:[cell.txtJobName text]])
     {
         //
@@ -278,6 +292,8 @@
 
 - (void)didCancel:(FSJobCell *)cell
 {
+    [CommonMethods playTapSound];
+    
 //    [curJob clear];
     if (trasnfromHeight != 0) {
         [UIView animateWithDuration:0.1f animations:^{
@@ -288,6 +304,8 @@
 
 - (void)didDetail:(FSJobCell *)cell
 {
+    [CommonMethods playTapSound];
+    
     /*
     FSMainViewController *mainController = [FSMainViewController sharedController];
     UINavigationController *nav =(UINavigationController *)[[mainController viewControllers] objectAtIndex:2];
@@ -319,12 +337,16 @@
 
 #pragma mark - Actions
 - (IBAction)onFly:(id)sender;
-{    
+{
+    [CommonMethods playTapSound];
+    
     [self navigateArchive];
 }
 
 - (IBAction)onArchive_OK:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     [curJob setJobArchived:1];
     [[DataManager sharedInstance] updateJobToDatabase:curJob];
     [self initTableData];
@@ -333,12 +355,16 @@
 
 - (IBAction)onArchive_Cancel:(id)sender
 {
+    [CommonMethods playTapSound];
+    
 //    [curJob clear];
     [self hideAlertAnimation];
 }
 
 - (IBAction)onAdd:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     if (self.txtEdit.text == nil || [self.txtEdit.text isEqualToString:@""]) {
         [CommonMethods showAlertUsingTitle:@"" andMessage:@"Please input job name to add!"];
         return;
@@ -369,6 +395,8 @@
 
 - (IBAction)onClose:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     [self.txtEdit setText:@""];
     [self initTableData];
 }
@@ -387,6 +415,8 @@
 
 - (IBAction)onBtnCancel:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     [self.txtSearch resignFirstResponder];
     [self.txtSearch setText:@""];
     [self initTableData];
@@ -394,6 +424,8 @@
 
 - (IBAction)onBtnBack:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

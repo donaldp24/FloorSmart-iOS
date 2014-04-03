@@ -19,6 +19,10 @@
 @property (nonatomic, assign) IBOutlet UILabel *lblJobName;
 @property (nonatomic, assign) IBOutlet UILabel *lblLocName;
 @property (nonatomic, assign) IBOutlet UILabel *lblProcName;
+@property (nonatomic, assign) IBOutlet UILabel *lblCoverage;
+@property (nonatomic, assign) IBOutlet UILabel *lblM;
+@property (nonatomic, assign) IBOutlet UILabel *lblFt;
+@property (nonatomic, assign) IBOutlet UIView *viewUnit;
 
 @property (nonatomic, assign) IBOutlet UIView *viewOverall;
 @property (nonatomic, assign) IBOutlet UILabel *lblOverMCAVG;
@@ -43,6 +47,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblCurEMC;
 
 @property (nonatomic, assign) IBOutlet UIView *archive_alertview;
+@property (nonatomic, strong) IBOutlet UILabel *lblCurrReading;
 
 - (IBAction)onBack:(id)sender;
 

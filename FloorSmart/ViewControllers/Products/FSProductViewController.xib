@@ -10,7 +10,7 @@
                 <outlet property="btnFinished" destination="rFC-h9-1Sk" id="C72-49-Hid"/>
                 <outlet property="btnSubfloor" destination="bgX-IQ-QHK" id="xJ2-0Z-9u5"/>
                 <outlet property="delete_alertview" destination="kdE-U0-UDs" id="tE9-eD-B30"/>
-                <outlet property="lblNoResult" destination="T4P-0a-HzT" id="Yw9-hF-ZHb"/>
+                <outlet property="lblNoResult" destination="T4P-0a-HzT" id="eGG-l9-CAP"/>
                 <outlet property="lblSelectType" destination="tVA-yZ-NnS" id="uEa-H1-26s"/>
                 <outlet property="tblProducts" destination="vAH-wN-QAf" id="4Xw-ig-UGo"/>
                 <outlet property="txtAdd" destination="Gt8-Km-rhj" id="si3-eZ-ama"/>
@@ -70,13 +70,6 @@
                     <rect key="frame" x="85" y="10" width="151" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Products" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T4P-0a-HzT" userLabel="no results">
-                    <rect key="frame" x="75" y="229" width="169" height="23"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -251,6 +244,13 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Products" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T4P-0a-HzT" userLabel="no results">
+                    <rect key="frame" x="75" y="229" width="169" height="23"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

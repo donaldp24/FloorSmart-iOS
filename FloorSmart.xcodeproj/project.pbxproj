@@ -201,6 +201,7 @@
 		14F7EBAA1886F12C00E4F088 /* splash-screen_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F7EB651886F12C00E4F088 /* splash-screen_02.png */; };
 		CE1A63AA18878E160011E6EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1A63A918878E160011E6EA /* Default-568h@2x.png */; };
 		D304C1F418E381D0001EE1D1 /* bg_cancelarchive_job.png in Resources */ = {isa = PBXBuildFile; fileRef = D304C1F318E381D0001EE1D1 /* bg_cancelarchive_job.png */; };
+		D30AE18918EB6534007636AD /* archive.png in Resources */ = {isa = PBXBuildFile; fileRef = D30AE18818EB6534007636AD /* archive.png */; };
 		D348DF5318CF75B800FE4946 /* XIBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5218CF75B800FE4946 /* XIBTableViewCell.m */; };
 		D348DF5718CFA96400FE4946 /* FSLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5518CFA96400FE4946 /* FSLocationCell.m */; };
 		D348DF5818CFA96400FE4946 /* FSLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D348DF5618CFA96400FE4946 /* FSLocationCell.xib */; };
@@ -264,6 +265,13 @@
 		D3FBF7F418DF8B2E009CE69F /* bg_product_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FBF7F218DF8B2E009CE69F /* bg_product_delete.png */; };
 		D3FBF7F618DF8C11009CE69F /* bg_delete_location.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FBF7F518DF8C11009CE69F /* bg_delete_location.png */; };
 		D3FE795E18D6907100F747E2 /* bg_main_banner_tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FE795D18D6907100F747E2 /* bg_main_banner_tabbar.png */; };
+		D3FED27B18EC8FC7007A6866 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FED27A18EC8FC7007A6866 /* AudioToolbox.framework */; };
+		D3FED27F18ECA083007A6866 /* FSSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FED27D18ECA083007A6866 /* FSSelectViewController.m */; };
+		D3FED28018ECA083007A6866 /* FSSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3FED27E18ECA083007A6866 /* FSSelectViewController.xib */; };
+		D3FED28218ECA7A5007A6866 /* bg_select.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FED28118ECA7A5007A6866 /* bg_select.png */; };
+		D3FED28418ECB6A0007A6866 /* bt_title_bar_ok.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FED28318ECB6A0007A6866 /* bt_title_bar_ok.png */; };
+		D3FED28618ECCE2B007A6866 /* bg_text.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FED28518ECCE2B007A6866 /* bg_text.png */; };
+		D3FED28818ECD704007A6866 /* bg_picker.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FED28718ECD704007A6866 /* bg_picker.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -502,6 +510,7 @@
 		14F7EB651886F12C00E4F088 /* splash-screen_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-screen_02.png"; sourceTree = "<group>"; };
 		CE1A63A918878E160011E6EA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D304C1F318E381D0001EE1D1 /* bg_cancelarchive_job.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_cancelarchive_job.png; path = FloorSmart/resource/new/bg_cancelarchive_job.png; sourceTree = SOURCE_ROOT; };
+		D30AE18818EB6534007636AD /* archive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = archive.png; path = FloorSmart/resource/new/archive.png; sourceTree = SOURCE_ROOT; };
 		D348DF5118CF75B800FE4946 /* XIBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XIBTableViewCell.h; path = CustomUI/XIBTableViewCell.h; sourceTree = "<group>"; };
 		D348DF5218CF75B800FE4946 /* XIBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XIBTableViewCell.m; path = CustomUI/XIBTableViewCell.m; sourceTree = "<group>"; };
 		D348DF5418CFA96400FE4946 /* FSLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocationCell.h; path = CustomUI/FSLocationCell.h; sourceTree = "<group>"; };
@@ -599,6 +608,14 @@
 		D3FBF7F218DF8B2E009CE69F /* bg_product_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_product_delete.png; path = FloorSmart/resource/new/bg_product_delete.png; sourceTree = SOURCE_ROOT; };
 		D3FBF7F518DF8C11009CE69F /* bg_delete_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_delete_location.png; path = FloorSmart/resource/new/bg_delete_location.png; sourceTree = SOURCE_ROOT; };
 		D3FE795D18D6907100F747E2 /* bg_main_banner_tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_main_banner_tabbar.png; path = FloorSmart/resource/origin/bg_main_banner_tabbar.png; sourceTree = SOURCE_ROOT; };
+		D3FED27A18EC8FC7007A6866 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D3FED27C18ECA083007A6866 /* FSSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSelectViewController.h; sourceTree = "<group>"; };
+		D3FED27D18ECA083007A6866 /* FSSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSelectViewController.m; sourceTree = "<group>"; };
+		D3FED27E18ECA083007A6866 /* FSSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSSelectViewController.xib; sourceTree = "<group>"; };
+		D3FED28118ECA7A5007A6866 /* bg_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_select.png; path = FloorSmart/resource/new/bg_select.png; sourceTree = SOURCE_ROOT; };
+		D3FED28318ECB6A0007A6866 /* bt_title_bar_ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bt_title_bar_ok.png; path = FloorSmart/resource/new/bt_title_bar_ok.png; sourceTree = SOURCE_ROOT; };
+		D3FED28518ECCE2B007A6866 /* bg_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_text.png; path = FloorSmart/resource/new/bg_text.png; sourceTree = SOURCE_ROOT; };
+		D3FED28718ECD704007A6866 /* bg_picker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_picker.png; path = FloorSmart/resource/new/bg_picker.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -606,6 +623,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3FED27B18EC8FC7007A6866 /* AudioToolbox.framework in Frameworks */,
 				D3EA4F6818D8E7CD00F37C2B /* libz.dylib in Frameworks */,
 				D3EA4F6618D8E7B400F37C2B /* libTestFlight.a in Frameworks */,
 				14F7EA0D1886A20600E4F088 /* CoreBluetooth.framework in Frameworks */,
@@ -657,6 +675,7 @@
 		140E88EC18688D260038B5BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3FED27A18EC8FC7007A6866 /* AudioToolbox.framework */,
 				D3EA4F6718D8E7CD00F37C2B /* libz.dylib */,
 				D3EA4F6518D8E7B400F37C2B /* libTestFlight.a */,
 				14F7EA0C1886A20600E4F088 /* CoreBluetooth.framework */,
@@ -783,6 +802,9 @@
 				140E893A18688E720038B5BF /* FSRecordViewController.h */,
 				140E893B18688E720038B5BF /* FSRecordViewController.m */,
 				140E893C18688E720038B5BF /* FSRecordViewController.xib */,
+				D3FED27C18ECA083007A6866 /* FSSelectViewController.h */,
+				D3FED27D18ECA083007A6866 /* FSSelectViewController.m */,
+				D3FED27E18ECA083007A6866 /* FSSelectViewController.xib */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -904,6 +926,11 @@
 		1435C07D1887932A00AE1C87 /* new */ = {
 			isa = PBXGroup;
 			children = (
+				D3FED28718ECD704007A6866 /* bg_picker.png */,
+				D3FED28518ECCE2B007A6866 /* bg_text.png */,
+				D3FED28318ECB6A0007A6866 /* bt_title_bar_ok.png */,
+				D3FED28118ECA7A5007A6866 /* bg_select.png */,
+				D30AE18818EB6534007636AD /* archive.png */,
 				D304C1F318E381D0001EE1D1 /* bg_cancelarchive_job.png */,
 				D3FBF7F518DF8C11009CE69F /* bg_delete_location.png */,
 				D3FBF7F218DF8B2E009CE69F /* bg_product_delete.png */,
@@ -1287,7 +1314,9 @@
 				14F537B618C0ECB500C1318A /* bt_arrow_up1.png in Resources */,
 				14F7EB711886F12C00E4F088 /* bg_job_overview_detail_bar.png in Resources */,
 				14F7EB661886F12C00E4F088 /* bg_add_job_bar.png in Resources */,
+				D30AE18918EB6534007636AD /* archive.png in Resources */,
 				1435C0B91887932A00AE1C87 /* bg_overwiew_data_space.png in Resources */,
+				D3FED28218ECA7A5007A6866 /* bg_select.png in Resources */,
 				D3F4C4CD18DE3AC9006F40D1 /* AppIcon-144.png in Resources */,
 				1435C0AE1887932A00AE1C87 /* b_achived-jobs.png in Resources */,
 				1435C0CE1887932A00AE1C87 /* bt_fly.png in Resources */,
@@ -1297,6 +1326,7 @@
 				14F7EB9E1886F12C00E4F088 /* segment_c_selected.png in Resources */,
 				140E8A2F1868D7050038B5BF /* FSJobCell.xib in Resources */,
 				140E8A1118688F880038B5BF /* tap_reports0.png in Resources */,
+				D3FED28818ECD704007A6866 /* bg_picker.png in Resources */,
 				14F7EB991886F12C00E4F088 /* ic_edit.png in Resources */,
 				140E8A0418688F880038B5BF /* background.png in Resources */,
 				140E894818688EB10038B5BF /* FSProductViewController.xib in Resources */,
@@ -1312,12 +1342,14 @@
 				1435C0CA1887932A00AE1C87 /* bt_C_sl.png in Resources */,
 				14F7EB931886F12C00E4F088 /* bt_Summary.png in Resources */,
 				140E8A37186929E80038B5BF /* FSArchiveJobViewController.xib in Resources */,
+				D3FED28418ECB6A0007A6866 /* bt_title_bar_ok.png in Resources */,
 				140E8A0718688F880038B5BF /* example graphic set for only iPhone.zip in Resources */,
 				140E8A0318688F880038B5BF /* Default-568h.png in Resources */,
 				D3F4C4CA18DE3AC9006F40D1 /* AppIcon-057.png in Resources */,
 				140E8A0618688F880038B5BF /* browser_BG.png in Resources */,
 				D3FE795E18D6907100F747E2 /* bg_main_banner_tabbar.png in Resources */,
 				14F7EBA21886F12C00E4F088 /* segment_ft_selected.png in Resources */,
+				D3FED28018ECA083007A6866 /* FSSelectViewController.xib in Resources */,
 				D3F4C4D118DE3AC9006F40D1 /* Reader-Button-N@2x.png in Resources */,
 				14F7EB701886F12C00E4F088 /* bg_job_keyword.png in Resources */,
 				14F7EB8D1886F12C00E4F088 /* bt_record_nl.png in Resources */,
@@ -1374,6 +1406,7 @@
 				14F7EB831886F12C00E4F088 /* bt_arrow.png in Resources */,
 				140E894318688E9B0038B5BF /* FSJobViewController.xib in Resources */,
 				1435C0D71887932A00AE1C87 /* t_job_overview.png in Resources */,
+				D3FED28618ECCE2B007A6866 /* bg_text.png in Resources */,
 				D3F591BA18DCE5B900D8111C /* FSReportHeaderView.xib in Resources */,
 				1435C0D91887932A00AE1C87 /* t_products.png in Resources */,
 				14F7EB7F1886F12C00E4F088 /* bg_setting_list.png in Resources */,
@@ -1481,6 +1514,7 @@
 				D3F142BD18CE7A4200720482 /* FSLocationsViewController.m in Sources */,
 				140E8A1D1868A77D0038B5BF /* CommonMethods.m in Sources */,
 				140E8A321868D71D0038B5BF /* FSJobCell.m in Sources */,
+				D3FED27F18ECA083007A6866 /* FSSelectViewController.m in Sources */,
 				140E892E18688E040038B5BF /* FSMainViewController.m in Sources */,
 				14BED7A918705E0A0092A406 /* FSLocation.m in Sources */,
 				D3F4C50F18DE3AEC006F40D1 /* ReaderThumbRequest.m in Sources */,

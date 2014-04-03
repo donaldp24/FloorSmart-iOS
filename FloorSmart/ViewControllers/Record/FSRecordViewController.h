@@ -12,6 +12,7 @@
 #import "FSProductViewController.h"
 #import "FSLocProductViewController.h"
 #import "FSCurReadingsViewController.h"
+#import "FSSelectViewController.h"
 
 @interface FSRecordViewController : UIViewController <UITextFieldDelegate, FSJobSelectDelegate, FSLocationSelectDelegate, FSLocProductSelectDelegate> {
     
@@ -26,13 +27,19 @@
     UITextField *curTextField;
     FSCurReadingsViewController *readingVC;
     
+    FSSelectViewController  *jobSelector;
+    
     BOOL isPrevSqureFoot;
 }
 
-@property (nonatomic, retain) IBOutlet UITextField *txtJob;
-@property (nonatomic, retain) IBOutlet UITextField *txtLocation;
-@property (nonatomic, retain) IBOutlet UITextField *txtProduct;
+@property (nonatomic, retain) IBOutlet UILabel *lblJob;
+@property (nonatomic, retain) IBOutlet UILabel *lblLocation;
+@property (nonatomic, retain) IBOutlet UILabel *lblProduct;
 @property (nonatomic, retain) IBOutlet UITextField *txtCoverage;
+
+@property (nonatomic, strong) IBOutlet UILabel *lblHintJob;
+@property (nonatomic, strong) IBOutlet UILabel *lblHintLocation;
+@property (nonatomic, strong) IBOutlet UILabel *lblHintProduct;
 
 @property (nonatomic, retain) IBOutlet UILabel *lblUnitFt;
 @property (nonatomic, retain) IBOutlet UILabel *lblUnitM;
@@ -45,6 +52,13 @@
 - (IBAction)onSelJob:(id)sender;
 - (IBAction)onSelLocation:(id)sender;
 - (IBAction)onSelProduct:(id)sender;
+
+- (IBAction)onJobClick:(id)sender;
+- (IBAction)onLocationClick:(id)sender;
+- (IBAction)onProductClick:(id)sender;
+
+- (void) showSummary;
+- (void) hideSummary;
 
 // delegate methods
 - (void)jobSelected:(FSJob *)job;

@@ -9,7 +9,7 @@
 #import "FSAppDelegate.h"
 #import "FSMainViewController.h"
 #import "Global.h"
-
+#import <AudioToolbox/AudioToolbox.h>
 
 @implementation FSAppDelegate
 
@@ -25,6 +25,11 @@
     self.viewController = [FSMainViewController sharedController];
     [self.window setRootViewController:self.viewController];
     [self.window makeKeyAndVisible];
+    
+    AudioSessionInitialize (NULL, NULL, NULL, NULL);
+    //UInt32 sessionCategory = kAudioSessionCategory_AmbientSound;
+    //AudioSessionSetProperty (kAudioSessionProperty_AudioCategory, sizeof (sessionCategory), &sessionCategory);
+    AudioSessionSetActive (true);
     
     return YES;
 }

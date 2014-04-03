@@ -7,14 +7,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FSJobViewController">
             <connections>
-                <outlet property="archive_alertview" destination="uJ7-NG-rbB" id="Olx-Bj-u0q"/>
+                <outlet property="archive_alertview" destination="rzG-3b-Bvn" id="4WS-SQ-xSf"/>
                 <outlet property="btnBack" destination="ntq-w6-RNT" id="h7M-LA-gX0"/>
                 <outlet property="btnFly" destination="1gc-Ww-H1u" id="KQD-UK-TOH"/>
                 <outlet property="lblNoResult" destination="Csj-Nn-or8" id="rBZ-bg-Gj6"/>
                 <outlet property="tblJobs" destination="9gT-Sj-j7b" id="L3R-et-kbX"/>
                 <outlet property="txtEdit" destination="nv0-L9-c5N" id="a28-ou-K4m"/>
                 <outlet property="txtSearch" destination="uaG-Mo-uMX" id="Zla-mt-Zqg"/>
-                <outlet property="view" destination="1" id="3"/>
+                <outlet property="view" destination="1" id="Cx4-bS-LTj"/>
                 <outlet property="viewSearch" destination="qmx-FC-FRa" id="2V5-8K-iDx"/>
                 <outlet property="viewTopAdd" destination="V8B-n1-irH" id="vw4-rU-7Ha"/>
             </connections>
@@ -24,38 +24,37 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="uJ7-NG-rbB">
+                <view contentMode="scaleToFill" id="rzG-3b-Bvn">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_archive_job.png" id="zER-sE-umH">
-                            <rect key="frame" x="42" y="166" width="236" height="148"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_archive_job.png" id="wfs-J3-a3K">
+                            <rect key="frame" x="42" y="196" width="236" height="148"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yfR-Ns-Yia">
-                            <rect key="frame" x="64" y="275" width="90" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JTO-E8-hc7">
+                            <rect key="frame" x="64" y="305" width="90" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="ok" image="bt_ok.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="onArchive_OK:" destination="-1" eventType="touchUpInside" id="shQ-DY-FUs"/>
+                                <action selector="onArchive_OK:" destination="-1" eventType="touchUpInside" id="xnA-lL-hSr"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xkc-tZ-tFB">
-                            <rect key="frame" x="162" y="275" width="90" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nhw-7C-hm7">
+                            <rect key="frame" x="162" y="305" width="90" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="cancel" image="bt_alertcancel.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="onArchive_Cancel:" destination="-1" eventType="touchUpInside" id="Ec8-Kp-k32"/>
+                                <action selector="onArchive_Cancel:" destination="-1" eventType="touchUpInside" id="Ltm-tk-n3f"/>
                             </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.51000000000000001" colorSpace="calibratedRGB"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="-30" maxX="0.0" maxY="70"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kV8-g2-SNl" userLabel="btnBg">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -198,7 +197,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5rJ-Bd-9ju" userLabel="btnSearch">
                                     <rect key="frame" x="9" y="12" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" image="E446735A-1B0B-494A-BDD1-D8E300FB434E">
+                                    <state key="normal" image="1779201E-E274-45B8-98F1-5939CFE31198">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
@@ -239,13 +238,12 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="E446735A-1B0B-494A-BDD1-D8E300FB434E" width="31" height="31">
+        <image name="1779201E-E274-45B8-98F1-5939CFE31198" width="31" height="31">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

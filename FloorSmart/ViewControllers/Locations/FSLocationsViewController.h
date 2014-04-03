@@ -36,6 +36,7 @@
 @property (nonatomic, retain) id<FSLocationSelectDelegate> locationSelectDelegate;
 
 - (IBAction)onAdd:(id)sender;
+- (IBAction)onClose:(id)sender;
 - (IBAction)onBack:(id)sender;
 - (IBAction)onDeleteOk:(id)sender;
 - (IBAction)onDeleteCancel:(id)sender;

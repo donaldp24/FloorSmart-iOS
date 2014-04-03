@@ -153,6 +153,9 @@
                                     <state key="normal" title="delete" image="bt_job_delete.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="onClose:" destination="-1" eventType="touchUpInside" id="2H1-X1-HEN"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="too-jK-uHC" userLabel="Button - add">
                                     <rect key="frame" x="247" y="9" width="20" height="20"/>

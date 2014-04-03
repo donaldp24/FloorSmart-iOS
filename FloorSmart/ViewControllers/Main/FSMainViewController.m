@@ -95,6 +95,8 @@ const int scanDelay = 5;
 
 - (IBAction)onTabItem:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     UIButton *tabItem = (UIButton *)sender;
     [self clearSelected];
     [tabItem setSelected:YES];

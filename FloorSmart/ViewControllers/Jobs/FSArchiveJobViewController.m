@@ -67,6 +67,15 @@
     if ([arrJobNames count] == 0)
     {
         [self.lblNoResult setHidden:NO];
+        
+        if (self.txtTop.text == nil || [self.txtTop.text isEqualToString:@""])
+        {
+            [self.lblNoResult setText:@"No Jobs"];
+        }
+        else
+        {
+            [self.lblNoResult setText:@"Searching..."];
+        }
     }
     else
     {
@@ -116,6 +125,8 @@
 #pragma mark - Cell Delegate
 - (void)didUnarchive:(FSArchiveCell *)cell
 {
+    [CommonMethods playTapSound];
+    
     curJob = cell.curJob;
     arcVSdelete = 0;
     [imgAlertBack setImage:[UIImage imageNamed:@"bg_cancelarchive_job"]];
@@ -126,6 +137,8 @@
 
 - (void)didDelete:(FSArchiveCell *)cell
 {
+    [CommonMethods playTapSound];
+    
     arcVSdelete = 1;
     curJob = cell.curJob;
     [imgAlertBack setImage:[UIImage imageNamed:@"bg_delete_job"]];
@@ -136,6 +149,7 @@
 
 - (void)didDetail:(FSArchiveCell *)cell
 {
+    [CommonMethods playTapSound];
     /*
     FSMainViewController *mainController = [FSMainViewController sharedController];
     UINavigationController *nav =(UINavigationController *)[[mainController viewControllers] objectAtIndex:2];
@@ -198,6 +212,8 @@
 
 - (IBAction)onDelete_OK:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     if (arcVSdelete) {
         // check this job is recording now
         GlobalData *globalData = [GlobalData sharedData];
@@ -219,6 +235,8 @@
 
 - (IBAction)onDelete_Cancel:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     arcVSdelete = -1;
 //    [curJob clear];
     [self hideAlertAnimation];
@@ -226,6 +244,8 @@
 
 - (IBAction)onBack:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -236,6 +256,8 @@
 
 - (IBAction)onBtnCancel:(id)sender
 {
+    [CommonMethods playTapSound];
+    
     txtTop.text = @"";
     [self onSearch:sender];
     [txtTop resignFirstResponder];
