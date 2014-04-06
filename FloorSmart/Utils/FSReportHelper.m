@@ -681,8 +681,9 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
 
 - (void) drawLogoImage {
 
-    UIImage * demoImage = [UIImage imageNamed:@"wagner_pdf_logo.png"];
-    [demoImage drawInRect:CGRectMake(demoImage.size.width*3+25, kBorderInset + kMarginInset + 810.0, demoImage.size.width*3, demoImage.size.height*3)];
+    //UIImage * demoImage = [UIImage imageNamed:@"wagner_pdf_logo.png"];
+    UIImage * demoImage = [UIImage imageNamed:@"ReportLogo"];
+    [demoImage drawInRect:CGRectMake(demoImage.size.width*3, kBorderInset + kMarginInset + 810.0, demoImage.size.width, demoImage.size.height)];
 }
 
 -(void)drawLineFromPoint:(CGPoint)from toPoint:(CGPoint)to {

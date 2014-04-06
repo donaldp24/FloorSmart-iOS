@@ -204,6 +204,20 @@ static DataManager *sharedManager;
     return NO;
 }
 
+- (FSLocation *)getLocation:(long)jobID locName:(NSString *)locName
+{
+    NSString *sql = @"";
+    sql = [NSString stringWithFormat:@"SELECT * FROM tbl_location WHERE deleted = 0 and location_jobid  = %ld and location_name = '%@'", jobID, locName];
+    FMResultSet *results = [_database executeQuery:sql];
+    while ([results next]) {
+        FSLocation *loc  = [[[FSLocation alloc] init] autorelease];
+        loc.locID       = [results intForColumn:@"location_id"];
+        loc.locJobID    = [results intForColumn:@"location_jobid"];
+        loc.locName     = [results stringForColumn:@"location_name"];
+        return loc;
+    }
+    return nil;
+}
 
 - (FSLocation *)getLocationFromID:(long)locID
 {
@@ -254,6 +268,22 @@ static DataManager *sharedManager;
         return loc;
     }
     return nil;
+}
+
+- (NSMutableArray *)getAllDistinctLocations
+{
+    NSMutableArray *arrayResults = [[NSMutableArray alloc] init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT DISTINCT(location_name) AS location_name FROM tbl_location WHERE deleted = 0"];
+    FMResultSet *results = [_database executeQuery:sql];
+    while ([results next]) {
+        FSLocation *loc  = [[[FSLocation alloc] init] autorelease];
+        loc.locID = 0;
+        loc.locJobID = 0;
+        loc.locName     = [results stringForColumn:@"location_name"];
+        [arrayResults addObject:loc];
+    }
+
+    return arrayResults;
 }
 
 #pragma mark - product

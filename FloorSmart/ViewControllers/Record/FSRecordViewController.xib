@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FSRecordViewController">
             <connections>
+                <outlet property="btnBg" destination="VxR-DZ-T5q" id="iw1-rW-mnb"/>
                 <outlet property="btnCancel" destination="Fiv-MM-zgS" id="xB9-fB-718"/>
                 <outlet property="btnSave" destination="yF8-M8-XSe" id="tSD-AW-CI5"/>
                 <outlet property="btnSummary" destination="sID-xo-jLA" id="C8P-lp-oEk"/>
@@ -42,17 +43,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VxR-DZ-T5q">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onBgClicked:" destination="-1" eventType="touchUpInside" id="pO2-Xl-AoG"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cra-6a-ExC" userLabel="Button - Back">
                     <rect key="frame" x="5" y="3" width="72" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -299,6 +289,17 @@
                     </state>
                     <connections>
                         <action selector="onProductClick:" destination="-1" eventType="touchUpInside" id="fK1-rS-5Ax"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VxR-DZ-T5q" userLabel="btnBg">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onBgClicked:" destination="-1" eventType="touchUpInside" id="pO2-Xl-AoG"/>
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0.0" clearsOnBeginEditing="YES" minimumFontSize="17" id="on9-PL-LpW" userLabel="txtCoverage">

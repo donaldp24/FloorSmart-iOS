@@ -12,7 +12,7 @@
 #define MODE_SELECT_LOCATION 1
 #define MODE_SELECT_PRODUCT 2
 
-@interface FSSelectViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface FSSelectViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     NSMutableArray *arrayData;
     int  _curRow;
@@ -23,8 +23,8 @@
 }
 
 @property (nonatomic, strong) IBOutlet UILabel *lblTitle;
-@property (nonatomic, strong) IBOutlet UIPickerView *picker;
 @property (nonatomic, strong) IBOutlet UIView *viewContainer;
+@property (nonatomic, strong) IBOutlet UITableView *tblMain;
 
 - (id) initWithParent : (NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil parent:(id)realParent mode:(int)mode parentNode:(id)parentNode;
 

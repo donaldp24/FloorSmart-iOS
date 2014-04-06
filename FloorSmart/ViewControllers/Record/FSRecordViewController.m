@@ -473,7 +473,8 @@
         return;
     }
     
-    NSMutableArray *arrayData = [[DataManager sharedInstance] getLocations:selectedJob.jobID];
+    //NSMutableArray *arrayData = [[DataManager sharedInstance] getLocations:selectedJob.jobID];
+    NSMutableArray *arrayData = [[DataManager sharedInstance] getAllDistinctLocations];
     if (arrayData.count <= 0)
     {
         [self onSelLocation:nil];
@@ -521,7 +522,8 @@
         return;
     }
     
-    NSMutableArray *arrayData = [[DataManager sharedInstance] getLocProducts:loc searchField:@""];
+    //NSMutableArray *arrayData = [[DataManager sharedInstance] getLocProducts:loc searchField:@""];
+    NSMutableArray *arrayData = [[DataManager sharedInstance] getProducts:@""];
     if (arrayData.count <= 0)
     {
         [self onSelProduct:nil];
@@ -881,6 +883,7 @@
 {
     if (curTextField == self.txtCoverage)
     {
+        self.btnBg.hidden = NO;
         CGRect selectedCellFrame = self.txtCoverage.frame;
         if (selectedCellFrame.origin.y + 40 >= [[UIScreen mainScreen] bounds].size.height - KEYBOARD_HEIGHT /* 216 */) {
             trasnfromHeight = selectedCellFrame.origin.y + 40 - [[UIScreen mainScreen] bounds].size.height + KEYBOARD_HEIGHT;
@@ -896,6 +899,7 @@
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
+    self.btnBg.hidden = YES;
     if (trasnfromHeight != 0) {
         [UIView animateWithDuration:0.1f animations:^{
             [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + trasnfromHeight, self.view.frame.size.width, self.view.frame.size.height)];

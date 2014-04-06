@@ -60,14 +60,18 @@
     }
     else if (_mode == MODE_SELECT_LOCATION)
     {
-        FSJob *job = (FSJob *)_parentNode;
-        arrayData = [[DataManager sharedInstance] getLocations:job.jobID];
+        //FSJob *job = (FSJob *)_parentNode;
+        //arrayData = [[DataManager sharedInstance] getLocations:job.jobID];
+        
+        
+        arrayData = [[DataManager sharedInstance] getAllDistinctLocations];
         [self.lblTitle setText:@"Select a Location"];
     }
     else if (_mode == MODE_SELECT_PRODUCT)
     {
         FSLocation *loc = (FSLocation *)_parentNode;
-        arrayData = [[DataManager sharedInstance] getLocProducts:loc searchField:@""];
+        //arrayData = [[DataManager sharedInstance] getLocProducts:loc searchField:@""];
+        arrayData = [[DataManager sharedInstance] getProducts:@""];
         [self.lblTitle setText:@"Select a Product"];
     }
     FSRecordViewController *p = (FSRecordViewController *)_parent;
@@ -83,60 +87,6 @@
 }
 
 
-#pragma mark UIPickerView related stuff
-
-//Method to define how many columns/dials to show
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-// Method to define the numberOfRows in a component using the array.
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent :(NSInteger)component
-{
-    return [arrayData count];
-}
-
-// Method to show the title of row for a component.
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NSMutableString *str = [[NSMutableString alloc] init];
-    if (arrayData.count > 0)
-    {
-        //AddrInfo  *addr = [addrArray objectAtIndex:row];
-        
-        //[str appendFormat:@"%@ %@ %@ %@", addr.receivername, addr.area1, addr.area2, addr.area3];
-        
-        if (_mode == MODE_SELECT_JOB)
-        {
-            FSJob *job = [arrayData objectAtIndex:row];
-            [str appendFormat:@"%@", job.jobName];
-        }
-        else if (_mode == MODE_SELECT_LOCATION)
-        {
-            FSLocation *location = [arrayData objectAtIndex:row];
-            [str appendFormat:@"%@", location.locName];
-        }
-        else if (_mode == MODE_SELECT_PRODUCT)
-        {
-            FSLocProduct *locProduct = [arrayData objectAtIndex:row];
-            [str appendFormat:@"%@ (%@)", locProduct.locProductName, [FSProduct getDisplayProductType:locProduct.locProductType]];
-        }
-        return str;
-    }
-    return @"";
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
-    return 40.0;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    _curRow = row;
-}
-
 - (void)setCurSelected:(id)data
 {
     _curSelectedData = data;
@@ -144,10 +94,12 @@
 
 - (void)reloadData
 {
-    [self.picker reloadAllComponents];
+
     id data = _curSelectedData;
     if (data == nil)
         return;
+    
+    
     
     if (data != nil && arrayData.count > 0)
     {
@@ -160,7 +112,9 @@
                 if (job.jobID == ((FSJob *)data).jobID)
                 {
                     _curRow = i;
-                    [self.picker selectRow:i inComponent:0 animated:NO];
+                    //[self.picker selectRow:i inComponent:0 animated:NO];
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                    [self.tblMain scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
                     break;
                 }
             }
@@ -170,7 +124,9 @@
                 if (loc.locID == ((FSLocation *)data).locID)
                 {
                     _curRow = i;
-                    [self.picker selectRow:i inComponent:0 animated:NO];
+                    //[self.picker selectRow:i inComponent:0 animated:NO];
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                    [self.tblMain scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
                     break;
                 }
             }
@@ -180,7 +136,9 @@
                 if (locProduct.locProductID == ((FSLocProduct *)data).locProductID)
                 {
                     _curRow = i;
-                    [self.picker selectRow:i inComponent:0 animated:NO];
+                    //[self.picker selectRow:i inComponent:0 animated:NO];
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                    [self.tblMain scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
                     break;
                 }
             }
@@ -199,8 +157,56 @@
     [p showSummary];
 }
 
-- (IBAction)onDoneClicked:(id)sender {
+#pragma mark - Table View Data Source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [arrayData count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableString *str = [[NSMutableString alloc] init];
+    if (arrayData.count > 0)
+    {
+        //AddrInfo  *addr = [addrArray objectAtIndex:row];
+        
+        //[str appendFormat:@"%@ %@ %@ %@", addr.receivername, addr.area1, addr.area2, addr.area3];
+        
+        if (_mode == MODE_SELECT_JOB)
+        {
+            FSJob *job = [arrayData objectAtIndex:indexPath.row];
+            [str appendFormat:@"%@", job.jobName];
+        }
+        else if (_mode == MODE_SELECT_LOCATION)
+        {
+            FSLocation *location = [arrayData objectAtIndex:indexPath.row];
+            [str appendFormat:@"%@", location.locName];
+        }
+        else if (_mode == MODE_SELECT_PRODUCT)
+        {
+            FSProduct *product = [arrayData objectAtIndex:indexPath.row];
+            [str appendFormat:@"%@ (%@)", product.productName, [FSProduct getDisplayProductType:product.productType]];
+        }
+    }
+    UITableViewCell *cell = [self.tblMain dequeueReusableCellWithIdentifier:@"selectcell"];
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"selectcell"];
+        [cell.textLabel setTextColor:[UIColor whiteColor]];
+        [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
+    }
+    cell.textLabel.text = str;
+    return cell;
+}
+
+#pragma mark - Table View Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [CommonMethods playTapSound];
+    
+    _curRow = indexPath.row;
     
     FSRecordViewController *p = (FSRecordViewController *)_parent;
     if (_curRow < arrayData.count)
@@ -215,13 +221,24 @@
         else if (_mode == MODE_SELECT_LOCATION)
         {
             FSLocation *loc = [arrayData objectAtIndex:_curRow];
-            [p locationSelected:loc];
+            FSJob *job = (FSJob *)_parentNode;
+            
+            loc.locJobID = job.jobID;
+            FSLocation *existLoc = [[DataManager sharedInstance] getLocation:job.jobID locName:loc.locName];
+            
+            if (existLoc != nil)
+                [p locationSelected:existLoc];
+            else
+            {
+                loc.locID = [[DataManager sharedInstance] addLocationToDatabase:loc];
+                [p locationSelected:loc];
+            }
             
         }
         else if (_mode == MODE_SELECT_PRODUCT)
         {
-            FSLocProduct *locProduct = [arrayData objectAtIndex:_curRow];
-            [p locProductSelected:locProduct];
+            FSProduct *product = [arrayData objectAtIndex:_curRow];
+            [p productSelected:product];
             
         }
     }
@@ -230,6 +247,5 @@
     [p showSummary];
 
 }
-
 
 @end

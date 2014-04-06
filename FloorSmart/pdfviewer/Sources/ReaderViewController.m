@@ -802,8 +802,11 @@
 
 			if (CGRectContainsPoint(areaRect, point) == false) return;
 		}
-
+#ifdef NONE_HIDE_BARS
+        
+#else
 		[mainToolbar hideToolbar]; [mainPagebar hidePagebar]; // Hide
+#endif
 
 		 lastHideTime = [NSDate new];
 	}

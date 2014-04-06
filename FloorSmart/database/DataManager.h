@@ -39,11 +39,13 @@
 - (NSMutableArray *)getLocations:(long)jobID;
 - (NSMutableArray *)getLocations:(long)jobID containDefault:(BOOL) isContain;
 - (BOOL)isExistSameLocation:(long)jobID locName:(NSString *)locName;
+- (FSLocation *)getLocation:(long)jobID locName:(NSString *)locName;
 - (FSLocation *)getLocationFromID:(long)locID;
 - (int)addLocationToDatabase:(FSLocation *)loc;
 - (void)updateLocToDatabase:(FSLocation *)loc;
 - (void)deleteLocFromDatabase:(FSLocation *)loc;
 - (FSLocation *)getDefaultLocationOfJob:(long)jobID;
+- (NSMutableArray *)getAllDistinctLocations;
 
 // product
 - (NSMutableArray *)getAllProducts;

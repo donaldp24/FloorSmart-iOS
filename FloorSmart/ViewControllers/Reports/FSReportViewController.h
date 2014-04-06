@@ -12,6 +12,10 @@
 #import <MessageUI/MessageUI.h>
 #import "FSLocation.h"
 #import "FSProduct.h"
+
+// define this value not for hiding toolbars/pagebars
+#define NONE_HIDE_BARS
+
 #import "ReaderViewController.h"
 
 @interface FSReportViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, MFMailComposeViewControllerDelegate, UIPrintInteractionControllerDelegate, ReaderViewControllerDelegate>

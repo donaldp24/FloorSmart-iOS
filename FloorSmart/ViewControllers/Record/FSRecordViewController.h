@@ -48,6 +48,8 @@
 @property (nonatomic, retain) IBOutlet UIButton *btnCancel;
 @property (nonatomic, retain) IBOutlet UIButton *btnSummary;
 
+@property (nonatomic, strong) IBOutlet UIButton *btnBg;
+
 // actions
 - (IBAction)onSelJob:(id)sender;
 - (IBAction)onSelLocation:(id)sender;
