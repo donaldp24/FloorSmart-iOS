@@ -14,7 +14,6 @@
 #import "FSProduct.h"
 
 // define this value not for hiding toolbars/pagebars
-#define NONE_HIDE_BARS
 
 #import "ReaderViewController.h"
 

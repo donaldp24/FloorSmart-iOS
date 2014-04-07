@@ -661,10 +661,20 @@
     if (selectedProduct.productID == product.productID)
         return;
     
-    selectedProduct = product;
-    selectedLocProduct = nil;
+    FSLocProduct *locProduct = [[DataManager sharedInstance] getLocProductWithProduct:product locID:selectedLocation.locID];
+    if (locProduct != nil)
+    {
+        selectedProduct = nil;
+        [self locProductSelected:locProduct];
+    }
+    else
+    {
+        selectedProduct = product;
+        selectedLocProduct = nil;
+        [self setLabelSelected:self.lblProduct text:selectedProduct.productName];
+    }
     
-    [self setLabelSelected:self.lblProduct text:selectedProduct.productName];
+    
 }
 
 - (void)locProductSelected:(FSLocProduct *)locProduct

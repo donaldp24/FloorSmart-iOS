@@ -675,14 +675,15 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
 
 - (void) drawImage {
 
-    UIImage * demoImage = [UIImage imageNamed:@"wagner_pdf_image.png"];
-    [demoImage drawInRect:CGRectMake( (pageSize.width - demoImage.size.width*3), 40, demoImage.size.width*3, demoImage.size.height*3)];
+    //UIImage * demoImage = [UIImage imageNamed:@"wagner_pdf_image.png"];
+    UIImage * demoImage = [UIImage imageNamed:@"ReportLogo"];
+    [demoImage drawInRect:CGRectMake( (pageSize.width - demoImage.size.width - 50), 40, demoImage.size.width, demoImage.size.height)];
 }
 
 - (void) drawLogoImage {
 
-    //UIImage * demoImage = [UIImage imageNamed:@"wagner_pdf_logo.png"];
-    UIImage * demoImage = [UIImage imageNamed:@"ReportLogo"];
+    UIImage * demoImage = [UIImage imageNamed:@"wagner_pdf_logo.png"];
+    //UIImage * demoImage = [UIImage imageNamed:@"ReportLogo"];
     [demoImage drawInRect:CGRectMake(demoImage.size.width*3, kBorderInset + kMarginInset + 810.0, demoImage.size.width, demoImage.size.height)];
 }
 
