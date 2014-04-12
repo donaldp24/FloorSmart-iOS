@@ -16,6 +16,7 @@
 
 @property (nonatomic, assign) IBOutlet UITableView *tblDetal;
 
+@property (nonatomic, strong) IBOutlet UILabel *lblTitle;
 @property (nonatomic, assign) IBOutlet UILabel *lblJobName;
 @property (nonatomic, assign) IBOutlet UILabel *lblLocName;
 @property (nonatomic, assign) IBOutlet UILabel *lblProcName;
@@ -49,10 +50,13 @@
 @property (nonatomic, assign) IBOutlet UIView *archive_alertview;
 @property (nonatomic, strong) IBOutlet UILabel *lblCurrReading;
 
+@property (nonatomic) BOOL isFromRecorded;
+
 - (IBAction)onBack:(id)sender;
 
 - (void)setCurData:(FSReading *)data;
 - (void)initDateTable;
+- (void)scrollToLastRow;
 
 
 @end

@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+
+enum FSMaterialMode {
+    FSMaterialModeWood = 0,
+    FSMaterialModeRelative = 1,
+    FSMaterialModeConcrete = 2
+    };
+
 @interface FSReading : NSObject
 
 @property (nonatomic) long readID;
@@ -25,11 +32,14 @@
 @property (nonatomic) long readMC; //0-1000
 
 - (CGFloat) getEmcValue;
+- (CGFloat) getRealMCValue;
+- (NSString *) getDisplayRealMCValue;
 
 + (NSString *) getDisplayDepth:(long)depth;
 + (NSString *) getDisplayMaterial:(long)material;
 + (CGFloat) getCTemperature:(CGFloat)ftemp;
 + (CGFloat) getFTemperature:(CGFloat)ctemp;
++ (NSString *) getDisplayMC:(CGFloat)mc;
 
 + (CGFloat) getMCAvg:(NSMutableArray *)array;
 + (CGFloat) getMCMax:(NSMutableArray *)array;

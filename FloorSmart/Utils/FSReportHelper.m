@@ -181,7 +181,7 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
                      newLineSeparator:[row[kNewLineKey] boolValue]];
     }
 
-    if (YES) {
+    if (NO) {
         [self drawLogoImage];
         [self drawTextWithLeftAllignment:@"Certified By Wagner Meters"
                                withFrame:CGRectMake(kBorderInset + kMarginInset+150, kBorderInset + kMarginInset + 850.0,400 , 80)
@@ -299,7 +299,7 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
     CGFloat tempavg = [FSReading getTempAvg:arrayReadings];
     CGFloat emcavg = [FSReading getEmcAvg:arrayReadings];
     
-    NSString *strStatistic = [NSString stringWithFormat:@"MC Avg: %.1f%%;\t\tRH Avg: %d%%;\t\tTemp Avg: %dC;\t\tEMC Avg:%.1f%%", mcavg / 10.f, ROUND(rhavg), ROUND(tempavg), emcavg];
+    NSString *strStatistic = [NSString stringWithFormat:@"MC Avg: %.1f%%;\t\tRH Avg: %d%%;\t\tTemp Avg: %dC;\t\tEMC Avg:%.1f%%", mcavg, ROUND(rhavg), ROUND(tempavg), emcavg];
     
     CGFloat width = [CommonMethods widthOfString:strStatistic withFont:font] + 20;
     
@@ -368,7 +368,7 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
         
         // MC(%)
         column++;
-        [self drawText:[NSString stringWithFormat:@"%.1f", reading.readMC / 10.f]
+        [self drawText:[NSString stringWithFormat:@"%@", [reading getDisplayRealMCValue]]
              withFrame:CGRectMake(xOrigin + 10 + (columnWidth * column),
                                   yOrigin + 10 + (kRowHeight * (i - startIndex)),
                                   columnWidth - 20,

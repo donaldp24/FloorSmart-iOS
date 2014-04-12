@@ -193,10 +193,14 @@
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"selectcell"];
-        [cell.textLabel setTextColor:[UIColor whiteColor]];
-        [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
+        
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.text = str;
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
     return cell;
 }
 

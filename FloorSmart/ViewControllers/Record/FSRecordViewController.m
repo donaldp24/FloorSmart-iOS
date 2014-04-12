@@ -74,28 +74,37 @@
     readingVC = nil;
     
     GlobalData *globalData = [GlobalData sharedData];
-    if (globalData.isSaved == YES)
+
+    selectedJob = [[DataManager sharedInstance] getJobFromID:globalData.selectedJobID];
+    selectedLocation = [[DataManager sharedInstance] getLocationFromID:globalData.selectedLocID];
+    selectedProduct = nil;
+    selectedLocProduct = [[DataManager sharedInstance] getLocProductWithID:globalData.selectedLocProductID];
+    
+    if (selectedJob == nil
+        || selectedLocation == nil
+        || selectedLocProduct == nil)
     {
-        selectedJob = [[DataManager sharedInstance] getJobFromID:globalData.selectedJobID];
-        selectedLocation = [[DataManager sharedInstance] getLocationFromID:globalData.selectedLocID];
-        selectedProduct = nil;
-        selectedLocProduct = [[DataManager sharedInstance] getLocProductWithID:globalData.selectedLocProductID];
-        
-        if (selectedJob == nil
-            || selectedLocation == nil
-            || selectedLocProduct == nil)
-        {
-            NSLog(@"global data : jobid(%ld - %ld), locid(%ld - %ld), locproductid(%ld - %ld) ", globalData.selectedJobID, (selectedJob == nil ? 0 : selectedJob.jobID), globalData.selectedLocID, (selectedLocation == nil ? 0 : selectedLocation.locID), globalData.selectedLocProductID, (selectedLocProduct == nil ? 0 : selectedLocProduct.locProductID));
-        }
-        else
-        {
-            NSLog(@"global data : jobid(%ld - %@), locid(%ld - %@), locproductid(%ld - %@) ", selectedJob.jobID, selectedJob.jobName, selectedLocation.locID, selectedLocation.locName, selectedLocProduct.locProductID, selectedLocProduct.locProductName);
-        }
-        
+        NSLog(@"global data : jobid(%ld - %ld), locid(%ld - %ld), locproductid(%ld - %ld) ", globalData.selectedJobID, (selectedJob == nil ? 0 : selectedJob.jobID), globalData.selectedLocID, (selectedLocation == nil ? 0 : selectedLocation.locID), globalData.selectedLocProductID, (selectedLocProduct == nil ? 0 : selectedLocProduct.locProductID));
+    }
+    else
+    {
+        NSLog(@"global data : jobid(%ld - %@), locid(%ld - %@), locproductid(%ld - %@) ", selectedJob.jobID, selectedJob.jobName, selectedLocation.locID, selectedLocation.locName, selectedLocProduct.locProductID, selectedLocProduct.locProductName);
+    }
+    if (selectedJob != nil)
         [self setLabelSelected:self.lblJob text:selectedJob.jobName];
-        [self setLabelSelected:self.lblLocation text:selectedLocation.locName];
-        [self setLabelSelected:self.lblProduct text:selectedLocProduct.locProductName];
+    else
+        [self setLabelNotSelected:self.lblJob];
         
+    if (selectedLocation != nil)
+        [self setLabelSelected:self.lblLocation text:selectedLocation.locName];
+    else
+        [self setLabelNotSelected:self.lblLocation];
+    
+    
+    if (selectedLocProduct != nil)
+    {
+        [self setLabelSelected:self.lblProduct text:selectedLocProduct.locProductName];
+    
         if (globalData.settingArea == YES) //ft
         {
             self.txtCoverage.text = [NSString stringWithFormat:@"%.2f", selectedLocProduct.locProductCoverage];
@@ -113,28 +122,23 @@
         {
             [self setLabelNotSelected:self.lblProduct];
         }
-        
-        self.btnSave.enabled = NO;
-        self.btnCancel.enabled = YES;
-        //self.btnSummary.enabled = YES;
-        self.txtCoverage.enabled = NO;
     }
     else
     {
-        selectedJob = nil;
-        selectedLocation = nil;
-        selectedProduct = nil;
-        selectedLocProduct = nil;
-        
-        [self setLabelNotSelected:self.lblJob];
-        [self setLabelNotSelected:self.lblLocation];
         [self setLabelNotSelected:self.lblProduct];
         self.txtCoverage.text = @"";
-        
+    }
+
+    if (globalData.isSaved == YES &&
+        (selectedJob != nil && selectedLocation != nil && selectedLocProduct != nil) )
+    {
+        self.btnSave.enabled = NO;
+        self.btnCancel.enabled = YES;
+    }
+    else
+    {
         self.btnSave.enabled = YES;
         self.btnCancel.enabled = NO;
-        //self.btnSummary.enabled = NO;
-        self.txtCoverage.enabled = YES;
     }
     
     if (globalData.settingArea == YES) //ft
@@ -229,13 +233,13 @@
     if (isKeeped == NO)
     {
         GlobalData *globalData = [GlobalData sharedData];
-        if (globalData.isSaved)
-        {
+        //if (globalData.isSaved)
+        //{
             [globalData resetSavedData];
             self.btnCancel.enabled = NO;
             self.btnSave.enabled = YES;
             //self.btnSummary.enabled = NO;
-        }
+        //}
         
         if (selectedJob == nil) {
             [self setLabelNotSelected:self.lblJob];
@@ -341,16 +345,30 @@
     return YES;
 }
 
+#define CHARACTER_LIMIT 10
+#define NUMBERS_ONLY @"1234567890."
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+    
+    return (([string isEqualToString:filtered]) && ((newLength > CHARACTER_LIMIT) ? NO : YES));
+}
+
+
 - (IBAction)BeginEditing:(UITextField *)sender
 {
     curTextField = sender;
-    
+    if ([self isSelectable] == NO)
+    {
+        [self pauseRecording];
+    }
 }
 
 - (IBAction)EndEditing:(UITextField *)sender
 {
-    
-
     curTextField = nil;
     [sender resignFirstResponder];
 }
@@ -359,7 +377,6 @@
 {
     if (curTextField != nil)
     {
-        
         [curTextField resignFirstResponder];
         curTextField = nil;
     }
@@ -373,8 +390,8 @@
     
     if ([self isSelectable] == NO)
     {
-        [self showAlertForNotSelectable];
-        return;
+        [self pauseRecording];
+        //return;
     }
     FSJobViewController *vc = [[FSJobViewController alloc] initWithNibName:@"FSJobViewController" bundle:nil];
     vc.mode = MODE_RECORD;
@@ -389,8 +406,8 @@
     
     if ([self isSelectable] == NO)
     {
-        [self showAlertForNotSelectable];
-        return;
+        [self pauseRecording];
+        //return;
     }
     
     if (selectedJob == nil)
@@ -413,8 +430,8 @@
     
     if ([self isSelectable] == NO)
     {
-        [self showAlertForNotSelectable];
-        return;
+        [self pauseRecording];
+        //return;
     }
     
     if (selectedJob == nil)
@@ -447,8 +464,8 @@
     
     if ([self isSelectable] == NO)
     {
-        [self showAlertForNotSelectable];
-        return;
+        [self pauseRecording];
+        //return;
     }
     
     
@@ -485,8 +502,8 @@
     
     if ([self isSelectable] == NO)
     {
-        [self showAlertForNotSelectable];
-        return;
+        [self pauseRecording];
+        //return;
     }
     
     if (selectedJob == nil)
@@ -534,8 +551,8 @@
     
     if ([self isSelectable] == NO)
     {
-        [self showAlertForNotSelectable];
-        return;
+        [self pauseRecording];
+        //return;
     }
     
     if (selectedJob == nil)
@@ -779,11 +796,12 @@
         return;
     }
     
-    self.txtCoverage.enabled = NO;
+    //self.txtCoverage.enabled = NO;
     
     
     
-    [[GlobalData sharedData] setSavedData:selectedJob.jobID selectedLocID:selectedLocation.locID selectedLocProductID:selectedLocProduct.locProductID];
+    [[GlobalData sharedData] saveSelection:selectedJob.jobID selectedLocID:selectedLocation.locID selectedLocProductID:selectedLocProduct.locProductID];
+    [[GlobalData sharedData] startRecording];
     
     //self.btnSummary.enabled = YES;
     self.btnCancel.enabled = YES;
@@ -795,6 +813,22 @@
     
 }
 
+
+/*
+ * is called when user change selection while recording
+ *
+ */
+- (void)pauseRecording
+{
+    [[GlobalData sharedData] pauseRecording];
+    
+    self.btnCancel.enabled = NO;
+    self.btnSave.enabled = YES;
+    
+    FSMainViewController *mainController = [FSMainViewController sharedController];
+    [mainController.scanManager stopScan];
+}
+
 - (IBAction)onCancelClicked:(id)sender
 {
     [CommonMethods playTapSound];
@@ -802,13 +836,7 @@
     if (curTextField != nil)
         [curTextField resignFirstResponder];
     
-    [[GlobalData sharedData] resetSavedData];
-    
-    //self.btnSummary.enabled = NO;
-    self.btnCancel.enabled = NO;
-    self.btnSave.enabled = YES;
-    
-    self.txtCoverage.enabled = YES;
+    [self pauseRecording];
     
 }
 
@@ -881,11 +909,13 @@
         
         readingVC = [[FSCurReadingsViewController alloc] initWithNibName:@"FSCurReadingsViewController" bundle:nil];
         [readingVC setCurLocProduct:selectedLocProduct];
+        readingVC.isFromRecorded = YES;
         [self.navigationController pushViewController:readingVC animated:YES];
     }
     else
     {
         [readingVC initDateTable];
+        [readingVC scrollToLastRow];
     }
 }
 
