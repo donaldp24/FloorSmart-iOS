@@ -41,12 +41,14 @@ static const int kPackageID = 0xDEB93391;
 }
 
 - (void)startScan {
-    /*
+    
+    NSMutableArray *uuids = [[NSMutableArray alloc] initWithObjects:[CBUUID UUIDWithString:@"9133b9de-5f86-6938-6401-320201040000"], nil];
     [[self bluetoothCentralManager] scanForPeripheralsWithServices:nil
-                                                           options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @NO}];
-     */
+                                                           options:@{CBCentralManagerScanOptionAllowDuplicatesKey: @YES}];
+     /*
     [[self bluetoothCentralManager] scanForPeripheralsWithServices:nil
                                                            options:nil];
+      */
 
     if ([[self delegate] respondsToSelector:@selector(scanManagerDidStartScanning:)]) {
         [[self delegate] scanManagerDidStartScanning:self];
@@ -129,7 +131,7 @@ static const int kPackageID = 0xDEB93391;
                  peripheral.name]);
 
 
-
+#if true
     NSString *name = [advertisementData valueForKey:CBAdvertisementDataLocalNameKey];
     NSData *manufacturedData = [advertisementData valueForKey:CBAdvertisementDataManufacturerDataKey];
     NSDictionary *serviceDict = [advertisementData valueForKey:CBAdvertisementDataServiceDataKey];
@@ -239,6 +241,7 @@ static const int kPackageID = 0xDEB93391;
 
     [[self delegate] scanManager:self
                    didFindSensor:sensorData];
+#endif
 }
 
 - (void)showAlertWithTitle:(NSString *)title description:(NSString *)description {
