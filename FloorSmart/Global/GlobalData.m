@@ -81,7 +81,9 @@ GlobalData *_globalData = nil;
     _selectedLocID = [self readIntEntry:config key:KEY_SELECTEDLOCID defaults:0];
     _selectedLocProductID = [self readIntEntry:config key:KEY_SELECTEDLOCPRODUCTID defaults:0];
     
+#ifdef TESTFLIGHT_ENABLED
     [TestFlight passCheckpoint:@"loadInitData"];
+#endif
     
 }
 

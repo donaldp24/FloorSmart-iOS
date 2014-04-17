@@ -10,6 +10,7 @@
 #import "FSMainViewController.h"
 #import "Global.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "iVersion.h"
 
 @implementation FSAppDelegate
 
@@ -32,6 +33,18 @@
     AudioSessionSetActive (true);
     
     return YES;
+}
+
++ (void) initialize
+{
+	// check app version
+	[iVersion sharedInstance].applicationBundleID = [[NSBundle mainBundle] bundleIdentifier];
+    
+	[iVersion sharedInstance].checkAtLaunch = YES;
+	[iVersion sharedInstance].checkPeriod = 0;
+	[iVersion sharedInstance].remindPeriod = 0;
+    
+	[[iVersion sharedInstance] checkIfNewVersion];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -204,6 +204,8 @@
 		D30801A318F1CF7A00101412 /* ReportLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = D30801A118F1CF7A00101412 /* ReportLogo.png */; };
 		D30801A418F1CF7A00101412 /* ReportLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D30801A218F1CF7A00101412 /* ReportLogo@2x.png */; };
 		D30AE18918EB6534007636AD /* archive.png in Resources */ = {isa = PBXBuildFile; fileRef = D30AE18818EB6534007636AD /* archive.png */; };
+		D3157D0718FF6CA700F7E612 /* iVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157D0618FF6CA700F7E612 /* iVersion.m */; };
+		D3157D0918FF6D5000F7E612 /* iVersion.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3157D0818FF6D5000F7E612 /* iVersion.bundle */; };
 		D348DF5318CF75B800FE4946 /* XIBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5218CF75B800FE4946 /* XIBTableViewCell.m */; };
 		D348DF5718CFA96400FE4946 /* FSLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5518CFA96400FE4946 /* FSLocationCell.m */; };
 		D348DF5818CFA96400FE4946 /* FSLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D348DF5618CFA96400FE4946 /* FSLocationCell.xib */; };
@@ -274,6 +276,8 @@
 		D3F8EF5418D3C28F00572FA0 /* EmulatorReadingParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8EF5018D3C28F00572FA0 /* EmulatorReadingParser.m */; };
 		D3F8EF5518D3C28F00572FA0 /* ScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8EF5218D3C28F00572FA0 /* ScanManager.m */; };
 		D3F8EF5818D3C2B300572FA0 /* SensorReadingParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8EF5718D3C2B300572FA0 /* SensorReadingParser.m */; };
+		D3F9F42D18FF2EF7001804AE /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D3F9F42B18FF2EF7001804AE /* iTunesArtwork */; };
+		D3F9F42E18FF2EF7001804AE /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = D3F9F42C18FF2EF7001804AE /* iTunesArtwork@2x */; };
 		D3FBF7F418DF8B2E009CE69F /* bg_product_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FBF7F218DF8B2E009CE69F /* bg_product_delete.png */; };
 		D3FBF7F618DF8C11009CE69F /* bg_delete_location.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FBF7F518DF8C11009CE69F /* bg_delete_location.png */; };
 		D3FE795E18D6907100F747E2 /* bg_main_banner_tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FE795D18D6907100F747E2 /* bg_main_banner_tabbar.png */; };
@@ -525,6 +529,9 @@
 		D30801A118F1CF7A00101412 /* ReportLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ReportLogo.png; path = FloorSmart/resource/ReportLogo.png; sourceTree = SOURCE_ROOT; };
 		D30801A218F1CF7A00101412 /* ReportLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ReportLogo@2x.png"; path = "FloorSmart/resource/ReportLogo@2x.png"; sourceTree = SOURCE_ROOT; };
 		D30AE18818EB6534007636AD /* archive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = archive.png; path = FloorSmart/resource/new/archive.png; sourceTree = SOURCE_ROOT; };
+		D3157D0518FF6CA700F7E612 /* iVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iVersion.h; path = iVersion/iVersion.h; sourceTree = "<group>"; };
+		D3157D0618FF6CA700F7E612 /* iVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iVersion.m; path = iVersion/iVersion.m; sourceTree = "<group>"; };
+		D3157D0818FF6D5000F7E612 /* iVersion.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iVersion.bundle; path = iVersion/iVersion.bundle; sourceTree = "<group>"; };
 		D348DF5118CF75B800FE4946 /* XIBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XIBTableViewCell.h; path = CustomUI/XIBTableViewCell.h; sourceTree = "<group>"; };
 		D348DF5218CF75B800FE4946 /* XIBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XIBTableViewCell.m; path = CustomUI/XIBTableViewCell.m; sourceTree = "<group>"; };
 		D348DF5418CFA96400FE4946 /* FSLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocationCell.h; path = CustomUI/FSLocationCell.h; sourceTree = "<group>"; };
@@ -629,6 +636,8 @@
 		D3F8EF5318D3C28F00572FA0 /* ScanManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScanManagerDelegate.h; path = Scan/ScanManagerDelegate.h; sourceTree = "<group>"; };
 		D3F8EF5618D3C2B300572FA0 /* SensorReadingParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SensorReadingParser.h; path = Scan/SensorReadingParser.h; sourceTree = "<group>"; };
 		D3F8EF5718D3C2B300572FA0 /* SensorReadingParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SensorReadingParser.m; path = Scan/SensorReadingParser.m; sourceTree = "<group>"; };
+		D3F9F42B18FF2EF7001804AE /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = FloorSmart/resource/iTunesArtwork; sourceTree = SOURCE_ROOT; };
+		D3F9F42C18FF2EF7001804AE /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "FloorSmart/resource/iTunesArtwork@2x"; sourceTree = SOURCE_ROOT; };
 		D3FBF7F218DF8B2E009CE69F /* bg_product_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_product_delete.png; path = FloorSmart/resource/new/bg_product_delete.png; sourceTree = SOURCE_ROOT; };
 		D3FBF7F518DF8C11009CE69F /* bg_delete_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_delete_location.png; path = FloorSmart/resource/new/bg_delete_location.png; sourceTree = SOURCE_ROOT; };
 		D3FE795D18D6907100F747E2 /* bg_main_banner_tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_main_banner_tabbar.png; path = FloorSmart/resource/origin/bg_main_banner_tabbar.png; sourceTree = SOURCE_ROOT; };
@@ -720,6 +729,7 @@
 		140E88F318688D260038B5BF /* FloorSmart */ = {
 			isa = PBXGroup;
 			children = (
+				D3157D0418FF6C9C00F7E612 /* iVersion */,
 				D3F4C51618DE3B99006F40D1 /* Utils */,
 				D3F4C4B618DE3AA1006F40D1 /* pdfviewer */,
 				D3EA4F6118D8E70D00F37C2B /* TestFlight */,
@@ -856,6 +866,8 @@
 		140E895318688F870038B5BF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D3F9F42B18FF2EF7001804AE /* iTunesArtwork */,
+				D3F9F42C18FF2EF7001804AE /* iTunesArtwork@2x */,
 				D30801A118F1CF7A00101412 /* ReportLogo.png */,
 				D30801A218F1CF7A00101412 /* ReportLogo@2x.png */,
 				1435C07D1887932A00AE1C87 /* new */,
@@ -1135,6 +1147,16 @@
 			path = "setting View";
 			sourceTree = "<group>";
 		};
+		D3157D0418FF6C9C00F7E612 /* iVersion */ = {
+			isa = PBXGroup;
+			children = (
+				D3157D0818FF6D5000F7E612 /* iVersion.bundle */,
+				D3157D0518FF6CA700F7E612 /* iVersion.h */,
+				D3157D0618FF6CA700F7E612 /* iVersion.m */,
+			);
+			name = iVersion;
+			sourceTree = "<group>";
+		};
 		D3EA4F6118D8E70D00F37C2B /* TestFlight */ = {
 			isa = PBXGroup;
 			children = (
@@ -1374,6 +1396,7 @@
 				140E8A0A18688F880038B5BF /* tap_1.png in Resources */,
 				1435C0BB1887932A00AE1C87 /* bg_overwiew_tap_data_01.png in Resources */,
 				D3F4C4DB18DE3AC9006F40D1 /* Reader-Thumbs@2x.png in Resources */,
+				D3F9F42D18FF2EF7001804AE /* iTunesArtwork in Resources */,
 				D3F142BE18CE7A4200720482 /* FSLocationsViewController.xib in Resources */,
 				1435C0CA1887932A00AE1C87 /* bt_C_sl.png in Resources */,
 				14F7EB931886F12C00E4F088 /* bt_Summary.png in Resources */,
@@ -1439,6 +1462,7 @@
 				14F7EB9F1886F12C00E4F088 /* segment_f.png in Resources */,
 				14F7EB9C1886F12C00E4F088 /* ic_uncheck.png in Resources */,
 				D3F4C4D418DE3AC9006F40D1 /* Reader-Mark-N.png in Resources */,
+				D3157D0918FF6D5000F7E612 /* iVersion.bundle in Resources */,
 				140E89FF18688F880038B5BF /* navi_jobs.png in Resources */,
 				D3F4C4D818DE3AC9006F40D1 /* Reader-Print.png in Resources */,
 				14F7EB831886F12C00E4F088 /* bt_arrow.png in Resources */,
@@ -1468,6 +1492,7 @@
 				14F7EB6E1886F12C00E4F088 /* bg_fly_menu_nl.png in Resources */,
 				D3EE8F1318F5FD8B008F7FCA /* bg_c_nl.png in Resources */,
 				140E8A1418688F880038B5BF /* tap_settings1.png in Resources */,
+				D3F9F42E18FF2EF7001804AE /* iTunesArtwork@2x in Resources */,
 				1435C0D51887932A00AE1C87 /* ic_delete.png in Resources */,
 				1435C0BF1887932A00AE1C87 /* bg_select_bg.png in Resources */,
 				14F7EB921886F12C00E4F088 /* bt_setting_sl.png in Resources */,
@@ -1580,6 +1605,7 @@
 				14BED79318705B280092A406 /* DataManager.m in Sources */,
 				D3F4C51218DE3AEC006F40D1 /* ReaderViewController.m in Sources */,
 				D3F4C50C18DE3AEC006F40D1 /* ReaderThumbFetch.m in Sources */,
+				D3157D0718FF6CA700F7E612 /* iVersion.m in Sources */,
 				14BED79618705B280092A406 /* FMResultSet.m in Sources */,
 				140E8A1F1868A77D0038B5BF /* UIView+FindAndResignFirstResponder.m in Sources */,
 				140E88FA18688D260038B5BF /* main.m in Sources */,
@@ -1747,7 +1773,7 @@
 					"$(SRCROOT)/FloorSmart",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6E87F8C7-8A4B-4DCB-AE6B-140B3C45216D";
+				PROVISIONING_PROFILE = "3FF44E22-E48B-4D3D-9521-A24EC3FB5063";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1773,7 +1799,7 @@
 					"$(SRCROOT)/FloorSmart",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D099C660-756B-4529-81C0-58DD86FB62E0";
+				PROVISIONING_PROFILE = "7D21F615-771B-489E-B9FE-9E8DC1F3CC77";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
