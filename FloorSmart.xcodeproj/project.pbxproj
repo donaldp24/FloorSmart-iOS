@@ -216,6 +216,10 @@
 		D39E182518D2654E0054CF19 /* FSProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D39E182418D2654E0054CF19 /* FSProductCell.xib */; };
 		D39E182918D2657A0054CF19 /* FSLocProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D39E182718D2657A0054CF19 /* FSLocProductCell.m */; };
 		D39E182A18D2657A0054CF19 /* FSLocProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D39E182818D2657A0054CF19 /* FSLocProductCell.xib */; };
+		D3B4AE09190C95AD008006CF /* AutoMessageBox_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B4AE05190C95AD008006CF /* AutoMessageBox_ipad.xib */; };
+		D3B4AE0A190C95AD008006CF /* AutoMessageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B4AE07190C95AD008006CF /* AutoMessageBox.m */; };
+		D3B4AE0B190C95AD008006CF /* AutoMessageBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B4AE08190C95AD008006CF /* AutoMessageBox.xib */; };
+		D3B4AE0D190C9611008006CF /* msg-back.png in Resources */ = {isa = PBXBuildFile; fileRef = D3B4AE0C190C9611008006CF /* msg-back.png */; };
 		D3EA4F6618D8E7B400F37C2B /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3EA4F6518D8E7B400F37C2B /* libTestFlight.a */; };
 		D3EA4F6818D8E7CD00F37C2B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3EA4F6718D8E7CD00F37C2B /* libz.dylib */; };
 		D3EE8F1318F5FD8B008F7FCA /* bg_c_nl.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EE8F0F18F5FD8B008F7FCA /* bg_c_nl.png */; };
@@ -547,6 +551,11 @@
 		D39E182618D2657A0054CF19 /* FSLocProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocProductCell.h; path = CustomUI/FSLocProductCell.h; sourceTree = "<group>"; };
 		D39E182718D2657A0054CF19 /* FSLocProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSLocProductCell.m; path = CustomUI/FSLocProductCell.m; sourceTree = "<group>"; };
 		D39E182818D2657A0054CF19 /* FSLocProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSLocProductCell.xib; path = CustomUI/FSLocProductCell.xib; sourceTree = "<group>"; };
+		D3B4AE05190C95AD008006CF /* AutoMessageBox_ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AutoMessageBox_ipad.xib; path = MessageBox/AutoMessageBox_ipad.xib; sourceTree = "<group>"; };
+		D3B4AE06190C95AD008006CF /* AutoMessageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoMessageBox.h; path = MessageBox/AutoMessageBox.h; sourceTree = "<group>"; };
+		D3B4AE07190C95AD008006CF /* AutoMessageBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoMessageBox.m; path = MessageBox/AutoMessageBox.m; sourceTree = "<group>"; };
+		D3B4AE08190C95AD008006CF /* AutoMessageBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AutoMessageBox.xib; path = MessageBox/AutoMessageBox.xib; sourceTree = "<group>"; };
+		D3B4AE0C190C9611008006CF /* msg-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "msg-back.png"; path = "FloorSmart/resource/new/msg-back.png"; sourceTree = SOURCE_ROOT; };
 		D3EA4F6218D8E71A00F37C2B /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = TestFlight/TestFlight.h; sourceTree = "<group>"; };
 		D3EA4F6318D8E71A00F37C2B /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TestFlight+AsyncLogging.h"; path = "TestFlight/TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
 		D3EA4F6418D8E71A00F37C2B /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TestFlight+ManualSessions.h"; path = "TestFlight/TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
@@ -656,6 +665,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14BED79918705CAD0092A406 /* QuartzCore.framework in Frameworks */,
 				D3FED27B18EC8FC7007A6866 /* AudioToolbox.framework in Frameworks */,
 				D3EA4F6818D8E7CD00F37C2B /* libz.dylib in Frameworks */,
 				D3EA4F6618D8E7B400F37C2B /* libTestFlight.a in Frameworks */,
@@ -665,7 +675,6 @@
 				14BED79F18705CC20092A406 /* Security.framework in Frameworks */,
 				14BED79D18705CBA0092A406 /* SystemConfiguration.framework in Frameworks */,
 				14BED79B18705CB30092A406 /* AVFoundation.framework in Frameworks */,
-				14BED79918705CAD0092A406 /* QuartzCore.framework in Frameworks */,
 				140E88F018688D260038B5BF /* CoreGraphics.framework in Frameworks */,
 				140E88F218688D260038B5BF /* UIKit.framework in Frameworks */,
 				140E88EE18688D260038B5BF /* Foundation.framework in Frameworks */,
@@ -729,6 +738,7 @@
 		140E88F318688D260038B5BF /* FloorSmart */ = {
 			isa = PBXGroup;
 			children = (
+				D3B4AE04190C959B008006CF /* MessageBox */,
 				D3157D0418FF6C9C00F7E612 /* iVersion */,
 				D3F4C51618DE3B99006F40D1 /* Utils */,
 				D3F4C4B618DE3AA1006F40D1 /* pdfviewer */,
@@ -964,6 +974,7 @@
 		1435C07D1887932A00AE1C87 /* new */ = {
 			isa = PBXGroup;
 			children = (
+				D3B4AE0C190C9611008006CF /* msg-back.png */,
 				D3FED28718ECD704007A6866 /* bg_picker.png */,
 				D3FED28518ECCE2B007A6866 /* bg_text.png */,
 				D3FED28318ECB6A0007A6866 /* bt_title_bar_ok.png */,
@@ -1155,6 +1166,17 @@
 				D3157D0618FF6CA700F7E612 /* iVersion.m */,
 			);
 			name = iVersion;
+			sourceTree = "<group>";
+		};
+		D3B4AE04190C959B008006CF /* MessageBox */ = {
+			isa = PBXGroup;
+			children = (
+				D3B4AE05190C95AD008006CF /* AutoMessageBox_ipad.xib */,
+				D3B4AE06190C95AD008006CF /* AutoMessageBox.h */,
+				D3B4AE07190C95AD008006CF /* AutoMessageBox.m */,
+				D3B4AE08190C95AD008006CF /* AutoMessageBox.xib */,
+			);
+			name = MessageBox;
 			sourceTree = "<group>";
 		};
 		D3EA4F6118D8E70D00F37C2B /* TestFlight */ = {
@@ -1370,6 +1392,7 @@
 				D3F4C51C18DE5278006F40D1 /* wagner_pdf_image.png in Resources */,
 				14F7EBA41886F12C00E4F088 /* segment_m_selected.png in Resources */,
 				14F537B518C0ECB500C1318A /* bt_arrow_down1.png in Resources */,
+				D3B4AE0B190C95AD008006CF /* AutoMessageBox.xib in Resources */,
 				1435C0CB1887932A00AE1C87 /* bt_cancel.png in Resources */,
 				140E8A0D18688F880038B5BF /* tap_jobs0.png in Resources */,
 				14F537B218C0CA4B00C1318A /* FSReportCell.xib in Resources */,
@@ -1481,6 +1504,7 @@
 				1435C0D91887932A00AE1C87 /* t_products.png in Resources */,
 				14F7EB7F1886F12C00E4F088 /* bg_setting_list.png in Resources */,
 				1435C0BC1887932A00AE1C87 /* bg_overwiew_tap_data_02.png in Resources */,
+				D3B4AE0D190C9611008006CF /* msg-back.png in Resources */,
 				D3F4C4D018DE3AC9006F40D1 /* Reader-Button-N.png in Resources */,
 				140E8A0B18688F880038B5BF /* tap_home0.png in Resources */,
 				140E8A1318688F880038B5BF /* tap_settings0.png in Resources */,
@@ -1491,6 +1515,7 @@
 				140E8A0818688F880038B5BF /* tabbar.png in Resources */,
 				14F7EB8C1886F12C00E4F088 /* bt_Products_sl.png in Resources */,
 				14F7EBA71886F12C00E4F088 /* bt_eurotime_selected.png in Resources */,
+				D3B4AE09190C95AD008006CF /* AutoMessageBox_ipad.xib in Resources */,
 				14F7EBA31886F12C00E4F088 /* segment_m.png in Resources */,
 				1435C0C21887932A00AE1C87 /* bg_setting_tap_01.png in Resources */,
 				1435C0B21887932A00AE1C87 /* bg_add_product.png in Resources */,
@@ -1608,6 +1633,7 @@
 				D3F591B818DCE59C00D8111C /* FSReportHeaderView.m in Sources */,
 				D3F4C50618DE3AEC006F40D1 /* ReaderContentTile.m in Sources */,
 				140E8A3F186935210038B5BF /* FSArchiveCell.m in Sources */,
+				D3B4AE0A190C95AD008006CF /* AutoMessageBox.m in Sources */,
 				D3F4C50918DE3AEC006F40D1 /* ReaderMainPagebar.m in Sources */,
 				140E8A36186929E80038B5BF /* FSArchiveJobViewController.m in Sources */,
 				14BED79318705B280092A406 /* DataManager.m in Sources */,

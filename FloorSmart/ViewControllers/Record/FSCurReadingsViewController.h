@@ -57,6 +57,7 @@
 - (void)setCurData:(FSReading *)data;
 - (void)initDateTable;
 - (void)scrollToLastRow;
+- (void)showWarning;
 
 
 @end

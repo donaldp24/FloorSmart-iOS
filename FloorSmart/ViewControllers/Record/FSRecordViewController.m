@@ -171,8 +171,9 @@
     {
         FSJob *orgJob = selectedJob;
         selectedJob = [[DataManager sharedInstance] getJobFromID:selectedJob.jobID];
-        if (selectedJob == nil)
+        if (selectedJob == nil || selectedJob.jobArchived == 1)
         {
+            selectedJob = nil;
             isKeeped = NO;
             selectedLocation = nil;
             selectedLocProduct = nil;
@@ -603,11 +604,11 @@
 
     
     
-    selectedLocation = [[DataManager sharedInstance] getDefaultLocationOfJob:job.jobID];
-    if (selectedLocation != nil)
+    FSLocation *location = [[DataManager sharedInstance] getDefaultLocationOfJob:job.jobID];
+    if (location != nil)
     {
         //selectedLocProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
-        [self locationSelected:selectedLocation];
+        [self locationSelected:location];
     }
     else
     {
@@ -621,6 +622,7 @@
         
         [self locationSelected:selectedLocation];
          */
+        selectedLocation = nil;
     }
     
     defaultLocation.locJobID = job.jobID;
@@ -644,10 +646,14 @@
     [self setLabelNotSelected:self.lblProduct];
     
     selectedProduct = nil;
-    selectedLocProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
-    if (selectedLocProduct != nil)
+    FSLocProduct *locProduct = [[DataManager sharedInstance] getDefaultLocProductOfLocation:selectedLocation];
+    if (locProduct != nil)
     {
-        [self locProductSelected:selectedLocProduct];
+        [self locProductSelected:locProduct];
+    }
+    else
+    {
+        selectedLocProduct = nil;
     }
     
 }
@@ -916,6 +922,7 @@
     {
         [readingVC initDateTable];
         [readingVC scrollToLastRow];
+        [readingVC showWarning];
     }
 }
 

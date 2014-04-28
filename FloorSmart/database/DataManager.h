@@ -14,7 +14,7 @@
 #import "FSFeed.h"
 #import "FSReading.h"
 
-#define FMD_VERSION                 @"1"
+#define FMD_VERSION                 @"1.1"
 #define FMD_DEFAULT_LOCATIONNAME    @"Default"
 #define FMD_DEFAULT_PRODUCTNAME     @"Default"
 
@@ -77,6 +77,7 @@
 - (NSMutableArray *)getCurReadings:(long)locProductID;
 - (NSMutableArray *)getAllReadingDates:(long)locProductID;
 - (NSMutableArray *)getReadings:(long)locProductID withDate:(NSDate *)date;
+- (NSInteger)getReadingsCount:(long)locProductID withDate:(NSDate *)date;
 - (NSInteger)getReadingsCount:(long)locProductID;
 - (int)addReadingToDatabase:(FSReading *)reading;
 - (BOOL)updateReadingToDatabase:(FSReading *)reading;
