@@ -59,8 +59,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
     [super viewWillAppear:animated];
+    self.screenName = @"CurReadings Screen";
     
      GlobalData *globalData = [GlobalData sharedData];
     

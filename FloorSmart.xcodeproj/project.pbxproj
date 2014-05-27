@@ -65,10 +65,8 @@
 		140E8A321868D71D0038B5BF /* FSJobCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140E8A311868D71D0038B5BF /* FSJobCell.m */; };
 		140E8A36186929E80038B5BF /* FSArchiveJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140E8A34186929E80038B5BF /* FSArchiveJobViewController.m */; };
 		140E8A37186929E80038B5BF /* FSArchiveJobViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140E8A35186929E80038B5BF /* FSArchiveJobViewController.xib */; };
-		140E8A3C1869350C0038B5BF /* FSArchiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140E8A3B1869350C0038B5BF /* FSArchiveCell.xib */; };
 		140E8A3F186935210038B5BF /* FSArchiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140E8A3E186935210038B5BF /* FSArchiveCell.m */; };
 		1419AF3D1879C7D300C5F4F6 /* FSMeasureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1419AF3C1879C7D300C5F4F6 /* FSMeasureCell.m */; };
-		1419AF3F1879C7E900C5F4F6 /* FSMeasureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1419AF3E1879C7E800C5F4F6 /* FSMeasureCell.xib */; };
 		1435C0AD1887932A00AE1C87 /* add-a-product.png in Resources */ = {isa = PBXBuildFile; fileRef = 1435C07E1887932A00AE1C87 /* add-a-product.png */; };
 		1435C0AE1887932A00AE1C87 /* b_achived-jobs.png in Resources */ = {isa = PBXBuildFile; fileRef = 1435C07F1887932A00AE1C87 /* b_achived-jobs.png */; };
 		1435C0AF1887932A00AE1C87 /* bg_add_a_product_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1435C0801887932A00AE1C87 /* bg_add_a_product_bg.png */; };
@@ -200,12 +198,57 @@
 		14F7EBA91886F12C00E4F088 /* bt_ustime_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F7EB641886F12C00E4F088 /* bt_ustime_selected.png */; };
 		14F7EBAA1886F12C00E4F088 /* splash-screen_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F7EB651886F12C00E4F088 /* splash-screen_02.png */; };
 		CE1A63AA18878E160011E6EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1A63A918878E160011E6EA /* Default-568h@2x.png */; };
+		D302663219147F6B00D4F187 /* ReportLogoBottomCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = D302663119147F6B00D4F187 /* ReportLogoBottomCenter.png */; };
 		D304C1F418E381D0001EE1D1 /* bg_cancelarchive_job.png in Resources */ = {isa = PBXBuildFile; fileRef = D304C1F318E381D0001EE1D1 /* bg_cancelarchive_job.png */; };
 		D30801A318F1CF7A00101412 /* ReportLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = D30801A118F1CF7A00101412 /* ReportLogo.png */; };
 		D30801A418F1CF7A00101412 /* ReportLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D30801A218F1CF7A00101412 /* ReportLogo@2x.png */; };
 		D30AE18918EB6534007636AD /* archive.png in Resources */ = {isa = PBXBuildFile; fileRef = D30AE18818EB6534007636AD /* archive.png */; };
-		D3157D0718FF6CA700F7E612 /* iVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = D3157D0618FF6CA700F7E612 /* iVersion.m */; };
-		D3157D0918FF6D5000F7E612 /* iVersion.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3157D0818FF6D5000F7E612 /* iVersion.bundle */; };
+		D3273754192B607A00794848 /* FSArchiveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3273753192B607A00794848 /* FSArchiveCell.xib */; };
+		D3273756192B608400794848 /* FSMeasureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3273755192B608400794848 /* FSMeasureCell.xib */; };
+		D3273784192B60E900794848 /* CGPDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D327375F192B60E900794848 /* CGPDFDocument.m */; };
+		D3273785192B60E900794848 /* ReaderConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D3273761192B60E900794848 /* ReaderConstants.m */; };
+		D3273786192B60E900794848 /* ReaderContentPage.m in Sources */ = {isa = PBXBuildFile; fileRef = D3273763192B60E900794848 /* ReaderContentPage.m */; };
+		D3273787192B60E900794848 /* ReaderContentTile.m in Sources */ = {isa = PBXBuildFile; fileRef = D3273765192B60E900794848 /* ReaderContentTile.m */; };
+		D3273788192B60E900794848 /* ReaderContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3273767192B60E900794848 /* ReaderContentView.m */; };
+		D3273789192B60E900794848 /* ReaderDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D3273769192B60E900794848 /* ReaderDocument.m */; };
+		D327378A192B60E900794848 /* ReaderMainPagebar.m in Sources */ = {isa = PBXBuildFile; fileRef = D327376B192B60E900794848 /* ReaderMainPagebar.m */; };
+		D327378B192B60E900794848 /* ReaderMainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D327376D192B60E900794848 /* ReaderMainToolbar.m */; };
+		D327378C192B60E900794848 /* ReaderThumbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D327376F192B60E900794848 /* ReaderThumbCache.m */; };
+		D327378D192B60E900794848 /* ReaderThumbFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = D3273771192B60E900794848 /* ReaderThumbFetch.m */; };
+		D327378E192B60E900794848 /* ReaderThumbQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = D3273773192B60E900794848 /* ReaderThumbQueue.m */; };
+		D327378F192B60E900794848 /* ReaderThumbRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D3273775192B60E900794848 /* ReaderThumbRender.m */; };
+		D3273790192B60E900794848 /* ReaderThumbRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3273777192B60E900794848 /* ReaderThumbRequest.m */; };
+		D3273791192B60E900794848 /* ReaderThumbsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3273779192B60E900794848 /* ReaderThumbsView.m */; };
+		D3273792192B60E900794848 /* ReaderThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = D327377B192B60E900794848 /* ReaderThumbView.m */; };
+		D3273793192B60E900794848 /* ReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D327377D192B60E900794848 /* ReaderViewController.m */; };
+		D3273794192B60E900794848 /* ThumbsMainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D327377F192B60E900794848 /* ThumbsMainToolbar.m */; };
+		D3273795192B60E900794848 /* ThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3273781192B60E900794848 /* ThumbsViewController.m */; };
+		D3273796192B60E900794848 /* UIXToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3273783192B60E900794848 /* UIXToolbarView.m */; };
+		D32737A9192B60FA00794848 /* AppIcon-057.png in Resources */ = {isa = PBXBuildFile; fileRef = D3273797192B60FA00794848 /* AppIcon-057.png */; };
+		D32737AA192B60FA00794848 /* AppIcon-072.png in Resources */ = {isa = PBXBuildFile; fileRef = D3273798192B60FA00794848 /* AppIcon-072.png */; };
+		D32737AB192B60FA00794848 /* AppIcon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = D3273799192B60FA00794848 /* AppIcon-114.png */; };
+		D32737AC192B60FA00794848 /* AppIcon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = D327379A192B60FA00794848 /* AppIcon-144.png */; };
+		D32737AD192B60FA00794848 /* Reader-Button-H.png in Resources */ = {isa = PBXBuildFile; fileRef = D327379B192B60FA00794848 /* Reader-Button-H.png */; };
+		D32737AE192B60FA00794848 /* Reader-Button-H@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D327379C192B60FA00794848 /* Reader-Button-H@2x.png */; };
+		D32737AF192B60FA00794848 /* Reader-Button-N.png in Resources */ = {isa = PBXBuildFile; fileRef = D327379D192B60FA00794848 /* Reader-Button-N.png */; };
+		D32737B0192B60FA00794848 /* Reader-Button-N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D327379E192B60FA00794848 /* Reader-Button-N@2x.png */; };
+		D32737B1192B60FA00794848 /* Reader-Email.png in Resources */ = {isa = PBXBuildFile; fileRef = D327379F192B60FA00794848 /* Reader-Email.png */; };
+		D32737B2192B60FA00794848 /* Reader-Email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D32737A0192B60FA00794848 /* Reader-Email@2x.png */; };
+		D32737B3192B60FA00794848 /* Reader-Mark-N.png in Resources */ = {isa = PBXBuildFile; fileRef = D32737A1192B60FA00794848 /* Reader-Mark-N.png */; };
+		D32737B4192B60FA00794848 /* Reader-Mark-N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D32737A2192B60FA00794848 /* Reader-Mark-N@2x.png */; };
+		D32737B5192B60FA00794848 /* Reader-Mark-Y.png in Resources */ = {isa = PBXBuildFile; fileRef = D32737A3192B60FA00794848 /* Reader-Mark-Y.png */; };
+		D32737B6192B60FA00794848 /* Reader-Mark-Y@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D32737A4192B60FA00794848 /* Reader-Mark-Y@2x.png */; };
+		D32737B7192B60FA00794848 /* Reader-Print.png in Resources */ = {isa = PBXBuildFile; fileRef = D32737A5192B60FA00794848 /* Reader-Print.png */; };
+		D32737B8192B60FA00794848 /* Reader-Print@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D32737A6192B60FA00794848 /* Reader-Print@2x.png */; };
+		D32737B9192B60FA00794848 /* Reader-Thumbs.png in Resources */ = {isa = PBXBuildFile; fileRef = D32737A7192B60FA00794848 /* Reader-Thumbs.png */; };
+		D32737BA192B60FA00794848 /* Reader-Thumbs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D32737A8192B60FA00794848 /* Reader-Thumbs@2x.png */; };
+		D32737BF192B610F00794848 /* iVersion.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D32737BC192B610F00794848 /* iVersion.bundle */; };
+		D32737C0192B610F00794848 /* iVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = D32737BE192B610F00794848 /* iVersion.m */; };
+		D32737D0192B61C000794848 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D32737CF192B61C000794848 /* libTestFlight.a */; };
+		D32737D3192B61CA00794848 /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D32737D1192B61CA00794848 /* libAdIdAccess.a */; };
+		D32737D4192B61CA00794848 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D32737D2192B61CA00794848 /* libGoogleAnalyticsServices.a */; };
+		D32737D6192B63C600794848 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32737D5192B63C600794848 /* AdSupport.framework */; };
+		D32737D8192B63D200794848 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32737D7192B63D200794848 /* CoreData.framework */; };
 		D348DF5318CF75B800FE4946 /* XIBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5218CF75B800FE4946 /* XIBTableViewCell.m */; };
 		D348DF5718CFA96400FE4946 /* FSLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D348DF5518CFA96400FE4946 /* FSLocationCell.m */; };
 		D348DF5818CFA96400FE4946 /* FSLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D348DF5618CFA96400FE4946 /* FSLocationCell.xib */; };
@@ -220,7 +263,6 @@
 		D3B4AE0A190C95AD008006CF /* AutoMessageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B4AE07190C95AD008006CF /* AutoMessageBox.m */; };
 		D3B4AE0B190C95AD008006CF /* AutoMessageBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B4AE08190C95AD008006CF /* AutoMessageBox.xib */; };
 		D3B4AE0D190C9611008006CF /* msg-back.png in Resources */ = {isa = PBXBuildFile; fileRef = D3B4AE0C190C9611008006CF /* msg-back.png */; };
-		D3EA4F6618D8E7B400F37C2B /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3EA4F6518D8E7B400F37C2B /* libTestFlight.a */; };
 		D3EA4F6818D8E7CD00F37C2B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3EA4F6718D8E7CD00F37C2B /* libz.dylib */; };
 		D3EE8F1318F5FD8B008F7FCA /* bg_c_nl.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EE8F0F18F5FD8B008F7FCA /* bg_c_nl.png */; };
 		D3EE8F1418F5FD8B008F7FCA /* bg_c_sl.png in Resources */ = {isa = PBXBuildFile; fileRef = D3EE8F1018F5FD8B008F7FCA /* bg_c_sl.png */; };
@@ -235,43 +277,6 @@
 		D3F142BD18CE7A4200720482 /* FSLocationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F142BB18CE7A4200720482 /* FSLocationsViewController.m */; };
 		D3F142BE18CE7A4200720482 /* FSLocationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F142BC18CE7A4200720482 /* FSLocationsViewController.xib */; };
 		D3F4C4B518DDDB2B006F40D1 /* bt_arrow_right1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4B418DDDB2B006F40D1 /* bt_arrow_right1.png */; };
-		D3F4C4CA18DE3AC9006F40D1 /* AppIcon-057.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4B818DE3AC9006F40D1 /* AppIcon-057.png */; };
-		D3F4C4CB18DE3AC9006F40D1 /* AppIcon-072.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4B918DE3AC9006F40D1 /* AppIcon-072.png */; };
-		D3F4C4CC18DE3AC9006F40D1 /* AppIcon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4BA18DE3AC9006F40D1 /* AppIcon-114.png */; };
-		D3F4C4CD18DE3AC9006F40D1 /* AppIcon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4BB18DE3AC9006F40D1 /* AppIcon-144.png */; };
-		D3F4C4CE18DE3AC9006F40D1 /* Reader-Button-H.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4BC18DE3AC9006F40D1 /* Reader-Button-H.png */; };
-		D3F4C4CF18DE3AC9006F40D1 /* Reader-Button-H@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4BD18DE3AC9006F40D1 /* Reader-Button-H@2x.png */; };
-		D3F4C4D018DE3AC9006F40D1 /* Reader-Button-N.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4BE18DE3AC9006F40D1 /* Reader-Button-N.png */; };
-		D3F4C4D118DE3AC9006F40D1 /* Reader-Button-N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4BF18DE3AC9006F40D1 /* Reader-Button-N@2x.png */; };
-		D3F4C4D218DE3AC9006F40D1 /* Reader-Email.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4C018DE3AC9006F40D1 /* Reader-Email.png */; };
-		D3F4C4D318DE3AC9006F40D1 /* Reader-Email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4C118DE3AC9006F40D1 /* Reader-Email@2x.png */; };
-		D3F4C4D418DE3AC9006F40D1 /* Reader-Mark-N.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4C218DE3AC9006F40D1 /* Reader-Mark-N.png */; };
-		D3F4C4D518DE3AC9006F40D1 /* Reader-Mark-N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4C318DE3AC9006F40D1 /* Reader-Mark-N@2x.png */; };
-		D3F4C4D618DE3AC9006F40D1 /* Reader-Mark-Y.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4C418DE3AC9006F40D1 /* Reader-Mark-Y.png */; };
-		D3F4C4D718DE3AC9006F40D1 /* Reader-Mark-Y@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4C518DE3AC9006F40D1 /* Reader-Mark-Y@2x.png */; };
-		D3F4C4D818DE3AC9006F40D1 /* Reader-Print.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4C618DE3AC9006F40D1 /* Reader-Print.png */; };
-		D3F4C4D918DE3AC9006F40D1 /* Reader-Print@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4C718DE3AC9006F40D1 /* Reader-Print@2x.png */; };
-		D3F4C4DA18DE3AC9006F40D1 /* Reader-Thumbs.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4C818DE3AC9006F40D1 /* Reader-Thumbs.png */; };
-		D3F4C4DB18DE3AC9006F40D1 /* Reader-Thumbs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C4C918DE3AC9006F40D1 /* Reader-Thumbs@2x.png */; };
-		D3F4C50318DE3AEC006F40D1 /* CGPDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4DE18DE3AEC006F40D1 /* CGPDFDocument.m */; };
-		D3F4C50418DE3AEC006F40D1 /* ReaderConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4E018DE3AEC006F40D1 /* ReaderConstants.m */; };
-		D3F4C50518DE3AEC006F40D1 /* ReaderContentPage.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4E218DE3AEC006F40D1 /* ReaderContentPage.m */; };
-		D3F4C50618DE3AEC006F40D1 /* ReaderContentTile.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4E418DE3AEC006F40D1 /* ReaderContentTile.m */; };
-		D3F4C50718DE3AEC006F40D1 /* ReaderContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4E618DE3AEC006F40D1 /* ReaderContentView.m */; };
-		D3F4C50818DE3AEC006F40D1 /* ReaderDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4E818DE3AEC006F40D1 /* ReaderDocument.m */; };
-		D3F4C50918DE3AEC006F40D1 /* ReaderMainPagebar.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4EA18DE3AEC006F40D1 /* ReaderMainPagebar.m */; };
-		D3F4C50A18DE3AEC006F40D1 /* ReaderMainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4EC18DE3AEC006F40D1 /* ReaderMainToolbar.m */; };
-		D3F4C50B18DE3AEC006F40D1 /* ReaderThumbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4EE18DE3AEC006F40D1 /* ReaderThumbCache.m */; };
-		D3F4C50C18DE3AEC006F40D1 /* ReaderThumbFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4F018DE3AEC006F40D1 /* ReaderThumbFetch.m */; };
-		D3F4C50D18DE3AEC006F40D1 /* ReaderThumbQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4F218DE3AEC006F40D1 /* ReaderThumbQueue.m */; };
-		D3F4C50E18DE3AEC006F40D1 /* ReaderThumbRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4F418DE3AEC006F40D1 /* ReaderThumbRender.m */; };
-		D3F4C50F18DE3AEC006F40D1 /* ReaderThumbRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4F618DE3AEC006F40D1 /* ReaderThumbRequest.m */; };
-		D3F4C51018DE3AEC006F40D1 /* ReaderThumbsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4F818DE3AEC006F40D1 /* ReaderThumbsView.m */; };
-		D3F4C51118DE3AEC006F40D1 /* ReaderThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4FA18DE3AEC006F40D1 /* ReaderThumbView.m */; };
-		D3F4C51218DE3AEC006F40D1 /* ReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4FC18DE3AEC006F40D1 /* ReaderViewController.m */; };
-		D3F4C51318DE3AEC006F40D1 /* ThumbsMainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C4FE18DE3AEC006F40D1 /* ThumbsMainToolbar.m */; };
-		D3F4C51418DE3AEC006F40D1 /* ThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C50018DE3AEC006F40D1 /* ThumbsViewController.m */; };
-		D3F4C51518DE3AEC006F40D1 /* UIXToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C50218DE3AEC006F40D1 /* UIXToolbarView.m */; };
 		D3F4C51918DE3BA3006F40D1 /* FSReportHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F4C51818DE3BA3006F40D1 /* FSReportHelper.m */; };
 		D3F4C51C18DE5278006F40D1 /* wagner_pdf_image.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C51A18DE5278006F40D1 /* wagner_pdf_image.png */; };
 		D3F4C51D18DE5278006F40D1 /* wagner_pdf_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F4C51B18DE5278006F40D1 /* wagner_pdf_image@2x.png */; };
@@ -382,12 +387,10 @@
 		140E8A33186929E80038B5BF /* FSArchiveJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArchiveJobViewController.h; sourceTree = "<group>"; };
 		140E8A34186929E80038B5BF /* FSArchiveJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSArchiveJobViewController.m; sourceTree = "<group>"; };
 		140E8A35186929E80038B5BF /* FSArchiveJobViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSArchiveJobViewController.xib; sourceTree = "<group>"; };
-		140E8A3B1869350C0038B5BF /* FSArchiveCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSArchiveCell.xib; sourceTree = "<group>"; };
 		140E8A3D186935210038B5BF /* FSArchiveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSArchiveCell.h; path = CustomUI/FSArchiveCell.h; sourceTree = "<group>"; };
 		140E8A3E186935210038B5BF /* FSArchiveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSArchiveCell.m; path = CustomUI/FSArchiveCell.m; sourceTree = "<group>"; };
 		1419AF3B1879C7D300C5F4F6 /* FSMeasureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSMeasureCell.h; path = CustomUI/FSMeasureCell.h; sourceTree = "<group>"; };
 		1419AF3C1879C7D300C5F4F6 /* FSMeasureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSMeasureCell.m; path = CustomUI/FSMeasureCell.m; sourceTree = "<group>"; };
-		1419AF3E1879C7E800C5F4F6 /* FSMeasureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSMeasureCell.xib; sourceTree = "<group>"; };
 		1435C07E1887932A00AE1C87 /* add-a-product.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-a-product.png"; sourceTree = "<group>"; };
 		1435C07F1887932A00AE1C87 /* b_achived-jobs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b_achived-jobs.png"; sourceTree = "<group>"; };
 		1435C0801887932A00AE1C87 /* bg_add_a_product_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_add_a_product_bg.png; sourceTree = "<group>"; };
@@ -528,14 +531,92 @@
 		14F7EB631886F12C00E4F088 /* bt_ustime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_ustime.png; sourceTree = "<group>"; };
 		14F7EB641886F12C00E4F088 /* bt_ustime_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_ustime_selected.png; sourceTree = "<group>"; };
 		14F7EB651886F12C00E4F088 /* splash-screen_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-screen_02.png"; sourceTree = "<group>"; };
-		CE1A63A918878E160011E6EA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CE1A63A918878E160011E6EA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
+		D302663119147F6B00D4F187 /* ReportLogoBottomCenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ReportLogoBottomCenter.png; path = FloorSmart/resource/ReportLogoBottomCenter.png; sourceTree = SOURCE_ROOT; };
 		D304C1F318E381D0001EE1D1 /* bg_cancelarchive_job.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_cancelarchive_job.png; path = FloorSmart/resource/new/bg_cancelarchive_job.png; sourceTree = SOURCE_ROOT; };
 		D30801A118F1CF7A00101412 /* ReportLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ReportLogo.png; path = FloorSmart/resource/ReportLogo.png; sourceTree = SOURCE_ROOT; };
 		D30801A218F1CF7A00101412 /* ReportLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ReportLogo@2x.png"; path = "FloorSmart/resource/ReportLogo@2x.png"; sourceTree = SOURCE_ROOT; };
 		D30AE18818EB6534007636AD /* archive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = archive.png; path = FloorSmart/resource/new/archive.png; sourceTree = SOURCE_ROOT; };
-		D3157D0518FF6CA700F7E612 /* iVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iVersion.h; path = iVersion/iVersion.h; sourceTree = "<group>"; };
-		D3157D0618FF6CA700F7E612 /* iVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iVersion.m; path = iVersion/iVersion.m; sourceTree = "<group>"; };
-		D3157D0818FF6D5000F7E612 /* iVersion.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iVersion.bundle; path = iVersion/iVersion.bundle; sourceTree = "<group>"; };
+		D3273753192B607A00794848 /* FSArchiveCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSArchiveCell.xib; path = CustomUI/FSArchiveCell.xib; sourceTree = "<group>"; };
+		D3273755192B608400794848 /* FSMeasureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSMeasureCell.xib; path = CustomUI/FSMeasureCell.xib; sourceTree = "<group>"; };
+		D3273758192B60AD00794848 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = Library/TestFlight/TestFlight.h; sourceTree = "<group>"; };
+		D3273759192B60AD00794848 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TestFlight+AsyncLogging.h"; path = "Library/TestFlight/TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		D327375A192B60AD00794848 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TestFlight+ManualSessions.h"; path = "Library/TestFlight/TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		D327375E192B60E900794848 /* CGPDFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGPDFDocument.h; path = Library/pdfviewer/Sources/CGPDFDocument.h; sourceTree = "<group>"; };
+		D327375F192B60E900794848 /* CGPDFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGPDFDocument.m; path = Library/pdfviewer/Sources/CGPDFDocument.m; sourceTree = "<group>"; };
+		D3273760192B60E900794848 /* ReaderConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderConstants.h; path = Library/pdfviewer/Sources/ReaderConstants.h; sourceTree = "<group>"; };
+		D3273761192B60E900794848 /* ReaderConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderConstants.m; path = Library/pdfviewer/Sources/ReaderConstants.m; sourceTree = "<group>"; };
+		D3273762192B60E900794848 /* ReaderContentPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderContentPage.h; path = Library/pdfviewer/Sources/ReaderContentPage.h; sourceTree = "<group>"; };
+		D3273763192B60E900794848 /* ReaderContentPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderContentPage.m; path = Library/pdfviewer/Sources/ReaderContentPage.m; sourceTree = "<group>"; };
+		D3273764192B60E900794848 /* ReaderContentTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderContentTile.h; path = Library/pdfviewer/Sources/ReaderContentTile.h; sourceTree = "<group>"; };
+		D3273765192B60E900794848 /* ReaderContentTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderContentTile.m; path = Library/pdfviewer/Sources/ReaderContentTile.m; sourceTree = "<group>"; };
+		D3273766192B60E900794848 /* ReaderContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderContentView.h; path = Library/pdfviewer/Sources/ReaderContentView.h; sourceTree = "<group>"; };
+		D3273767192B60E900794848 /* ReaderContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderContentView.m; path = Library/pdfviewer/Sources/ReaderContentView.m; sourceTree = "<group>"; };
+		D3273768192B60E900794848 /* ReaderDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderDocument.h; path = Library/pdfviewer/Sources/ReaderDocument.h; sourceTree = "<group>"; };
+		D3273769192B60E900794848 /* ReaderDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderDocument.m; path = Library/pdfviewer/Sources/ReaderDocument.m; sourceTree = "<group>"; };
+		D327376A192B60E900794848 /* ReaderMainPagebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderMainPagebar.h; path = Library/pdfviewer/Sources/ReaderMainPagebar.h; sourceTree = "<group>"; };
+		D327376B192B60E900794848 /* ReaderMainPagebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderMainPagebar.m; path = Library/pdfviewer/Sources/ReaderMainPagebar.m; sourceTree = "<group>"; };
+		D327376C192B60E900794848 /* ReaderMainToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderMainToolbar.h; path = Library/pdfviewer/Sources/ReaderMainToolbar.h; sourceTree = "<group>"; };
+		D327376D192B60E900794848 /* ReaderMainToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderMainToolbar.m; path = Library/pdfviewer/Sources/ReaderMainToolbar.m; sourceTree = "<group>"; };
+		D327376E192B60E900794848 /* ReaderThumbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbCache.h; path = Library/pdfviewer/Sources/ReaderThumbCache.h; sourceTree = "<group>"; };
+		D327376F192B60E900794848 /* ReaderThumbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbCache.m; path = Library/pdfviewer/Sources/ReaderThumbCache.m; sourceTree = "<group>"; };
+		D3273770192B60E900794848 /* ReaderThumbFetch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbFetch.h; path = Library/pdfviewer/Sources/ReaderThumbFetch.h; sourceTree = "<group>"; };
+		D3273771192B60E900794848 /* ReaderThumbFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbFetch.m; path = Library/pdfviewer/Sources/ReaderThumbFetch.m; sourceTree = "<group>"; };
+		D3273772192B60E900794848 /* ReaderThumbQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbQueue.h; path = Library/pdfviewer/Sources/ReaderThumbQueue.h; sourceTree = "<group>"; };
+		D3273773192B60E900794848 /* ReaderThumbQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbQueue.m; path = Library/pdfviewer/Sources/ReaderThumbQueue.m; sourceTree = "<group>"; };
+		D3273774192B60E900794848 /* ReaderThumbRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbRender.h; path = Library/pdfviewer/Sources/ReaderThumbRender.h; sourceTree = "<group>"; };
+		D3273775192B60E900794848 /* ReaderThumbRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbRender.m; path = Library/pdfviewer/Sources/ReaderThumbRender.m; sourceTree = "<group>"; };
+		D3273776192B60E900794848 /* ReaderThumbRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbRequest.h; path = Library/pdfviewer/Sources/ReaderThumbRequest.h; sourceTree = "<group>"; };
+		D3273777192B60E900794848 /* ReaderThumbRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbRequest.m; path = Library/pdfviewer/Sources/ReaderThumbRequest.m; sourceTree = "<group>"; };
+		D3273778192B60E900794848 /* ReaderThumbsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbsView.h; path = Library/pdfviewer/Sources/ReaderThumbsView.h; sourceTree = "<group>"; };
+		D3273779192B60E900794848 /* ReaderThumbsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbsView.m; path = Library/pdfviewer/Sources/ReaderThumbsView.m; sourceTree = "<group>"; };
+		D327377A192B60E900794848 /* ReaderThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbView.h; path = Library/pdfviewer/Sources/ReaderThumbView.h; sourceTree = "<group>"; };
+		D327377B192B60E900794848 /* ReaderThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbView.m; path = Library/pdfviewer/Sources/ReaderThumbView.m; sourceTree = "<group>"; };
+		D327377C192B60E900794848 /* ReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderViewController.h; path = Library/pdfviewer/Sources/ReaderViewController.h; sourceTree = "<group>"; };
+		D327377D192B60E900794848 /* ReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderViewController.m; path = Library/pdfviewer/Sources/ReaderViewController.m; sourceTree = "<group>"; };
+		D327377E192B60E900794848 /* ThumbsMainToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThumbsMainToolbar.h; path = Library/pdfviewer/Sources/ThumbsMainToolbar.h; sourceTree = "<group>"; };
+		D327377F192B60E900794848 /* ThumbsMainToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThumbsMainToolbar.m; path = Library/pdfviewer/Sources/ThumbsMainToolbar.m; sourceTree = "<group>"; };
+		D3273780192B60E900794848 /* ThumbsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThumbsViewController.h; path = Library/pdfviewer/Sources/ThumbsViewController.h; sourceTree = "<group>"; };
+		D3273781192B60E900794848 /* ThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThumbsViewController.m; path = Library/pdfviewer/Sources/ThumbsViewController.m; sourceTree = "<group>"; };
+		D3273782192B60E900794848 /* UIXToolbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIXToolbarView.h; path = Library/pdfviewer/Sources/UIXToolbarView.h; sourceTree = "<group>"; };
+		D3273783192B60E900794848 /* UIXToolbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIXToolbarView.m; path = Library/pdfviewer/Sources/UIXToolbarView.m; sourceTree = "<group>"; };
+		D3273797192B60FA00794848 /* AppIcon-057.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-057.png"; path = "Library/pdfviewer/Graphics/AppIcon-057.png"; sourceTree = "<group>"; };
+		D3273798192B60FA00794848 /* AppIcon-072.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-072.png"; path = "Library/pdfviewer/Graphics/AppIcon-072.png"; sourceTree = "<group>"; };
+		D3273799192B60FA00794848 /* AppIcon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-114.png"; path = "Library/pdfviewer/Graphics/AppIcon-114.png"; sourceTree = "<group>"; };
+		D327379A192B60FA00794848 /* AppIcon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-144.png"; path = "Library/pdfviewer/Graphics/AppIcon-144.png"; sourceTree = "<group>"; };
+		D327379B192B60FA00794848 /* Reader-Button-H.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-H.png"; path = "Library/pdfviewer/Graphics/Reader-Button-H.png"; sourceTree = "<group>"; };
+		D327379C192B60FA00794848 /* Reader-Button-H@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-H@2x.png"; path = "Library/pdfviewer/Graphics/Reader-Button-H@2x.png"; sourceTree = "<group>"; };
+		D327379D192B60FA00794848 /* Reader-Button-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-N.png"; path = "Library/pdfviewer/Graphics/Reader-Button-N.png"; sourceTree = "<group>"; };
+		D327379E192B60FA00794848 /* Reader-Button-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-N@2x.png"; path = "Library/pdfviewer/Graphics/Reader-Button-N@2x.png"; sourceTree = "<group>"; };
+		D327379F192B60FA00794848 /* Reader-Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Email.png"; path = "Library/pdfviewer/Graphics/Reader-Email.png"; sourceTree = "<group>"; };
+		D32737A0192B60FA00794848 /* Reader-Email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Email@2x.png"; path = "Library/pdfviewer/Graphics/Reader-Email@2x.png"; sourceTree = "<group>"; };
+		D32737A1192B60FA00794848 /* Reader-Mark-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Mark-N.png"; path = "Library/pdfviewer/Graphics/Reader-Mark-N.png"; sourceTree = "<group>"; };
+		D32737A2192B60FA00794848 /* Reader-Mark-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Mark-N@2x.png"; path = "Library/pdfviewer/Graphics/Reader-Mark-N@2x.png"; sourceTree = "<group>"; };
+		D32737A3192B60FA00794848 /* Reader-Mark-Y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Mark-Y.png"; path = "Library/pdfviewer/Graphics/Reader-Mark-Y.png"; sourceTree = "<group>"; };
+		D32737A4192B60FA00794848 /* Reader-Mark-Y@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Mark-Y@2x.png"; path = "Library/pdfviewer/Graphics/Reader-Mark-Y@2x.png"; sourceTree = "<group>"; };
+		D32737A5192B60FA00794848 /* Reader-Print.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Print.png"; path = "Library/pdfviewer/Graphics/Reader-Print.png"; sourceTree = "<group>"; };
+		D32737A6192B60FA00794848 /* Reader-Print@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Print@2x.png"; path = "Library/pdfviewer/Graphics/Reader-Print@2x.png"; sourceTree = "<group>"; };
+		D32737A7192B60FA00794848 /* Reader-Thumbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Thumbs.png"; path = "Library/pdfviewer/Graphics/Reader-Thumbs.png"; sourceTree = "<group>"; };
+		D32737A8192B60FA00794848 /* Reader-Thumbs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Thumbs@2x.png"; path = "Library/pdfviewer/Graphics/Reader-Thumbs@2x.png"; sourceTree = "<group>"; };
+		D32737BC192B610F00794848 /* iVersion.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iVersion.bundle; path = Library/iVersion/iVersion.bundle; sourceTree = "<group>"; };
+		D32737BD192B610F00794848 /* iVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iVersion.h; path = Library/iVersion/iVersion.h; sourceTree = "<group>"; };
+		D32737BE192B610F00794848 /* iVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iVersion.m; path = Library/iVersion/iVersion.m; sourceTree = "<group>"; };
+		D32737C4192B613F00794848 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = Library/GoogleAnalytics/GoogleAnalytics/GAI.h; sourceTree = "<group>"; };
+		D32737C5192B613F00794848 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = Library/GoogleAnalytics/GoogleAnalytics/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		D32737C6192B613F00794848 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = Library/GoogleAnalytics/GoogleAnalytics/GAIFields.h; sourceTree = "<group>"; };
+		D32737C7192B613F00794848 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = Library/GoogleAnalytics/GoogleAnalytics/GAILogger.h; sourceTree = "<group>"; };
+		D32737C8192B613F00794848 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = Library/GoogleAnalytics/GoogleAnalytics/GAITrackedViewController.h; sourceTree = "<group>"; };
+		D32737C9192B613F00794848 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = Library/GoogleAnalytics/GoogleAnalytics/GAITracker.h; sourceTree = "<group>"; };
+		D32737CA192B61AA00794848 /* TAGContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TAGContainer.h; path = Library/GoogleAnalytics/GoogleTagManager/TAGContainer.h; sourceTree = "<group>"; };
+		D32737CB192B61AA00794848 /* TAGContainerOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TAGContainerOpener.h; path = Library/GoogleAnalytics/GoogleTagManager/TAGContainerOpener.h; sourceTree = "<group>"; };
+		D32737CC192B61AA00794848 /* TAGDataLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TAGDataLayer.h; path = Library/GoogleAnalytics/GoogleTagManager/TAGDataLayer.h; sourceTree = "<group>"; };
+		D32737CD192B61AA00794848 /* TAGLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TAGLogger.h; path = Library/GoogleAnalytics/GoogleTagManager/TAGLogger.h; sourceTree = "<group>"; };
+		D32737CE192B61AA00794848 /* TAGManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TAGManager.h; path = Library/GoogleAnalytics/GoogleTagManager/TAGManager.h; sourceTree = "<group>"; };
+		D32737CF192B61C000794848 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = Library/TestFlight/libTestFlight.a; sourceTree = "<group>"; };
+		D32737D1192B61CA00794848 /* libAdIdAccess.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAdIdAccess.a; path = Library/GoogleAnalytics/libAdIdAccess.a; sourceTree = "<group>"; };
+		D32737D2192B61CA00794848 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = Library/GoogleAnalytics/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		D32737D5192B63C600794848 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		D32737D7192B63D200794848 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D348DF5118CF75B800FE4946 /* XIBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XIBTableViewCell.h; path = CustomUI/XIBTableViewCell.h; sourceTree = "<group>"; };
 		D348DF5218CF75B800FE4946 /* XIBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XIBTableViewCell.m; path = CustomUI/XIBTableViewCell.m; sourceTree = "<group>"; };
 		D348DF5418CFA96400FE4946 /* FSLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSLocationCell.h; path = CustomUI/FSLocationCell.h; sourceTree = "<group>"; };
@@ -556,10 +637,6 @@
 		D3B4AE07190C95AD008006CF /* AutoMessageBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoMessageBox.m; path = MessageBox/AutoMessageBox.m; sourceTree = "<group>"; };
 		D3B4AE08190C95AD008006CF /* AutoMessageBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AutoMessageBox.xib; path = MessageBox/AutoMessageBox.xib; sourceTree = "<group>"; };
 		D3B4AE0C190C9611008006CF /* msg-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "msg-back.png"; path = "FloorSmart/resource/new/msg-back.png"; sourceTree = SOURCE_ROOT; };
-		D3EA4F6218D8E71A00F37C2B /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = TestFlight/TestFlight.h; sourceTree = "<group>"; };
-		D3EA4F6318D8E71A00F37C2B /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TestFlight+AsyncLogging.h"; path = "TestFlight/TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
-		D3EA4F6418D8E71A00F37C2B /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TestFlight+ManualSessions.h"; path = "TestFlight/TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
-		D3EA4F6518D8E7B400F37C2B /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = FloorSmart/libTestFlight.a; sourceTree = "<group>"; };
 		D3EA4F6718D8E7CD00F37C2B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D3EE8F0F18F5FD8B008F7FCA /* bg_c_nl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_c_nl.png; path = "FloorSmart/resource/origin/setting View/bg_c_nl.png"; sourceTree = SOURCE_ROOT; };
 		D3EE8F1018F5FD8B008F7FCA /* bg_c_sl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_c_sl.png; path = "FloorSmart/resource/origin/setting View/bg_c_sl.png"; sourceTree = SOURCE_ROOT; };
@@ -575,62 +652,6 @@
 		D3F142BB18CE7A4200720482 /* FSLocationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSLocationsViewController.m; path = Locations/FSLocationsViewController.m; sourceTree = "<group>"; };
 		D3F142BC18CE7A4200720482 /* FSLocationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FSLocationsViewController.xib; path = Locations/FSLocationsViewController.xib; sourceTree = "<group>"; };
 		D3F4C4B418DDDB2B006F40D1 /* bt_arrow_right1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bt_arrow_right1.png; path = FloorSmart/resource/new/bt_arrow_right1.png; sourceTree = SOURCE_ROOT; };
-		D3F4C4B818DE3AC9006F40D1 /* AppIcon-057.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-057.png"; path = "pdfviewer/Graphics/AppIcon-057.png"; sourceTree = "<group>"; };
-		D3F4C4B918DE3AC9006F40D1 /* AppIcon-072.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-072.png"; path = "pdfviewer/Graphics/AppIcon-072.png"; sourceTree = "<group>"; };
-		D3F4C4BA18DE3AC9006F40D1 /* AppIcon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-114.png"; path = "pdfviewer/Graphics/AppIcon-114.png"; sourceTree = "<group>"; };
-		D3F4C4BB18DE3AC9006F40D1 /* AppIcon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon-144.png"; path = "pdfviewer/Graphics/AppIcon-144.png"; sourceTree = "<group>"; };
-		D3F4C4BC18DE3AC9006F40D1 /* Reader-Button-H.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-H.png"; path = "pdfviewer/Graphics/Reader-Button-H.png"; sourceTree = "<group>"; };
-		D3F4C4BD18DE3AC9006F40D1 /* Reader-Button-H@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-H@2x.png"; path = "pdfviewer/Graphics/Reader-Button-H@2x.png"; sourceTree = "<group>"; };
-		D3F4C4BE18DE3AC9006F40D1 /* Reader-Button-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-N.png"; path = "pdfviewer/Graphics/Reader-Button-N.png"; sourceTree = "<group>"; };
-		D3F4C4BF18DE3AC9006F40D1 /* Reader-Button-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Button-N@2x.png"; path = "pdfviewer/Graphics/Reader-Button-N@2x.png"; sourceTree = "<group>"; };
-		D3F4C4C018DE3AC9006F40D1 /* Reader-Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Email.png"; path = "pdfviewer/Graphics/Reader-Email.png"; sourceTree = "<group>"; };
-		D3F4C4C118DE3AC9006F40D1 /* Reader-Email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Email@2x.png"; path = "pdfviewer/Graphics/Reader-Email@2x.png"; sourceTree = "<group>"; };
-		D3F4C4C218DE3AC9006F40D1 /* Reader-Mark-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Mark-N.png"; path = "pdfviewer/Graphics/Reader-Mark-N.png"; sourceTree = "<group>"; };
-		D3F4C4C318DE3AC9006F40D1 /* Reader-Mark-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Mark-N@2x.png"; path = "pdfviewer/Graphics/Reader-Mark-N@2x.png"; sourceTree = "<group>"; };
-		D3F4C4C418DE3AC9006F40D1 /* Reader-Mark-Y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Mark-Y.png"; path = "pdfviewer/Graphics/Reader-Mark-Y.png"; sourceTree = "<group>"; };
-		D3F4C4C518DE3AC9006F40D1 /* Reader-Mark-Y@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Mark-Y@2x.png"; path = "pdfviewer/Graphics/Reader-Mark-Y@2x.png"; sourceTree = "<group>"; };
-		D3F4C4C618DE3AC9006F40D1 /* Reader-Print.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Print.png"; path = "pdfviewer/Graphics/Reader-Print.png"; sourceTree = "<group>"; };
-		D3F4C4C718DE3AC9006F40D1 /* Reader-Print@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Print@2x.png"; path = "pdfviewer/Graphics/Reader-Print@2x.png"; sourceTree = "<group>"; };
-		D3F4C4C818DE3AC9006F40D1 /* Reader-Thumbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Thumbs.png"; path = "pdfviewer/Graphics/Reader-Thumbs.png"; sourceTree = "<group>"; };
-		D3F4C4C918DE3AC9006F40D1 /* Reader-Thumbs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Reader-Thumbs@2x.png"; path = "pdfviewer/Graphics/Reader-Thumbs@2x.png"; sourceTree = "<group>"; };
-		D3F4C4DD18DE3AEC006F40D1 /* CGPDFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGPDFDocument.h; path = pdfviewer/Sources/CGPDFDocument.h; sourceTree = "<group>"; };
-		D3F4C4DE18DE3AEC006F40D1 /* CGPDFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CGPDFDocument.m; path = pdfviewer/Sources/CGPDFDocument.m; sourceTree = "<group>"; };
-		D3F4C4DF18DE3AEC006F40D1 /* ReaderConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderConstants.h; path = pdfviewer/Sources/ReaderConstants.h; sourceTree = "<group>"; };
-		D3F4C4E018DE3AEC006F40D1 /* ReaderConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderConstants.m; path = pdfviewer/Sources/ReaderConstants.m; sourceTree = "<group>"; };
-		D3F4C4E118DE3AEC006F40D1 /* ReaderContentPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderContentPage.h; path = pdfviewer/Sources/ReaderContentPage.h; sourceTree = "<group>"; };
-		D3F4C4E218DE3AEC006F40D1 /* ReaderContentPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderContentPage.m; path = pdfviewer/Sources/ReaderContentPage.m; sourceTree = "<group>"; };
-		D3F4C4E318DE3AEC006F40D1 /* ReaderContentTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderContentTile.h; path = pdfviewer/Sources/ReaderContentTile.h; sourceTree = "<group>"; };
-		D3F4C4E418DE3AEC006F40D1 /* ReaderContentTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderContentTile.m; path = pdfviewer/Sources/ReaderContentTile.m; sourceTree = "<group>"; };
-		D3F4C4E518DE3AEC006F40D1 /* ReaderContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderContentView.h; path = pdfviewer/Sources/ReaderContentView.h; sourceTree = "<group>"; };
-		D3F4C4E618DE3AEC006F40D1 /* ReaderContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderContentView.m; path = pdfviewer/Sources/ReaderContentView.m; sourceTree = "<group>"; };
-		D3F4C4E718DE3AEC006F40D1 /* ReaderDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderDocument.h; path = pdfviewer/Sources/ReaderDocument.h; sourceTree = "<group>"; };
-		D3F4C4E818DE3AEC006F40D1 /* ReaderDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderDocument.m; path = pdfviewer/Sources/ReaderDocument.m; sourceTree = "<group>"; };
-		D3F4C4E918DE3AEC006F40D1 /* ReaderMainPagebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderMainPagebar.h; path = pdfviewer/Sources/ReaderMainPagebar.h; sourceTree = "<group>"; };
-		D3F4C4EA18DE3AEC006F40D1 /* ReaderMainPagebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderMainPagebar.m; path = pdfviewer/Sources/ReaderMainPagebar.m; sourceTree = "<group>"; };
-		D3F4C4EB18DE3AEC006F40D1 /* ReaderMainToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderMainToolbar.h; path = pdfviewer/Sources/ReaderMainToolbar.h; sourceTree = "<group>"; };
-		D3F4C4EC18DE3AEC006F40D1 /* ReaderMainToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderMainToolbar.m; path = pdfviewer/Sources/ReaderMainToolbar.m; sourceTree = "<group>"; };
-		D3F4C4ED18DE3AEC006F40D1 /* ReaderThumbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbCache.h; path = pdfviewer/Sources/ReaderThumbCache.h; sourceTree = "<group>"; };
-		D3F4C4EE18DE3AEC006F40D1 /* ReaderThumbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbCache.m; path = pdfviewer/Sources/ReaderThumbCache.m; sourceTree = "<group>"; };
-		D3F4C4EF18DE3AEC006F40D1 /* ReaderThumbFetch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbFetch.h; path = pdfviewer/Sources/ReaderThumbFetch.h; sourceTree = "<group>"; };
-		D3F4C4F018DE3AEC006F40D1 /* ReaderThumbFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbFetch.m; path = pdfviewer/Sources/ReaderThumbFetch.m; sourceTree = "<group>"; };
-		D3F4C4F118DE3AEC006F40D1 /* ReaderThumbQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbQueue.h; path = pdfviewer/Sources/ReaderThumbQueue.h; sourceTree = "<group>"; };
-		D3F4C4F218DE3AEC006F40D1 /* ReaderThumbQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbQueue.m; path = pdfviewer/Sources/ReaderThumbQueue.m; sourceTree = "<group>"; };
-		D3F4C4F318DE3AEC006F40D1 /* ReaderThumbRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbRender.h; path = pdfviewer/Sources/ReaderThumbRender.h; sourceTree = "<group>"; };
-		D3F4C4F418DE3AEC006F40D1 /* ReaderThumbRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbRender.m; path = pdfviewer/Sources/ReaderThumbRender.m; sourceTree = "<group>"; };
-		D3F4C4F518DE3AEC006F40D1 /* ReaderThumbRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbRequest.h; path = pdfviewer/Sources/ReaderThumbRequest.h; sourceTree = "<group>"; };
-		D3F4C4F618DE3AEC006F40D1 /* ReaderThumbRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbRequest.m; path = pdfviewer/Sources/ReaderThumbRequest.m; sourceTree = "<group>"; };
-		D3F4C4F718DE3AEC006F40D1 /* ReaderThumbsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbsView.h; path = pdfviewer/Sources/ReaderThumbsView.h; sourceTree = "<group>"; };
-		D3F4C4F818DE3AEC006F40D1 /* ReaderThumbsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbsView.m; path = pdfviewer/Sources/ReaderThumbsView.m; sourceTree = "<group>"; };
-		D3F4C4F918DE3AEC006F40D1 /* ReaderThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderThumbView.h; path = pdfviewer/Sources/ReaderThumbView.h; sourceTree = "<group>"; };
-		D3F4C4FA18DE3AEC006F40D1 /* ReaderThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderThumbView.m; path = pdfviewer/Sources/ReaderThumbView.m; sourceTree = "<group>"; };
-		D3F4C4FB18DE3AEC006F40D1 /* ReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderViewController.h; path = pdfviewer/Sources/ReaderViewController.h; sourceTree = "<group>"; };
-		D3F4C4FC18DE3AEC006F40D1 /* ReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderViewController.m; path = pdfviewer/Sources/ReaderViewController.m; sourceTree = "<group>"; };
-		D3F4C4FD18DE3AEC006F40D1 /* ThumbsMainToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThumbsMainToolbar.h; path = pdfviewer/Sources/ThumbsMainToolbar.h; sourceTree = "<group>"; };
-		D3F4C4FE18DE3AEC006F40D1 /* ThumbsMainToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThumbsMainToolbar.m; path = pdfviewer/Sources/ThumbsMainToolbar.m; sourceTree = "<group>"; };
-		D3F4C4FF18DE3AEC006F40D1 /* ThumbsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThumbsViewController.h; path = pdfviewer/Sources/ThumbsViewController.h; sourceTree = "<group>"; };
-		D3F4C50018DE3AEC006F40D1 /* ThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThumbsViewController.m; path = pdfviewer/Sources/ThumbsViewController.m; sourceTree = "<group>"; };
-		D3F4C50118DE3AEC006F40D1 /* UIXToolbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIXToolbarView.h; path = pdfviewer/Sources/UIXToolbarView.h; sourceTree = "<group>"; };
-		D3F4C50218DE3AEC006F40D1 /* UIXToolbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIXToolbarView.m; path = pdfviewer/Sources/UIXToolbarView.m; sourceTree = "<group>"; };
 		D3F4C51718DE3BA3006F40D1 /* FSReportHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSReportHelper.h; path = Utils/FSReportHelper.h; sourceTree = "<group>"; };
 		D3F4C51818DE3BA3006F40D1 /* FSReportHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSReportHelper.m; path = Utils/FSReportHelper.m; sourceTree = "<group>"; };
 		D3F4C51A18DE5278006F40D1 /* wagner_pdf_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wagner_pdf_image.png; path = FloorSmart/resource/wagner_pdf_image.png; sourceTree = SOURCE_ROOT; };
@@ -665,10 +686,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D32737D8192B63D200794848 /* CoreData.framework in Frameworks */,
+				D32737D6192B63C600794848 /* AdSupport.framework in Frameworks */,
+				D32737D3192B61CA00794848 /* libAdIdAccess.a in Frameworks */,
+				D32737D4192B61CA00794848 /* libGoogleAnalyticsServices.a in Frameworks */,
+				D32737D0192B61C000794848 /* libTestFlight.a in Frameworks */,
 				14BED79918705CAD0092A406 /* QuartzCore.framework in Frameworks */,
 				D3FED27B18EC8FC7007A6866 /* AudioToolbox.framework in Frameworks */,
 				D3EA4F6818D8E7CD00F37C2B /* libz.dylib in Frameworks */,
-				D3EA4F6618D8E7B400F37C2B /* libTestFlight.a in Frameworks */,
 				14F7EA0D1886A20600E4F088 /* CoreBluetooth.framework in Frameworks */,
 				14BED7A318705CEB0092A406 /* libsqlite3.0.dylib in Frameworks */,
 				14BED7A118705CD70092A406 /* MessageUI.framework in Frameworks */,
@@ -697,7 +722,7 @@
 		140E88E118688D260038B5BF = {
 			isa = PBXGroup;
 			children = (
-				CE1A63A918878E160011E6EA /* Default-568h@2x.png */,
+				D3273752192B605500794848 /* Library */,
 				140E88F318688D260038B5BF /* FloorSmart */,
 				140E891218688D260038B5BF /* FloorSmartTests */,
 				140E88EC18688D260038B5BF /* Frameworks */,
@@ -717,9 +742,13 @@
 		140E88EC18688D260038B5BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D32737D7192B63D200794848 /* CoreData.framework */,
+				D32737D5192B63C600794848 /* AdSupport.framework */,
+				D32737D1192B61CA00794848 /* libAdIdAccess.a */,
+				D32737D2192B61CA00794848 /* libGoogleAnalyticsServices.a */,
+				D32737CF192B61C000794848 /* libTestFlight.a */,
 				D3FED27A18EC8FC7007A6866 /* AudioToolbox.framework */,
 				D3EA4F6718D8E7CD00F37C2B /* libz.dylib */,
-				D3EA4F6518D8E7B400F37C2B /* libTestFlight.a */,
 				14F7EA0C1886A20600E4F088 /* CoreBluetooth.framework */,
 				14BED7A218705CEB0092A406 /* libsqlite3.0.dylib */,
 				14BED7A018705CD70092A406 /* MessageUI.framework */,
@@ -739,17 +768,14 @@
 			isa = PBXGroup;
 			children = (
 				D3B4AE04190C959B008006CF /* MessageBox */,
-				D3157D0418FF6C9C00F7E612 /* iVersion */,
 				D3F4C51618DE3B99006F40D1 /* Utils */,
-				D3F4C4B618DE3AA1006F40D1 /* pdfviewer */,
-				D3EA4F6118D8E70D00F37C2B /* TestFlight */,
 				D3F8EF4E18D3C28500572FA0 /* Scan */,
 				140E8A151868A77D0038B5BF /* Global */,
 				14BED78918705B280092A406 /* Database */,
 				140E892418688DEC0038B5BF /* ViewControllers */,
 				140E88FC18688D260038B5BF /* FSAppDelegate.h */,
-				14F7EA0E1886A23200E4F088 /* Defines.h */,
 				140E88FD18688D260038B5BF /* FSAppDelegate.m */,
+				14F7EA0E1886A23200E4F088 /* Defines.h */,
 				140E890518688D260038B5BF /* Images.xcassets */,
 				140E895318688F870038B5BF /* Resource */,
 				140E88F418688D260038B5BF /* Supporting Files */,
@@ -876,6 +902,8 @@
 		140E895318688F870038B5BF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				CE1A63A918878E160011E6EA /* Default-568h@2x.png */,
+				D302663119147F6B00D4F187 /* ReportLogoBottomCenter.png */,
 				D3F9F42B18FF2EF7001804AE /* iTunesArtwork */,
 				D3F9F42C18FF2EF7001804AE /* iTunesArtwork@2x */,
 				D30801A118F1CF7A00101412 /* ReportLogo.png */,
@@ -936,6 +964,8 @@
 		140E8A201868A9E40038B5BF /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
+				D3273755192B608400794848 /* FSMeasureCell.xib */,
+				D3273753192B607A00794848 /* FSArchiveCell.xib */,
 				D39E182618D2657A0054CF19 /* FSLocProductCell.h */,
 				D39E182718D2657A0054CF19 /* FSLocProductCell.m */,
 				D39E182818D2657A0054CF19 /* FSLocProductCell.xib */,
@@ -952,13 +982,11 @@
 				140E8A2E1868D7050038B5BF /* FSJobCell.xib */,
 				140E8A3D186935210038B5BF /* FSArchiveCell.h */,
 				140E8A3E186935210038B5BF /* FSArchiveCell.m */,
-				140E8A3B1869350C0038B5BF /* FSArchiveCell.xib */,
 				1404CAAF1869F69100D7A24B /* FSProductCell.h */,
 				1404CAB01869F69100D7A24B /* FSProductCell.m */,
 				D39E182418D2654E0054CF19 /* FSProductCell.xib */,
 				1419AF3B1879C7D300C5F4F6 /* FSMeasureCell.h */,
 				1419AF3C1879C7D300C5F4F6 /* FSMeasureCell.m */,
-				1419AF3E1879C7E800C5F4F6 /* FSMeasureCell.xib */,
 				14F537AE18C0CA3C00C1318A /* FSReportCell.h */,
 				14F537AF18C0CA3C00C1318A /* FSReportCell.m */,
 				14F537B118C0CA4B00C1318A /* FSReportCell.xib */,
@@ -1158,14 +1186,148 @@
 			path = "setting View";
 			sourceTree = "<group>";
 		};
-		D3157D0418FF6C9C00F7E612 /* iVersion */ = {
+		D3273752192B605500794848 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				D3157D0818FF6D5000F7E612 /* iVersion.bundle */,
-				D3157D0518FF6CA700F7E612 /* iVersion.h */,
-				D3157D0618FF6CA700F7E612 /* iVersion.m */,
+				D32737C1192B611400794848 /* GoogleAnalytics */,
+				D32737BB192B610300794848 /* iVersion */,
+				D327375B192B60B200794848 /* pdfviewer */,
+				D3273757192B609E00794848 /* TestFlight */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		D3273757192B609E00794848 /* TestFlight */ = {
+			isa = PBXGroup;
+			children = (
+				D3273758192B60AD00794848 /* TestFlight.h */,
+				D3273759192B60AD00794848 /* TestFlight+AsyncLogging.h */,
+				D327375A192B60AD00794848 /* TestFlight+ManualSessions.h */,
+			);
+			name = TestFlight;
+			sourceTree = "<group>";
+		};
+		D327375B192B60B200794848 /* pdfviewer */ = {
+			isa = PBXGroup;
+			children = (
+				D327375D192B60D000794848 /* Source */,
+				D327375C192B60B800794848 /* Graphics */,
+			);
+			name = pdfviewer;
+			sourceTree = "<group>";
+		};
+		D327375C192B60B800794848 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				D3273797192B60FA00794848 /* AppIcon-057.png */,
+				D3273798192B60FA00794848 /* AppIcon-072.png */,
+				D3273799192B60FA00794848 /* AppIcon-114.png */,
+				D327379A192B60FA00794848 /* AppIcon-144.png */,
+				D327379B192B60FA00794848 /* Reader-Button-H.png */,
+				D327379C192B60FA00794848 /* Reader-Button-H@2x.png */,
+				D327379D192B60FA00794848 /* Reader-Button-N.png */,
+				D327379E192B60FA00794848 /* Reader-Button-N@2x.png */,
+				D327379F192B60FA00794848 /* Reader-Email.png */,
+				D32737A0192B60FA00794848 /* Reader-Email@2x.png */,
+				D32737A1192B60FA00794848 /* Reader-Mark-N.png */,
+				D32737A2192B60FA00794848 /* Reader-Mark-N@2x.png */,
+				D32737A3192B60FA00794848 /* Reader-Mark-Y.png */,
+				D32737A4192B60FA00794848 /* Reader-Mark-Y@2x.png */,
+				D32737A5192B60FA00794848 /* Reader-Print.png */,
+				D32737A6192B60FA00794848 /* Reader-Print@2x.png */,
+				D32737A7192B60FA00794848 /* Reader-Thumbs.png */,
+				D32737A8192B60FA00794848 /* Reader-Thumbs@2x.png */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
+		D327375D192B60D000794848 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D327375E192B60E900794848 /* CGPDFDocument.h */,
+				D327375F192B60E900794848 /* CGPDFDocument.m */,
+				D3273760192B60E900794848 /* ReaderConstants.h */,
+				D3273761192B60E900794848 /* ReaderConstants.m */,
+				D3273762192B60E900794848 /* ReaderContentPage.h */,
+				D3273763192B60E900794848 /* ReaderContentPage.m */,
+				D3273764192B60E900794848 /* ReaderContentTile.h */,
+				D3273765192B60E900794848 /* ReaderContentTile.m */,
+				D3273766192B60E900794848 /* ReaderContentView.h */,
+				D3273767192B60E900794848 /* ReaderContentView.m */,
+				D3273768192B60E900794848 /* ReaderDocument.h */,
+				D3273769192B60E900794848 /* ReaderDocument.m */,
+				D327376A192B60E900794848 /* ReaderMainPagebar.h */,
+				D327376B192B60E900794848 /* ReaderMainPagebar.m */,
+				D327376C192B60E900794848 /* ReaderMainToolbar.h */,
+				D327376D192B60E900794848 /* ReaderMainToolbar.m */,
+				D327376E192B60E900794848 /* ReaderThumbCache.h */,
+				D327376F192B60E900794848 /* ReaderThumbCache.m */,
+				D3273770192B60E900794848 /* ReaderThumbFetch.h */,
+				D3273771192B60E900794848 /* ReaderThumbFetch.m */,
+				D3273772192B60E900794848 /* ReaderThumbQueue.h */,
+				D3273773192B60E900794848 /* ReaderThumbQueue.m */,
+				D3273774192B60E900794848 /* ReaderThumbRender.h */,
+				D3273775192B60E900794848 /* ReaderThumbRender.m */,
+				D3273776192B60E900794848 /* ReaderThumbRequest.h */,
+				D3273777192B60E900794848 /* ReaderThumbRequest.m */,
+				D3273778192B60E900794848 /* ReaderThumbsView.h */,
+				D3273779192B60E900794848 /* ReaderThumbsView.m */,
+				D327377A192B60E900794848 /* ReaderThumbView.h */,
+				D327377B192B60E900794848 /* ReaderThumbView.m */,
+				D327377C192B60E900794848 /* ReaderViewController.h */,
+				D327377D192B60E900794848 /* ReaderViewController.m */,
+				D327377E192B60E900794848 /* ThumbsMainToolbar.h */,
+				D327377F192B60E900794848 /* ThumbsMainToolbar.m */,
+				D3273780192B60E900794848 /* ThumbsViewController.h */,
+				D3273781192B60E900794848 /* ThumbsViewController.m */,
+				D3273782192B60E900794848 /* UIXToolbarView.h */,
+				D3273783192B60E900794848 /* UIXToolbarView.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		D32737BB192B610300794848 /* iVersion */ = {
+			isa = PBXGroup;
+			children = (
+				D32737BC192B610F00794848 /* iVersion.bundle */,
+				D32737BD192B610F00794848 /* iVersion.h */,
+				D32737BE192B610F00794848 /* iVersion.m */,
 			);
 			name = iVersion;
+			sourceTree = "<group>";
+		};
+		D32737C1192B611400794848 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				D32737C2192B612300794848 /* GoogleAnalytics */,
+				D32737C3192B613100794848 /* GoogleTagManager */,
+			);
+			name = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
+		D32737C2192B612300794848 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				D32737C4192B613F00794848 /* GAI.h */,
+				D32737C5192B613F00794848 /* GAIDictionaryBuilder.h */,
+				D32737C6192B613F00794848 /* GAIFields.h */,
+				D32737C7192B613F00794848 /* GAILogger.h */,
+				D32737C8192B613F00794848 /* GAITrackedViewController.h */,
+				D32737C9192B613F00794848 /* GAITracker.h */,
+			);
+			name = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
+		D32737C3192B613100794848 /* GoogleTagManager */ = {
+			isa = PBXGroup;
+			children = (
+				D32737CA192B61AA00794848 /* TAGContainer.h */,
+				D32737CB192B61AA00794848 /* TAGContainerOpener.h */,
+				D32737CC192B61AA00794848 /* TAGDataLayer.h */,
+				D32737CD192B61AA00794848 /* TAGLogger.h */,
+				D32737CE192B61AA00794848 /* TAGManager.h */,
+			);
+			name = GoogleTagManager;
 			sourceTree = "<group>";
 		};
 		D3B4AE04190C959B008006CF /* MessageBox */ = {
@@ -1179,16 +1341,6 @@
 			name = MessageBox;
 			sourceTree = "<group>";
 		};
-		D3EA4F6118D8E70D00F37C2B /* TestFlight */ = {
-			isa = PBXGroup;
-			children = (
-				D3EA4F6218D8E71A00F37C2B /* TestFlight.h */,
-				D3EA4F6318D8E71A00F37C2B /* TestFlight+AsyncLogging.h */,
-				D3EA4F6418D8E71A00F37C2B /* TestFlight+ManualSessions.h */,
-			);
-			name = TestFlight;
-			sourceTree = "<group>";
-		};
 		D3F142B918CE79FB00720482 /* Locations */ = {
 			isa = PBXGroup;
 			children = (
@@ -1197,85 +1349,6 @@
 				D3F142BC18CE7A4200720482 /* FSLocationsViewController.xib */,
 			);
 			name = Locations;
-			sourceTree = "<group>";
-		};
-		D3F4C4B618DE3AA1006F40D1 /* pdfviewer */ = {
-			isa = PBXGroup;
-			children = (
-				D3F4C4B718DE3AB0006F40D1 /* Graphics */,
-				D3F4C4DC18DE3AD5006F40D1 /* Sources */,
-			);
-			name = pdfviewer;
-			sourceTree = "<group>";
-		};
-		D3F4C4B718DE3AB0006F40D1 /* Graphics */ = {
-			isa = PBXGroup;
-			children = (
-				D3F4C4B818DE3AC9006F40D1 /* AppIcon-057.png */,
-				D3F4C4B918DE3AC9006F40D1 /* AppIcon-072.png */,
-				D3F4C4BA18DE3AC9006F40D1 /* AppIcon-114.png */,
-				D3F4C4BB18DE3AC9006F40D1 /* AppIcon-144.png */,
-				D3F4C4BC18DE3AC9006F40D1 /* Reader-Button-H.png */,
-				D3F4C4BD18DE3AC9006F40D1 /* Reader-Button-H@2x.png */,
-				D3F4C4BE18DE3AC9006F40D1 /* Reader-Button-N.png */,
-				D3F4C4BF18DE3AC9006F40D1 /* Reader-Button-N@2x.png */,
-				D3F4C4C018DE3AC9006F40D1 /* Reader-Email.png */,
-				D3F4C4C118DE3AC9006F40D1 /* Reader-Email@2x.png */,
-				D3F4C4C218DE3AC9006F40D1 /* Reader-Mark-N.png */,
-				D3F4C4C318DE3AC9006F40D1 /* Reader-Mark-N@2x.png */,
-				D3F4C4C418DE3AC9006F40D1 /* Reader-Mark-Y.png */,
-				D3F4C4C518DE3AC9006F40D1 /* Reader-Mark-Y@2x.png */,
-				D3F4C4C618DE3AC9006F40D1 /* Reader-Print.png */,
-				D3F4C4C718DE3AC9006F40D1 /* Reader-Print@2x.png */,
-				D3F4C4C818DE3AC9006F40D1 /* Reader-Thumbs.png */,
-				D3F4C4C918DE3AC9006F40D1 /* Reader-Thumbs@2x.png */,
-			);
-			name = Graphics;
-			sourceTree = "<group>";
-		};
-		D3F4C4DC18DE3AD5006F40D1 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				D3F4C4DD18DE3AEC006F40D1 /* CGPDFDocument.h */,
-				D3F4C4DE18DE3AEC006F40D1 /* CGPDFDocument.m */,
-				D3F4C4DF18DE3AEC006F40D1 /* ReaderConstants.h */,
-				D3F4C4E018DE3AEC006F40D1 /* ReaderConstants.m */,
-				D3F4C4E118DE3AEC006F40D1 /* ReaderContentPage.h */,
-				D3F4C4E218DE3AEC006F40D1 /* ReaderContentPage.m */,
-				D3F4C4E318DE3AEC006F40D1 /* ReaderContentTile.h */,
-				D3F4C4E418DE3AEC006F40D1 /* ReaderContentTile.m */,
-				D3F4C4E518DE3AEC006F40D1 /* ReaderContentView.h */,
-				D3F4C4E618DE3AEC006F40D1 /* ReaderContentView.m */,
-				D3F4C4E718DE3AEC006F40D1 /* ReaderDocument.h */,
-				D3F4C4E818DE3AEC006F40D1 /* ReaderDocument.m */,
-				D3F4C4E918DE3AEC006F40D1 /* ReaderMainPagebar.h */,
-				D3F4C4EA18DE3AEC006F40D1 /* ReaderMainPagebar.m */,
-				D3F4C4EB18DE3AEC006F40D1 /* ReaderMainToolbar.h */,
-				D3F4C4EC18DE3AEC006F40D1 /* ReaderMainToolbar.m */,
-				D3F4C4ED18DE3AEC006F40D1 /* ReaderThumbCache.h */,
-				D3F4C4EE18DE3AEC006F40D1 /* ReaderThumbCache.m */,
-				D3F4C4EF18DE3AEC006F40D1 /* ReaderThumbFetch.h */,
-				D3F4C4F018DE3AEC006F40D1 /* ReaderThumbFetch.m */,
-				D3F4C4F118DE3AEC006F40D1 /* ReaderThumbQueue.h */,
-				D3F4C4F218DE3AEC006F40D1 /* ReaderThumbQueue.m */,
-				D3F4C4F318DE3AEC006F40D1 /* ReaderThumbRender.h */,
-				D3F4C4F418DE3AEC006F40D1 /* ReaderThumbRender.m */,
-				D3F4C4F518DE3AEC006F40D1 /* ReaderThumbRequest.h */,
-				D3F4C4F618DE3AEC006F40D1 /* ReaderThumbRequest.m */,
-				D3F4C4F718DE3AEC006F40D1 /* ReaderThumbsView.h */,
-				D3F4C4F818DE3AEC006F40D1 /* ReaderThumbsView.m */,
-				D3F4C4F918DE3AEC006F40D1 /* ReaderThumbView.h */,
-				D3F4C4FA18DE3AEC006F40D1 /* ReaderThumbView.m */,
-				D3F4C4FB18DE3AEC006F40D1 /* ReaderViewController.h */,
-				D3F4C4FC18DE3AEC006F40D1 /* ReaderViewController.m */,
-				D3F4C4FD18DE3AEC006F40D1 /* ThumbsMainToolbar.h */,
-				D3F4C4FE18DE3AEC006F40D1 /* ThumbsMainToolbar.m */,
-				D3F4C4FF18DE3AEC006F40D1 /* ThumbsViewController.h */,
-				D3F4C50018DE3AEC006F40D1 /* ThumbsViewController.m */,
-				D3F4C50118DE3AEC006F40D1 /* UIXToolbarView.h */,
-				D3F4C50218DE3AEC006F40D1 /* UIXToolbarView.m */,
-			);
-			name = Sources;
 			sourceTree = "<group>";
 		};
 		D3F4C51618DE3B99006F40D1 /* Utils */ = {
@@ -1386,27 +1459,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D32737BA192B60FA00794848 /* Reader-Thumbs@2x.png in Resources */,
 				14F7EB6C1886F12C00E4F088 /* bg_data_bar.png in Resources */,
 				14F7EB9A1886F12C00E4F088 /* ic_list_plus.png in Resources */,
 				1435C0CD1887932A00AE1C87 /* bt_close.png in Resources */,
 				D3F4C51C18DE5278006F40D1 /* wagner_pdf_image.png in Resources */,
 				14F7EBA41886F12C00E4F088 /* segment_m_selected.png in Resources */,
+				D32737BF192B610F00794848 /* iVersion.bundle in Resources */,
 				14F537B518C0ECB500C1318A /* bt_arrow_down1.png in Resources */,
 				D3B4AE0B190C95AD008006CF /* AutoMessageBox.xib in Resources */,
 				1435C0CB1887932A00AE1C87 /* bt_cancel.png in Resources */,
 				140E8A0D18688F880038B5BF /* tap_jobs0.png in Resources */,
 				14F537B218C0CA4B00C1318A /* FSReportCell.xib in Resources */,
 				14F7EB721886F12C00E4F088 /* bg_job_overview_detail_list.png in Resources */,
+				D3273754192B607A00794848 /* FSArchiveCell.xib in Resources */,
 				14F7EB911886F12C00E4F088 /* bt_setting_nl.png in Resources */,
 				1435C0B51887932A00AE1C87 /* bg_fly_menu_bg.png in Resources */,
 				1435C0BE1887932A00AE1C87 /* bg_product_tab.png in Resources */,
 				14F537B618C0ECB500C1318A /* bt_arrow_up1.png in Resources */,
+				D32737B7192B60FA00794848 /* Reader-Print.png in Resources */,
 				14F7EB711886F12C00E4F088 /* bg_job_overview_detail_bar.png in Resources */,
 				14F7EB661886F12C00E4F088 /* bg_add_job_bar.png in Resources */,
 				D30AE18918EB6534007636AD /* archive.png in Resources */,
 				1435C0B91887932A00AE1C87 /* bg_overwiew_data_space.png in Resources */,
 				D3FED28218ECA7A5007A6866 /* bg_select.png in Resources */,
-				D3F4C4CD18DE3AC9006F40D1 /* AppIcon-144.png in Resources */,
 				1435C0AE1887932A00AE1C87 /* b_achived-jobs.png in Resources */,
 				1435C0CE1887932A00AE1C87 /* bt_fly.png in Resources */,
 				140E893E18688E720038B5BF /* FSRecordViewController.xib in Resources */,
@@ -1425,39 +1501,39 @@
 				140E8A0518688F880038B5BF /* bg_bottombar.png in Resources */,
 				14F7EB691886F12C00E4F088 /* bg_avg.png in Resources */,
 				140E8A0A18688F880038B5BF /* tap_1.png in Resources */,
+				D32737AC192B60FA00794848 /* AppIcon-144.png in Resources */,
 				1435C0BB1887932A00AE1C87 /* bg_overwiew_tap_data_01.png in Resources */,
-				D3F4C4DB18DE3AC9006F40D1 /* Reader-Thumbs@2x.png in Resources */,
 				D3F9F42D18FF2EF7001804AE /* iTunesArtwork in Resources */,
 				D3F142BE18CE7A4200720482 /* FSLocationsViewController.xib in Resources */,
 				1435C0CA1887932A00AE1C87 /* bt_C_sl.png in Resources */,
+				D32737AE192B60FA00794848 /* Reader-Button-H@2x.png in Resources */,
 				14F7EB931886F12C00E4F088 /* bt_Summary.png in Resources */,
 				140E8A37186929E80038B5BF /* FSArchiveJobViewController.xib in Resources */,
 				D3FED28418ECB6A0007A6866 /* bt_title_bar_ok.png in Resources */,
 				140E8A0718688F880038B5BF /* example graphic set for only iPhone.zip in Resources */,
+				D32737AB192B60FA00794848 /* AppIcon-114.png in Resources */,
 				140E8A0318688F880038B5BF /* Default-568h.png in Resources */,
-				D3F4C4CA18DE3AC9006F40D1 /* AppIcon-057.png in Resources */,
+				D32737B4192B60FA00794848 /* Reader-Mark-N@2x.png in Resources */,
 				140E8A0618688F880038B5BF /* browser_BG.png in Resources */,
 				D3FE795E18D6907100F747E2 /* bg_main_banner_tabbar.png in Resources */,
 				14F7EBA21886F12C00E4F088 /* segment_ft_selected.png in Resources */,
 				D3FED28018ECA083007A6866 /* FSSelectViewController.xib in Resources */,
-				D3F4C4D118DE3AC9006F40D1 /* Reader-Button-N@2x.png in Resources */,
 				14F7EB701886F12C00E4F088 /* bg_job_keyword.png in Resources */,
 				14F7EB8D1886F12C00E4F088 /* bt_record_nl.png in Resources */,
+				D3273756192B608400794848 /* FSMeasureCell.xib in Resources */,
 				14F7EB791886F12C00E4F088 /* bg_reading_avg.png in Resources */,
 				1435C0C51887932A00AE1C87 /* bt_arrow_up.png in Resources */,
+				D32737AD192B60FA00794848 /* Reader-Button-H.png in Resources */,
 				1435C0C41887932A00AE1C87 /* bt_arrow_down.png in Resources */,
 				1435C0B81887932A00AE1C87 /* bg_overview_title_bar.png in Resources */,
 				D3F4C51D18DE5278006F40D1 /* wagner_pdf_image@2x.png in Resources */,
 				140E89FE18688F880038B5BF /* navi_home.png in Resources */,
-				140E8A3C1869350C0038B5BF /* FSArchiveCell.xib in Resources */,
 				1435C0DA1887932A00AE1C87 /* t_readings.png in Resources */,
-				D3F4C4D618DE3AC9006F40D1 /* Reader-Mark-Y.png in Resources */,
 				D348DF5818CFA96400FE4946 /* FSLocationCell.xib in Resources */,
 				D3EE8F1C18F600E7008F7FCA /* bg_ft_sl.png in Resources */,
 				140E895218688ED70038B5BF /* FSSettingViewController.xib in Resources */,
 				1435C0C61887932A00AE1C87 /* bt_back.png in Resources */,
 				1435C0BD1887932A00AE1C87 /* bg_overwiew_tap_data_03.png in Resources */,
-				D3F4C4CB18DE3AC9006F40D1 /* AppIcon-072.png in Resources */,
 				1435C0C81887932A00AE1C87 /* bt_box_sl.png in Resources */,
 				14F7EB7D1886F12C00E4F088 /* bg_select_type_nl.png in Resources */,
 				D3FBF7F418DF8B2E009CE69F /* bg_product_delete.png in Resources */,
@@ -1469,7 +1545,6 @@
 				D3F4C4B518DDDB2B006F40D1 /* bt_arrow_right1.png in Resources */,
 				140E8A0218688F880038B5BF /* navi_settings.png in Resources */,
 				14F7EBA91886F12C00E4F088 /* bt_ustime_selected.png in Resources */,
-				D3F4C4DA18DE3AC9006F40D1 /* Reader-Thumbs.png in Resources */,
 				1435C0C11887932A00AE1C87 /* bg_select_space01.png in Resources */,
 				1435C0C31887932A00AE1C87 /* bg_setting_tap_02.png in Resources */,
 				14F7EBA01886F12C00E4F088 /* segment_f_selected.png in Resources */,
@@ -1481,6 +1556,7 @@
 				1435C0B71887932A00AE1C87 /* bg_job_tab.png in Resources */,
 				14F7EB741886F12C00E4F088 /* bg_main_banner.png in Resources */,
 				D39E182A18D2657A0054CF19 /* FSLocProductCell.xib in Resources */,
+				D32737B2192B60FA00794848 /* Reader-Email@2x.png in Resources */,
 				140E892F18688E040038B5BF /* FSMainViewController.xib in Resources */,
 				14F7EB941886F12C00E4F088 /* bt_title_bar_cancel.png in Resources */,
 				1435C0AF1887932A00AE1C87 /* bg_add_a_product_bg.png in Resources */,
@@ -1488,14 +1564,12 @@
 				14F7EB7E1886F12C00E4F088 /* bg_select_type_sl.png in Resources */,
 				D3EE8F1518F5FD8B008F7FCA /* bg_f_nl.png in Resources */,
 				14F7EB891886F12C00E4F088 /* bt_ok.png in Resources */,
+				D32737B0192B60FA00794848 /* Reader-Button-N@2x.png in Resources */,
 				1435C0C91887932A00AE1C87 /* bt_C_nl.png in Resources */,
 				14F7EB8E1886F12C00E4F088 /* bt_record_sl.png in Resources */,
 				14F7EB9F1886F12C00E4F088 /* segment_f.png in Resources */,
 				14F7EB9C1886F12C00E4F088 /* ic_uncheck.png in Resources */,
-				D3F4C4D418DE3AC9006F40D1 /* Reader-Mark-N.png in Resources */,
-				D3157D0918FF6D5000F7E612 /* iVersion.bundle in Resources */,
 				140E89FF18688F880038B5BF /* navi_jobs.png in Resources */,
-				D3F4C4D818DE3AC9006F40D1 /* Reader-Print.png in Resources */,
 				14F7EB831886F12C00E4F088 /* bt_arrow.png in Resources */,
 				140E894318688E9B0038B5BF /* FSJobViewController.xib in Resources */,
 				1435C0D71887932A00AE1C87 /* t_job_overview.png in Resources */,
@@ -1505,36 +1579,34 @@
 				14F7EB7F1886F12C00E4F088 /* bg_setting_list.png in Resources */,
 				1435C0BC1887932A00AE1C87 /* bg_overwiew_tap_data_02.png in Resources */,
 				D3B4AE0D190C9611008006CF /* msg-back.png in Resources */,
-				D3F4C4D018DE3AC9006F40D1 /* Reader-Button-N.png in Resources */,
 				140E8A0B18688F880038B5BF /* tap_home0.png in Resources */,
 				140E8A1318688F880038B5BF /* tap_settings0.png in Resources */,
 				D30801A318F1CF7A00101412 /* ReportLogo.png in Resources */,
 				14F7EB951886F12C00E4F088 /* bt_title_bar_save.png in Resources */,
+				D32737B1192B60FA00794848 /* Reader-Email.png in Resources */,
+				D32737B9192B60FA00794848 /* Reader-Thumbs.png in Resources */,
 				D30801A418F1CF7A00101412 /* ReportLogo@2x.png in Resources */,
 				1435C0BA1887932A00AE1C87 /* bg_overwiew_tap.png in Resources */,
 				140E8A0818688F880038B5BF /* tabbar.png in Resources */,
+				D32737A9192B60FA00794848 /* AppIcon-057.png in Resources */,
 				14F7EB8C1886F12C00E4F088 /* bt_Products_sl.png in Resources */,
 				14F7EBA71886F12C00E4F088 /* bt_eurotime_selected.png in Resources */,
 				D3B4AE09190C95AD008006CF /* AutoMessageBox_ipad.xib in Resources */,
 				14F7EBA31886F12C00E4F088 /* segment_m.png in Resources */,
 				1435C0C21887932A00AE1C87 /* bg_setting_tap_01.png in Resources */,
 				1435C0B21887932A00AE1C87 /* bg_add_product.png in Resources */,
-				D3F4C4D218DE3AC9006F40D1 /* Reader-Email.png in Resources */,
 				1435C0CC1887932A00AE1C87 /* bt_check.png in Resources */,
-				D3F4C4D718DE3AC9006F40D1 /* Reader-Mark-Y@2x.png in Resources */,
 				14F7EB6E1886F12C00E4F088 /* bg_fly_menu_nl.png in Resources */,
+				D32737B8192B60FA00794848 /* Reader-Print@2x.png in Resources */,
 				D3EE8F1318F5FD8B008F7FCA /* bg_c_nl.png in Resources */,
 				140E8A1418688F880038B5BF /* tap_settings1.png in Resources */,
 				D3F9F42E18FF2EF7001804AE /* iTunesArtwork@2x in Resources */,
 				1435C0D51887932A00AE1C87 /* ic_delete.png in Resources */,
 				1435C0BF1887932A00AE1C87 /* bg_select_bg.png in Resources */,
 				14F7EB921886F12C00E4F088 /* bt_setting_sl.png in Resources */,
-				D3F4C4CC18DE3AC9006F40D1 /* AppIcon-114.png in Resources */,
 				D3EE8F1E18F600E7008F7FCA /* bg_m_sl.png in Resources */,
 				14F7EBA81886F12C00E4F088 /* bt_ustime.png in Resources */,
-				D3F4C4CF18DE3AC9006F40D1 /* Reader-Button-H@2x.png in Resources */,
 				14F7EBAA1886F12C00E4F088 /* splash-screen_02.png in Resources */,
-				D3F4C4D918DE3AC9006F40D1 /* Reader-Print@2x.png in Resources */,
 				D3EE8F1418F5FD8B008F7FCA /* bg_c_sl.png in Resources */,
 				D3EE8F2218F607FA008F7FCA /* bt_title_bar_save_disabled.png in Resources */,
 				1435C0B11887932A00AE1C87 /* bg_add_job_space.png in Resources */,
@@ -1544,10 +1616,10 @@
 				14F7EB8F1886F12C00E4F088 /* bt_report_nl.png in Resources */,
 				14F7EB6B1886F12C00E4F088 /* bg_bluetooth.png in Resources */,
 				140E8A0C18688F880038B5BF /* tap_home1.png in Resources */,
-				D3F4C4D318DE3AC9006F40D1 /* Reader-Email@2x.png in Resources */,
 				1435C0D61887932A00AE1C87 /* ic_refresh.png in Resources */,
 				140E8A1218688F880038B5BF /* tap_reports1.png in Resources */,
 				1435C0D01887932A00AE1C87 /* bt_job_add.png in Resources */,
+				D32737B6192B60FA00794848 /* Reader-Mark-Y@2x.png in Resources */,
 				14F7EB7C1886F12C00E4F088 /* bg_select_type_bar.png in Resources */,
 				D39E182518D2654E0054CF19 /* FSProductCell.xib in Resources */,
 				D39E182318D2647B0054CF19 /* FSLocProductViewController.xib in Resources */,
@@ -1558,7 +1630,6 @@
 				140E8A0E18688F880038B5BF /* tap_jobs1.png in Resources */,
 				14F7EB671886F12C00E4F088 /* bg_all.png in Resources */,
 				140E8A0918688F880038B5BF /* tap_0.png in Resources */,
-				1419AF3F1879C7E900C5F4F6 /* FSMeasureCell.xib in Resources */,
 				1435C0C71887932A00AE1C87 /* bt_box_nl.png in Resources */,
 				140E894D18688EC60038B5BF /* FSReportViewController.xib in Resources */,
 				1435C0CF1887932A00AE1C87 /* bt_from_reading.png in Resources */,
@@ -1573,26 +1644,29 @@
 				140E88F818688D260038B5BF /* InfoPlist.strings in Resources */,
 				14F7EB821886F12C00E4F088 /* bt_alertcancel.png in Resources */,
 				14F7EB881886F12C00E4F088 /* bt_jobs_sl.png in Resources */,
+				D32737B3192B60FA00794848 /* Reader-Mark-N.png in Resources */,
 				D3EE8F2118F607FA008F7FCA /* bt_title_bar_cancel_disabled.png in Resources */,
 				14F7EB8A1886F12C00E4F088 /* bt_product_arrow.png in Resources */,
 				D3EE8F1D18F600E7008F7FCA /* bg_m_nl.png in Resources */,
 				1435C0DB1887932A00AE1C87 /* t_setting.png in Resources */,
 				14F7EB9B1886F12C00E4F088 /* ic_search.png in Resources */,
+				D302663219147F6B00D4F187 /* ReportLogoBottomCenter.png in Resources */,
 				1435C0D41887932A00AE1C87 /* bt_white_arrow_up.png in Resources */,
 				1435C0D31887932A00AE1C87 /* bt_white_arrow_down.png in Resources */,
 				14F7EB811886F12C00E4F088 /* bg_title_bar.png in Resources */,
 				140E8A1018688F880038B5BF /* tap_products1.png in Resources */,
 				D304C1F418E381D0001EE1D1 /* bg_cancelarchive_job.png in Resources */,
 				14F7EBA11886F12C00E4F088 /* segment_ft.png in Resources */,
-				D3F4C4D518DE3AC9006F40D1 /* Reader-Mark-N@2x.png in Resources */,
 				140E8A0F18688F880038B5BF /* tap_products0.png in Resources */,
+				D32737B5192B60FA00794848 /* Reader-Mark-Y.png in Resources */,
 				14F7EB971886F12C00E4F088 /* ic_check.png in Resources */,
+				D32737AF192B60FA00794848 /* Reader-Button-N.png in Resources */,
 				14F7EB771886F12C00E4F088 /* bg_product_list_bar.png in Resources */,
 				1435C0D21887932A00AE1C87 /* bt_job_edit.png in Resources */,
 				1435C0C01887932A00AE1C87 /* bg_select_space.png in Resources */,
-				D3F4C4CE18DE3AC9006F40D1 /* Reader-Button-H.png in Resources */,
 				140E8A0118688F880038B5BF /* navi_reports.png in Resources */,
 				1435C0D81887932A00AE1C87 /* t_Jobs.png in Resources */,
+				D32737AA192B60FA00794848 /* AppIcon-072.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1611,66 +1685,66 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3273785192B60E900794848 /* ReaderConstants.m in Sources */,
 				140E893D18688E720038B5BF /* FSRecordViewController.m in Sources */,
+				D3273786192B60E900794848 /* ReaderContentPage.m in Sources */,
 				14BED79418705B280092A406 /* FMDatabase.m in Sources */,
-				D3F4C50818DE3AEC006F40D1 /* ReaderDocument.m in Sources */,
 				14F537B018C0CA3C00C1318A /* FSReportCell.m in Sources */,
-				D3F4C50E18DE3AEC006F40D1 /* ReaderThumbRender.m in Sources */,
-				D3F4C50718DE3AEC006F40D1 /* ReaderContentView.m in Sources */,
 				D3F142BD18CE7A4200720482 /* FSLocationsViewController.m in Sources */,
+				D3273796192B60E900794848 /* UIXToolbarView.m in Sources */,
+				D327378A192B60E900794848 /* ReaderMainPagebar.m in Sources */,
+				D327378C192B60E900794848 /* ReaderThumbCache.m in Sources */,
 				140E8A1D1868A77D0038B5BF /* CommonMethods.m in Sources */,
 				140E8A321868D71D0038B5BF /* FSJobCell.m in Sources */,
 				D3FED27F18ECA083007A6866 /* FSSelectViewController.m in Sources */,
 				140E892E18688E040038B5BF /* FSMainViewController.m in Sources */,
 				14BED7A918705E0A0092A406 /* FSLocation.m in Sources */,
-				D3F4C50F18DE3AEC006F40D1 /* ReaderThumbRequest.m in Sources */,
 				140E895118688ED70038B5BF /* FSSettingViewController.m in Sources */,
+				D3273791192B60E900794848 /* ReaderThumbsView.m in Sources */,
 				D3F8EF5418D3C28F00572FA0 /* EmulatorReadingParser.m in Sources */,
-				D3F4C50A18DE3AEC006F40D1 /* ReaderMainToolbar.m in Sources */,
 				1419AF3D1879C7D300C5F4F6 /* FSMeasureCell.m in Sources */,
 				D3653E6718D69CD8000A5493 /* FSCurReadingsViewController.m in Sources */,
-				D3F4C50418DE3AEC006F40D1 /* ReaderConstants.m in Sources */,
+				D3273784192B60E900794848 /* CGPDFDocument.m in Sources */,
+				D3273793192B60E900794848 /* ReaderViewController.m in Sources */,
 				D3F591B818DCE59C00D8111C /* FSReportHeaderView.m in Sources */,
-				D3F4C50618DE3AEC006F40D1 /* ReaderContentTile.m in Sources */,
 				140E8A3F186935210038B5BF /* FSArchiveCell.m in Sources */,
+				D3273788192B60E900794848 /* ReaderContentView.m in Sources */,
+				D327378F192B60E900794848 /* ReaderThumbRender.m in Sources */,
 				D3B4AE0A190C95AD008006CF /* AutoMessageBox.m in Sources */,
-				D3F4C50918DE3AEC006F40D1 /* ReaderMainPagebar.m in Sources */,
 				140E8A36186929E80038B5BF /* FSArchiveJobViewController.m in Sources */,
 				14BED79318705B280092A406 /* DataManager.m in Sources */,
-				D3F4C51218DE3AEC006F40D1 /* ReaderViewController.m in Sources */,
-				D3F4C50C18DE3AEC006F40D1 /* ReaderThumbFetch.m in Sources */,
-				D3157D0718FF6CA700F7E612 /* iVersion.m in Sources */,
 				14BED79618705B280092A406 /* FMResultSet.m in Sources */,
+				D3273794192B60E900794848 /* ThumbsMainToolbar.m in Sources */,
 				140E8A1F1868A77D0038B5BF /* UIView+FindAndResignFirstResponder.m in Sources */,
+				D327378B192B60E900794848 /* ReaderMainToolbar.m in Sources */,
 				140E88FA18688D260038B5BF /* main.m in Sources */,
-				D3F4C51418DE3AEC006F40D1 /* ThumbsViewController.m in Sources */,
 				D348DF5318CF75B800FE4946 /* XIBTableViewCell.m in Sources */,
 				140E8A261868B41F0038B5BF /* FSPopView.m in Sources */,
-				D3F4C50318DE3AEC006F40D1 /* CGPDFDocument.m in Sources */,
-				D3F4C50D18DE3AEC006F40D1 /* ReaderThumbQueue.m in Sources */,
 				D39E182918D2657A0054CF19 /* FSLocProductCell.m in Sources */,
+				D3273795192B60E900794848 /* ThumbsViewController.m in Sources */,
 				140E88FE18688D260038B5BF /* FSAppDelegate.m in Sources */,
-				D3F4C50518DE3AEC006F40D1 /* ReaderContentPage.m in Sources */,
 				140E894C18688EC60038B5BF /* FSReportViewController.m in Sources */,
 				14BED7AC18705E1D0092A406 /* FSProduct.m in Sources */,
 				D3F8EF5818D3C2B300572FA0 /* SensorReadingParser.m in Sources */,
-				D3F4C51118DE3AEC006F40D1 /* ReaderThumbView.m in Sources */,
 				140E894218688E9B0038B5BF /* FSJobViewController.m in Sources */,
 				140E8A1E1868A77D0038B5BF /* GlobalData.m in Sources */,
-				D3F4C50B18DE3AEC006F40D1 /* ReaderThumbCache.m in Sources */,
+				D3273790192B60E900794848 /* ReaderThumbRequest.m in Sources */,
 				1404CAB11869F69100D7A24B /* FSProductCell.m in Sources */,
+				D3273792192B60E900794848 /* ReaderThumbView.m in Sources */,
 				14BED7A618705D500092A406 /* FSJob.m in Sources */,
 				140E8A231868AA130038B5BF /* FSPopContentController.m in Sources */,
+				D327378D192B60E900794848 /* ReaderThumbFetch.m in Sources */,
 				14D1B9831891893000364EC6 /* FSReading.m in Sources */,
-				D3F4C51518DE3AEC006F40D1 /* UIXToolbarView.m in Sources */,
+				D327378E192B60E900794848 /* ReaderThumbQueue.m in Sources */,
 				D3F8EF5518D3C28F00572FA0 /* ScanManager.m in Sources */,
-				D3F4C51318DE3AEC006F40D1 /* ThumbsMainToolbar.m in Sources */,
+				D32737C0192B610F00794848 /* iVersion.m in Sources */,
 				D348DF5718CFA96400FE4946 /* FSLocationCell.m in Sources */,
 				D3F4C51918DE3BA3006F40D1 /* FSReportHelper.m in Sources */,
-				D3F4C51018DE3AEC006F40D1 /* ReaderThumbsView.m in Sources */,
 				D39E182218D2647B0054CF19 /* FSLocProductViewController.m in Sources */,
 				140E894718688EB10038B5BF /* FSProductViewController.m in Sources */,
+				D3273787192B60E900794848 /* ReaderContentTile.m in Sources */,
 				14BED79518705B280092A406 /* FMDatabaseAdditions.m in Sources */,
+				D3273789192B60E900794848 /* ReaderDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1805,6 +1879,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/FloorSmart",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/TestFlight",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/GoogleAnalytics",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3FF44E22-E48B-4D3D-9521-A24EC3FB5063";
@@ -1831,6 +1907,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/FloorSmart",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/TestFlight",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/GoogleAnalytics",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7D21F615-771B-489E-B9FE-9E8DC1F3CC77";

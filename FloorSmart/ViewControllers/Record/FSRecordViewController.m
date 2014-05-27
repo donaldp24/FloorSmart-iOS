@@ -163,6 +163,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    self.screenName = @"Record Screen";
+    
     readingVC = nil;
     GlobalData *globalData = [GlobalData sharedData];
     

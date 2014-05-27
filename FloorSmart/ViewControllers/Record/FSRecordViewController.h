@@ -14,7 +14,9 @@
 #import "FSCurReadingsViewController.h"
 #import "FSSelectViewController.h"
 
-@interface FSRecordViewController : UIViewController <UITextFieldDelegate, FSJobSelectDelegate, FSLocationSelectDelegate, FSLocProductSelectDelegate> {
+#import "GAITrackedViewController.h"
+
+@interface FSRecordViewController : GAITrackedViewController <UITextFieldDelegate, FSJobSelectDelegate, FSLocationSelectDelegate, FSLocProductSelectDelegate> {
     
     FSJob *selectedJob;
     FSLocation *selectedLocation;

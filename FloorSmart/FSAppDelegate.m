@@ -20,6 +20,20 @@
     [TestFlight takeOff:@"f5bf72b9-aacc-4d6f-91dc-e2325536c1be"];
 #endif
     
+    //------ google analytics ---------------------
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    
+    // Optional: set Logger to VERBOSE for debug information.
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    
+    // Initialize a tracker using a Google Analytics property ID.
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-4856475-4"];
+    
+    
     [[GlobalData sharedData] loadInitData];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

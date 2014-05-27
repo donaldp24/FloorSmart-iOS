@@ -182,11 +182,13 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
                      newLineSeparator:[row[kNewLineKey] boolValue]];
     }
 
-    if (NO) {
+    if (YES) {
         [self drawLogoImage];
+        /*
         [self drawTextWithLeftAllignment:@"Certified By Wagner Meters"
                                withFrame:CGRectMake(kBorderInset + kMarginInset+150, kBorderInset + kMarginInset + 850.0,400 , 80)
                                 withFont:[UIFont systemFontOfSize:24.0f]];
+         */
     }
 }
 
@@ -913,9 +915,13 @@ static NSString * const kEmptyPlaceholder = @"EMPTY";
 
 - (void) drawLogoImage {
 
-    UIImage * demoImage = [UIImage imageNamed:@"wagner_pdf_logo.png"];
-    //UIImage * demoImage = [UIImage imageNamed:@"ReportLogo"];
-    [demoImage drawInRect:CGRectMake(demoImage.size.width*3, kBorderInset + kMarginInset + 810.0, demoImage.size.width, demoImage.size.height)];
+    //UIImage * demoImage = [UIImage imageNamed:@"wagner_pdf_logo.png"];
+    UIImage * demoImage = [UIImage imageNamed:@"ReportLogoBottomCenter"];
+    float scale = 4.0;
+    float imageWidth = demoImage.size.width / scale;
+    float imageHeight = demoImage.size.height / scale;
+    
+    [demoImage drawInRect:CGRectMake(pageSize.width / 2.0 - imageWidth / 2.0 , pageSize.height - imageHeight - kBorderInset - kMarginInset - 200/*pagenumber*/, demoImage.size.width / 5.0, demoImage.size.height / 5.0)];
 }
 
 -(void)drawLineFromPoint:(CGPoint)from toPoint:(CGPoint)to {

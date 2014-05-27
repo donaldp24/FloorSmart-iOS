@@ -16,8 +16,9 @@
 // define this value not for hiding toolbars/pagebars
 
 #import "ReaderViewController.h"
+#import "GAITrackedViewController.h"
 
-@interface FSReportViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, MFMailComposeViewControllerDelegate, UIPrintInteractionControllerDelegate, ReaderViewControllerDelegate>
+@interface FSReportViewController : GAITrackedViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, MFMailComposeViewControllerDelegate, UIPrintInteractionControllerDelegate, ReaderViewControllerDelegate>
 
 @property (nonatomic, assign) IBOutlet UITableView *tblMain;
 @property (nonatomic, assign) IBOutlet UILabel *lblJob;
