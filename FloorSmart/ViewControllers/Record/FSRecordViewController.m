@@ -615,7 +615,7 @@
     }
     else
     {
-        /*
+        
         defaultLocation.locID = 0;
         defaultLocation.locName = FMD_DEFAULT_LOCATIONNAME;
         defaultLocation.locJobID = selectedJob.jobID;
@@ -623,9 +623,9 @@
         int retId = [[DataManager sharedInstance] addLocationToDatabase:defaultLocation];
         defaultLocation = [[DataManager sharedInstance] getLocationFromID:retId];
         
-        [self locationSelected:selectedLocation];
-         */
-        selectedLocation = nil;
+        [self locationSelected:defaultLocation];
+        
+        //selectedLocation = nil;
     }
     
     defaultLocation.locJobID = job.jobID;

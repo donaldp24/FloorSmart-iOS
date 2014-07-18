@@ -77,7 +77,7 @@
     FSRecordViewController *p = (FSRecordViewController *)_parent;
     [p hideSummary];
     
-    [self reloadData];
+    //[self reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -130,7 +130,7 @@
                     break;
                 }
             }
-            else if (_mode == MODE_SELECT_JOB)
+            else if (_mode == MODE_SELECT_PRODUCT)
             {
                 FSLocProduct *locProduct = (FSLocProduct *)item;
                 if (locProduct.locProductID == ((FSLocProduct *)data).locProductID)
