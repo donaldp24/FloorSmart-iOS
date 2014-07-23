@@ -10,7 +10,10 @@
 
 static const int kPackageID = 0xDEB93391;
 
-@interface ScanManager ()
+@interface ScanManager () {
+    NSDictionary *beforeData;
+    NSTimeInterval mLastTakingTime;
+}
 
 @property (nonatomic, retain) CBCentralManager *bluetoothCentralManager;
 
@@ -35,6 +38,10 @@ static const int kPackageID = 0xDEB93391;
         _bluetoothCentralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
         NSLog(@"bluetooth - centeral manager inited!");
+        
+        beforeData = nil;
+        mLastTakingTime = -1;
+        
     }
 
     return self;
@@ -131,7 +138,6 @@ static const int kPackageID = 0xDEB93391;
                  peripheral.name]);
 
 
-#if true
     NSString *name = [advertisementData valueForKey:CBAdvertisementDataLocalNameKey];
     NSData *manufacturedData = [advertisementData valueForKey:CBAdvertisementDataManufacturerDataKey];
     NSDictionary *serviceDict = [advertisementData valueForKey:CBAdvertisementDataServiceDataKey];
@@ -147,6 +153,9 @@ static const int kPackageID = 0xDEB93391;
     NSArray* uuidsArray = advertisementData[CBAdvertisementDataServiceUUIDsKey];
     manufacturedData = [[uuidsArray firstObject] data];
      */
+    
+    NSTimeInterval currTime = [[NSDate date] timeIntervalSince1970];
+    
 
     if (manufacturedData) {
         
@@ -173,6 +182,7 @@ static const int kPackageID = 0xDEB93391;
         SensorReadingParser *parser = [[SensorReadingParser alloc] init];
         sensorData = [parser parseData:dataToParse  withOffset:offset];
         
+        
     }
     else {
         ///note, that uuid1 is 128-bit uuid that contain first 16 bytes according to the specification: 3-bytes flag, length byte and so on.
@@ -190,35 +200,7 @@ static const int kPackageID = 0xDEB93391;
         }
         NSLog(@"Debug output sensor data(uuid1): %@",outputString);
 
-        
-#if false
-        UInt32 packageID = kPackageID;
-        ///uuid comes right after flag, length and dataType bytes.
-        if(![[[uuid1 data] subdataWithRange:NSMakeRange(5, 4)] isEqualToData:
-             [NSData dataWithBytes:&packageID length:4]])
-        {
-            NSLog(@"Third party package was received.");
-            [[self delegate] scanManager:self didFindThirdPackage:[uuid1 data]];
-            return;
-        }
-        
-        CBUUID* uuid2 = uuidsArray[1];
-        CBUUID* uuid3 = uuidsArray[2];
-        CBUUID* uuid4 = uuidsArray[3];
-        CBUUID* uuid5 = uuidsArray[4];
 
-        NSData* firstPackage = [uuid1 data];
-        NSData* secondPackage = [uuid2 data];
-        NSMutableData* serialData = [NSMutableData dataWithData:[uuid3 data]];
-        [serialData appendData:[uuid4 data]];
-        [serialData appendData:[uuid5 data]];
-
-        dataToParse = [NSMutableData dataWithData:firstPackage];
-        [dataToParse appendData:[secondPackage subdataWithRange:NSMakeRange(0, 1)]];
-        [dataToParse appendData:serialData];
-        [dataToParse appendData:[secondPackage subdataWithRange:NSMakeRange(1, 1)]];
-        offset = 5;
-#else
         UInt32 packageID = kPackageID;
         ///uuid comes right after flag, length and dataType bytes.
         if([[uuid1 data] length] < 4 || ![[[uuid1 data] subdataWithRange:NSMakeRange(0, 4)] isEqualToData:
@@ -232,16 +214,22 @@ static const int kPackageID = 0xDEB93391;
         NSData* firstPackage = [uuid1 data];
         dataToParse = [NSMutableData dataWithData:firstPackage];
         offset = 0;
-#endif
+
 
         EmulatorReadingParser *parser = [[EmulatorReadingParser alloc] init];
         sensorData = [parser parseData:dataToParse  withOffset:offset];
     }
 
-
-    [[self delegate] scanManager:self
+    if ((mLastTakingTime == -1 || currTime - mLastTakingTime >= 5) ||
+        [[self delegate] isSameAsBefore:beforeData withData:sensorData] == NO)
+    {
+        [[self delegate] scanManager:self
                    didFindSensor:sensorData];
-#endif
+        beforeData = sensorData;
+        mLastTakingTime = currTime;
+    }
+    
+    
 }
 
 - (void)showAlertWithTitle:(NSString *)title description:(NSString *)description {
